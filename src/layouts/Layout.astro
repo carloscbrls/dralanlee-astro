@@ -1,0 +1,328 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description = 'Dr. Alan S. Lee, DDS - Family & Cosmetic Dentistry in Manteca, CA. Call (209) 239-2990.', ogImage = '/images/2022/02/cropped-272532918_1610743785956114_4089058124855931511_n.png' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:url" content={Astro.url.href} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Dr. Alan S. Lee, DDS" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/2022/01/cropped-minimal-logo-generator-for-dental-care-centers-1485f-133-el-1-1-32x32.png" />
+  <link rel="apple-touch-icon" href="/images/2022/01/cropped-minimal-logo-generator-for-dental-care-centers-1485f-133-el-1-1-180x180.png" />
+  
+  <!-- Security Headers (also set via Cloudflare) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <!-- Phone number click-to-call for mobile -->
+  <meta name="format-detection" content="telephone=yes" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="main-nav">
+      <div class="nav-container">
+        <a href="/" class="logo-link">
+          <img src="/images/2022/02/cropped-272532918_1610743785956114_4089058124855931511_n.png" alt="Dr. Alan S. Lee, DDS - Manteca Dentist" class="logo" width="80" height="80" />
+          <div class="logo-text">
+            <span class="logo-name">Dr. Alan S. Lee, DDS</span>
+            <span class="logo-tagline">Manteca Dentist</span>
+          </div>
+        </a>
+        
+        <button class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        
+        <ul class="nav-menu">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about-us/">About Us</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/staff/">Our Team</a></li>
+          <li><a href="/forms-library/">Patient Forms</a></li>
+          <li><a href="/faqs/">FAQs</a></li>
+          <li><a href="/contact-the-office/">Contact</a></li>
+          <li class="cta-nav"><a href="/schedule-appointment/" class="btn-cta">Schedule Appointment</a></li>
+        </ul>
+      </div>
+    </nav>
+    
+    <div class="top-bar">
+      <div class="top-bar-container">
+        <a href="tel:+12092392990" class="phone-link">
+          📞 (209) 239-2990
+        </a>
+        <span class="address">715 N Main St, Manteca, CA 95336</span>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <slot />
+  </main>
+  
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Dr. Alan S. Lee, DDS</h3>
+        <p>715 N Main St<br />Manteca, CA 95336</p>
+        <p><a href="tel:+12092392990">(209) 239-2990</a></p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/about-us/">About Us</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/schedule-appointment/">Schedule Appointment</a></li>
+          <li><a href="/forms-library/">Patient Forms</a></li>
+          <li><a href="/contact-the-office/">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal & Compliance</h3>
+        <ul>
+          <li><a href="/hipaa-privacy-notice/">HIPAA Privacy Notice</a></li>
+          <li><a href="/patient-privacy/">Patient Privacy</a></li>
+          <li><a href="/no-surprises-act/">No Surprises Act</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/accessibility-statement-2/">Accessibility</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Office Hours</h3>
+        <p>Monday - Thursday: 8am - 5pm<br />Friday: 8am - 2pm<br />Saturday - Sunday: Closed</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/Alan-S-Lee-DDS-162181860492761" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://www.yelp.com/biz/alan-s-lee-dds-manteca" target="_blank" rel="noopener noreferrer">Yelp</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {new Date().getFullYear()} Dr. Alan S. Lee, DDS. All rights reserved. | <a href="https://cc3po.com" target="_blank" rel="noopener noreferrer">IT Management by CC3PO</a></p>
+    </div>
+  </footer>
+  
+  <!-- JotForm HIPAA-compliant forms -->
+  <script src="https://cdn.jotform.com/s/umd/latest/for-form-embed-handler.js"></script>
+  
+  <style>
+    :root {
+      --primary: #1a73a7;
+      --primary-dark: #145a87;
+      --accent: #e8a838;
+      --text: #333333;
+      --text-light: #666666;
+      --bg: #ffffff;
+      --bg-light: #f8f9fa;
+      --border: #e0e0e0;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Roboto', sans-serif;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      line-height: 1.6;
+      background: var(--bg);
+    }
+    
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: var(--primary-dark); }
+    
+    .top-bar {
+      background: var(--primary-dark);
+      color: white;
+      font-size: 0.85rem;
+      padding: 0.3rem 0;
+    }
+    .top-bar-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .phone-link { color: white; font-weight: 600; }
+    .address { color: rgba(255,255,255,0.8); }
+    
+    .main-nav {
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text);
+    }
+    .logo { border-radius: 8px; }
+    .logo-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; display: block; }
+    .logo-tagline { font-size: 0.8rem; color: var(--text-light); }
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav-menu a {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .nav-menu a:hover { color: var(--primary); }
+    .btn-cta {
+      background: var(--accent);
+      color: white !important;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .btn-cta:hover { background: #d4952e; }
+    
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    .mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+    
+    .site-footer {
+      background: #1a1a2e;
+      color: rgba(255,255,255,0.8);
+      padding: 3rem 0 1rem;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .footer-col h3 {
+      color: white;
+      font-family: var(--font-heading);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: rgba(255,255,255,0.7); }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      padding-top: 1rem;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.6); }
+    
+    @media (max-width: 768px) {
+      .mobile-toggle { display: block; }
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+      .nav-menu.active { display: flex; }
+      .top-bar-container { flex-direction: column; gap: 0.2rem; }
+    }
+    
+    /* Main content */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    .hero h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto 2rem; }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    
+    .content-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    .content-section h1, .content-section h2, .content-section h3 {
+      font-family: var(--font-heading);
+      color: var(--primary);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .content-section h1 { font-size: 2rem; }
+    .content-section h2 { font-size: 1.5rem; }
+    .content-section h3 { font-size: 1.2rem; }
+    .content-section p { margin-bottom: 1rem; }
+    .content-section ul, .content-section ol { margin-bottom: 1rem; padding-left: 2rem; }
+    .content-section li { margin-bottom: 0.5rem; }
+  </style>
+</body>
+</html>

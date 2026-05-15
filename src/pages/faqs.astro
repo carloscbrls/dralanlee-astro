@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+const title = 'FAQs | Dr. Alan S. Lee, DDS - Manteca Dentist';
+const description = 'Frequently asked questions about dental care, insurance, appointments, and services at Dr. Alan S. Lee, DDS in Manteca, CA.';
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <h1>Frequently Asked Questions</h1>
+    <p>Answers to common questions about our dental practice</p>
+  </section>
+
+  <section class="content-section">
+    <h2>General Questions</h2>
+
+    <div class="faq-item">
+      <h3>What services does Dr. Lee offer?</h3>
+      <p>Dr. Lee offers a full range of dental services including general dentistry (exams, cleanings, fillings), cosmetic dentistry (whitening, veneers, bonding), restorative dentistry (crowns, bridges, dentures, implants), preventive care, pediatric dentistry, and emergency dental care. Visit our <a href="/services/">Services</a> page for more details.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Is Dr. Lee accepting new patients?</h3>
+      <p>Yes! We are always happy to welcome new patients to our practice. You can <a href="/schedule-appointment/">schedule an appointment</a> online or call us at <a href="tel:+12092392990">(209) 239-2990</a>.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What should I bring to my first appointment?</h3>
+      <p>Please bring a valid photo ID, your insurance card(s), a list of current medications, and any completed patient forms. You can fill out forms online on our <a href="/forms-library/">Patient Forms</a> page or download them as PDFs.</p>
+    </div>
+
+    <h2>Insurance & Payment</h2>
+
+    <div class="faq-item">
+      <h3>What insurance plans do you accept?</h3>
+      <p>We accept most major dental insurance plans. Please call our office at <a href="tel:+12092392990">(209) 239-2990</a> to verify your specific plan. We will work with you to maximize your insurance benefits.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What payment options are available?</h3>
+      <p>We accept cash, checks, and major credit cards. We also offer payment plans for larger treatment amounts. Please contact our office for more information about financing options.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Do you offer payment plans?</h3>
+      <p>Yes, we offer flexible payment plans for qualifying patients. We believe that cost should not be a barrier to receiving quality dental care. Please ask about our payment options when you schedule your appointment.</p>
+    </div>
+
+    <h2>Appointments</h2>
+
+    <div class="faq-item">
+      <h3>How do I schedule an appointment?</h3>
+      <p>You can schedule an appointment by <a href="/schedule-appointment/">filling out our online form</a> or by calling our office at <a href="tel:+12092392990">(209) 239-2990</a>.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What are your office hours?</h3>
+      <p>Our office hours are Monday through Thursday, 8:00 AM to 5:00 PM, and Friday, 8:00 AM to 2:00 PM. We are closed on weekends.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What is your cancellation policy?</h3>
+      <p>We ask that you provide at least 24 hours' notice if you need to cancel or reschedule your appointment. This allows us to offer the time slot to another patient. Please see our <a href="/pdfs/Appointment-Policy.pdf">Appointment Policy</a> for full details.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Do you handle dental emergencies?</h3>
+      <p>Yes, we offer same-day emergency appointments when available. If you have a dental emergency, please call us right away at <a href="tel:+12092392990">(209) 239-2990</a>.</p>
+    </div>
+
+    <h2>Dental Care</h2>
+
+    <div class="faq-item">
+      <h3>How often should I visit the dentist?</h3>
+      <p>We recommend visiting the dentist every six months for a routine exam and cleaning. However, some patients may need more frequent visits depending on their oral health needs.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How can I improve my oral hygiene at home?</h3>
+      <p>Brush at least twice daily with fluoride toothpaste, floss daily, limit sugary foods and drinks, and visit us regularly for checkups. We're happy to provide personalized tips during your visit.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>At what age should children start seeing the dentist?</h3>
+      <p>The American Dental Association recommends children have their first dental visit by age 1, or within 6 months of the first tooth erupting. We provide gentle, kid-friendly dental care for children of all ages.</p>
+    </div>
+
+    <div class="cta-section">
+      <h2>Have More Questions?</h2>
+      <p>Don't hesitate to reach out — we're happy to help!</p>
+      <a href="/contact-the-office/" class="btn-cta-large">Contact Us</a>
+      <a href="/schedule-appointment/" class="btn-cta-large" style="background:var(--primary);">Schedule Appointment</a>
+    </div>
+  </section>
+
+  <style>
+    .faq-item { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.5rem; font-size: 1.1rem; }
+    .cta-section { text-align: center; margin-top: 2rem; padding: 2rem; background: var(--bg-light); border-radius: 8px; }
+    .cta-section h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.75rem; }
+    .btn-cta-large { display: inline-block; background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; margin: 0.5rem; }
+    .btn-cta-large:hover { background: #d4952e; }
+  </style>
+</Layout>

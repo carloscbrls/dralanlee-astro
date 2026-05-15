@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+const title = 'About Us | Dr. Alan S. Lee, DDS - Manteca Dentist';
+const description = 'Learn about Dr. Alan S. Lee, DDS and our commitment to quality dental care in Manteca, CA. Over 30 years of experience serving the community.';
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <h1>About Dr. Alan S. Lee, DDS</h1>
+    <p>Compassionate dental care for the Manteca community since 1989</p>
+  </section>
+
+  <section class="content-section">
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="/images/2022/02/50879325_2295985083779084_6149570965102657536_n.jpg" alt="Dr. Alan S. Lee, DDS" />
+      </div>
+      <div class="about-text">
+        <h2>Meet Dr. Lee</h2>
+        <p>Dr. Alan S. Lee has been serving the Manteca community for over 30 years, providing quality dental care in a warm and welcoming environment. He earned his Doctor of Dental Surgery degree and has remained committed to continuing education throughout his career.</p>
+        <p>Dr. Lee believes in treating every patient like family. His approach to dentistry combines the latest techniques with a gentle, personalized touch that puts patients at ease.</p>
+
+        <h3>Our Philosophy</h3>
+        <p>At the office of Dr. Alan S. Lee, DDS, we believe that everyone deserves a healthy, beautiful smile. Our practice is built on the foundation of preventive care, patient education, and compassionate treatment.</p>
+        <p>We take the time to listen to your concerns, explain your treatment options, and work with you to develop a dental care plan that fits your needs and budget.</p>
+
+        <h3>What Sets Us Apart</h3>
+        <ul>
+          <li>Over 30 years of experience serving Manteca</li>
+          <li>Gentle, patient-centered approach</li>
+          <li>Comprehensive dental services under one roof</li>
+          <li>Commitment to continuing education and modern techniques</li>
+          <li>Welcoming, comfortable office environment</li>
+          <li>Accepting new patients</li>
+        </ul>
+
+        <div class="cta-inline">
+          <a href="/schedule-appointment/" class="btn-cta-large">Schedule Your Visit</a>
+          <a href="tel:+12092392990" class="btn-phone">Call (209) 239-2990</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; align-items: start; }
+    .about-image img { width: 100%; border-radius: 8px; }
+    .about-text .btn-cta-large, .about-text .btn-phone { display: inline-block; margin-top: 1rem; margin-right: 1rem; }
+    .btn-cta-large { background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; }
+    .btn-cta-large:hover { background: #d4952e; }
+    .btn-phone { background: var(--primary); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; }
+    .btn-phone:hover { background: var(--primary-dark); }
+    .cta-inline { margin-top: 1.5rem; }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+  </style>
+</Layout>

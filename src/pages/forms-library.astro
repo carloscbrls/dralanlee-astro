@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+const title = 'Patient Forms | Dr. Alan S. Lee, DDS - Manteca Dentist';
+const description = 'Download patient forms for Dr. Alan S. Lee, DDS. Complete dental registration, medical history, and financial policy forms online or download PDFs.';
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <h1>Patient Forms</h1>
+    <p>Complete your forms online or download them before your visit</p>
+  </section>
+
+  <section class="content-section">
+    <p>Please complete the following forms prior to your first appointment. You can fill them out online using our secure HIPAA-compliant forms, or download the PDF versions to bring with you.</p>
+
+    <div class="forms-grid">
+      <div class="form-card">
+        <h3>Dental Registration & History</h3>
+        <p>Complete your dental registration and health history online.</p>
+        <div class="form-embed">
+          <iframe src="https://hipaa.jotform.com/220485359296062" title="Dental Registration & History Form" style="width:100%; height:500px; border:none;" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>Medical History</h3>
+        <p>Please provide your complete medical history for safe dental care.</p>
+        <div class="form-embed">
+          <iframe src="https://hipaa.jotform.com/220628154987061" title="Medical History Form" style="width:100%; height:500px; border:none;" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>Financial Policy</h3>
+        <p>Acknowledge our financial policy online.</p>
+        <div class="form-embed">
+          <iframe src="https://hipaa.jotform.com/250670937244056" title="Financial Policy Form" style="width:100%; height:500px; border:none;" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="pdf-downloads">
+      <h2>Download Printable Forms (PDF)</h2>
+      <p>Prefer to fill out forms on paper? Download and print them to bring to your appointment.</p>
+      <ul class="download-list">
+        <li>
+          <a href="/pdfs/Appointment-Policy.pdf" target="_blank" rel="noopener noreferrer">
+            📄 Appointment Policy (PDF)
+          </a>
+        </li>
+        <li>
+          <a href="/pdfs/Financial-Policy.pdf" target="_blank" rel="noopener noreferrer">
+            📄 Financial Policy (PDF)
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="note-section">
+      <h3>📋 Please Remember</h3>
+      <ul>
+        <li>Bring a valid photo ID to your appointment</li>
+        <li>Bring your insurance card(s)</li>
+        <li>Arrive 15 minutes early for your first visit</li>
+        <li>If downloading forms, please complete and bring them with you</li>
+      </ul>
+    </div>
+  </section>
+
+  <style>
+    .forms-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 2rem 0; }
+    .form-card { background: var(--bg-light); border-radius: 8px; padding: 1.5rem; }
+    .form-card h3 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.5rem; }
+    .form-embed { margin-top: 1rem; }
+    .pdf-downloads { background: var(--bg-light); padding: 1.5rem; border-radius: 8px; margin: 2rem 0; }
+    .pdf-downloads h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.75rem; }
+    .download-list { list-style: none; padding: 0; }
+    .download-list li { margin-bottom: 0.75rem; }
+    .download-list a { font-weight: 600; font-size: 1.05rem; }
+    .note-section { background: #fff8e1; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent); }
+    .note-section h3 { font-family: var(--font-heading); color: var(--accent); margin-bottom: 0.75rem; }
+  </style>
+</Layout>

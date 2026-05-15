@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+const title = 'Dr. Alan S. Lee, DDS | Manteca Dentist';
+const description = 'Dr. Alan S. Lee, DDS provides family and cosmetic dentistry in Manteca, CA. Services include general dentistry, cosmetic dentistry, restorative procedures, and more. Call (209) 239-2990.';
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <h1>Welcome to Dr. Alan S. Lee, DDS</h1>
+    <p>Your trusted Manteca dentist for family &amp; cosmetic dentistry. Compassionate care for every smile.</p>
+    <div class="hero-cta">
+      <a href="/schedule-appointment/" class="btn-hero">Schedule Appointment</a>
+      <a href="tel:+12092392990" class="btn-hero btn-hero-outline">Call (209) 239-2990</a>
+    </div>
+  </section>
+
+  <section class="services-overview container">
+    <h2>Our Dental Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🦷</div>
+        <h3>General Dentistry</h3>
+        <p>Comprehensive exams, cleanings, fillings, and preventive care to keep your smile healthy.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <h3>Cosmetic Dentistry</h3>
+        <p>Teeth whitening, veneers, and bonding to enhance the beauty of your smile.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Restorative Dentistry</h3>
+        <p>Crowns, bridges, dentures, and implants to restore function and aesthetics.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <h3>Preventive Care</h3>
+        <p>Sealants, fluoride treatments, and regular checkups to prevent dental problems.</p>
+      </div>
+    </div>
+    <p class="learn-more"><a href="/services/">Learn more about our services &rarr;</a></p>
+  </section>
+
+  <section class="about-preview container">
+    <div class="about-preview-grid">
+      <div class="about-text">
+        <h2>About Dr. Lee</h2>
+        <p>Dr. Alan S. Lee has been serving the Manteca community with quality dental care for over 30 years. Our practice is committed to providing personalized, gentle care in a comfortable environment.</p>
+        <a href="/about-us/" class="btn-link">Meet Dr. Lee &rarr;</a>
+      </div>
+      <div class="about-image">
+        <img src="/images/2022/02/50879325_2295985083779084_6149570965102657536_n.jpg" alt="Dr. Alan S. Lee, DDS" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Ready to Schedule Your Visit?</h2>
+    <p>We welcome new patients and look forward to caring for your smile.</p>
+    <a href="/schedule-appointment/" class="btn-cta-large">Schedule Appointment</a>
+  </section>
+
+  <section class="map-section container">
+    <h2>Find Our Office</h2>
+    <p>715 N Main St, Manteca, CA 95336</p>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3135.5!2d-121.2167!3d37.7975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809046e4e4e4e4e%3A0xe4e4e4e4e4e4e4e!2s715+N+Main+St%2C+Manteca%2C+CA+95336!5e0!3m2!1sen!2sus!4v1234567890" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Dr. Alan S. Lee office location on Google Maps"></iframe>
+    </div>
+  </section>
+
+  <style>
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    .hero h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto 2rem; }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-hero {
+      display: inline-block; padding: 0.75rem 2rem; border-radius: 4px; font-family: var(--font-heading); font-weight: 600; font-size: 1rem; text-decoration: none; transition: background 0.3s;
+    }
+    .btn-hero { background: var(--accent); color: white; }
+    .btn-hero:hover { background: #d4952e; }
+    .btn-hero-outline { background: transparent; border: 2px solid white; color: white; }
+    .btn-hero-outline:hover { background: rgba(255,255,255,0.1); }
+
+    .services-overview { padding: 3rem 1rem; text-align: center; }
+    .services-overview h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 2rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .service-card { background: var(--bg-light); padding: 1.5rem; border-radius: 8px; transition: transform 0.2s; }
+    .service-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .service-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .service-card h3 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.5rem; }
+    .service-card p { color: var(--text-light); font-size: 0.9rem; }
+    .learn-more { margin-top: 1.5rem; }
+
+    .about-preview { padding: 3rem 1rem; }
+    .about-preview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+    .about-text h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 1rem; }
+    .btn-link { color: var(--primary); font-weight: 600; }
+    .about-image img { width: 100%; border-radius: 8px; }
+
+    .cta-section { background: var(--bg-light); text-align: center; padding: 3rem 1rem; }
+    .cta-section h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 1rem; }
+    .cta-section p { margin-bottom: 1.5rem; color: var(--text-light); }
+    .btn-cta-large { display: inline-block; background: var(--accent); color: white; padding: 0.75rem 2rem; border-radius: 4px; font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem; text-decoration: none; }
+    .btn-cta-large:hover { background: #d4952e; }
+
+    .map-section { padding: 2rem 1rem; text-align: center; }
+    .map-section h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.5rem; }
+    .map-embed { border-radius: 8px; overflow: hidden; margin-top: 1rem; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.8rem; }
+      .about-preview-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</Layout>

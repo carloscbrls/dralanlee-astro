@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+const title = 'Our Team | Dr. Alan S. Lee, DDS - Manteca Dentist';
+const description = 'Meet the caring dental team at Dr. Alan S. Lee, DDS in Manteca, CA. Our experienced staff is dedicated to your comfort and dental health.';
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <h1>Our Team</h1>
+    <p>Dedicated professionals committed to your dental health</p>
+  </section>
+
+  <section class="content-section">
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="/images/2022/02/50879325_2295985083779084_6149570965102657536_n.jpg" alt="Dr. Alan S. Lee, DDS" />
+        <h3>Dr. Alan S. Lee, DDS</h3>
+        <p class="team-role">Lead Dentist &amp; Owner</p>
+        <p>With over 30 years of experience, Dr. Lee is committed to providing the highest quality dental care to the Manteca community. He combines extensive clinical expertise with a gentle, patient-centered approach.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="/images/2022/05/Dr-avarta.jpg" alt="Our Dental Team" />
+        <h3>Our Dental Team</h3>
+        <p class="team-role">Dental Hygienists &amp; Assistants</p>
+        <p>Our friendly and experienced dental hygienists and assistants work alongside Dr. Lee to ensure every patient receives thorough, gentle care in a comfortable environment.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="/images/2022/03/dentist-preparing-medical-application-form-for-her-patient.jpg" alt="Our Office Staff" />
+        <h3>Office Staff</h3>
+        <p class="team-role">Patient Coordination &amp; Scheduling</p>
+        <p>Our knowledgeable office team will help you with scheduling, insurance questions, and making your visit as smooth and convenient as possible.</p>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Ready to Meet Our Team?</h2>
+      <p>Schedule your appointment today and experience our commitment to quality care.</p>
+      <a href="/schedule-appointment/" class="btn-cta-large">Schedule Appointment</a>
+      <a href="tel:+12092392990" class="btn-phone">Call (209) 239-2990</a>
+    </div>
+  </section>
+
+  <style>
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .team-card { background: var(--bg-light); border-radius: 8px; overflow: hidden; text-align: center; }
+    .team-card img { width: 100%; height: 250px; object-fit: cover; }
+    .team-card h3 { font-family: var(--font-heading); color: var(--primary); margin: 1rem 0 0.25rem; }
+    .team-role { color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.75rem; }
+    .team-card p:last-child { padding: 0 1rem 1.5rem; color: var(--text-light); font-size: 0.9rem; }
+    .cta-section { text-align: center; margin-top: 3rem; padding: 2rem; background: var(--bg-light); border-radius: 8px; }
+    .cta-section h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.75rem; }
+    .btn-cta-large { display: inline-block; background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; margin-right: 1rem; }
+    .btn-cta-large:hover { background: #d4952e; }
+    .btn-phone { display: inline-block; background: var(--primary); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; }
+    .btn-phone:hover { background: var(--primary-dark); }
+  </style>
+</Layout>

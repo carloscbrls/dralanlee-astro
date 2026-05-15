@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+const title = 'Dental Services | Dr. Alan S. Lee, DDS - Manteca Dentist';
+const description = 'Comprehensive dental services in Manteca, CA including general dentistry, cosmetic dentistry, restorative procedures, and preventive care. Call (209) 239-2990.';
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <h1>Our Dental Services</h1>
+    <p>Comprehensive dental care for the whole family</p>
+  </section>
+
+  <section class="content-section">
+    <div class="services-list">
+      <div class="service-item">
+        <h2>🦷 General Dentistry</h2>
+        <p>Comprehensive general dental services to maintain your oral health. Our general dentistry services include:</p>
+        <ul>
+          <li>Dental exams and cleanings</li>
+          <li>Digital X-rays</li>
+          <li>Fillings (tooth-colored and amalgam)</li>
+          <li>Root canal therapy</li>
+          <li>Tooth extractions</li>
+          <li>Gum disease treatment</li>
+          <li>Oral cancer screenings</li>
+        </ul>
+      </div>
+
+      <div class="service-item">
+        <h2>✨ Cosmetic Dentistry</h2>
+        <p>Enhance the beauty of your smile with our cosmetic dental services:</p>
+        <ul>
+          <li>Professional teeth whitening</li>
+          <li>Porcelain veneers</li>
+          <li>Dental bonding</li>
+          <li>Tooth-colored fillings</li>
+          <li>Smile makeovers</li>
+        </ul>
+      </div>
+
+      <div class="service-item">
+        <h2>🔧 Restorative Dentistry</h2>
+        <p>Restore your smile and dental function with our restorative services:</p>
+        <ul>
+          <li>Dental crowns</li>
+          <li>Dental bridges</li>
+          <li>Full and partial dentures</li>
+          <li>Dental implants</li>
+          <li>Inlays and onlays</li>
+        </ul>
+      </div>
+
+      <div class="service-item">
+        <h2>🛡️ Preventive Care</h2>
+        <p>Prevent dental problems before they start:</p>
+        <ul>
+          <li>Regular checkups and cleanings</li>
+          <li>Dental sealants</li>
+          <li>Fluoride treatments</li>
+          <li>Patient education and oral hygiene instruction</li>
+          <li>Night guards and athletic mouth guards</li>
+        </ul>
+      </div>
+
+      <div class="service-item">
+        <h2>👶 Pediatric Dentistry</h2>
+        <p>Gentle dental care for children of all ages:</p>
+        <ul>
+          <li>Children's dental exams and cleanings</li>
+          <li>Sealants and fluoride treatments</li>
+          <li>Early orthodontic evaluation</li>
+          <li>Gentle, kid-friendly approach</li>
+        </ul>
+      </div>
+
+      <div class="service-item">
+        <h2>⚡ Emergency Dental Care</h2>
+        <p>When dental emergencies happen, we're here to help:</p>
+        <ul>
+          <li>Same-day emergency appointments</li>
+          <li>Toothache relief</li>
+          <li>Broken or knocked-out teeth</li>
+          <li>Lost fillings or crowns</li>
+          <li>Dental abscess treatment</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Ready to Get Started?</h2>
+      <p>Contact our office to schedule your appointment today.</p>
+      <a href="/schedule-appointment/" class="btn-cta-large">Schedule Appointment</a>
+      <a href="tel:+12092392990" class="btn-phone">Call (209) 239-2990</a>
+    </div>
+  </section>
+
+  <style>
+    .service-item { background: var(--bg-light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; }
+    .service-item h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.75rem; }
+    .service-item ul { padding-left: 1.5rem; }
+    .service-item li { margin-bottom: 0.25rem; }
+    .cta-section { text-align: center; margin-top: 2rem; padding: 2rem; background: var(--bg-light); border-radius: 8px; }
+    .cta-section h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.75rem; }
+    .btn-cta-large { display: inline-block; background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; margin-right: 1rem; }
+    .btn-cta-large:hover { background: #d4952e; }
+    .btn-phone { display: inline-block; background: var(--primary); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; }
+    .btn-phone:hover { background: var(--primary-dark); }
+  </style>
+</Layout>
