@@ -1,0 +1,258 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const title = 'Client Portal | Dr. Alan S. Lee, DDS';
+const description = 'Secure client portal for Dr. Alan S. Lee, DDS. View compliance status, submit requests, and access practice resources.';
+---
+
+<Layout title={title} description={description}>
+  <section class="legal-hero" data-animate>
+    <div class="container-wide">
+      <div class="section-label">Client Portal</div>
+      <h1 class="section-title">Practice Dashboard</h1>
+      <p class="legal-hero-subtitle">Your centralized hub for compliance, forms, and practice management.</p>
+    </div>
+  </section>
+
+  <!-- Compliance Score -->
+  <section class="section-pad" data-animate>
+    <div class="container-narrow">
+      <div class="score-card" data-animate>
+        <div class="score-header">
+          <div class="score-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div>
+            <h2>HIPAA Compliance Score</h2>
+            <p class="score-subtitle">Last audited: May 15, 2026 by CC3PO</p>
+          </div>
+        </div>
+        <div class="score-grid">
+          <div class="score-item score-main">
+            <div class="score-number">92<span class="score-suffix">/100</span></div>
+            <div class="score-label">Overall Score</div>
+            <div class="score-grade grade-a">Grade A-</div>
+          </div>
+          <div class="score-details">
+            <div class="score-row">
+              <span class="score-cat">HIPAA Compliance</span>
+              <div class="score-bar-wrap"><div class="score-bar" style="width:95%"></div></div>
+              <span class="score-val">95</span>
+            </div>
+            <div class="score-row">
+              <span class="score-cat">Security</span>
+              <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+              <span class="score-val">90</span>
+            </div>
+            <div class="score-row">
+              <span class="score-cat">Accessibility</span>
+              <div class="score-bar-wrap"><div class="score-bar" style="width:82%"></div></div>
+              <span class="score-val">82</span>
+            </div>
+            <div class="score-row">
+              <span class="score-cat">Privacy & Legal</span>
+              <div class="score-bar-wrap"><div class="score-bar" style="width:97%"></div></div>
+              <span class="score-val">97</span>
+            </div>
+            <div class="score-row">
+              <span class="score-cat">Content & UX</span>
+              <div class="score-bar-wrap"><div class="score-bar" style="width:88%"></div></div>
+              <span class="score-val">88</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Actions -->
+  <section class="section-pad alt-bg" data-animate>
+    <div class="container-narrow">
+      <h2 class="section-heading">Quick Actions</h2>
+      <div class="actions-grid">
+        <a href="/forms-library/" class="action-card">
+          <div class="action-icon blue">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </div>
+          <div>
+            <h3>Patient Forms</h3>
+            <p>View and complete all HIPAA-compliant forms</p>
+          </div>
+        </a>
+        <a href="/schedule-appointment/" class="action-card">
+          <div class="action-icon green">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
+          <div>
+            <h3>Schedule Appointment</h3>
+            <p>Book your next visit online</p>
+          </div>
+        </a>
+        <a href="/pay/" class="action-card" target="_blank" rel="noopener noreferrer">
+          <div class="action-icon purple">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+          </div>
+          <div>
+            <h3>Pay Online</h3>
+            <p>Secure payment through ConvergePay</p>
+          </div>
+        </a>
+        <a href="/contact-the-office/" class="action-card">
+          <div class="action-icon orange">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <div>
+            <h3>Contact Office</h3>
+            <p>Call (209) 239-2990 or send a message</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compliance Documents -->
+  <section class="section-pad" data-animate>
+    <div class="container-narrow">
+      <h2 class="section-heading">Compliance Documents</h2>
+      <p class="section-description">All legal and compliance documents, always accessible.</p>
+      <div class="docs-grid">
+        <a href="/hipaa-privacy-notice/" class="doc-card">
+          <div class="doc-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div>
+            <h4>HIPAA Privacy Notice</h4>
+            <p>Full Notice of Privacy Practices</p>
+          </div>
+        </a>
+        <a href="/patient-privacy/" class="doc-card">
+          <div class="doc-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </div>
+          <div>
+            <h4>Patient Privacy Rights</h4>
+            <p>Your rights under HIPAA</p>
+          </div>
+        </a>
+        <a href="/accessibility-statement-2/" class="doc-card">
+          <div class="doc-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
+          </div>
+          <div>
+            <h4>Accessibility Statement</h4>
+            <p>WCAG 2.1 AA conformance</p>
+          </div>
+        </a>
+        <a href="/no-surprises-act/" class="doc-card">
+          <div class="doc-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          </div>
+          <div>
+            <h4>No Surprises Act</h4>
+            <p>Good faith estimate & protections</p>
+          </div>
+        </a>
+        <a href="/privacy-policy/" class="doc-card">
+          <div class="doc-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <div>
+            <h4>Privacy Policy</h4>
+            <p>Website data collection & CCPA rights</p>
+          </div>
+        </a>
+        <a href="/terms-of-service/" class="doc-card">
+          <div class="doc-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </div>
+          <div>
+            <h4>Terms of Service</h4>
+            <p>Website terms and conditions</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CC3PO Contact -->
+  <section class="section-pad alt-bg" data-animate>
+    <div class="container-narrow" style="text-align: center;">
+      <div class="cc3po-card">
+        <div class="cc3po-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <h3>IT & Compliance by CC3PO</h3>
+        <p>Your website, compliance, and IT infrastructure are managed by <a href="https://cc3po.com" target="_blank" rel="noopener noreferrer">CC3PO</a>. Need changes, have questions, or want to discuss your next compliance review?</p>
+        <a href="https://cc3po.com/contact/" class="btn-primary" target="_blank" rel="noopener noreferrer">
+          Contact CC3PO
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .legal-hero { background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%); color: white; padding: 5rem 1.5rem 4rem; text-align: center; }
+    .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
+    .legal-hero .section-label::before { background: var(--accent-400); }
+    .legal-hero .section-title { color: white; margin-bottom: 1rem; }
+    .legal-hero-subtitle { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
+
+    .section-heading { font-family: var(--font-display); font-size: 1.75rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .section-description { color: var(--neutral-500); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6; }
+    .alt-bg { background: var(--neutral-50); }
+
+    /* Score Card */
+    .score-card { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-md); }
+    .score-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--neutral-100); }
+    .score-icon { display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: var(--radius-md); background: linear-gradient(135deg, #059669, #047857); color: white; }
+    .score-header h2 { font-family: var(--font-display); font-size: 1.3rem; color: var(--neutral-900); margin: 0; }
+    .score-subtitle { font-size: 0.85rem; color: var(--neutral-500); margin: 0.25rem 0 0; }
+    .score-grid { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: center; }
+    .score-main { text-align: center; }
+    .score-number { font-family: var(--font-display); font-size: 4rem; font-weight: 700; color: var(--success); line-height: 1; }
+    .score-suffix { font-size: 1.5rem; color: var(--neutral-400); font-weight: 400; }
+    .score-label { font-size: 0.85rem; color: var(--neutral-500); margin-top: 0.25rem; }
+    .score-grade { display: inline-block; padding: 0.3rem 1rem; border-radius: var(--radius-full); font-weight: 700; font-size: 0.85rem; margin-top: 0.5rem; }
+    .grade-a { background: #dcfce7; color: #059669; }
+    .score-details { display: flex; flex-direction: column; gap: 0.75rem; }
+    .score-row { display: grid; grid-template-columns: 140px 1fr 40px; gap: 0.75rem; align-items: center; }
+    .score-cat { font-size: 0.88rem; color: var(--neutral-700); font-weight: 500; }
+    .score-bar-wrap { height: 8px; background: var(--neutral-100); border-radius: 4px; overflow: hidden; }
+    .score-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--primary-600), var(--success)); transition: width 0.6s ease; }
+    .score-val { font-weight: 700; font-size: 0.88rem; color: var(--neutral-900); text-align: right; }
+
+    /* Actions */
+    .actions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .action-card { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); text-decoration: none; color: inherit; transition: all var(--transition-fast); }
+    .action-card:hover { box-shadow: var(--shadow-md); border-color: var(--primary-300); transform: translateY(-2px); }
+    .action-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); flex-shrink: 0; color: white; }
+    .action-icon.blue { background: var(--primary-700); }
+    .action-icon.green { background: var(--success); }
+    .action-icon.purple { background: #7c3aed; }
+    .action-icon.orange { background: var(--accent-500); }
+    .action-card h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin: 0; }
+    .action-card p { font-size: 0.85rem; color: var(--neutral-500); margin: 0.25rem 0 0; }
+
+    /* Docs */
+    .docs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .doc-card { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); text-decoration: none; color: inherit; transition: all var(--transition-fast); }
+    .doc-card:hover { border-color: var(--primary-300); box-shadow: var(--shadow-sm); }
+    .doc-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--primary-50); color: var(--primary-700); flex-shrink: 0; }
+    .doc-card h4 { font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; color: var(--neutral-900); margin: 0; }
+    .doc-card p { font-size: 0.8rem; color: var(--neutral-500); margin: 0.15rem 0 0; }
+
+    /* CC3PO Card */
+    .cc3po-card { background: white; border: 2px solid var(--primary-200); border-radius: var(--radius-lg); padding: 2.5rem; max-width: 500px; margin: 0 auto; }
+    .cc3po-icon { display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: var(--radius-full); background: linear-gradient(135deg, var(--primary-700), var(--primary-900)); color: white; margin: 0 auto 1rem; }
+    .cc3po-card h3 { font-family: var(--font-display); font-size: 1.25rem; color: var(--neutral-900); margin-bottom: 0.75rem; }
+    .cc3po-card p { color: var(--neutral-500); line-height: 1.6; margin-bottom: 1.5rem; }
+    .cc3po-card a { color: var(--primary-700); text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .score-grid { grid-template-columns: 1fr; }
+      .actions-grid { grid-template-columns: 1fr; }
+      .docs-grid { grid-template-columns: 1fr; }
+      .legal-hero { padding: 3.5rem 1rem 3rem; }
+    }
+  </style>
+</Layout>

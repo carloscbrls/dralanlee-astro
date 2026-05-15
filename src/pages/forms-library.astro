@@ -1,8 +1,61 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const title = 'Patient Forms Library | Dr. Alan S. Lee, DDS';
-const description = 'Download or complete patient forms online before your visit. HIPAA-compliant new patient registration, medical history, consent forms, and more.';
+const title = 'Patient Forms | Dr. Alan S. Lee, DDS';
+const description = 'Complete your patient forms online before your visit. HIPAA-compliant, encrypted, and secure. New patient registration, medical history, consent forms, and more.';
+
+// Form definitions - JotForm iframe embed IDs
+const newPatientForms = [
+  {
+    id: '220485359296062',
+    title: 'New Patient Registration',
+    desc: 'Personal information, contact details, insurance, and demographic data.',
+    icon: 'clipboard',
+    accent: false,
+  },
+  {
+    id: '220628154987061',
+    title: 'Medical & Dental History',
+    desc: 'Current medications, allergies, past dental treatments, and health conditions.',
+    icon: 'heartbeat',
+    accent: false,
+  },
+  {
+    id: '261048079832057',
+    title: 'HIPAA Privacy Consent & Intake',
+    desc: 'Patient intake with HIPAA acknowledgment, medical history, and consent.',
+    icon: 'shield',
+    accent: true,
+  },
+  {
+    id: '261048079832057',
+    title: 'Insurance Verification',
+    desc: 'Dental insurance details so we can verify your coverage.',
+    icon: 'card',
+    accent: false,
+  },
+];
+
+const consentForms = [
+  {
+    id: '261347052218149',
+    title: 'Consent for Treatment',
+    desc: 'Authorize dental examinations, diagnostics, and treatment.',
+    icon: 'check',
+  },
+  {
+    id: '261346489311156',
+    title: 'Records Release Authorization',
+    desc: 'Authorize release of dental records to another office or insurer.',
+    icon: 'share',
+  },
+  {
+    id: '250670937244056',
+    title: 'Financial Responsibility',
+    desc: 'Acknowledge financial responsibility for services not covered by insurance.',
+    icon: 'dollar',
+  },
+];
 ---
 
 <Layout title={title} description={description}>
@@ -11,7 +64,7 @@ const description = 'Download or complete patient forms online before your visit
     <div class="container-wide">
       <div class="section-label">Patient Resources</div>
       <h1 class="section-title">Patient Forms</h1>
-      <p class="legal-hero-subtitle">Complete your forms before your visit to save time. All online submissions are HIPAA-encrypted and secure.</p>
+      <p class="legal-hero-subtitle">Complete your forms before your visit to save time. All online submissions are HIPAA-encrypted and secure — never leave this site.</p>
     </div>
   </section>
 
@@ -20,7 +73,7 @@ const description = 'Download or complete patient forms online before your visit
     <div class="container-narrow">
       <div class="trust-inner">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
-        <span>Your information is protected by HIPAA-compliant encryption. <a href="/hipaa-privacy-notice/">Learn more about your privacy rights →</a></span>
+        <span>Your information is protected by HIPAA-compliant encryption. Forms are submitted directly to our office — no third-party sites. <a href="/hipaa-privacy-notice/">Learn more about your privacy rights →</a></span>
       </div>
     </div>
   </section>
@@ -29,72 +82,29 @@ const description = 'Download or complete patient forms online before your visit
   <section class="section-pad">
     <div class="container-narrow" data-animate>
       <h2 class="section-heading">New Patient Registration</h2>
-      <p class="section-description">If you're a new patient, please complete these forms before your first visit.</p>
+      <p class="section-description">If you're a new patient, please complete these forms before your first visit. Click any form to open it right here on this page.</p>
 
       <div class="forms-grid">
-        <a href="https://form.jotform.com/220485359296062" class="form-card" target="_blank" rel="noopener noreferrer">
-          <div class="form-card-top">
-            <div class="form-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        {newPatientForms.map((form) => (
+          <button class="form-card" data-form-id={form.id} data-form-title={form.title} type="button">
+            <div class="form-card-top">
+              <div class={`form-icon ${form.accent ? 'accent' : ''}`}>
+                {form.icon === 'clipboard' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>}
+                {form.icon === 'heartbeat' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>}
+                {form.icon === 'shield' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>}
+                {form.icon === 'card' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>}
+              </div>
+              <div>
+                <h3>{form.title}</h3>
+                <p>{form.desc}</p>
+              </div>
             </div>
-            <div>
-              <h3>New Patient Registration</h3>
-              <p>Personal information, contact details, insurance, and demographic data.</p>
+            <div class="form-card-action">
+              <span>Open Form</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </div>
-          </div>
-          <div class="form-card-action">
-            <span>Complete Online</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </a>
-
-        <a href="https://form.jotform.com/220628154987061" class="form-card" target="_blank" rel="noopener noreferrer">
-          <div class="form-card-top">
-            <div class="form-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
-            </div>
-            <div>
-              <h3>Medical &amp; Dental History</h3>
-              <p>Current medications, allergies, past dental treatments, and health conditions.</p>
-            </div>
-          </div>
-          <div class="form-card-action">
-            <span>Complete Online</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </a>
-
-        <a href="https://form.jotform.com/261048079832057" class="form-card" target="_blank" rel="noopener noreferrer">
-          <div class="form-card-top">
-            <div class="form-icon accent">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
-            </div>
-            <div>
-              <h3>HIPAA Privacy Consent &amp; Intake</h3>
-              <p>Patient intake with HIPAA acknowledgment, medical history, and consent.</p>
-            </div>
-          </div>
-          <div class="form-card-action">
-            <span>Complete Online</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </a>
-
-        <a href="https://form.jotform.com/261048079832057" class="form-card" target="_blank" rel="noopener noreferrer">
-          <div class="form-card-top">
-            <div class="form-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-            </div>
-            <div>
-              <h3>Insurance Verification</h3>
-              <p>Dental insurance details so we can verify your coverage.</p>
-            </div>
-          </div>
-          <div class="form-card-action">
-            <span>Complete Online</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </a>
+          </button>
+        ))}
       </div>
     </div>
   </section>
@@ -102,60 +112,61 @@ const description = 'Download or complete patient forms online before your visit
   <!-- Consent & Authorization -->
   <section class="section-pad alt-bg">
     <div class="container-narrow" data-animate>
-      <h2 class="section-heading">Consent &amp; Authorization</h2>
+      <h2 class="section-heading">Consent & Authorization</h2>
       <p class="section-description">Required consent forms for treatment and records.</p>
 
       <div class="forms-grid three-col">
-        <a href="https://form.jotform.com/261347052218149" class="form-card" target="_blank" rel="noopener noreferrer">
-          <div class="form-card-top">
-            <div class="form-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><polyline points="16 13 12 17 10 15"></polyline></svg>
+        {consentForms.map((form) => (
+          <button class="form-card" data-form-id={form.id} data-form-title={form.title} type="button">
+            <div class="form-card-top">
+              <div class="form-icon">
+                {form.icon === 'check' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><polyline points="16 13 12 17 10 15"></polyline></svg>}
+                {form.icon === 'share' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line></svg>}
+                {form.icon === 'dollar' && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>}
+              </div>
+              <div>
+                <h3>{form.title}</h3>
+                <p>{form.desc}</p>
+              </div>
             </div>
-            <div>
-              <h3>Consent for Treatment</h3>
-              <p>Authorize dental examinations, diagnostics, and treatment.</p>
+            <div class="form-card-action">
+              <span>Open Form</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </div>
-          </div>
-          <div class="form-card-action">
-            <span>Complete Online</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </a>
-
-        <a href="https://form.jotform.com/261346489311156" class="form-card" target="_blank" rel="noopener noreferrer">
-          <div class="form-card-top">
-            <div class="form-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line></svg>
-            </div>
-            <div>
-              <h3>Records Release Authorization</h3>
-              <p>Authorize release of dental records to another office or insurer.</p>
-            </div>
-          </div>
-          <div class="form-card-action">
-            <span>Complete Online</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </a>
-
-        <a href="https://form.jotform.com/250670937244056" class="form-card" target="_blank" rel="noopener noreferrer">
-          <div class="form-card-top">
-            <div class="form-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-            </div>
-            <div>
-              <h3>Financial Responsibility</h3>
-              <p>Acknowledge financial responsibility for services not covered by insurance.</p>
-            </div>
-          </div>
-          <div class="form-card-action">
-            <span>Complete Online</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </a>
+          </button>
+        ))}
       </div>
     </div>
   </section>
+
+  <!-- Form Modal -->
+  <div id="form-modal" class="form-modal" role="dialog" aria-modal="true" aria-label="Patient form">
+    <div class="form-modal-backdrop" id="modal-backdrop"></div>
+    <div class="form-modal-content">
+      <div class="form-modal-header">
+        <h2 id="modal-title">Loading Form...</h2>
+        <div class="form-modal-actions">
+          <a id="modal-new-tab" href="#" target="_blank" rel="noopener noreferrer" class="btn-sm btn-outline">Open in New Tab</a>
+          <button id="modal-close" class="btn-sm btn-close" aria-label="Close form">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+      <div class="form-modal-body">
+        <div class="jotform-embed" id="jotform-container">
+          <div class="form-loading" id="form-loading">
+            <div class="loading-spinner"></div>
+            <p>Loading secure form...</p>
+            <p class="loading-sub">Your data is encrypted and HIPAA-compliant</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-modal-footer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        <span>All forms are HIPAA-encrypted. Your information is submitted directly to Dr. Lee's office.</span>
+      </div>
+    </div>
+  </div>
 
   <!-- Tips -->
   <section class="section-pad">
@@ -207,38 +218,22 @@ const description = 'Download or complete patient forms online before your visit
   </section>
 
   <style>
-    .legal-hero {
-      background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%);
-      color: white; padding: 5rem 1.5rem 4rem; text-align: center;
-    }
+    /* Hero & Trust Bar (same as before) */
+    .legal-hero { background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%); color: white; padding: 5rem 1.5rem 4rem; text-align: center; }
     .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
     .legal-hero .section-label::before { background: var(--accent-400); }
     .legal-hero .section-title { color: white; margin-bottom: 1rem; }
     .legal-hero-subtitle { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
-
-    .trust-bar {
-      background: linear-gradient(135deg, #059669 0%, #047857 100%);
-      padding: 0.9rem 1.5rem;
-    }
-    .trust-inner {
-      max-width: 800px; margin: 0 auto;
-      display: flex; align-items: center; gap: 0.75rem;
-      color: white; font-size: 0.9rem; font-weight: 500;
-    }
+    .trust-bar { background: linear-gradient(135deg, #059669 0%, #047857 100%); padding: 0.9rem 1.5rem; }
+    .trust-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; color: white; font-size: 0.9rem; font-weight: 500; }
     .trust-inner svg { flex-shrink: 0; }
     .trust-inner a { color: #a7f3d0; text-decoration: underline; font-weight: 600; }
     .trust-inner a:hover { color: white; }
 
-    .section-heading {
-      font-family: var(--font-display); font-size: 1.75rem; color: var(--neutral-900);
-      margin-bottom: 0.5rem;
-    }
-    .section-description {
-      color: var(--neutral-500); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6;
-    }
-
+    /* Form Cards */
+    .section-heading { font-family: var(--font-display); font-size: 1.75rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .section-description { color: var(--neutral-500); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6; }
     .alt-bg { background: var(--neutral-50); }
-
     .forms-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
     .forms-grid.three-col { grid-template-columns: repeat(3, 1fr); }
 
@@ -246,44 +241,118 @@ const description = 'Download or complete patient forms online before your visit
       display: flex; flex-direction: column; justify-content: space-between;
       background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
       padding: 1.5rem; transition: all var(--transition-base); text-decoration: none; color: inherit;
+      cursor: pointer; text-align: left; font-family: inherit; font-size: inherit;
     }
-    .form-card:hover {
-      box-shadow: var(--shadow-lg); border-color: var(--primary-300);
-      transform: translateY(-3px);
-    }
+    .form-card:hover { box-shadow: var(--shadow-lg); border-color: var(--primary-300); transform: translateY(-3px); }
     .form-card-top { display: flex; gap: 1rem; align-items: flex-start; }
-    .form-icon {
-      display: flex; align-items: center; justify-content: center;
-      width: 48px; height: 48px; border-radius: var(--radius-md);
-      background: var(--primary-700); color: white; flex-shrink: 0;
-    }
+    .form-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--primary-700); color: white; flex-shrink: 0; }
     .form-icon.accent { background: var(--accent-500); }
     .form-card h3 { font-family: var(--font-display); font-size: 1.05rem; color: var(--neutral-900); margin-bottom: 0.3rem; }
     .form-card p { font-size: 0.88rem; color: var(--neutral-500); line-height: 1.5; }
-    .form-card-action {
-      display: flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem;
-      color: var(--primary-700); font-weight: 600; font-size: 0.88rem;
-    }
+    .form-card-action { display: flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem; color: var(--primary-700); font-weight: 600; font-size: 0.88rem; }
     .form-card:hover .form-card-action { color: var(--primary-500); gap: 0.6rem; }
 
+    /* Modal */
+    .form-modal { display: none; position: fixed; inset: 0; z-index: 10000; }
+    .form-modal.active { display: flex; align-items: center; justify-content: center; }
+    .form-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
+    .form-modal-content { position: relative; background: white; border-radius: var(--radius-lg); width: 95vw; max-width: 800px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-2xl); animation: fadeInUp 0.3s ease-out; }
+    .form-modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; border-bottom: 1px solid var(--neutral-200); background: var(--primary-950); color: white; }
+    .form-modal-header h2 { font-family: var(--font-display); font-size: 1.1rem; color: white; margin: 0; }
+    .form-modal-actions { display: flex; gap: 0.5rem; align-items: center; }
+    .btn-sm { padding: 0.4rem 0.85rem; font-size: 0.82rem; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; transition: all var(--transition-fast); }
+    .btn-outline { background: transparent; color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.3); text-decoration: none; }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); color: white; }
+    .btn-close { background: transparent; color: rgba(255,255,255,0.7); border: none; padding: 0.3rem; }
+    .btn-close:hover { color: white; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm); }
+    .form-modal-body { flex: 1; overflow: hidden; position: relative; min-height: 500px; }
+    .form-modal-body iframe { width: 100%; height: 100%; min-height: 600px; border: none; }
+    .form-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem; color: var(--neutral-500); }
+    .loading-spinner { width: 36px; height: 36px; border: 3px solid var(--neutral-200); border-top-color: var(--primary-600); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 1rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-sub { font-size: 0.82rem; color: var(--success); margin-top: 0.25rem; }
+    .form-modal-footer { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-top: 1px solid var(--neutral-200); background: #ecfdf5; color: var(--success); font-size: 0.82rem; }
+    .form-modal-footer svg { flex-shrink: 0; }
+
+    /* Tips */
     .tips-grid { margin-top: 1.5rem; }
     .tip-item { display: flex; gap: 1.25rem; align-items: flex-start; margin-bottom: 1.5rem; }
-    .tip-number {
-      font-family: var(--font-display); font-size: 1.5rem; color: var(--primary-600);
-      flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
-      background: var(--primary-50); border-radius: var(--radius-full); border: 2px solid var(--primary-200);
-    }
+    .tip-number { font-family: var(--font-display); font-size: 1.5rem; color: var(--primary-600); flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: var(--primary-50); border-radius: var(--radius-full); border: 2px solid var(--primary-200); }
     .tip-item h4 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-800); margin-bottom: 0.25rem; }
     .tip-item p { color: var(--neutral-500); line-height: 1.6; font-size: 0.92rem; }
-
     .cta-section { background: var(--neutral-50); }
 
-    @media (max-width: 1024px) {
-      .forms-grid.three-col { grid-template-columns: 1fr 1fr; }
-    }
+    /* Responsive */
+    @media (max-width: 1024px) { .forms-grid.three-col { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 768px) {
       .forms-grid, .forms-grid.three-col { grid-template-columns: 1fr; }
       .legal-hero { padding: 3.5rem 1rem 3rem; }
+      .form-modal-content { width: 100vw; max-width: 100vw; max-height: 100vh; border-radius: 0; }
     }
   </style>
+
+  <script>
+    const modal = document.getElementById('form-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalNewTab = document.getElementById('modal-new-tab');
+    const modalClose = document.getElementById('modal-close');
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const jotformContainer = document.getElementById('jotform-container');
+    const formLoading = document.getElementById('form-loading');
+
+    function openForm(formId, formTitle) {
+      modalTitle.textContent = formTitle;
+      const formUrl = 'https://form.jotform.com/' + formId;
+      modalNewTab.href = formUrl;
+
+      // Reset container
+      jotformContainer.innerHTML = '';
+      const loadingDiv = document.createElement('div');
+      loadingDiv.className = 'form-loading';
+      loadingDiv.id = 'form-loading';
+      loadingDiv.innerHTML = '<div class="loading-spinner"></div><p>Loading secure form...</p><p class="loading-sub">Your data is encrypted and HIPAA-compliant</p>';
+      jotformContainer.appendChild(loadingDiv);
+
+      // Create iframe
+      const iframe = document.createElement('iframe');
+      iframe.src = formUrl;
+      iframe.title = formTitle;
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.minHeight = '600px';
+      iframe.style.border = 'none';
+      iframe.onload = () => {
+        const ld = document.getElementById('form-loading');
+        if (ld) ld.remove();
+      };
+      jotformContainer.appendChild(iframe);
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // Focus trap
+      modalClose.focus();
+    }
+
+    function closeForm() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      jotformContainer.innerHTML = '';
+    }
+
+    // Attach click handlers to all form cards
+    document.querySelectorAll('.form-card[data-form-id]').forEach(card => {
+      card.addEventListener('click', () => {
+        openForm(card.dataset.formId, card.dataset.formTitle);
+      });
+    });
+
+    modalClose.addEventListener('click', closeForm);
+    modalBackdrop.addEventListener('click', closeForm);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeForm();
+      }
+    });
+  </script>
 </Layout>

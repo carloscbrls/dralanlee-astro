@@ -1,6 +1,6 @@
+headersOrigin = "config"
+redirectsOrigin = "config"
 plugins = []
-headers = []
-redirects = []
 
 [functions]
 
@@ -8,8 +8,8 @@ redirects = []
 
 [build]
 publish = "/Users/cc3po/.openclaw/workspace/dralanlee-astro/dist"
-publishOrigin = "ui"
-commandOrigin = "ui"
+publishOrigin = "config"
+commandOrigin = "config"
 command = "npm run build"
 
 [build.environment]
@@ -25,3 +25,37 @@ command = "npm run build"
 [build.processing.js]
 
 [build.services]
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+X-Frame-Options = "SAMEORIGIN"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://form.jotform.com https://cdn.jotfor.ms https://js.jotform.com https://analytics.cc3po.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.jotfor.ms https://*.jotform.com https://analytics.cc3po.com; frame-src https://form.jotform.com https://www.google.com https://maps.google.com; connect-src 'self' https://analytics.cc3po.com https://form.jotform.com; object-src 'none'; base-uri 'self'; form-action 'self' https://form.jotform.com https://www.convergepay.com;"
+X-Robots-Tag = "index, follow"
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+X-Frame-Options = "SAMEORIGIN"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://form.jotform.com https://cdn.jotfor.ms https://js.jotform.com https://analytics.cc3po.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.jotfor.ms https://*.jotform.com https://analytics.cc3po.com; frame-src https://form.jotform.com https://www.google.com https://maps.google.com; connect-src 'self' https://analytics.cc3po.com https://form.jotform.com; object-src 'none'; base-uri 'self'; form-action 'self' https://form.jotform.com https://www.convergepay.com"
+X-Robots-Tag = "index, follow"
+
+[[redirects]]
+from = "/pay/*"
+to = "https://www.convergepay.com/hosted-payments/?ssl_txn_auth_token=9p0%2FEFfgQDyes9SQVfA8pgAAAZBvj2Xi#!/payment-method"
+status = 302.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
