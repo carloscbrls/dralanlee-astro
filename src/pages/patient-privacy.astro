@@ -1,70 +1,240 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const title = 'Patient Privacy | Dr. Alan S. Lee, DDS - Manteca Dentist';
-const description = 'Patient privacy rights and how your health information is protected at Dr. Alan S. Lee, DDS in Manteca, CA.';
+
+const title = 'Patient Privacy Rights | Dr. Alan S. Lee, DDS';
+const description = 'Learn about your privacy rights as a patient of Dr. Alan S. Lee, DDS. We protect your health information in compliance with HIPAA regulations.';
 ---
 
 <Layout title={title} description={description}>
-  <section class="hero">
-    <h1>Patient Privacy</h1>
-    <p>Your privacy is our priority. Learn how we protect your personal health information.</p>
+  <!-- Hero -->
+  <section class="legal-hero" data-animate>
+    <div class="container-wide">
+      <div class="section-label">Your Privacy Matters</div>
+      <h1 class="section-title">Patient Privacy Rights</h1>
+      <p class="legal-hero-subtitle">We are committed to safeguarding your personal health information. Your trust is the foundation of our care.</p>
+    </div>
   </section>
 
-  <section class="content-section">
-    <h2>Our Commitment to Your Privacy</h2>
-    <p>At the dental practice of Dr. Alan S. Lee, DDS, we are committed to protecting the privacy of our patients. We understand that your personal health information is sensitive, and we take our responsibility to safeguard it seriously.</p>
-
-    <h2>How We Protect Your Information</h2>
-    <p>We maintain physical, administrative, and technical safeguards that comply with federal and state regulations to protect your personal health information. Our staff is trained in privacy practices and understands the importance of maintaining confidentiality.</p>
-
-    <h2>How We May Use Your Health Information</h2>
-
-    <h3>Treatment</h3>
-    <p>We use your health information to provide you with dental treatment and services. We may share information with other healthcare providers involved in your care.</p>
-
-    <h3>Payment</h3>
-    <p>We may use and disclose your health information to obtain payment for the services we provide. This may include sharing information with your insurance company for claims processing.</p>
-
-    <h3>Healthcare Operations</h3>
-    <p>We may use your health information for practice operations such as quality assessment, staff training, and compliance activities.</p>
-
-    <h2>When We May Disclose Your Information Without Your Authorization</h2>
-    <ul>
-      <li><strong>As required by law:</strong> When disclosure is required by federal, state, or local law</li>
-      <li><strong>Public health purposes:</strong> For public health activities such as disease reporting</li>
-      <li><strong>Health oversight:</strong> To health oversight agencies for audits and investigations</li>
-      <li><strong>Judicial proceedings:</strong> In response to court orders or lawful subpoenas</li>
-      <li><strong>Law enforcement:</strong> For law enforcement purposes as required by law</li>
-      <li><strong>Serious threat:</strong> To prevent a serious threat to health or safety</li>
-      <li><strong>Family members:</strong> To family members or others involved in your care, when appropriate</li>
-    </ul>
-
-    <h2>Your Privacy Rights</h2>
-    <p>You have the following rights regarding your health information:</p>
-    <ul>
-      <li><strong>Right to access:</strong> You may request to see and obtain copies of your health records</li>
-      <li><strong>Right to amend:</strong> You may request corrections to your health information if you believe it is inaccurate</li>
-      <li><strong>Right to restrict:</strong> You may request restrictions on certain uses and disclosures of your information</li>
-      <li><strong>Right to confidential communications:</strong> You may request that we communicate with you in a specific manner or at a specific location</li>
-      <li><strong>Right to an accounting:</strong> You may request a list of certain disclosures of your health information</li>
-      <li><strong>Right to a paper copy:</strong> You may request a paper copy of this notice at any time</li>
-    </ul>
-
-    <h2>Changes to This Notice</h2>
-    <p>We reserve the right to change the terms of this notice at any time. We will post the current notice in our office and make it available on our website. The notice will always contain the effective date.</p>
-
-    <h2>Complaints</h2>
-    <p>If you believe your privacy rights have been violated, you may file a complaint with our office or with the Office for Civil Rights, U.S. Department of Health and Human Services. We will not retaliate against you for filing a complaint.</p>
-
-    <h2>Contact Us</h2>
-    <p>For questions about our privacy practices or to exercise your privacy rights, please contact:</p>
-    <p>
-      <strong>Dr. Alan S. Lee, DDS</strong><br />
-      715 N Main St<br />
-      Manteca, CA 95336<br />
-      Phone: <a href="tel:+12092392990">(209) 239-2990</a>
-    </p>
-
-    <p>For the full HIPAA Notice of Privacy Practices, please visit our <a href="/hipaa-privacy-notice/">HIPAA Privacy Notice</a> page.</p>
+  <!-- Overview -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="privacy-intro">
+        <div class="intro-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        </div>
+        <div>
+          <h2 class="legal-heading" style="margin-bottom: 0.5rem;">How We Protect Your Information</h2>
+          <p>At <strong>Dr. Alan S. Lee, DDS</strong>, protecting your privacy is not just a legal requirement — it is a core value of our practice. We comply with the Health Insurance Portability and Accountability Act (HIPAA) and maintain strict policies to keep your personal health information (PHI) safe. This page summarizes your privacy rights and our commitments. For the complete legal notice, please see our <a href="/hipaa-privacy-notice/" class="link">full HIPAA Notice of Privacy Practices</a>.</p>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <!-- Your Rights Summary -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow">
+      <div data-animate>
+        <div class="section-label">Know Your Rights</div>
+        <h2 class="legal-heading">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Your Privacy Rights Under HIPAA
+        </h2>
+      </div>
+
+      <div class="rights-grid" data-animate>
+        <div class="right-card">
+          <div class="right-number">01</div>
+          <h3>Right to Access Your Records</h3>
+          <p>You have the right to inspect and obtain a copy of your dental and billing records. We must respond to your request within 30 days. A reasonable fee may apply for copies.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-number">02</div>
+          <h3>Right to Request Amendments</h3>
+          <p>If you believe your records are incorrect or incomplete, you may request an amendment in writing. We must respond within 60 days. If we deny your request, you may submit a statement of disagreement.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-number">03</div>
+          <h3>Right to an Accounting of Disclosures</h3>
+          <p>You may request a list of disclosures we have made of your health information for purposes other than treatment, payment, or healthcare operations within the past six years.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-number">04</div>
+          <h3>Right to Request Restrictions</h3>
+          <p>You may ask us to limit how we use or disclose your information for treatment, payment, or operations. We must honor a request to restrict disclosure to a health plan if you pay out of pocket in full.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-number">05</div>
+          <h3>Right to Confidential Communications</h3>
+          <p>You may request that we communicate with you in a specific way or at a specific location — for example, by calling your cell phone instead of your home phone.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-number">06</div>
+          <h3>Right to a Paper Copy</h3>
+          <p>You are entitled to receive a paper copy of our Notice of Privacy Practices at any time, even if you have previously agreed to receive it electronically.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-number">07</div>
+          <h3>Right to Breach Notification</h3>
+          <p>If a breach of your unsecured health information occurs, we are required to notify you in writing within 60 days of discovery.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-number">08</div>
+          <h3>Right to Authorize Uses</h3>
+          <p>Any use or disclosure not described in our notice requires your written authorization. You may revoke authorization at any time, except to the extent we have already acted on it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Protect Info -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Our Safeguards</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        How We Protect Your Information
+      </h2>
+
+      <div class="protections-grid">
+        <div class="protection-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <div>
+            <h4>Administrative Safeguards</h4>
+            <p>Staff training on privacy policies, designated Privacy Officer, regular policy reviews, and access controls that limit who can view your information.</p>
+          </div>
+        </div>
+        <div class="protection-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          <div>
+            <h4>Physical Safeguards</h4>
+            <p>Secure locked storage for paper records, restricted facility access, and safeguards for workstations and devices that contain patient data.</p>
+          </div>
+        </div>
+        <div class="protection-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <div>
+            <h4>Technical Safeguards</h4>
+            <p>Encrypted digital records, secure network access, unique user authentication, audit logs, and automatic session timeouts on all systems.</p>
+          </div>
+        </div>
+        <div class="protection-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <div>
+            <h4>Business Associate Agreements</h4>
+            <p>All third-party vendors who handle your information sign HIPAA-compliant agreements requiring them to protect your data with the same level of care.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Do Not Do -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">What We Never Do</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+        Information We Will Never Share
+      </h2>
+
+      <div class="never-grid">
+        <div class="never-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--error)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <p>We will <strong>never</strong> sell your health information to third parties for marketing purposes.</p>
+        </div>
+        <div class="never-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--error)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <p>We will <strong>never</strong> share your information without your authorization, except as described in our HIPAA notice.</p>
+        </div>
+        <div class="never-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--error)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <p>We will <strong>never</strong> use your information for fundraising without your explicit written consent.</p>
+        </div>
+        <div class="never-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--error)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <p>We will <strong>never</strong> retaliate against you for filing a privacy complaint.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad cta-section" data-animate>
+    <div class="container-narrow" style="text-align: center;">
+      <div class="section-label" style="justify-content: center;">Full Legal Notice</div>
+      <h2 class="section-title">Read the Complete HIPAA Notice</h2>
+      <p class="section-subtitle" style="margin: 0 auto 2rem;">For the full legal text of our Notice of Privacy Practices, including all permitted uses and disclosures, please view our complete HIPAA notice.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/hipaa-privacy-notice/" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          Full HIPAA Notice
+        </a>
+        <a href="/contact-the-office/" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Contact Our Office
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .legal-hero {
+      background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%);
+      color: white; padding: 5rem 1.5rem 4rem; text-align: center;
+    }
+    .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
+    .legal-hero .section-label::before { background: var(--accent-400); }
+    .legal-hero .section-title { color: white; margin-bottom: 1rem; }
+    .legal-hero-subtitle { color: rgba(255,255,255,0.8); font-size: 1.15rem; max-width: 680px; margin: 0 auto; line-height: 1.7; }
+
+    .privacy-intro { display: flex; gap: 2rem; align-items: flex-start; }
+    .intro-icon { color: var(--primary-500); flex-shrink: 0; padding-top: 0.25rem; }
+    .privacy-intro p { color: var(--neutral-700); line-height: 1.8; }
+
+    .legal-heading {
+      font-family: var(--font-display); font-size: 1.65rem; color: var(--neutral-900);
+      margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; line-height: 1.3;
+    }
+    .legal-heading svg { color: var(--primary-500); flex-shrink: 0; }
+
+    .alt-bg { background: var(--neutral-50); }
+
+    .rights-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    .right-card {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.75rem; transition: all var(--transition-base); position: relative; overflow: hidden;
+    }
+    .right-card:hover { box-shadow: var(--shadow-lg); border-color: var(--primary-200); transform: translateY(-2px); }
+    .right-number {
+      font-family: var(--font-display); font-size: 3rem; color: var(--primary-100);
+      position: absolute; top: 0.5rem; right: 1rem; line-height: 1;
+    }
+    .right-card h3 { font-family: var(--font-display); font-size: 1.15rem; color: var(--neutral-900); margin-bottom: 0.75rem; }
+    .right-card p { font-size: 0.92rem; color: var(--neutral-600); line-height: 1.7; }
+
+    .protections-grid { margin-top: 1.5rem; }
+    .protection-item { display: flex; gap: 1.25rem; margin-bottom: 1.5rem; align-items: flex-start; }
+    .protection-item svg { flex-shrink: 0; margin-top: 2px; }
+    .protection-item h4 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin-bottom: 0.35rem; }
+    .protection-item p { color: var(--neutral-600); line-height: 1.7; font-size: 0.95rem; }
+
+    .never-grid { margin-top: 1.5rem; }
+    .never-item {
+      display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 1rem;
+      padding: 1rem 1.25rem; background: white; border: 1px solid var(--neutral-200);
+      border-radius: var(--radius-md); border-left: 3px solid var(--error);
+    }
+    .never-item svg { flex-shrink: 0; margin-top: 3px; }
+    .never-item p { color: var(--neutral-700); line-height: 1.7; margin: 0; }
+
+    .cta-section { background: linear-gradient(135deg, var(--primary-50) 0%, white 100%); border-top: 1px solid var(--primary-100); }
+    .link { color: var(--primary-600); text-decoration: underline; }
+    .link:hover { color: var(--primary-800); }
+
+    @media (max-width: 768px) {
+      .rights-grid { grid-template-columns: 1fr; }
+      .privacy-intro { flex-direction: column; gap: 1rem; }
+      .legal-hero { padding: 3.5rem 1rem 3rem; }
+    }
+  </style>
 </Layout>
