@@ -1,66 +1,323 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const title = 'Our Team | Dr. Alan S. Lee, DDS - Manteca Dentist';
-const description = 'Meet the caring dental team at Dr. Alan S. Lee, DDS in Manteca, CA. Our experienced staff is dedicated to your comfort and dental health.';
+
+const title = 'Our Team | Dr. Alan S. Lee, DDS — Manteca Dentist';
+const description = 'Meet the caring dental team at Dr. Alan S. Lee, DDS in Manteca, CA. Experienced, gentle professionals dedicated to your comfort and dental health.';
+
+const teamSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Our Team — Dr. Alan S. Lee, DDS",
+  "description": "Meet the caring dental team at Dr. Alan S. Lee, DDS in Manteca, CA.",
+  "url": "https://dralanlee.com/staff/"
+};
 ---
 
-<Layout title={title} description={description}>
-  <section class="hero">
-    <h1>Our Team</h1>
-    <p>Dedicated professionals committed to your dental health</p>
+<Layout title={title} description={description} schema={teamSchema}>
+  <!-- Hero -->
+  <section class="team-hero section-pad" data-animate>
+    <div class="container-wide">
+      <span class="section-label">Our Team</span>
+      <h1 class="section-title">Meet the People<br/>Who Care for Your Smile</h1>
+      <p class="section-subtitle">Our team is dedicated to making every visit comfortable, thorough, and personal. You'll feel the difference from the moment you walk in.</p>
+    </div>
   </section>
 
-  <section class="content-section">
-    <div class="team-grid">
-      <div class="team-card">
-        <img src="/images/2022/02/50879325_2295985083779084_6149570965102657536_n.jpg" alt="Dr. Alan S. Lee, DDS" />
-        <h3>Dr. Alan S. Lee, DDS</h3>
-        <p class="team-role">Lead Dentist &amp; Owner</p>
-        <p>With over 30 years of experience, Dr. Lee is committed to providing the highest quality dental care to the Manteca community. He combines extensive clinical expertise with a gentle, patient-centered approach.</p>
+  <!-- Dr. Lee Featured -->
+  <section class="featured-doctor section-pad" data-animate>
+    <div class="container-wide featured-grid">
+      <div class="featured-photo-wrap" data-animate>
+        <img
+          src="/images/2022/02/51261410_2295970520447207_4896344716955615232_n.jpg"
+          alt="Dr. Alan S. Lee, DDS — Lead Dentist and Owner with over 30 years of experience in Manteca"
+          class="featured-photo"
+          loading="eager"
+        />
       </div>
-
-      <div class="team-card">
-        <img src="/images/2022/02/51503092_2295985083779084_3228113581635534848_n.jpg" alt="Dr. Alan S. Lee with patient" />
-        <h3>Dr. Alan S. Lee, DDS</h3>
-        <p class="team-role">Lead Dentist &amp; Owner</p>
-        <p>With over 30 years of experience serving the Manteca community, Dr. Lee combines clinical expertise with a gentle, patient-centered approach. He is dedicated to providing the highest quality dental care for the whole family.</p>
-      </div>
-
-      <div class="team-card">
-        <img src="/images/2022/02/51007275_2295982700445989_9047967719969783808_n.jpg" alt="Dr. Alan S. Lee, DDS - professional dental care" />
-        <h3>Our Dental Team</h3>
-        <p class="team-role">Dental Hygienists &amp; Assistants</p>
-        <p>Our friendly and experienced dental hygienists and assistants work alongside Dr. Lee to ensure every patient receives thorough, gentle care in a comfortable environment.</p>
-      </div>
-
-      <div class="team-card">
-        <img src="/images/2022/02/51261410_2295970520447207_4896344716955615232_n.jpg" alt="Dr. Lee's dental office in Manteca" />
-        <h3>Office Staff</h3>
-        <p class="team-role">Patient Coordination &amp; Scheduling</p>
-        <p>Our knowledgeable office team will help you with scheduling, insurance questions, and making your visit as smooth and convenient as possible.</p>
+      <div class="featured-info" data-animate>
+        <span class="section-label">Lead Dentist</span>
+        <h2 class="section-title" style="font-size: 2rem;">Dr. Alan S. Lee, DDS</h2>
+        <p class="featured-role">Owner &amp; Lead Dentist</p>
+        <p>Dr. Lee has been serving the Manteca community for over 30 years, providing comprehensive family and cosmetic dental care. After earning his Doctor of Dental Surgery degree, he built his practice on a simple philosophy: treat every patient like family.</p>
+        <p>Known for his gentle approach and commitment to continuing education, Dr. Lee stays current with the latest advances in dental science and technology. He takes pride in building lasting relationships with his patients — many of whom have been coming to his office for decades.</p>
+        <p>When he's not in the office, Dr. Lee enjoys spending time with his family and being an active part of the Manteca community.</p>
+        <div class="featured-highlights">
+          <div class="highlight-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            30+ Years Experience
+          </div>
+          <div class="highlight-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Gentle Approach
+          </div>
+          <div class="highlight-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Family-Focused Care
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="cta-section">
-      <h2>Ready to Meet Our Team?</h2>
-      <p>Schedule your appointment today and experience our commitment to quality care.</p>
-      <a href="/schedule-appointment/" class="btn-cta-large">Schedule Appointment</a>
-      <a href="tel:+12092392990" class="btn-phone">Call (209) 239-2990</a>
+  <!-- Team Grid -->
+  <section class="team-grid-section section-pad" data-animate style="background: var(--neutral-50);">
+    <div class="container-wide">
+      <span class="section-label">Support Team</span>
+      <h2 class="section-title">Our Dental Professionals</h2>
+      <div class="team-grid">
+        <div class="team-card" data-animate>
+          <div class="team-card-photo">
+            <img
+              src="/images/2022/02/51503092_2295984397112486_3228113581635534848_n.jpg"
+              alt="Dental hygienist at Dr. Alan S. Lee's office providing patient care"
+              loading="lazy"
+            />
+          </div>
+          <div class="team-card-body">
+            <h3>Dental Hygienist</h3>
+            <p class="team-role">Registered Dental Hygienist</p>
+            <p>Our experienced dental hygienist provides thorough, gentle cleanings and personalized oral health education. She takes the time to ensure every patient feels comfortable and well-informed about their dental care.</p>
+          </div>
+        </div>
+
+        <div class="team-card" data-animate>
+          <div class="team-card-photo">
+            <img
+              src="/images/2022/02/50879325_2295985083779084_6149570965105931511_n.jpg"
+              alt="Dental assistant at Dr. Alan S. Lee's office with a patient"
+              loading="lazy"
+            />
+          </div>
+          <div class="team-card-body">
+            <h3>Dental Assistant</h3>
+            <p class="team-role">Certified Dental Assistant</p>
+            <p>Our dental assistant works closely with Dr. Lee during procedures, ensuring everything runs smoothly. With a warm, reassuring manner, she helps make every appointment efficient and comfortable.</p>
+          </div>
+        </div>
+
+        <div class="team-card" data-animate>
+          <div class="team-card-photo">
+            <div class="team-card-placeholder" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+          </div>
+          <div class="team-card-body">
+            <h3>Office Coordinator</h3>
+            <p class="team-role">Patient Services</p>
+            <p>Our friendly office coordinator handles scheduling, insurance verification, and billing. She's the welcoming voice on the phone and the first smile you see when you visit, making sure every aspect of your experience is seamless.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Our Team -->
+  <section class="why-team section-pad" data-animate>
+    <div class="container-wide">
+      <div class="why-grid">
+        <div class="why-text">
+          <span class="section-label">Why Choose Us</span>
+          <h2 class="section-title" style="font-size: 2rem;">A Team That<br/>Truly Cares</h2>
+          <p style="color: var(--neutral-500); line-height: 1.8;">Every member of our team was chosen for their skill, compassion, and commitment to patient care. From your first phone call to your follow-up visit, we work together to make sure you feel heard, respected, and well cared for.</p>
+          <ul class="why-list" role="list">
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Gentle, patient-centered approach
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Clear communication every step
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Comfortable, welcoming environment
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Insurance &amp; payment assistance
+            </li>
+          </ul>
+        </div>
+        <div class="why-cta-card">
+          <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--neutral-900);">Ready to Meet Us?</h3>
+          <p style="color: var(--neutral-500); margin-bottom: 1.5rem; line-height: 1.7;">Schedule your first visit and experience the difference a caring team makes.</p>
+          <a href="/schedule-appointment/" class="btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Schedule Appointment
+          </a>
+          <a href="tel:+12092392990" class="btn-secondary" style="margin-top: 0.75rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call (209) 239-2990
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
   <style>
-    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-    .team-card { background: var(--bg-light); border-radius: 8px; overflow: hidden; text-align: center; }
-    .team-card img { width: 100%; height: 250px; object-fit: cover; }
-    .team-card h3 { font-family: var(--font-heading); color: var(--primary); margin: 1rem 0 0.25rem; }
-    .team-role { color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.75rem; }
-    .team-card p:last-child { padding: 0 1rem 1.5rem; color: var(--text-light); font-size: 0.9rem; }
-    .cta-section { text-align: center; margin-top: 3rem; padding: 2rem; background: var(--bg-light); border-radius: 8px; }
-    .cta-section h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.75rem; }
-    .btn-cta-large { display: inline-block; background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; margin-right: 1rem; }
-    .btn-cta-large:hover { background: #d4952e; }
-    .btn-phone { display: inline-block; background: var(--primary); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; }
-    .btn-phone:hover { background: var(--primary-dark); }
+    .team-hero {
+      background: linear-gradient(135deg, var(--primary-50) 0%, white 100%);
+      text-align: center;
+    }
+    .team-hero .section-subtitle { margin: 0 auto; }
+
+    /* Featured Doctor */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .featured-photo {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl);
+      aspect-ratio: 4/5;
+      object-fit: cover;
+    }
+    .featured-role {
+      color: var(--primary-600);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .featured-info p {
+      color: var(--neutral-600);
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+    .featured-highlights {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .highlight-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary-50);
+      color: var(--primary-700);
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .highlight-pill svg { color: var(--primary-500); }
+
+    /* Team Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .team-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--neutral-200);
+      overflow: hidden;
+      transition: all var(--transition-base);
+    }
+    .team-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .team-card-photo {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .team-card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-base);
+    }
+    .team-card:hover .team-card-photo img { transform: scale(1.05); }
+    .team-card-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-50);
+      color: var(--primary-300);
+    }
+    .team-card-body {
+      padding: 1.5rem;
+    }
+    .team-card-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--neutral-900);
+      margin-bottom: 0.25rem;
+    }
+    .team-role {
+      color: var(--primary-600);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+    .team-card-body p:last-child {
+      color: var(--neutral-500);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* Why Section */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .why-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.5rem;
+    }
+    .why-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      color: var(--neutral-700);
+      font-weight: 500;
+    }
+    .why-list li svg { color: var(--success); flex-shrink: 0; }
+    .why-cta-card {
+      background: white;
+      border: 1px solid var(--neutral-200);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .why-cta-card .btn-secondary {
+      display: inline-flex;
+    }
+
+    @media (max-width: 768px) {
+      .featured-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .featured-photo { max-width: 400px; margin: 0 auto; }
+      .team-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+      .why-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 480px) {
+      .featured-highlights { flex-direction: column; }
+    }
+
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </Layout>

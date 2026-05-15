@@ -1,56 +1,280 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const title = 'About Us | Dr. Alan S. Lee, DDS - Manteca Dentist';
-const description = 'Learn about Dr. Alan S. Lee, DDS and our commitment to quality dental care in Manteca, CA. Over 30 years of experience serving the community.';
+
+const title = 'About Dr. Lee | Dr. Alan S. Lee, DDS — Manteca Dentist';
+const description = 'Learn about Dr. Alan S. Lee, DDS — trusted Manteca dentist for over 30 years. Gentle, family-focused dental care. Call (209) 239-2990.';
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Dr. Alan S. Lee, DDS",
+  "description": "Dr. Alan S. Lee has been providing compassionate dental care in Manteca, CA for over 30 years.",
+  "url": "https://dralanlee.com/about-us/",
+  "mainEntity": {
+    "@type": "Dentist",
+    "name": "Dr. Alan S. Lee, DDS",
+    "description": "Family & Cosmetic Dentistry in Manteca, CA — trusted for over 30 years.",
+    "image": "https://dralanlee.com/images/2022/02/51261410_2295970520447207_4896344716955615232_n.jpg"
+  }
+};
 ---
 
-<Layout title={title} description={description}>
-  <section class="hero">
-    <h1>About Dr. Alan S. Lee, DDS</h1>
-    <p>Compassionate dental care for the Manteca community since 1989</p>
+<Layout title={title} description={description} schema={aboutSchema}>
+  <!-- Hero -->
+  <section class="about-hero section-pad" data-animate>
+    <div class="container-wide">
+      <span class="section-label">About Dr. Lee</span>
+      <h1 class="section-title">Caring for Manteca Smiles<br/>Since 1989</h1>
+      <p class="section-subtitle">Over 30 years of gentle, patient-centered dentistry built on trust, compassion, and a genuine love for the community.</p>
+    </div>
   </section>
 
-  <section class="content-section">
-    <div class="about-grid">
-      <div class="about-image">
-        <img src="/images/2022/02/50879325_2295985083779084_6149570965102657536_n.jpg" alt="Dr. Alan S. Lee, DDS" />
+  <!-- Dr. Lee Story -->
+  <section class="about-story section-pad" data-animate>
+    <div class="container-wide about-story-grid">
+      <div class="about-photo-wrap" data-animate>
+        <img
+          src="/images/2022/02/51261410_2295970520447207_4896344716955615232_n.jpg"
+          alt="Dr. Alan S. Lee, DDS — providing dental care in Manteca for over 30 years"
+          class="about-photo"
+          width="480"
+          height="480"
+          loading="eager"
+        />
+        <div class="photo-badge">
+          <span class="badge-number">30+</span>
+          <span class="badge-text">Years Serving<br/>Manteca</span>
+        </div>
       </div>
-      <div class="about-text">
-        <h2>Meet Dr. Lee</h2>
-        <p>Dr. Alan S. Lee has been serving the Manteca community for over 30 years, providing quality dental care in a warm and welcoming environment. He earned his Doctor of Dental Surgery degree and has remained committed to continuing education throughout his career.</p>
-        <p>Dr. Lee believes in treating every patient like family. His approach to dentistry combines the latest techniques with a gentle, personalized touch that puts patients at ease.</p>
+      <div class="about-text" data-animate>
+        <h2 class="section-title" style="font-size: 2rem;">Meet Dr. Alan S. Lee</h2>
+        <p>Dr. Alan S. Lee has been a trusted part of the Manteca community for over three decades. After earning his Doctor of Dental Surgery degree, he chose Manteca as his home — and the community has been his family ever since.</p>
+        <p>Dr. Lee believes that great dentistry starts with trust. His approach combines advanced clinical techniques with a gentle, personalized touch that puts even the most anxious patients at ease. Whether it's a child's first dental visit or a complex restorative case, Dr. Lee takes the time to listen, explain, and care for every patient like family.</p>
+        <p>Throughout his career, Dr. Lee has remained committed to continuing education, staying current with the latest advances in dental science, technology, and patient comfort. His practice is a reflection of his values: honest, thorough, and always focused on what's best for the patient.</p>
 
-        <h3>Our Philosophy</h3>
-        <p>At the office of Dr. Alan S. Lee, DDS, we believe that everyone deserves a healthy, beautiful smile. Our practice is built on the foundation of preventive care, patient education, and compassionate treatment.</p>
-        <p>We take the time to listen to your concerns, explain your treatment options, and work with you to develop a dental care plan that fits your needs and budget.</p>
-
-        <h3>What Sets Us Apart</h3>
-        <ul>
-          <li>Over 30 years of experience serving Manteca</li>
-          <li>Gentle, patient-centered approach</li>
-          <li>Comprehensive dental services under one roof</li>
-          <li>Commitment to continuing education and modern techniques</li>
-          <li>Welcoming, comfortable office environment</li>
-          <li>Accepting new patients</li>
-        </ul>
-
-        <div class="cta-inline">
-          <a href="/schedule-appointment/" class="btn-cta-large">Schedule Your Visit</a>
-          <a href="tel:+12092392990" class="btn-phone">Call (209) 239-2990</a>
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <span>Gentle, patient-first approach</span>
+          </div>
+          <div class="highlight-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Family-friendly care for all ages</span>
+          </div>
+          <div class="highlight-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+            <span>30+ years of community trust</span>
+          </div>
+          <div class="highlight-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.37 7.37l-6.83 6.83a2 2 0 0 1-2.83-2.83l6.83-6.83a6 6 0 0 1 7.37-7.37z"/></svg>
+            <span>Modern techniques &amp; technology</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Values -->
+  <section class="values-section section-pad" data-animate style="background: var(--neutral-50);">
+    <div class="container-wide">
+      <span class="section-label">Our Philosophy</span>
+      <h2 class="section-title">What We Believe</h2>
+      <div class="values-grid">
+        <div class="value-card" data-animate>
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Compassion First</h3>
+          <p>We treat every patient with kindness and empathy. Your comfort is never an afterthought — it's the foundation of everything we do.</p>
+        </div>
+        <div class="value-card" data-animate>
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Trust & Transparency</h3>
+          <p>We explain every treatment option clearly and honestly. No surprises, no unnecessary procedures — just straightforward care you can count on.</p>
+        </div>
+        <div class="value-card" data-animate>
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <h3>Gentle Experience</h3>
+          <p>Dental visits shouldn't be stressful. From our welcoming front office to Dr. Lee's gentle technique, we make every visit as comfortable as possible.</p>
+        </div>
+        <div class="value-card" data-animate>
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Prevention Focus</h3>
+          <p>The best treatment is preventing problems before they start. We emphasize proactive care and patient education to keep you healthy long-term.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta section-pad" data-animate>
+    <div class="container-wide cta-inner">
+      <h2 class="section-title" style="color: white;">Experience the Difference</h2>
+      <p style="color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px;">Join the thousands of Manteca families who trust Dr. Lee with their smiles. We're always accepting new patients.</p>
+      <div class="cta-buttons">
+        <a href="/schedule-appointment/" class="btn-primary" style="background: var(--accent-500); color: var(--neutral-900);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Schedule Your Visit
+        </a>
+        <a href="tel:+12092392990" class="btn-secondary" style="border-color: rgba(255,255,255,0.3); color: white;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call (209) 239-2990
+        </a>
+      </div>
+    </div>
+  </section>
+
   <style>
-    .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; align-items: start; }
-    .about-image img { width: 100%; border-radius: 8px; }
-    .about-text .btn-cta-large, .about-text .btn-phone { display: inline-block; margin-top: 1rem; margin-right: 1rem; }
-    .btn-cta-large { background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; }
-    .btn-cta-large:hover { background: #d4952e; }
-    .btn-phone { background: var(--primary); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; }
-    .btn-phone:hover { background: var(--primary-dark); }
-    .cta-inline { margin-top: 1.5rem; }
-    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-hero {
+      background: linear-gradient(135deg, var(--primary-50) 0%, white 100%);
+      text-align: center;
+    }
+    .about-hero .section-subtitle { margin: 0 auto; }
+
+    /* Story Section */
+    .about-story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl);
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+    .photo-badge {
+      position: absolute;
+      bottom: -1rem;
+      right: -1rem;
+      background: var(--primary-700);
+      color: white;
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+    .badge-number {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 700;
+    }
+    .badge-text {
+      font-size: 0.75rem;
+      font-weight: 500;
+      line-height: 1.3;
+      opacity: 0.9;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .about-text p {
+      color: var(--neutral-600);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .about-text p:last-of-type { margin-bottom: 1.5rem; }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 1rem;
+      background: var(--primary-50);
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--primary-800);
+    }
+    .highlight-item svg { color: var(--primary-500); flex-shrink: 0; }
+
+    /* Values */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .value-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--neutral-200);
+      text-align: center;
+      transition: all var(--transition-base);
+    }
+    .value-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      border-color: var(--primary-200);
+    }
+    .value-icon {
+      width: 56px; height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--primary-50);
+      color: var(--primary-600);
+      border-radius: var(--radius-md);
+      margin: 0 auto 1.25rem;
+    }
+    .value-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+      color: var(--neutral-900);
+    }
+    .value-card p {
+      color: var(--neutral-500);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .about-cta {
+      background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-950) 100%);
+      text-align: center;
+    }
+    .cta-inner { display: flex; flex-direction: column; align-items: center; }
+    .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    @media (max-width: 768px) {
+      .about-story-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-photo { max-width: 400px; margin: 0 auto; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .about-highlights { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .cta-buttons a { width: 100%; justify-content: center; }
+    }
+
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </Layout>

@@ -1,103 +1,408 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const title = 'HIPAA Privacy Notice | Dr. Alan S. Lee, DDS - Manteca Dentist';
-const description = 'HIPAA Notice of Privacy Practices for Dr. Alan S. Lee, DDS. Learn how we protect your health information and your rights under HIPAA.';
+
+const title = 'HIPAA Privacy Notice | Dr. Alan S. Lee, DDS';
+const description = 'Full HIPAA Notice of Privacy Practices for Dr. Alan S. Lee, DDS. Learn how we protect your health information and your rights under HIPAA.';
+
+const medicalSpecialtySchema = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: "Dr. Alan S. Lee, DDS",
+  url: "https://dralanlee.com/hipaa-privacy-notice/",
+  telephone: "+1-209-239-2990",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "715 N Main St",
+    addressLocality: "Manteca",
+    addressRegion: "CA",
+    postalCode: "95336"
+  }
+};
 ---
 
-<Layout title={title} description={description}>
-  <section class="hero">
-    <h1>Notice of Privacy Practices</h1>
-    <p>This notice describes how medical information about you may be used and disclosed</p>
+<Layout title={title} description={description} schema={medicalSpecialtySchema}>
+  <!-- Hero -->
+  <section class="legal-hero" data-animate>
+    <div class="container-wide">
+      <div class="section-label">Notice of Privacy Practices</div>
+      <h1 class="section-title">HIPAA Privacy Notice</h1>
+      <p class="legal-hero-subtitle">This notice describes how medical information about you may be used and disclosed and how you can get access to this information. Please review it carefully.</p>
+    </div>
   </section>
 
-  <section class="content-section">
-    <p class="effective-date"><strong>Effective Date:</strong> As required by the Health Insurance Portability and Accountability Act (HIPAA)</p>
+  <!-- Effective Date Banner -->
+  <section class="section-pad" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container-narrow">
+      <div class="effective-banner" data-animate>
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        <div>
+          <strong>Effective Date:</strong> May 15, 2026<br />
+          <span class="effective-sub">Applies to all protected health information maintained by this practice</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <h2>Our Promise to You</h2>
-    <p>At the dental practice of Dr. Alan S. Lee, DDS, we are committed to protecting the privacy of your health information. This Notice of Privacy Practices describes how we may use and disclose your protected health information (PHI) to carry out treatment, payment, or health care operations, and for other purposes that are permitted or required by law. It also describes your rights regarding your health information.</p>
+  <!-- Our Promise -->
+  <section class="section-pad" style="padding-top: 2rem;">
+    <div class="container-narrow" data-animate>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Our Promise to You
+      </h2>
+      <p>At the dental practice of <strong>Dr. Alan S. Lee, DDS</strong>, we are committed to protecting the privacy of your health information. This Notice of Privacy Practices describes how we may use and disclose your protected health information (PHI) to carry out treatment, payment, or health care operations, and for other purposes that are permitted or required by law. It also describes your rights regarding your health information. A paper copy of this notice is available at our front desk at any time.</p>
+    </div>
+  </section>
 
-    <h2>How We May Use and Disclose Your Health Information</h2>
+  <!-- Uses and Disclosures -->
+  <section class="section-pad" style="padding-top: 1rem;">
+    <div class="container-narrow">
+      <div class="legal-section" data-animate>
+        <h2 class="legal-heading">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          How We May Use and Disclose Your Health Information
+        </h2>
+        <p>The following categories describe the ways we may use and disclose your protected health information (PHI).</p>
 
-    <h3>For Treatment</h3>
-    <p>We may use your health information to provide, coordinate, or manage your dental treatment and related services. For example, we may share your health information with specialists or other healthcare providers involved in your care.</p>
+        <h3 class="legal-subheading">For Treatment</h3>
+        <p>We may use your health information to provide, coordinate, or manage your dental treatment and related services. For example, we may share your health information with specialists, dental laboratories, or other healthcare providers involved in your care. We may also disclose your PHI to another healthcare provider who treats you after we have provided care.</p>
 
-    <h3>For Payment</h3>
-    <p>We may use and disclose your health information so that the treatment and services you receive may be billed to your insurance plan and payment may be collected from you. For example, we may need to give your insurance plan information about your dental treatment so they will pay us for the services provided.</p>
+        <h3 class="legal-subheading">For Payment</h3>
+        <p>We may use and disclose your health information so that the treatment and services you receive may be billed to your insurance plan and payment may be collected from you. For example, we may need to give your insurance plan information about your dental treatment so they will pay us or reimburse you for the services provided. We may also tell your insurance plan about a treatment you are going to receive to obtain prior approval or to determine whether your plan will cover the treatment.</p>
 
-    <h3>For Healthcare Operations</h3>
-    <p>We may use and disclose your health information for our practice operations. These uses and disclosures are necessary to run our practice and ensure that all patients receive quality care. For example, we may use health information to review our treatment and services and evaluate the performance of our staff.</p>
+        <h3 class="legal-subheading">For Healthcare Operations</h3>
+        <p>We may use and disclose your health information for our practice operations. These uses and disclosures are necessary to run our practice and ensure that all patients receive quality care. For example, we may use health information to review our treatment and services and evaluate the performance of our staff. We may also combine health information about many patients to decide what additional services we should offer, whether new services are effective, or how we can improve care. We may also disclose information to doctors, dentists, and other healthcare students for teaching and learning purposes.</p>
 
-    <h2>Other Permitted and Required Uses and Disclosures</h2>
+        <h3 class="legal-subheading">Appointment Reminders</h3>
+        <p>We may use and disclose your health information to contact you as a reminder that you have an appointment for treatment or dental care at our office. We may also use and disclose your information to send you information about other health-related benefits and services that may be of interest to you.</p>
 
-    <h3>As Required By Law</h3>
-    <p>We may disclose your health information when required by federal, state, or local law.</p>
+        <h3 class="legal-subheading">Treatment Alternatives</h3>
+        <p>We may use and disclose your health information to tell you about or recommend possible treatment options or alternatives that may be of interest to you.</p>
 
-    <h3>Public Health Activities</h3>
-    <p>We may disclose your health information for public health activities, such as reporting disease outbreaks or adverse reactions to medications.</p>
+        <h3 class="legal-subheading">Business Associates</h3>
+        <p>We may disclose your health information to our business associates who perform services on our behalf. For example, we may use a billing service to submit claims to your insurance. We require our business associates to protect your health information through appropriate safeguards and business associate agreements.</p>
+      </div>
 
-    <h3>Health Oversight Activities</h3>
-    <p>We may disclose your health information to a health oversight agency for audits, investigations, inspections, and other activities necessary for the government to monitor the health care system.</p>
+      <!-- Other Permitted Uses -->
+      <div class="legal-section" data-animate>
+        <h2 class="legal-heading">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Other Permitted and Required Uses and Disclosures
+        </h2>
 
-    <h3>Legal Proceedings</h3>
-    <p>We may disclose your health information in the course of any judicial or administrative proceeding in response to a court order, subpoena, or other lawful process.</p>
+        <h3 class="legal-subheading">As Required By Law</h3>
+        <p>We will disclose your health information when required by federal, state, or local law. The use or disclosure will be made in compliance with the law and will be limited to the relevant requirements of the law.</p>
 
-    <h3>Law Enforcement</h3>
-    <p>We may disclose your health information for law enforcement purposes, such as to identify or locate a suspect, fugitive, or missing person.</p>
+        <h3 class="legal-subheading">Public Health Activities</h3>
+        <p>We may disclose your health information for public health activities and purposes to a public health authority that is authorized by law to collect or receive the information. This includes reporting disease outbreaks, adverse events, or product defects. We may also disclose information to the Food and Drug Administration (FDA) for reporting adverse events or product problems.</p>
 
-    <h3>Coroners, Medical Examiners, and Funeral Directors</h3>
-    <p>We may disclose your health information to a coroner, medical examiner, or funeral director as necessary to carry out their duties.</p>
+        <h3 class="legal-subheading">Health Oversight Activities</h3>
+        <p>We may disclose your health information to a health oversight agency for audits, investigations, inspections, and other activities necessary for the government to monitor the health care system, government programs, and compliance with civil rights laws.</p>
 
-    <h3>Organ and Tissue Donation</h3>
-    <p>We may disclose your health information to organizations that handle organ procurement or tissue donation.</p>
+        <h3 class="legal-subheading">Lawsuits and Legal Proceedings</h3>
+        <p>We may disclose your health information in the course of any judicial or administrative proceeding in response to a court order, administrative order, subpoena, discovery request, or other lawful process, but only when we have made reasonable efforts to notify you of the request or to obtain a protective order.</p>
 
-    <h3>Research</h3>
-    <p>We may disclose your health information for research purposes under certain conditions.</p>
+        <h3 class="legal-subheading">Law Enforcement</h3>
+        <p>We may disclose your health information for law enforcement purposes, including: to comply with a court order, subpoena, warrant, or similar process; to identify or locate a suspect, fugitive, missing person, or material witness; about a victim of a crime if we are unable to obtain the person's agreement; about a death we believe may be the result of criminal conduct; or to provide information about criminal conduct at our office.</p>
 
-    <h3>To Avert a Serious Threat to Health or Safety</h3>
-    <p>We may disclose your health information when necessary to prevent a serious threat to your health and safety or the health and safety of the public or another person.</p>
+        <h3 class="legal-subheading">Coroners, Medical Examiners, and Funeral Directors</h3>
+        <p>We may disclose your health information to a coroner, medical examiner, or funeral director as necessary to carry out their duties, such as identifying a deceased person or determining cause of death.</p>
 
-    <h2>Your Rights</h2>
+        <h3 class="legal-subheading">Organ and Tissue Donation</h3>
+        <p>We may disclose your health information to organizations that handle organ procurement or tissue donation for the purpose of transplantation.</p>
 
-    <h3>Right to Inspect and Copy</h3>
-    <p>You have the right to inspect and copy your health information. To do so, you must submit your request in writing to our Privacy Officer.</p>
+        <h3 class="legal-subheading">Research</h3>
+        <p>We may disclose your health information for research purposes when an institutional review board or privacy board has reviewed the research proposal and established protocols to protect your privacy, or when the research involves only de-identified information.</p>
 
-    <h3>Right to Amend</h3>
-    <p>You have the right to request an amendment to your health information if you believe it is incorrect or incomplete. Your request must be made in writing and include a reason.</p>
+        <h3 class="legal-subheading">To Avert a Serious Threat to Health or Safety</h3>
+        <p>We may disclose your health information when necessary to prevent or lessen a serious and imminent threat to your health and safety or the health and safety of the public or another person. Any disclosure would only be to someone who is able to help prevent or lessen the threat.</p>
 
-    <h3>Right to an Accounting of Disclosures</h3>
-    <p>You have the right to request a list of certain disclosures we have made of your health information for purposes other than treatment, payment, or health care operations.</p>
+        <h3 class="legal-subheading">Military, Veterans, and National Security</h3>
+        <p>We may disclose your health information as required by military command authorities if you are a member of the armed forces. We may also disclose information to authorized federal officials for national intelligence and counterintelligence purposes, or to authorized federal officials for the provision of protective services to the President.</p>
 
-    <h3>Right to Request Restrictions</h3>
-    <p>You have the right to request a restriction on the use or disclosure of your health information for treatment, payment, or health care operations. We are not required to agree to your request.</p>
+        <h3 class="legal-subheading">Workers' Compensation</h3>
+        <p>We may disclose your health information to comply with workers' compensation laws or similar programs that provide benefits for work-related injuries or illness.</p>
 
-    <h3>Right to Request Confidential Communications</h3>
-    <p>You have the right to request that we communicate with you about health matters in a certain way or at a certain location.</p>
+        <h3 class="legal-subheading">Inmates</h3>
+        <p>If you are an inmate of a correctional institution or under the custody of a law enforcement official, we may disclose your health information to the correctional institution or law enforcement official as necessary for your health and the health and safety of others.</p>
+      </div>
+    </div>
+  </section>
 
-    <h3>Right to a Paper Copy of This Notice</h3>
-    <p>You have the right to receive a paper copy of this Notice at any time by contacting our office.</p>
+  <!-- Your Rights -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow">
+      <div data-animate>
+        <div class="section-label">Your Rights</div>
+        <h2 class="legal-heading">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          Your Rights Under HIPAA
+        </h2>
+        <p>Under HIPAA, you have the following rights regarding your protected health information:</p>
+      </div>
 
-    <h2>Our Responsibilities</h2>
-    <ul>
-      <li>We are required by law to maintain the privacy of your health information</li>
-      <li>We must provide you with this Notice of our legal duties and privacy practices</li>
-      <li>We must follow the terms of the Notice that is currently in effect</li>
-      <li>We reserve the right to change this Notice and make the new provisions effective for all health information we maintain</li>
-    </ul>
+      <div class="rights-grid" data-animate>
+        <div class="right-card">
+          <div class="right-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line></svg>
+          </div>
+          <h3>Right to Access and Copy</h3>
+          <p>You have the right to inspect and copy your protected health information that is maintained in a designated record set. This includes medical and billing records, but does not include psychotherapy notes. To request access, you must submit your request in writing to our Privacy Officer. We may charge a reasonable fee for the costs of copying, mailing, or other supplies associated with your request. We may deny your request under certain circumstances, but you may request a review of the denial.</p>
+        </div>
 
-    <h2>Complaints</h2>
-    <p>If you believe your privacy rights have been violated, you may file a complaint with our office or with the Secretary of the Department of Health and Human Services. We will not retaliate against you for filing a complaint.</p>
+        <div class="right-card">
+          <div class="right-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          </div>
+          <h3>Right to Amend</h3>
+          <p>You have the right to request an amendment to your protected health information if you believe it is incorrect or incomplete. Your request must be made in writing to our Privacy Officer and must include a reason that supports your request. We may deny your request if the information was not created by us, is not part of the records you are allowed to inspect, is not part of the records maintained by our practice, or is already accurate and complete. If we deny your request, you may submit a statement of disagreement.</p>
+        </div>
 
-    <h2>Contact Information</h2>
-    <p>For more information about our privacy practices or to file a complaint, please contact:</p>
-    <p>
-      <strong>Dr. Alan S. Lee, DDS</strong><br />
-      715 N Main St<br />
-      Manteca, CA 95336<br />
-      Phone: <a href="tel:+12092392990">(209) 239-2990</a>
-    </p>
+        <div class="right-card">
+          <div class="right-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          </div>
+          <h3>Right to an Accounting of Disclosures</h3>
+          <p>You have the right to request a list of certain disclosures we have made of your protected health information for purposes other than treatment, payment, or health care operations within the six years prior to your request. This does not include disclosures made with your authorization, to you about your own records, or for national security purposes. The first list you request in a 12-month period is free; subsequent requests may involve a reasonable fee.</p>
+        </div>
+
+        <div class="right-card">
+          <div class="right-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+          </div>
+          <h3>Right to Request Restrictions</h3>
+          <p>You have the right to request a restriction or limitation on the use or disclosure of your health information for treatment, payment, or health care operations. You also have the right to request a limit on the health information we disclose to someone involved in your care or payment for your care. We are not required to agree to your request except as required by law, including the requirement that we honor a request to restrict disclosure to a health plan if you pay for services out of pocket in full.</p>
+        </div>
+
+        <div class="right-card">
+          <div class="right-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <h3>Right to Request Confidential Communications</h3>
+          <p>You have the right to request that we communicate with you about health matters in a certain way or at a certain location. For example, you may request that we contact you at work instead of at home. We will accommodate all reasonable requests. Your request must be made in writing and specify how or where you wish to be contacted.</p>
+        </div>
+
+        <div class="right-card">
+          <div class="right-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          </div>
+          <h3>Right to a Paper Copy of This Notice</h3>
+          <p>You have the right to receive a paper copy of this Notice of Privacy Practices at any time. Even if you have agreed to receive this notice electronically, you are entitled to a paper copy. To obtain a paper copy, please contact our office.</p>
+        </div>
+
+        <div class="right-card">
+          <div class="right-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </div>
+          <h3>Right to Receive Notice of a Breach</h3>
+          <p>You have the right to be notified in writing if there is a breach of your unsecured protected health information. We will notify you no later than 60 days after we discover a breach, as required by the HIPAA Breach Notification Rule.</p>
+        </div>
+
+        <div class="right-card">
+          <div class="right-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <h3>Right to Authorize Other Uses</h3>
+          <p>Any other uses and disclosures of your health information not covered by this notice or the laws that apply to us will be made only with your written authorization. If you do authorize a use or disclosure, you may revoke your authorization at any time by submitting a written request to our Privacy Officer, to the extent that we have not already taken action based on your prior authorization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practice's Duties -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        Our Responsibilities
+      </h2>
+      <div class="duties-list">
+        <div class="duty-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>We are required by law to maintain the privacy and security of your protected health information.</p>
+        </div>
+        <div class="duty-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>We must provide you with this Notice of our legal duties and privacy practices with respect to your health information.</p>
+        </div>
+        <div class="duty-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>We must follow the terms of the Notice that is currently in effect.</p>
+        </div>
+        <div class="duty-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>We reserve the right to change this Notice, and the revised Notice will be effective for all health information we maintain. We will post a copy of the current Notice in our office and on our website.</p>
+        </div>
+        <div class="duty-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>We will not use or disclose your health information without your written authorization, except as described in this Notice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Changes to This Notice -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+        Changes to This Notice
+      </h2>
+      <p>We reserve the right to change the terms of this Notice at any time. We reserve the right to make the revised or changed Notice effective for health information we already have about you as well as any information we receive in the future. We will post a copy of the current Notice in our office and on our website at <a href="https://dralanlee.com/hipaa-privacy-notice/" class="link">dralanlee.com/hipaa-privacy-notice</a>. The Notice will contain the effective date. You may also obtain a copy of the current Notice by contacting our Privacy Officer.</p>
+    </div>
+  </section>
+
+  <!-- Complaints -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+        Complaints
+      </h2>
+      <p>If you believe your privacy rights have been violated, you may file a complaint with our practice or with the Secretary of the Department of Health and Human Services, Office for Civil Rights. <strong>We will not retaliate against you for filing a complaint.</strong></p>
+      <p>To file a complaint with our practice, contact our Privacy Officer at the address below. To file a complaint with the Office for Civil Rights, you may send your complaint to:</p>
+
+      <div class="complaint-box">
+        <div class="complaint-col">
+          <h4>Practice Privacy Officer</h4>
+          <p>
+            <strong>Dr. Alan S. Lee, DDS</strong><br />
+            715 N Main St<br />
+            Manteca, CA 95336<br />
+            Phone: <a href="tel:+12092392990">(209) 239-2990</a><br />
+            Email: <a href="mailto:info@dralanlee.com">info@dralanlee.com</a>
+          </p>
+        </div>
+        <div class="complaint-col">
+          <h4>U.S. Department of Health and Human Services</h4>
+          <p>
+            <strong>Office for Civil Rights</strong><br />
+            200 Independence Avenue, S.W.<br />
+            Washington, D.C. 20201<br />
+            Phone: <a href="tel:+18003681019">1-800-368-1019</a><br />
+            <a href="https://www.hhs.gov/ocr/privacy/" target="_blank" rel="noopener noreferrer">hhs.gov/ocr/privacy</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad cta-section" data-animate>
+    <div class="container-narrow" style="text-align: center;">
+      <div class="section-label" style="justify-content: center;">Have Questions?</div>
+      <h2 class="section-title">Contact Our Office</h2>
+      <p class="section-subtitle" style="margin: 0 auto 2rem;">If you have any questions about this Notice or your privacy rights, please don't hesitate to contact us.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/contact-the-office/" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Contact Us
+        </a>
+        <a href="tel:+12092392990" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Call (209) 239-2990
+        </a>
+      </div>
+    </div>
   </section>
 
   <style>
-    .effective-date { background: #fff8e1; padding: 1rem; border-radius: 4px; border-left: 4px solid var(--accent); margin-bottom: 1.5rem; }
+    .legal-hero {
+      background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%);
+      color: white;
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+    }
+    .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
+    .legal-hero .section-label::before { background: var(--accent-400); }
+    .legal-hero .section-title { color: white; margin-bottom: 1rem; }
+    .legal-hero-subtitle { color: rgba(255,255,255,0.8); font-size: 1.15rem; max-width: 680px; margin: 0 auto; line-height: 1.7; }
+
+    .effective-banner {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--primary-50); border: 1px solid var(--primary-200);
+      border-radius: var(--radius-md); padding: 1.25rem 1.5rem;
+      margin-top: 2rem;
+    }
+    .effective-banner svg { color: var(--primary-600); flex-shrink: 0; margin-top: 2px; }
+    .effective-banner strong { color: var(--primary-900); }
+    .effective-sub { font-size: 0.88rem; color: var(--neutral-500); }
+
+    .legal-heading {
+      font-family: var(--font-display); font-size: 1.65rem; color: var(--neutral-900);
+      margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem;
+      line-height: 1.3;
+    }
+    .legal-heading svg { color: var(--primary-500); flex-shrink: 0; }
+
+    .legal-subheading {
+      font-family: var(--font-body); font-weight: 600; font-size: 1.1rem;
+      color: var(--neutral-800); margin: 2rem 0 0.75rem; padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-100);
+    }
+
+    .legal-section { margin-bottom: 2rem; }
+    .legal-section p { margin-bottom: 1rem; }
+    .legal-section p, .legal-section ul { color: var(--neutral-700); line-height: 1.8; }
+    .legal-section a { color: var(--primary-600); text-decoration: underline; }
+    .legal-section a:hover { color: var(--primary-800); }
+
+    .alt-bg { background: var(--neutral-50); }
+
+    .rights-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .right-card {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.75rem; transition: all var(--transition-base);
+    }
+    .right-card:hover { box-shadow: var(--shadow-lg); border-color: var(--primary-200); transform: translateY(-2px); }
+    .right-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 52px; height: 52px; border-radius: var(--radius-md);
+      background: var(--primary-50); color: var(--primary-600); margin-bottom: 1rem;
+    }
+    .right-card h3 { font-family: var(--font-display); font-size: 1.15rem; color: var(--neutral-900); margin-bottom: 0.75rem; }
+    .right-card p { font-size: 0.92rem; color: var(--neutral-600); line-height: 1.7; }
+
+    .duties-list { margin-top: 1.5rem; }
+    .duty-item {
+      display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;
+      padding: 1rem 1.25rem; background: white; border: 1px solid var(--neutral-100);
+      border-radius: var(--radius-md);
+    }
+    .duty-item svg { margin-top: 3px; flex-shrink: 0; }
+    .duty-item p { color: var(--neutral-700); line-height: 1.7; margin: 0; }
+
+    .complaint-box {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .complaint-col {
+      background: white; border: 1px solid var(--neutral-200);
+      border-radius: var(--radius-md); padding: 1.5rem;
+    }
+    .complaint-col h4 {
+      font-family: var(--font-body); font-weight: 600; font-size: 1rem;
+      color: var(--primary-700); margin-bottom: 0.75rem;
+    }
+    .complaint-col p { font-size: 0.92rem; color: var(--neutral-600); line-height: 1.8; }
+    .complaint-col a { color: var(--primary-600); }
+    .complaint-col a:hover { color: var(--primary-800); }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary-50) 0%, white 100%);
+      border-top: 1px solid var(--primary-100);
+    }
+
+    .link { color: var(--primary-600); text-decoration: underline; }
+    .link:hover { color: var(--primary-800); }
+
+    @media (max-width: 768px) {
+      .rights-grid { grid-template-columns: 1fr; }
+      .complaint-box { grid-template-columns: 1fr; }
+      .legal-hero { padding: 3.5rem 1rem 3rem; }
+    }
   </style>
 </Layout>
