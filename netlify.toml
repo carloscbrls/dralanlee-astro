@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://form.jotform.com https://cdn.jotfor.ms https://js.jotform.com https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.jotfor.ms https://*.jotform.com https://plausible.io; frame-src https://form.jotform.com https://www.google.com https://maps.google.com; connect-src 'self' https://plausible.io https://form.jotform.com; object-src 'none'; base-uri 'self'; form-action 'self' https://form.jotform.com https://www.convergepay.com"
+    X-Robots-Tag = "index, follow"
+
+[[redirects]]
+  from = "/pay/*"
+  to = "https://www.convergepay.com/hosted-payments/?ssl_txn_auth_token=9p0%2FEFfgQDyes9SQVfA8pgAAAZBvj2Xi#!/payment-method"
+  status = 302
