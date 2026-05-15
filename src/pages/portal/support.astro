@@ -1,0 +1,198 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const title = 'CC3PO Support | Dr. Alan S. Lee, DDS';
+const description = 'Submit support requests, request website changes, or get help with your dental practice website. HIPAA-compliant and secure.';
+---
+
+<Layout title={title} description={description}>
+  <section class="legal-hero" data-animate>
+    <div class="container-wide">
+      <div class="section-label">IT & Compliance Support</div>
+      <h1 class="section-title">How Can We Help?</h1>
+      <p class="legal-hero-subtitle">Submit a support request and our team will get back to you within 2 business hours. For urgent issues, call (209) 423-6633.</p>
+    </div>
+  </section>
+
+  <!-- Support Options -->
+  <section class="section-pad" data-animate>
+    <div class="container-narrow">
+      <div class="contact-methods">
+        <a href="tel:+12094236633" class="contact-card urgent">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <div>
+            <h3>Call Us — Urgent</h3>
+            <p class="phone-big">(209) 423-6633</p>
+            <p>Website down? Security concern? Call anytime.</p>
+          </div>
+        </a>
+        <a href="sms:+12092321265" class="contact-card">
+          <div class="contact-icon blue">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <div>
+            <h3>Text Us — Quick Changes</h3>
+            <p class="phone-big">(209) 232-1265</p>
+            <p>Update hours, change a photo, fix a typo. We respond in 2 hours.</p>
+          </div>
+        </a>
+        <a href="mailto:legal@cc3po.com" class="contact-card">
+          <div class="contact-icon purple">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </div>
+          <div>
+            <h3>Email Us — Detailed Requests</h3>
+            <p class="phone-big">legal@cc3po.com</p>
+            <p>Longer requests, attachments, or compliance questions.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support Form -->
+  <section class="section-pad alt-bg" data-animate>
+    <div class="container-narrow">
+      <h2 class="section-heading">Submit a Support Request</h2>
+      <p class="section-description">Fill out the form below and our team will handle it. All submissions are tracked and you'll receive a confirmation email.</p>
+      
+      <div class="jotform-embed" id="support-form-container">
+        <div class="form-loading" id="support-loading">
+          <div class="loading-spinner"></div>
+          <p>Loading support form...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Requests -->
+  <section class="section-pad" data-animate>
+    <div class="container-narrow">
+      <h2 class="section-heading">Common Requests</h2>
+      <div class="requests-grid">
+        <div class="request-item">
+          <div class="request-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div>
+            <h4>Update Office Hours</h4>
+            <p>Changed your schedule? We'll update the website, Google Business, and all listings.</p>
+          </div>
+        </div>
+        <div class="request-item">
+          <div class="request-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          </div>
+          <div>
+            <h4>Add or Change Services</h4>
+            <p>New service? Updated pricing? We'll update the website and forms.</p>
+          </div>
+        </div>
+        <div class="request-item">
+          <div class="request-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div>
+            <h4>Security Concern</h4>
+            <p>Spotted something suspicious? We'll investigate immediately.</p>
+          </div>
+        </div>
+        <div class="request-item">
+          <div class="request-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          </div>
+          <div>
+            <h4>HIPAA Compliance Question</h4>
+            <p>Need clarification on HIPAA, privacy policy updates, or compliance docs?</p>
+          </div>
+        </div>
+        <div class="request-item">
+          <div class="request-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <div>
+            <h4>Staff Changes</h4>
+            <p>New team member? Someone leaving? We'll update the website and forms.</p>
+          </div>
+        </div>
+        <div class="request-item">
+          <div class="request-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <div>
+            <h4>General Question</h4>
+            <p>Anything else about your website, compliance, or IT. We're here to help.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .legal-hero { background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%); color: white; padding: 5rem 1.5rem 4rem; text-align: center; }
+    .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
+    .legal-hero .section-label::before { background: var(--accent-400); }
+    .legal-hero .section-title { color: white; margin-bottom: 1rem; }
+    .legal-hero-subtitle { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
+    
+    .section-heading { font-family: var(--font-display); font-size: 1.75rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .section-description { color: var(--neutral-500); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6; }
+    .alt-bg { background: var(--neutral-50); }
+    
+    /* Contact Methods */
+    .contact-methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .contact-card { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); text-decoration: none; color: inherit; transition: all var(--transition-base); }
+    .contact-card:hover { box-shadow: var(--shadow-lg); border-color: var(--primary-300); transform: translateY(-2px); }
+    .contact-card.urgent { border-color: #fca5a5; background: linear-gradient(135deg, #fff5f5, white); }
+    .contact-card.urgent:hover { border-color: #ef4444; }
+    .contact-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: #fef2f2; color: #ef4444; flex-shrink: 0; }
+    .contact-icon.blue { background: var(--primary-50); color: var(--primary-700); }
+    .contact-icon.purple { background: #f5f3ff; color: #7c3aed; }
+    .contact-card h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin-bottom: 0.25rem; }
+    .contact-card p { font-size: 0.88rem; color: var(--neutral-500); line-height: 1.5; }
+    .phone-big { font-size: 1.25rem; font-weight: 700; color: var(--primary-700); margin-bottom: 0.25rem; }
+    .contact-card.urgent .phone-big { color: #ef4444; }
+    
+    /* Form Container */
+    .jotform-embed { min-height: 700px; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); overflow: hidden; }
+    .jotform-embed iframe { width: 100%; height: 100%; min-height: 700px; border: none; }
+    .form-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem; color: var(--neutral-500); }
+    .loading-spinner { width: 36px; height: 36px; border: 3px solid var(--neutral-200); border-top-color: var(--primary-600); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 1rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    /* Common Requests */
+    .requests-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    .request-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); }
+    .request-item:hover { border-color: var(--primary-300); box-shadow: var(--shadow-sm); }
+    .request-icon { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--primary-50); color: var(--primary-700); flex-shrink: 0; }
+    .request-item h4 { font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; color: var(--neutral-900); margin-bottom: 0.25rem; }
+    .request-item p { font-size: 0.85rem; color: var(--neutral-500); line-height: 1.5; margin: 0; }
+    
+    @media (max-width: 768px) {
+      .contact-methods { grid-template-columns: 1fr; }
+      .requests-grid { grid-template-columns: 1fr; }
+      .legal-hero { padding: 3.5rem 1rem 3rem; }
+    }
+  </style>
+
+  <script>
+    // Load JotForm support form
+    // Form ID will be created in JotForm dashboard
+    // For now, show the contact methods prominently
+    const container = document.getElementById('support-form-container');
+    const loading = document.getElementById('support-loading');
+
+    // CC3PO Support Form - created in JotForm HIPAA dashboard
+    // Replace this ID with the actual form ID after creating it
+    const formUrl = 'https://form.jotform.com/251548064792162';
+
+    const iframe = document.createElement('iframe');
+    iframe.src = formUrl;
+    iframe.title = 'CC3PO Support Request';
+    iframe.style.cssText = 'width:100%;height:100%;min-height:700px;border:none;';
+    iframe.onload = () => { if (loading) loading.remove(); };
+    container.appendChild(iframe);
+  </script>
+</Layout>
