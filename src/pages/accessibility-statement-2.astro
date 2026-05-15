@@ -1,73 +1,95 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const title = 'Accessibility Statement | Dr. Alan S. Lee, DDS - Manteca Dentist';
-const description = 'Accessibility statement for Dr. Alan S. Lee, DDS. Our commitment to making our website and dental practice accessible to everyone.';
+
+const lastUpdated = 'May 15, 2026';
 ---
 
-<Layout title={title} description={description}>
-  <section class="hero">
+<Layout title="Accessibility Statement | Dr. Alan S. Lee, DDS" description="Our commitment to accessibility and WCAG 2.1 AA compliance. Dr. Alan S. Lee, DDS ensures all patients can access our dental services.">
+  <div class="content-section">
     <h1>Accessibility Statement</h1>
-    <p>Our commitment to accessibility for all patients and visitors</p>
-  </section>
-
-  <section class="content-section">
+    <p><em>Last updated: {lastUpdated}</em></p>
+    
     <h2>Our Commitment to Accessibility</h2>
-    <p>At the dental practice of Dr. Alan S. Lee, DDS, we are committed to ensuring that our website and dental office are accessible to everyone, including individuals with disabilities. We strive to comply with the Americans with Disabilities Act (ADA) and the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standards.</p>
-
-    <h2>Website Accessibility</h2>
-    <p>We are continuously working to improve the accessibility of our website to ensure it is usable by all visitors. Our efforts include:</p>
+    <p>Dr. Alan S. Lee, DDS is committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply relevant accessibility standards to ensure our website is accessible to all patients and visitors.</p>
+    
+    <h2>Conformance Status</h2>
+    <p>The <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines (WCAG) 2.1</a> defines requirements for designers and developers to improve accessibility for people with disabilities. It defines three levels of conformance: Level A, Level AA, and Level AAA. Our website aims to conform to <strong>WCAG 2.1 Level AA</strong>.</p>
+    
+    <h2>Measures We Take</h2>
+    <p>We take the following measures to ensure accessibility of our website:</p>
     <ul>
-      <li><strong>Keyboard navigation:</strong> Our website is designed to be navigable using keyboard controls</li>
-      <li><strong>Alt text:</strong> We provide alternative text for all meaningful images</li>
-      <li><strong>Color contrast:</strong> We maintain sufficient color contrast for readability</li>
-      <li><strong>Heading structure:</strong> We use proper heading hierarchy for screen reader navigation</li>
-      <li><strong>Form labels:</strong> All form fields are properly labeled for assistive technology</li>
-      <li><strong>Responsive design:</strong> Our website is designed to work on all device sizes</li>
-      <li><strong>Clear language:</strong> We use clear and simple language throughout our website</li>
+      <li>Include accessibility as part of our mission and values</li>
+      <li>Integrate accessibility into our procurement practices</li>
+      <li>Assign clear accessibility targets and responsibilities</li>
+      <li>Employ formal accessibility quality assurance methods</li>
+      <li>Ensure all images have meaningful alt text</li>
+      <li>Provide keyboard navigation throughout the site</li>
+      <li>Maintain proper heading hierarchy for screen readers</li>
+      <li>Ensure sufficient color contrast ratios (minimum 4.5:1 for normal text, 3:1 for large text)</li>
+      <li>Make all interactive elements accessible with assistive technologies</li>
+      <li>Provide skip navigation links</li>
+      <li>Use ARIA landmarks and labels where appropriate</li>
+      <li>Support reduced motion preferences</li>
+      <li>Ensure forms have proper labels and error messages</li>
     </ul>
-
-    <h2>Office Accessibility</h2>
-    <p>Our dental office is designed to be accessible to patients with disabilities:</p>
+    
+    <h2>Compatibility With Browsers and Assistive Technology</h2>
+    <p>Our website is designed to be compatible with:</p>
     <ul>
-      <li>Wheelchair-accessible entrance and treatment areas</li>
-      <li>Accessible restroom facilities</li>
-      <li>Accommodations for patients with mobility challenges</li>
-      <li>Assistance available for patients who need help navigating our office</li>
+      <li>Modern browsers (Chrome, Firefox, Safari, Edge — last 2 versions)</li>
+      <li>Screen readers (JAWS, NVDA, VoiceOver, TalkBack)</li>
+      <li>Voice recognition software</li>
+      <li>Keyboard-only navigation</li>
+      <li>Mobile devices with accessibility features enabled</li>
     </ul>
-
-    <h2>Ongoing Efforts</h2>
-    <p>We regularly review and test our website for accessibility. We are committed to making ongoing improvements to ensure our digital presence is inclusive and accessible. We follow the WCAG 2.1 Level AA guidelines as our standard and work to exceed them whenever possible.</p>
-
-    <h2>Third-Party Content</h2>
-    <p>While we strive to ensure all content on our website is accessible, some third-party content (such as embedded forms and maps) may not fully conform to our accessibility standards. We work with our third-party providers to encourage accessibility improvements and are committed to finding accessible alternatives when needed.</p>
-
-    <h2>Feedback &amp; Assistance</h2>
-    <p>We welcome your feedback on the accessibility of our website and dental office. If you encounter any accessibility barriers or have suggestions for improvement, please let us know:</p>
+    
+    <h2>Technical Specifications</h2>
+    <p>Accessibility of this website relies on the following technologies:</p>
+    <ul>
+      <li>HTML5 semantic markup</li>
+      <li>ARIA (Accessible Rich Internet Applications) attributes</li>
+      <li>CSS for visual presentation and responsive design</li>
+      <li>JavaScript for enhanced interactivity (all core content accessible without JS)</li>
+    </ul>
+    
+    <h2>Known Accessibility Limitations</h2>
+    <p>Despite our best efforts, some limitations may exist:</p>
+    <ul>
+      <li>Third-party embedded forms (JotForm) may have their own accessibility features outside our direct control. We select HIPAA-compliant form providers that prioritize accessibility.</li>
+      <li>Some historical PDF documents in our forms library may not be fully accessible. We are working to provide accessible alternatives upon request.</li>
+    </ul>
+    
+    <h2>Feedback</h2>
+    <p>We welcome your feedback on the accessibility of our website. If you encounter accessibility barriers, please contact us:</p>
     <ul>
       <li><strong>Phone:</strong> <a href="tel:+12092392990">(209) 239-2990</a></li>
-      <li><strong>In person:</strong> 715 N Main St, Manteca, CA 95336</li>
-      <li><strong>Online:</strong> <a href="/contact-the-office/">Contact us through our website</a></li>
+      <li><strong>Email:</strong> <a href="mailto:info@dralanlee.com">info@dralanlee.com</a></li>
+      <li><strong>In Person:</strong> 715 N Main St, Manteca, CA 95336</li>
+      <li><strong>Mail:</strong> Dr. Alan S. Lee, DDS, 715 N Main St, Manteca, CA 95336</li>
     </ul>
-    <p>We will make every reasonable effort to provide accessible alternatives and address any accessibility concerns promptly.</p>
-
-    <h2>Accessibility Standards</h2>
-    <p>We aim to conform to the following accessibility standards:</p>
+    <p>We try to respond to feedback within <strong>2 business days</strong> and to propose a solution within <strong>10 business days</strong>.</p>
+    
+    <h2>Disability Accommodations in Our Office</h2>
+    <p>In addition to our digital accessibility efforts, our physical office is accessible:</p>
     <ul>
-      <li><strong>WCAG 2.1 Level AA:</strong> Web Content Accessibility Guidelines developed by the World Wide Web Consortium (W3C)</li>
-      <li><strong>ADA:</strong> Americans with Disabilities Act requirements for public accommodations</li>
-      <li><strong>Section 508:</strong> Federal accessibility standards for electronic and information technology</li>
-      <li><strong>California ADA:</strong> California-specific accessibility requirements</li>
+      <li>Wheelchair accessible entrance and treatment areas</li>
+      <li>Accessible restroom facilities</li>
+      <li>Assistance available for patients with mobility challenges</li>
+      <li>Large-print and translated materials available upon request</li>
+      <li>Sign language interpreter services can be arranged with advance notice</li>
     </ul>
-
-    <h2>Assistive Technology Compatibility</h2>
-    <p>Our website is designed to be compatible with commonly used assistive technologies, including:</p>
+    
+    <h2>Formal Grievances</h2>
+    <p>If you believe that our website does not comply with accessibility standards, you may file a grievance by contacting our office. We will investigate and respond within 15 business days.</p>
+    
+    <h2>Standards Referenced</h2>
     <ul>
-      <li>Screen readers (JAWS, NVDA, VoiceOver)</li>
-      <li>Screen magnification software</li>
-      <li>Voice recognition software</li>
-      <li>Alternative keyboard and pointing devices</li>
+      <li><a href="https://www.w3.org/TR/WCAG21/" rel="noopener noreferrer">WCAG 2.1 Level AA</a></li>
+      <li><a href="https://www.section508.gov/" rel="noopener noreferrer">Section 508 of the Rehabilitation Act</a></li>
+      <li><a href="https://www.ada.gov/" rel="noopener noreferrer">Americans with Disabilities Act (ADA)</a></li>
+      <li><a href="https://www.hhs.gov/civil-rights/for-individuals/disability/index.html" rel="noopener noreferrer">HHS Office for Civil Rights</a></li>
     </ul>
-
-    <p>This accessibility statement was last reviewed and updated in January 2024.</p>
-  </section>
+    
+    <p><a href="/" class="btn-primary">Return to Home Page</a></p>
+  </div>
 </Layout>
