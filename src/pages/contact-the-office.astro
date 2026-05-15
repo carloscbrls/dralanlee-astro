@@ -1,292 +1,254 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const title = 'Contact Us | Dr. Alan S. Lee, DDS — Manteca Dentist';
-const description = 'Contact Dr. Alan S. Lee, DDS in Manteca, CA. Call (209) 239-2990 or visit us at 715 N Main St. HIPAA-compliant communication.';
+const title = 'Contact Us | Dr. Alan S. Lee, DDS';
+const description = 'Contact Dr. Alan S. Lee, DDS in Manteca, CA. Call (209) 239-2990, visit us at 715 N Main St, or send us a message online. We are here to help.';
 
-const contactSchema = {
+const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "name": "Contact Dr. Alan S. Lee, DDS",
-  "url": "https://dralanlee.com/contact-the-office/",
-  "mainEntity": {
-    "@type": "Dentist",
-    "name": "Dr. Alan S. Lee, DDS",
-    "telephone": "+1-209-239-2990",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "715 N Main St",
-      "addressLocality": "Manteca",
-      "addressRegion": "CA",
-      "postalCode": "95336",
-      "addressCountry": "US"
-    }
+  "@type": "Dentist",
+  name: "Dr. Alan S. Lee, DDS",
+  url: "https://dralanlee.com/contact-the-office/",
+  telephone: "+1-209-239-2990",
+  email: "info@dralanlee.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "715 N Main St",
+    addressLocality: "Manteca",
+    addressRegion: "CA",
+    postalCode: "95336",
+    addressCountry: "US"
+  },
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday"], opens: "08:00", closes: "17:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "08:00", closes: "14:00" }
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+1-209-239-2990",
+    contactType: "customer service",
+    availableLanguage: "English"
   }
 };
 ---
 
-<Layout title={title} description={description} schema={contactSchema}>
+<Layout title={title} description={description} schema={localBusinessSchema}>
   <!-- Hero -->
-  <section class="contact-hero section-pad" data-animate>
+  <section class="legal-hero" data-animate>
     <div class="container-wide">
-      <span class="section-label">Contact Us</span>
-      <h1 class="section-title">We'd Love to<br/>Hear From You</h1>
-      <p class="section-subtitle">Whether you're ready to schedule an appointment or just have a question, our team is here to help.</p>
+      <div class="section-label">Get in Touch</div>
+      <h1 class="section-title">Contact Our Office</h1>
+      <p class="legal-hero-subtitle">We are here to answer your questions, schedule appointments, and help with anything you need. Reach out to us anytime.</p>
     </div>
   </section>
 
   <!-- Contact Grid -->
-  <section class="contact-main section-pad" data-animate>
-    <div class="container-wide contact-grid">
-      <!-- Contact Info -->
-      <div class="contact-info" data-animate>
-        <div class="info-card">
-          <div class="info-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <div>
-            <h3>Phone</h3>
-            <a href="tel:+12092392990" class="info-value">(209) 239-2990</a>
-            <p class="info-detail">Call us anytime during business hours</p>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <div class="info-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <h3>Address</h3>
-            <p class="info-value">715 N Main St<br/>Manteca, CA 95336</p>
-            <a href="https://maps.google.com/?q=715+N+Main+St+Manteca+CA+95336" target="_blank" rel="noopener noreferrer" class="info-link">Get Directions →</a>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <div class="info-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div>
-            <h3>Office Hours</h3>
-            <table class="hours-table" aria-label="Office hours">
-              <tbody>
-                <tr><td>Monday</td><td>8:00 AM – 5:00 PM</td></tr>
-                <tr><td>Tuesday</td><td>8:00 AM – 5:00 PM</td></tr>
-                <tr><td>Wednesday</td><td>8:00 AM – 5:00 PM</td></tr>
-                <tr><td>Thursday</td><td>8:00 AM – 5:00 PM</td></tr>
-                <tr><td>Friday</td><td>8:00 AM – 2:00 PM</td></tr>
-                <tr><td>Sat – Sun</td><td>Closed</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="hipaa-notice" data-animate>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <p><strong>HIPAA Compliant:</strong> All communications are protected under our <a href="/hipaa-privacy-notice/">HIPAA Privacy Notice</a>. Your health information is always kept confidential and secure.</p>
-        </div>
-      </div>
-
+  <section class="section-pad">
+    <div class="contact-grid">
       <!-- Contact Form -->
-      <div class="contact-form-wrap" data-animate>
+      <div class="form-column" data-animate>
         <div class="form-header">
           <h2>Send Us a Message</h2>
-          <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+          <p>Fill out the form below and we will get back to you within one business day.</p>
         </div>
-        <iframe
-          src="https://hipaa.jotform.com/260202986387060"
-          title="Contact Form — HIPAA Compliant"
-          style="width:100%; height:600px; border:none; border-radius: var(--radius-md);"
-          loading="lazy"
-        ></iframe>
+
+        <form class="contact-form" id="contact-form" action="#" method="POST" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="firstName">First Name <span class="required" aria-label="required">*</span></label>
+              <input type="text" id="firstName" name="firstName" required autocomplete="given-name" placeholder="Your first name" />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name <span class="required" aria-label="required">*</span></label>
+              <input type="text" id="lastName" name="lastName" required autocomplete="family-name" placeholder="Your last name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address <span class="required" aria-label="required">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(209) 555-0000" />
+            </div>
+            <div class="form-group full-width">
+              <label for="subject">Subject <span class="required" aria-label="required">*</span></label>
+              <select id="subject" name="subject" required>
+                <option value="">Select a subject</option>
+                <option value="appointment">Schedule an Appointment</option>
+                <option value="question">General Question</option>
+                <option value="insurance">Insurance Inquiry</option>
+                <option value="billing">Billing Question</option>
+                <option value="records">Medical Records Request</option>
+                <option value="privacy">Privacy / HIPAA Question</option>
+                <option value="feedback">Feedback</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label for="message">Message <span class="required" aria-label="required">*</span></label>
+              <textarea id="message" name="message" rows="5" required placeholder="How can we help you?"></textarea>
+            </div>
+            <div class="form-group full-width">
+              <label class="checkbox-label">
+                <input type="checkbox" id="hipaaConsent" name="hipaaConsent" required />
+                <span>I understand that my information will be handled in accordance with the <a href="/hipaa-privacy-notice/" target="_blank">HIPAA Notice of Privacy Practices</a>. <span class="required" aria-label="required">*</span></span>
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary btn-submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            Send Message
+          </button>
+        </form>
       </div>
-    </div>
-  </section>
 
-  <!-- Map -->
-  <section class="map-section" data-animate>
-    <div class="container-wide">
-      <span class="section-label">Find Us</span>
-      <h2 class="section-title" style="font-size: 1.75rem;">Our Location</h2>
-    </div>
-    <div class="map-container">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3135.5!2d-121.2167!3d37.7975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809046e4e4e4e4e%3A0xe4e4e4e4e4e4e4e!2s715+N+Main+St%2C+Manteca%2C+CA+95336!5e0!3m2!1sen!2sus!4v1234567890"
-        width="100%"
-        height="400"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Dr. Alan S. Lee, DDS office location — 715 N Main St, Manteca, CA 95336"
-      ></iframe>
-    </div>
-  </section>
+      <!-- Info Column -->
+      <div class="info-column" data-animate>
+        <!-- Address Card -->
+        <div class="info-card">
+          <div class="info-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <h3>Visit Our Office</h3>
+          <div class="address-block">
+            <p><strong>Dr. Alan S. Lee, DDS</strong><br />715 N Main St<br />Manteca, CA 95336</p>
+          </div>
+          <div class="map-embed" style="margin-top: 1rem; border-radius: var(--radius-md); overflow: hidden;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0!2d-121.22!3d37.79!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s715+N+Main+St%2C+Manteca%2C+CA+95336!5e0!3m2!1sen!2sus!4v1"
+              width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing Dr. Alan S. Lee DDS office location at 715 N Main St, Manteca, CA 95336"></iframe>
+          </div>
+        </div>
 
-  <!-- CTA -->
-  <section class="contact-cta section-pad" data-animate>
-    <div class="container-wide cta-inner">
-      <h2 class="section-title" style="color: white;">Ready to Schedule?</h2>
-      <p style="color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px;">The fastest way to get started is to call us directly. Our team is ready to help.</p>
-      <div class="cta-buttons">
-        <a href="/schedule-appointment/" class="btn-primary" style="background: var(--accent-500); color: var(--neutral-900);">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Schedule Online
-        </a>
-        <a href="tel:+12092392990" class="btn-secondary" style="border-color: rgba(255,255,255,0.3); color: white;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Call (209) 239-2990
-        </a>
+        <!-- Phone & Email -->
+        <div class="info-card">
+          <div class="info-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <h3>Call or Email</h3>
+          <div class="contact-list">
+            <a href="tel:+12092392990" class="contact-item primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              (209) 239-2990
+            </a>
+            <a href="mailto:info@dralanlee.com" class="contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              info@dralanlee.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Hours -->
+        <div class="info-card">
+          <div class="info-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <h3>Office Hours</h3>
+          <div class="hours-list">
+            <div class="hours-row"><span>Monday – Thursday</span><span>8:00 AM – 5:00 PM</span></div>
+            <div class="hours-row"><span>Friday</span><span>8:00 AM – 2:00 PM</span></div>
+            <div class="hours-row closed"><span>Saturday – Sunday</span><span>Closed</span></div>
+          </div>
+        </div>
+
+        <!-- HIPAA Notice -->
+        <div class="info-card hipaa-card">
+          <div class="hipaa-inline">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            <div>
+              <strong>HIPAA Compliant</strong>
+              <p>Your information is encrypted and protected. By submitting this form, you consent to being contacted regarding your inquiry. <a href="/hipaa-privacy-notice/" class="link">Privacy Notice</a></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <style>
-    .contact-hero {
-      background: linear-gradient(135deg, var(--primary-50) 0%, white 100%);
-      text-align: center;
+    .legal-hero {
+      background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%);
+      color: white; padding: 5rem 1.5rem 4rem; text-align: center;
     }
-    .contact-hero .section-subtitle { margin: 0 auto; }
+    .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
+    .legal-hero .section-label::before { background: var(--accent-400); }
+    .legal-hero .section-title { color: white; margin-bottom: 1rem; }
+    .legal-hero-subtitle { color: rgba(255,255,255,0.8); font-size: 1.15rem; max-width: 680px; margin: 0 auto; line-height: 1.7; }
 
-    /* Contact Grid */
     .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 3rem;
-      align-items: start;
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem;
+      max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
     }
+
+    .form-header { margin-bottom: 2rem; }
+    .form-header h2 { font-family: var(--font-display); font-size: 1.65rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .form-header p { color: var(--neutral-500); line-height: 1.7; }
+
+    .contact-form { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-md); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-group { display: flex; flex-direction: column; }
+    .form-group.full-width { grid-column: 1 / -1; }
+    .form-group label { font-family: var(--font-body); font-weight: 600; font-size: 0.88rem; color: var(--neutral-700); margin-bottom: 0.4rem; }
+    .required { color: var(--error); }
+    .form-group input, .form-group select, .form-group textarea {
+      font-family: var(--font-body); font-size: 0.95rem; padding: 0.75rem 1rem;
+      border: 1.5px solid var(--neutral-300); border-radius: var(--radius-sm);
+      background: white; color: var(--neutral-800); transition: border-color var(--transition-fast);
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--primary-500); box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+    .form-group textarea { resize: vertical; }
+
+    .checkbox-label {
+      display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.88rem;
+      color: var(--neutral-600); line-height: 1.6; cursor: pointer;
+    }
+    .checkbox-label input[type="checkbox"] { margin-top: 0.2rem; flex-shrink: 0; }
+
+    .btn-submit { width: 100%; margin-top: 1.5rem; justify-content: center; padding: 1rem 2rem; font-size: 1rem; }
+
+    .info-column { display: flex; flex-direction: column; gap: 1.5rem; }
+
     .info-card {
-      display: flex;
-      gap: 1rem;
-      padding: 1.25rem;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--neutral-200);
-      margin-bottom: 1rem;
-      transition: all var(--transition-fast);
-    }
-    .info-card:hover {
-      border-color: var(--primary-200);
-      box-shadow: var(--shadow-sm);
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.5rem; box-shadow: var(--shadow-sm);
     }
     .info-icon {
-      width: 48px; height: 48px;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--primary-50);
-      color: var(--primary-600);
-      border-radius: var(--radius-sm);
-      flex-shrink: 0;
+      width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--primary-50);
+      color: var(--primary-600); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;
     }
-    .info-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      color: var(--neutral-900);
-      margin-bottom: 0.25rem;
-    }
-    .info-value {
-      color: var(--neutral-800);
-      font-weight: 600;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      text-decoration: none;
-    }
-    a.info-value { color: var(--primary-700); }
-    a.info-value:hover { color: var(--primary-500); }
-    .info-detail {
-      color: var(--neutral-500);
-      font-size: 0.82rem;
-      margin-top: 0.15rem;
-    }
-    .info-link {
-      color: var(--primary-600);
-      font-size: 0.88rem;
-      font-weight: 600;
-    }
-    .info-link:hover { color: var(--primary-800); }
+    .info-card h3 { font-family: var(--font-display); font-size: 1.15rem; color: var(--neutral-900); margin-bottom: 1rem; }
 
-    .hours-table {
-      margin-top: 0.5rem;
-      font-size: 0.88rem;
-    }
-    .hours-table td {
-      padding: 0.25rem 0.75rem 0.25rem 0;
-      color: var(--neutral-600);
-    }
-    .hours-table td:first-child {
-      font-weight: 600;
-      color: var(--neutral-700);
-      min-width: 7rem;
-    }
+    .address-block p { color: var(--neutral-700); line-height: 1.7; font-size: 0.95rem; }
 
-    /* HIPAA Notice */
-    .hipaa-notice {
-      display: flex;
-      gap: 0.75rem;
-      padding: 1rem 1.25rem;
-      background: var(--primary-50);
-      border: 1px solid var(--primary-200);
-      border-radius: var(--radius-sm);
-      margin-top: 0.5rem;
+    .contact-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;
+      color: var(--neutral-700); text-decoration: none; transition: color var(--transition-fast);
     }
-    .hipaa-notice svg { color: var(--success); flex-shrink: 0; margin-top: 0.15rem; }
-    .hipaa-notice p { font-size: 0.82rem; color: var(--neutral-600); line-height: 1.5; }
-    .hipaa-notice a { color: var(--primary-700); font-weight: 600; }
-    .hipaa-notice a:hover { color: var(--primary-500); }
+    .contact-item:hover { color: var(--primary-600); }
+    .contact-item.primary { font-weight: 600; color: var(--primary-700); font-size: 1.1rem; }
 
-    /* Form */
-    .contact-form-wrap {
-      background: white;
-      border: 1px solid var(--neutral-200);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-    }
-    .form-header h2 {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      color: var(--neutral-900);
-      margin-bottom: 0.25rem;
-    }
-    .form-header p {
-      color: var(--neutral-500);
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-    }
+    .hours-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .hours-row { display: flex; justify-content: space-between; font-size: 0.92rem; padding: 0.5rem 0; border-bottom: 1px solid var(--neutral-100); }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row span:first-child { color: var(--neutral-700); font-weight: 500; }
+    .hours-row span:last-child { color: var(--neutral-600); }
+    .hours-row.closed span { color: var(--neutral-400); }
 
-    /* Map */
-    .map-section { padding-bottom: 3rem; }
-    .map-container {
-      max-width: 1280px;
-      margin: 1.5rem auto 0;
-      padding: 0 1.5rem;
-    }
-    .map-container iframe {
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
-    }
-
-    /* CTA */
-    .contact-cta {
-      background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-950) 100%);
-      text-align: center;
-    }
-    .cta-inner { display: flex; flex-direction: column; align-items: center; }
-    .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .hipaa-card { background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-color: #6ee7b7; }
+    .hipaa-inline { display: flex; gap: 0.75rem; align-items: flex-start; color: #065f46; }
+    .hipaa-inline svg { flex-shrink: 0; color: #059669; margin-top: 2px; }
+    .hipaa-inline strong { display: block; font-size: 0.9rem; margin-bottom: 0.15rem; }
+    .hipaa-inline p { font-size: 0.82rem; line-height: 1.6; color: #047857; margin: 0; }
+    .link { color: var(--primary-600); text-decoration: underline; }
+    .link:hover { color: var(--primary-800); }
 
     @media (max-width: 768px) {
       .contact-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .cta-buttons { flex-direction: column; align-items: center; }
-      .cta-buttons a { width: 100%; justify-content: center; }
-    }
-
-    [data-animate] {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    [data-animate].visible {
-      opacity: 1;
-      transform: translateY(0);
+      .form-grid { grid-template-columns: 1fr; }
+      .legal-hero { padding: 3.5rem 1rem 3rem; }
     }
   </style>
 </Layout>

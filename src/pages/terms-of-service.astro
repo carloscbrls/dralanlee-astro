@@ -1,80 +1,281 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const title = 'Terms of Service | Dr. Alan S. Lee, DDS - Manteca Dentist';
-const description = 'Terms of service for the website of Dr. Alan S. Lee, DDS in Manteca, CA. Read about the terms governing use of this website.';
+
+const title = 'Terms of Service | Dr. Alan S. Lee, DDS';
+const description = 'Terms of Service for the Dr. Alan S. Lee, DDS website. Read our terms governing the use of our website and online services.';
 ---
 
 <Layout title={title} description={description}>
-  <section class="hero">
-    <h1>Terms of Service</h1>
-    <p>Terms and conditions governing the use of this website</p>
+  <!-- Hero -->
+  <section class="legal-hero" data-animate>
+    <div class="container-wide">
+      <div class="section-label">Legal Agreement</div>
+      <h1 class="section-title">Terms of Service</h1>
+      <p class="legal-hero-subtitle">Please read these terms carefully before using our website. By accessing or using our website, you agree to these Terms of Service.</p>
+    </div>
   </section>
 
-  <section class="content-section">
-    <p class="effective-date"><strong>Last Updated:</strong> January 2024</p>
+  <!-- Effective Date -->
+  <section class="section-pad" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container-narrow">
+      <div class="effective-banner" data-animate>
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        <div>
+          <strong>Effective Date:</strong> May 15, 2026<br />
+          <span class="effective-sub">Last updated: May 15, 2026 &mdash; Governing law: State of California</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <h2>Agreement to Terms</h2>
-    <p>By accessing and using the website of Dr. Alan S. Lee, DDS (the "Website"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use this Website.</p>
+  <!-- Acceptance -->
+  <section class="section-pad" style="padding-top: 2rem;">
+    <div class="container-narrow" data-animate>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        Acceptance of Terms
+      </h2>
+      <p>By accessing or using the website of <strong>Dr. Alan S. Lee, DDS</strong> ("we," "our," or "us") at <a href="https://dralanlee.com" class="link">dralanlee.com</a>, you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our website. These Terms apply to all visitors, users, and others who access or use our website.</p>
+      <p>We reserve the right to modify these Terms at any time. We will notify users of any material changes by posting the updated Terms on this page with a revised effective date. Your continued use of the website after any changes constitutes acceptance of the new Terms.</p>
+    </div>
+  </section>
 
-    <h2>Use of the Website</h2>
-    <p>You may use this Website for lawful purposes only. You agree not to:</p>
-    <ul>
-      <li>Use the Website in any way that violates applicable laws or regulations</li>
-      <li>Attempt to gain unauthorized access to any part of the Website</li>
-      <li>Interfere with or disrupt the Website's operation</li>
-      <li>Transmit any viruses, malware, or other harmful code</li>
-      <li>Collect or store personal information of other users without their consent</li>
-    </ul>
+  <!-- Use of Website -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Usage</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        Use of Website
+      </h2>
+      <p>You may use our website for lawful purposes only. You agree not to:</p>
+      <ul class="legal-list">
+        <li>Use the website in any way that violates any applicable federal, state, local, or international law or regulation.</li>
+        <li>Attempt to gain unauthorized access to any portion of the website, other accounts, computer systems, or networks connected to the website.</li>
+        <li>Use the website to transmit, distribute, or store material that is unlawful, harmful, threatening, abusive, harassing, defamatory, or otherwise objectionable.</li>
+        <li>Interfere with or disrupt the website, servers, or networks connected to the website.</li>
+        <li>Use automated means (including bots, scrapers, or spiders) to access the website for any purpose without our express written permission.</li>
+        <li>Impersonate any person or entity, or falsely state or misrepresent your affiliation with a person or entity.</li>
+        <li>Collect or store personal information about other users without their consent.</li>
+      </ul>
+      <p>We reserve the right to terminate or restrict your access to the website at any time, without notice, for any conduct that we believe violates these Terms or is harmful to other users, our practice, or third parties.</p>
+    </div>
+  </section>
 
-    <h2>Content</h2>
-    <p>The content on this Website is provided for general informational purposes only. While we strive to keep the information accurate and up-to-date, we make no representations or warranties of any kind about the completeness, accuracy, reliability, or suitability of the information.</p>
+  <!-- Appointment Scheduling -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Scheduling</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        Appointment Scheduling
+      </h2>
+      <p>Our website provides online appointment scheduling for your convenience. By using our scheduling feature, you agree to the following:</p>
 
-    <h3>Dental Information</h3>
-    <p>The dental information provided on this Website is not intended to be a substitute for professional dental advice, diagnosis, or treatment. Always seek the advice of a qualified dental professional with any questions you may have regarding a dental condition. Never disregard professional dental advice or delay seeking it because of something you have read on this Website.</p>
+      <div class="schedule-grid">
+        <div class="schedule-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>Submitting an appointment request does not guarantee availability. Our office will confirm your appointment via phone or email.</p>
+        </div>
+        <div class="schedule-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>You must provide accurate contact information when scheduling. False information may result in cancellation.</p>
+        </div>
+        <div class="schedule-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>We require at least 24 hours notice for cancellations. Repeated no-shows may result in restrictions on future scheduling.</p>
+        </div>
+        <div class="schedule-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>Appointment forms are HIPAA-compliant. Health information submitted through our forms is protected under our <a href="/hipaa-privacy-notice/" class="link">HIPAA Notice of Privacy Practices</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <h2>Disclaimer</h2>
-    <p>The information on this Website is provided "as is" without any representations or warranties, express or implied. We make no representations or warranties that the information on this Website:</p>
-    <ul>
-      <li>Will be constantly available or available at all</li>
-      <li>Is accurate, complete, or current</li>
-      <li>Is suitable for any particular purpose</li>
-    </ul>
+  <!-- Disclaimers -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Legal</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        Disclaimer of Warranties
+      </h2>
+      <p>Our website is provided on an "AS IS" and "AS AVAILABLE" basis. To the fullest extent permitted by law, we disclaim all warranties, express or implied, including but not limited to:</p>
 
-    <h2>Limitation of Liability</h2>
-    <p>To the fullest extent permitted by law, Dr. Alan S. Lee, DDS shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of or inability to use this Website, including but not limited to:</p>
-    <ul>
-      <li>Loss of data or profits</li>
-      <li>Dental decisions made based on information from this Website</li>
-      <li>Any errors or omissions in the content</li>
-      <li>Any unauthorized access to or use of our servers or personal information</li>
-    </ul>
+      <div class="disclaimer-grid">
+        <div class="disclaimer-item">
+          <h4>Implied Warranties</h4>
+          <p>We do not warrant that the website will be uninterrupted, error-free, or free of viruses or other harmful components. We make no warranties regarding the accuracy, reliability, completeness, or timeliness of the content on our website.</p>
+        </div>
+        <div class="disclaimer-item">
+          <h4>Medical Disclaimer</h4>
+          <p>The information on our website is for general informational purposes only and should not be considered dental or medical advice. Always consult with a qualified dental professional for diagnosis and treatment recommendations. Do not disregard professional dental advice or delay seeking it because of information on our website.</p>
+        </div>
+        <div class="disclaimer-item">
+          <h4>Third-Party Links</h4>
+          <p>Our website may contain links to third-party websites that are not operated by us. We are not responsible for the content, privacy practices, or availability of third-party sites. We do not endorse or guarantee the accuracy of information on external websites.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <h2>External Links</h2>
-    <p>This Website may contain links to external websites that are not under our control. We are not responsible for the content, privacy policies, or practices of any linked websites. The inclusion of any link does not imply our endorsement of the linked site.</p>
+  <!-- Limitation of Liability -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Limitation of Liability
+      </h2>
+      <p>To the maximum extent permitted by applicable law, <strong>Dr. Alan S. Lee, DDS</strong> and its officers, directors, employees, agents, and affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, business interruption, or loss of profits, arising from your use of or inability to use the website, even if we have been advised of the possibility of such damages.</p>
+      <p>In no event shall our total liability to you for all claims arising out of or relating to the use of the website exceed the amount of $100 USD.</p>
+    </div>
+  </section>
 
-    <h2>Intellectual Property</h2>
-    <p>All content on this Website, including text, graphics, logos, images, and software, is the property of Dr. Alan S. Lee, DDS and is protected by copyright and intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.</p>
+  <!-- HIPAA Compliance Notice -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="hipaa-notice">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        <div>
+          <h3>HIPAA Compliance Notice</h3>
+          <p>Our dental practice complies with all applicable HIPAA regulations. Protected health information submitted through our website forms is handled in accordance with our <a href="/hipaa-privacy-notice/" class="link">HIPAA Notice of Privacy Practices</a>. Online forms are processed through HIPAA-compliant services with Business Associate Agreements in place. For dental health records and PHI, our HIPAA notice governs, not these Terms of Service.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <h2>Privacy</h2>
-    <p>Your use of this Website is also governed by our <a href="/privacy-policy/">Privacy Policy</a>. Please review our Privacy Policy to understand our data practices.</p>
+  <!-- Intellectual Property -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M14.83 14.83a4 4 0 1 1-5.66-5.66"></path><line x1="9" y1="15" x2="15" y2="9"></line></svg>
+        Intellectual Property
+      </h2>
+      <p>All content on this website, including but not limited to text, graphics, logos, images, and software, is the property of <strong>Dr. Alan S. Lee, DDS</strong> or its content suppliers and is protected by United States and international copyright, trademark, and other intellectual property laws.</p>
+      <p>You may not reproduce, distribute, modify, create derivative works from, publicly display, or exploit any content from our website without our express written permission. Limited use of content for personal, non-commercial purposes is permitted provided that all copyright and proprietary notices are retained.</p>
+    </div>
+  </section>
 
-    <h2>Changes to These Terms</h2>
-    <p>We reserve the right to modify these Terms of Service at any time. Changes will be posted on this page with an updated effective date. Your continued use of the Website after any changes constitutes your acceptance of the revised terms.</p>
+  <!-- Governing Law -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"></path><path d="M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7H3l2-4h14l2 4"></path><path d="M5 21V10.85"></path><path d="M19 21V10.85"></path><path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"></path></svg>
+        Governing Law
+      </h2>
+      <p>These Terms of Service shall be governed by and construed in accordance with the laws of the <strong>State of California</strong>, without regard to its conflict of law principles. Any disputes arising under these Terms shall be resolved exclusively in the state or federal courts located in <strong>San Joaquin County, California</strong>.</p>
+      <p>If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions shall remain in full force and effect.</p>
+    </div>
+  </section>
 
-    <h2>Governing Law</h2>
-    <p>These Terms of Service are governed by the laws of the State of California, United States of America. Any disputes arising from the use of this Website shall be resolved in the courts of San Joaquin County, California.</p>
+  <!-- Contact -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        Contact Information
+      </h2>
+      <p>For questions about these Terms of Service, please contact us:</p>
+      <div class="contact-box">
+        <p><strong>Dr. Alan S. Lee, DDS</strong><br />715 N Main St, Manteca, CA 95336<br />Phone: <a href="tel:+12092392990" class="link">(209) 239-2990</a><br />Email: <a href="mailto:info@dralanlee.com" class="link">info@dralanlee.com</a></p>
+      </div>
+    </div>
+  </section>
 
-    <h2>Contact Us</h2>
-    <p>If you have questions about these Terms of Service, please contact:</p>
-    <p>
-      <strong>Dr. Alan S. Lee, DDS</strong><br />
-      715 N Main St<br />
-      Manteca, CA 95336<br />
-      Phone: <a href="tel:+12092392990">(209) 239-2990</a>
-    </p>
+  <!-- CTA -->
+  <section class="section-pad cta-section" data-animate>
+    <div class="container-narrow" style="text-align: center;">
+      <div class="section-label" style="justify-content: center;">Related Pages</div>
+      <h2 class="section-title">More Legal Documents</h2>
+      <p class="section-subtitle" style="margin: 0 auto 2rem;">Review our other compliance and legal pages.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/hipaa-privacy-notice/" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          HIPAA Notice
+        </a>
+        <a href="/privacy-policy/" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Privacy Policy
+        </a>
+        <a href="/no-surprises-act/" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          No Surprises Act
+        </a>
+      </div>
+    </div>
   </section>
 
   <style>
-    .effective-date { background: #fff8e1; padding: 1rem; border-radius: 4px; border-left: 4px solid var(--accent); margin-bottom: 1.5rem; }
+    .legal-hero {
+      background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%);
+      color: white; padding: 5rem 1.5rem 4rem; text-align: center;
+    }
+    .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
+    .legal-hero .section-label::before { background: var(--accent-400); }
+    .legal-hero .section-title { color: white; margin-bottom: 1rem; }
+    .legal-hero-subtitle { color: rgba(255,255,255,0.8); font-size: 1.15rem; max-width: 680px; margin: 0 auto; line-height: 1.7; }
+
+    .effective-banner {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--primary-50); border: 1px solid var(--primary-200);
+      border-radius: var(--radius-md); padding: 1.25rem 1.5rem; margin-top: 2rem;
+    }
+    .effective-banner svg { color: var(--primary-600); flex-shrink: 0; margin-top: 2px; }
+    .effective-banner strong { color: var(--primary-900); }
+    .effective-sub { font-size: 0.88rem; color: var(--neutral-500); }
+
+    .legal-heading {
+      font-family: var(--font-display); font-size: 1.65rem; color: var(--neutral-900);
+      margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; line-height: 1.3;
+    }
+    .legal-heading svg { color: var(--primary-500); flex-shrink: 0; }
+
+    .alt-bg { background: var(--neutral-50); }
+
+    .legal-list { margin: 0.75rem 0 1.5rem 1.5rem; }
+    .legal-list li { color: var(--neutral-700); line-height: 1.8; margin-bottom: 0.5rem; }
+
+    .schedule-grid { margin-top: 1.5rem; }
+    .schedule-item {
+      display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 1rem;
+      padding: 1rem 1.25rem; background: white; border: 1px solid var(--neutral-100);
+      border-radius: var(--radius-md);
+    }
+    .schedule-item svg { flex-shrink: 0; margin-top: 3px; }
+    .schedule-item p { color: var(--neutral-700); line-height: 1.7; margin: 0; }
+
+    .disclaimer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+    .disclaimer-item {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+    .disclaimer-item h4 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .disclaimer-item p { font-size: 0.92rem; color: var(--neutral-600); line-height: 1.7; }
+
+    .hipaa-notice {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border: 1px solid #6ee7b7; border-radius: var(--radius-md);
+      padding: 1.75rem; color: #065f46;
+    }
+    .hipaa-notice svg { flex-shrink: 0; }
+    .hipaa-notice h3 { font-family: var(--font-display); font-size: 1.2rem; color: #065f46; margin-bottom: 0.5rem; }
+    .hipaa-notice p { font-size: 0.95rem; line-height: 1.7; color: #047857; }
+
+    .contact-box {
+      background: var(--primary-50); border: 1px solid var(--primary-200);
+      border-radius: var(--radius-md); padding: 1.5rem; margin: 1rem 0;
+    }
+
+    .cta-section { background: linear-gradient(135deg, var(--primary-50) 0%, white 100%); border-top: 1px solid var(--primary-100); }
+    .link { color: var(--primary-600); text-decoration: underline; }
+    .link:hover { color: var(--primary-800); }
+
+    @media (max-width: 768px) {
+      .disclaimer-grid { grid-template-columns: 1fr; }
+      .hipaa-notice { flex-direction: column; }
+      .legal-hero { padding: 3.5rem 1rem 3rem; }
+    }
   </style>
 </Layout>

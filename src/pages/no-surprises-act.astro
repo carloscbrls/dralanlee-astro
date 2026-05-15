@@ -1,80 +1,368 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const title = 'No Surprises Act | Dr. Alan S. Lee, DDS - Manteca Dentist';
-const description = 'Learn about your rights under the No Surprises Act, including Good Faith Estimates for dental services at Dr. Alan S. Lee, DDS in Manteca, CA.';
+
+const title = 'No Surprises Act & Good Faith Estimates | Dr. Alan S. Lee, DDS';
+const description = 'Learn about your rights under the No Surprises Act, including Good Faith Estimates for dental services. Dr. Alan S. Lee, DDS is committed to price transparency.';
+
+const noSurprisesSchema = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: "Dr. Alan S. Lee, DDS",
+  url: "https://dralanlee.com/no-surprises-act/",
+  priceRange: "$$",
+  paymentAccepted: "Cash, Credit Card, Insurance",
+  medicalSpecialty: "Dentistry"
+};
 ---
 
-<Layout title={title} description={description}>
-  <section class="hero">
-    <h1>No Surprises Act</h1>
-    <p>Your rights to a Good Faith Estimate and protection from unexpected bills</p>
+<Layout title={title} description={description} schema={noSurprisesSchema}>
+  <!-- Hero -->
+  <section class="legal-hero" data-animate>
+    <div class="container-wide">
+      <div class="section-label">Your Right to Price Transparency</div>
+      <h1 class="section-title">No Surprises Act &amp; Good Faith Estimates</h1>
+      <p class="legal-hero-subtitle">Under federal law, you have the right to receive a Good Faith Estimate of expected charges before receiving care. We are committed to full price transparency.</p>
+    </div>
   </section>
 
-  <section class="content-section">
-    <div class="notice-box">
-      <p><strong>Your Rights and Protections Against Surprise Medical Bills</strong></p>
-      <p>Under the No Surprises Act, you have the right to receive a Good Faith Estimate for the expected charges for scheduled health care services.</p>
+  <!-- Key Notice Banner -->
+  <section class="section-pad" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container-narrow">
+      <div class="notice-banner" data-animate>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <div>
+          <strong>Important Federal Right</strong>
+          <p>Effective January 1, 2022, the No Surprises Act protects people covered under group and individual health plans from receiving surprise medical bills for emergency services and certain services provided by out-of-network providers at in-network facilities.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <h2>What Is the No Surprises Act?</h2>
-    <p>The No Surprises Act is a federal law that provides protections against surprise medical bills. It went into effect on January 1, 2022, and gives you the right to:</p>
-    <ul>
-      <li>Receive a Good Faith Estimate of expected charges for scheduled services</li>
-      <li>Dispute bills that are substantially higher than your Good Faith Estimate</li>
-      <li>Be protected from surprise billing for emergency services</li>
-    </ul>
+  <!-- Your Rights Under the No Surprises Act -->
+  <section class="section-pad" style="padding-top: 2rem;">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Federal Protections</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Your Rights Under the No Surprises Act
+      </h2>
 
-    <h2>Good Faith Estimates</h2>
-    <p>Under the law, you have the right to receive a Good Faith Estimate for the total expected cost of any scheduled dental services. This includes:</p>
-    <ul>
-      <li><strong>Who qualifies:</strong> Anyone who is uninsured or who has insurance but is not using their insurance for a scheduled service</li>
-      <li><strong>When to request:</strong> You can request a Good Faith Estimate at any time, including before you schedule a service</li>
-      <li><strong>What it includes:</strong> The expected charges for the scheduled service, including any reasonably expected items or services</li>
-      <li><strong>How to get one:</strong> Contact our office to request a Good Faith Estimate</li>
-    </ul>
+      <div class="rights-grid">
+        <div class="right-card">
+          <div class="right-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          </div>
+          <h3>No Surprise Bills for Emergency Services</h3>
+          <p>If you have an emergency, you cannot be billed more than your in-network cost-sharing amount (copayments, coinsurance, and deductibles) for emergency services at an out-of-network facility. This includes services you may receive after you are in stable condition, unless you give written consent to receive out-of-network care.</p>
+        </div>
 
-    <h2>How to Request a Good Faith Estimate</h2>
-    <p>To request a Good Faith Estimate, please contact our office:</p>
-    <ul>
-      <li><strong>Phone:</strong> <a href="tel:+12092392990">(209) 239-2990</a></li>
-      <li><strong>In person:</strong> 715 N Main St, Manteca, CA 95336</li>
-      <li><strong>Online:</strong> <a href="/schedule-appointment/">Schedule an appointment</a> and request an estimate</li>
-    </ul>
-    <p>We will provide your Good Faith Estimate in writing within the timeframe required by law.</p>
+        <div class="right-card">
+          <div class="right-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <h3>Good Faith Estimate</h3>
+          <p>You have the right to receive a Good Faith Estimate for the total expected cost of any non-emergency items or services. This includes related costs like medical tests, prescription drugs, equipment, and hospital fees. You can request this estimate at any time, and it must be provided within specific timeframes.</p>
+        </div>
 
-    <h2>If Your Bill Exceeds Your Estimate</h2>
-    <p>If you receive a bill that is at least $400 more than your Good Faith Estimate, you have the right to:</p>
-    <ul>
-      <li>Dispute the charges</li>
-      <li>Request a review of the dispute through an independent dispute resolution process</li>
-    </ul>
-    <p>For more information about your rights under the No Surprises Act, visit <a href="https://www.cms.gov/nosurprises" target="_blank" rel="noopener noreferrer">www.cms.gov/nosurprises</a>.</p>
+        <div class="right-card">
+          <div class="right-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
+          <h3>Protection from Balance Billing</h3>
+          <p>If you receive certain services at an in-network hospital or ambulatory surgical center by an out-of-network provider, you are protected from balance billing. The most you can be billed is your in-network cost-sharing amount.</p>
+        </div>
 
-    <h2>Our Commitment to Transparency</h2>
-    <p>At the dental practice of Dr. Alan S. Lee, DDS, we are committed to transparent pricing and ensuring our patients understand the cost of their dental care. We will work with you to provide accurate estimates and discuss payment options before treatment begins.</p>
+        <div class="right-card">
+          <div class="right-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <h3>Independent Dispute Resolution</h3>
+          <p>If you disagree with your bill, you may be able to request an independent dispute resolution process. If your final bill is at least $400 more than your Good Faith Estimate, you have the right to dispute the charges through the federal dispute resolution process.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <h2>Your Rights Under the No Surprises Act</h2>
-    <ul>
-      <li>You have the right to receive a Good Faith Estimate before scheduling services</li>
-      <li>You have the right to be informed about the costs of your care before you receive it</li>
-      <li>You have the right to dispute bills that are substantially higher than your estimate</li>
-      <li>You have the right to receive a clear explanation of your bill</li>
-      <li>You have the right to ask questions about your bill and your rights</li>
-    </ul>
+  <!-- Good Faith Estimate Details -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Good Faith Estimates</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        What Is a Good Faith Estimate?
+      </h2>
 
-    <div class="cta-section">
-      <h2>Questions About Your Estimate?</h2>
-      <p>Contact our office and we'll be happy to help you understand your options.</p>
-      <a href="tel:+12092392990" class="btn-cta-large">Call (209) 239-2990</a>
+      <p>A Good Faith Estimate is a written estimate of the expected charges for scheduled or requested items or services. Under the No Surprises Act, <strong>you have the right to receive a Good Faith Estimate for the total expected cost of any non-emergency items or services</strong>.</p>
+
+      <div class="estimate-details">
+        <div class="estimate-item">
+          <h4>When You Can Request a Good Faith Estimate</h4>
+          <p>You can request a Good Faith Estimate at any time, including before you schedule a dental service. You may also request one for any item or service you expect to receive within the next 12 months. We encourage you to request an estimate before making decisions about your care.</p>
+        </div>
+        <div class="estimate-item">
+          <h4>What the Estimate Includes</h4>
+          <p>The Good Faith Estimate will include the expected charges for the scheduled items or services, as well as any reasonably expected items or services that are provided in connection with the scheduled items or services. This may include:</p>
+          <ul>
+            <li>Dental examination and diagnostic services</li>
+            <li>X-rays and imaging</li>
+            <li>Cleanings and preventive care</li>
+            <li>Fillings, crowns, and restorative procedures</li>
+            <li>Oral surgery and extractions</li>
+            <li>Orthodontic services</li>
+            <li>Any other expected items or services</li>
+          </ul>
+        </div>
+        <div class="estimate-item">
+          <h4>Timeline for Receiving Your Estimate</h4>
+          <p>If you schedule a service at least 10 business days in advance, we must provide your Good Faith Estimate within <strong>1 business day</strong> of scheduling. If you schedule a service at least 3 business days in advance, we must provide your estimate within <strong>3 business days</strong> of scheduling. You may also request an estimate at any time.</p>
+        </div>
+        <div class="estimate-item">
+          <h4>Important Disclaimer</h4>
+          <p>The Good Faith Estimate is an <strong>estimate only</strong>. It is not a guarantee of what will be billed. Your actual charges may differ from the estimate if, for example, your condition requires additional or different services, or if complications arise during treatment. If your final bill exceeds the Good Faith Estimate by $400 or more, you have the right to dispute the charges.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Request -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Request Your Estimate</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        How to Request a Good Faith Estimate
+      </h2>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Contact Our Office</h3>
+          <p>Call us at <a href="tel:+12092392990" class="link">(209) 239-2990</a> or visit us at <strong>715 N Main St, Manteca, CA 95336</strong>. Let us know you would like to request a Good Faith Estimate.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Describe Your Expected Services</h3>
+          <p>Tell us what services you expect to receive. This may include specific procedures, or you may request an estimate for a general category of services such as routine dental care.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Receive Your Estimate</h3>
+          <p>We will provide your Good Faith Estimate in writing within the required timeframe. The estimate will list the expected charges for all services, including any related costs.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>Review and Compare</h3>
+          <p>Review your estimate carefully. If your final bill exceeds the estimate by $400 or more, you have the right to initiate a dispute resolution process through the federal government.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dispute Process -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Your Rights</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+        Dispute Resolution Process
+      </h2>
+
+      <p>If you receive a bill that is at least <strong>$400 more</strong> than your Good Faith Estimate, you have the right to dispute the charges. Here is how the process works:</p>
+
+      <div class="dispute-steps">
+        <div class="dispute-step">
+          <div class="dispute-num">1</div>
+          <div>
+            <h4>Review Your Bill</h4>
+            <p>Compare your final bill to your Good Faith Estimate. If the difference is $400 or more, you may be eligible to start a dispute.</p>
+          </div>
+        </div>
+        <div class="dispute-step">
+          <div class="dispute-num">2</div>
+          <div>
+            <h4>Submit a Dispute</h4>
+            <p>You must submit your dispute within <strong>120 calendar days</strong> of the date on your final bill. You can start a dispute through the CMS independent dispute resolution process.</p>
+          </div>
+        </div>
+        <div class="dispute-step">
+          <div class="dispute-num">3</div>
+          <div>
+            <h4>Independent Review</h4>
+            <p>An independent dispute resolution entity will review the dispute and determine the appropriate payment amount. Both parties will have an opportunity to submit information.</p>
+          </div>
+        </div>
+        <div class="dispute-step">
+          <div class="dispute-num">4</div>
+          <div>
+            <h4>Determination</h4>
+            <p>The dispute resolution entity will issue a determination. This decision is binding unless appealed through the appropriate legal channels.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dispute-resources">
+        <h4>Dispute Resources</h4>
+        <ul>
+          <li><strong>CMS No Surprises Act Help Line:</strong> <a href="tel:+18009856990" class="link">1-800-985-6989</a></li>
+          <li><strong>CMS Online:</strong> <a href="https://www.cms.gov/nosurprises" target="_blank" rel="noopener noreferrer" class="link">cms.gov/nosurprises</a></li>
+          <li><strong>Our Office:</strong> Call <a href="tel:+12092392990" class="link">(209) 239-2990</a> with any questions</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Uninsured/Self-Pay -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Self-Pay Patients</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Rights for Uninsured and Self-Pay Patients
+      </h2>
+      <p>If you are uninsured or choose to self-pay (not using insurance), you have additional rights under the No Surprises Act:</p>
+
+      <div class="selfpay-grid">
+        <div class="selfpay-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>You have the <strong>right to a Good Faith Estimate</strong> before receiving any scheduled service</p>
+        </div>
+        <div class="selfpay-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>Your estimate must include all <strong>reasonably expected items and services</strong></p>
+        </div>
+        <div class="selfpay-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>You can <strong>dispute charges</strong> that exceed your estimate by $400 or more</p>
+        </div>
+        <div class="selfpay-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <p>The dispute process is <strong>free</strong> for the patient</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad cta-section" data-animate>
+    <div class="container-narrow" style="text-align: center;">
+      <div class="section-label" style="justify-content: center;">Questions?</div>
+      <h2 class="section-title">Request Your Good Faith Estimate</h2>
+      <p class="section-subtitle" style="margin: 0 auto 2rem;">We believe in price transparency. Contact our office to request a Good Faith Estimate for any scheduled dental service.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/schedule-appointment/" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Schedule Appointment
+        </a>
+        <a href="tel:+12092392990" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Call (209) 239-2990
+        </a>
+      </div>
     </div>
   </section>
 
   <style>
-    .notice-box { background: #e8f4fd; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary); margin-bottom: 2rem; }
-    .notice-box p { margin-bottom: 0.5rem; }
-    .cta-section { text-align: center; margin-top: 2rem; padding: 2rem; background: var(--bg-light); border-radius: 8px; }
-    .cta-section h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.75rem; }
-    .btn-cta-large { display: inline-block; background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; }
-    .btn-cta-large:hover { background: #d4952e; }
+    .legal-hero {
+      background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%);
+      color: white; padding: 5rem 1.5rem 4rem; text-align: center;
+    }
+    .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
+    .legal-hero .section-label::before { background: var(--accent-400); }
+    .legal-hero .section-title { color: white; margin-bottom: 1rem; }
+    .legal-hero-subtitle { color: rgba(255,255,255,0.8); font-size: 1.15rem; max-width: 720px; margin: 0 auto; line-height: 1.7; }
+
+    .notice-banner {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 1px solid var(--accent-400); border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem; margin-top: 2rem;
+    }
+    .notice-banner svg { color: var(--accent-600); flex-shrink: 0; margin-top: 2px; }
+    .notice-banner strong { color: var(--neutral-900); }
+    .notice-banner p { color: var(--neutral-700); line-height: 1.7; margin: 0.25rem 0 0; }
+
+    .legal-heading {
+      font-family: var(--font-display); font-size: 1.65rem; color: var(--neutral-900);
+      margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; line-height: 1.3;
+    }
+    .legal-heading svg { color: var(--primary-500); flex-shrink: 0; }
+
+    .alt-bg { background: var(--neutral-50); }
+
+    .rights-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    .right-card {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.75rem; transition: all var(--transition-base);
+    }
+    .right-card:hover { box-shadow: var(--shadow-lg); border-color: var(--primary-200); transform: translateY(-2px); }
+    .right-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 52px; height: 52px; border-radius: var(--radius-md);
+      background: var(--primary-50); color: var(--primary-600); margin-bottom: 1rem;
+    }
+    .right-card h3 { font-family: var(--font-display); font-size: 1.1rem; color: var(--neutral-900); margin-bottom: 0.75rem; }
+    .right-card p { font-size: 0.92rem; color: var(--neutral-600); line-height: 1.7; }
+
+    .estimate-details { margin-top: 1.5rem; }
+    .estimate-item { margin-bottom: 2rem; }
+    .estimate-item h4 { font-family: var(--font-body); font-weight: 600; font-size: 1.05rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .estimate-item p { color: var(--neutral-700); line-height: 1.8; }
+    .estimate-item ul { margin: 0.75rem 0 0 1.5rem; }
+    .estimate-item li { color: var(--neutral-700); line-height: 1.8; margin-bottom: 0.35rem; }
+
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    .step-card {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.5rem; text-align: center; transition: all var(--transition-base);
+    }
+    .step-card:hover { box-shadow: var(--shadow-md); border-color: var(--primary-200); }
+    .step-number {
+      font-family: var(--font-display); font-size: 2.5rem; color: var(--primary-200);
+      line-height: 1; margin-bottom: 0.75rem;
+    }
+    .step-card h3 { font-family: var(--font-display); font-size: 1.05rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .step-card p { font-size: 0.88rem; color: var(--neutral-600); line-height: 1.7; }
+
+    .dispute-steps { margin-top: 1.5rem; }
+    .dispute-step { display: flex; gap: 1.25rem; align-items: flex-start; margin-bottom: 1.5rem; }
+    .dispute-num {
+      font-family: var(--font-display); font-size: 1.75rem; color: var(--primary-600);
+      flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+      background: var(--primary-50); border-radius: var(--radius-full);
+    }
+    .dispute-step h4 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin-bottom: 0.35rem; }
+    .dispute-step p { color: var(--neutral-700); line-height: 1.7; }
+
+    .dispute-resources {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.5rem; margin-top: 2rem;
+    }
+    .dispute-resources h4 { font-family: var(--font-body); font-weight: 600; color: var(--primary-700); margin-bottom: 0.75rem; }
+    .dispute-resources ul { list-style: none; padding: 0; }
+    .dispute-resources li { padding: 0.5rem 0; border-bottom: 1px solid var(--neutral-100); color: var(--neutral-700); }
+    .dispute-resources li:last-child { border-bottom: none; }
+
+    .selfpay-grid { margin-top: 1.5rem; }
+    .selfpay-item {
+      display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 1rem;
+      padding: 1rem 1.25rem; background: white; border: 1px solid var(--neutral-100);
+      border-radius: var(--radius-md);
+    }
+    .selfpay-item svg { flex-shrink: 0; margin-top: 3px; }
+    .selfpay-item p { color: var(--neutral-700); line-height: 1.7; margin: 0; }
+
+    .cta-section { background: linear-gradient(135deg, var(--primary-50) 0%, white 100%); border-top: 1px solid var(--primary-100); }
+    .link { color: var(--primary-600); text-decoration: underline; }
+    .link:hover { color: var(--primary-800); }
+
+    @media (max-width: 768px) {
+      .rights-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .notice-banner { flex-direction: column; }
+      .legal-hero { padding: 3.5rem 1rem 3rem; }
+    }
+    @media (max-width: 480px) {
+      .steps-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </Layout>

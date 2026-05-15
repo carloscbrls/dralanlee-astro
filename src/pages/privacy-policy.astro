@@ -1,97 +1,383 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const title = 'Privacy Policy | Dr. Alan S. Lee, DDS - Manteca Dentist';
-const description = 'Privacy policy for the website of Dr. Alan S. Lee, DDS in Manteca, CA. Learn how we collect, use, and protect your information.';
+
+const title = 'Privacy Policy | Dr. Alan S. Lee, DDS';
+const description = 'Website privacy policy for Dr. Alan S. Lee, DDS. Learn how we collect, use, and protect your information online, including CCPA rights for California residents.';
 ---
 
 <Layout title={title} description={description}>
-  <section class="hero">
-    <h1>Privacy Policy</h1>
-    <p>How we collect, use, and protect your information on this website</p>
+  <!-- Hero -->
+  <section class="legal-hero" data-animate>
+    <div class="container-wide">
+      <div class="section-label">Online Privacy</div>
+      <h1 class="section-title">Privacy Policy</h1>
+      <p class="legal-hero-subtitle">How we collect, use, and protect your information when you visit our website and use our online services.</p>
+    </div>
   </section>
 
-  <section class="content-section">
-    <p class="effective-date"><strong>Last Updated:</strong> January 2024</p>
+  <!-- Effective Date -->
+  <section class="section-pad" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container-narrow">
+      <div class="effective-banner" data-animate>
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        <div>
+          <strong>Effective Date:</strong> May 15, 2026<br />
+          <span class="effective-sub">Last updated: May 15, 2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <h2>Introduction</h2>
-    <p>This Privacy Policy describes how the website of Dr. Alan S. Lee, DDS ("we," "us," or "our") collects, uses, and discloses information when you visit our website at dralanlee.com. We are committed to protecting your privacy and ensuring the security of your personal information.</p>
+  <!-- Introduction -->
+  <section class="section-pad" style="padding-top: 2rem;">
+    <div class="container-narrow" data-animate>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Introduction
+      </h2>
+      <p><strong>Dr. Alan S. Lee, DDS</strong> ("we," "our," or "us") respects your privacy and is committed to protecting your personal information. This Privacy Policy describes how we collect, use, disclose, and protect information when you visit our website at <a href="https://dralanlee.com" class="link">dralanlee.com</a> (the "Site"), use our online services, or interact with our practice digitally.</p>
+      <p>This Privacy Policy applies to our website and online services only. For information about how we handle your protected health information (PHI) in our dental practice, please see our <a href="/hipaa-privacy-notice/" class="link">HIPAA Notice of Privacy Practices</a>.</p>
+    </div>
+  </section>
 
-    <h2>Information We Collect</h2>
+  <!-- Information We Collect -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Data Collection</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+        Information We Collect
+      </h2>
 
-    <h3>Information You Provide</h3>
-    <p>We may collect information that you voluntarily provide to us, including:</p>
-    <ul>
-      <li>Name, email address, and phone number</li>
-      <li>Appointment requests and scheduling information</li>
-      <li>Messages sent through our contact forms</li>
-      <li>Information provided in patient forms</li>
-    </ul>
+      <h3 class="legal-subheading">Information You Provide Directly</h3>
+      <p>When you use our website, you may voluntarily provide us with the following types of information:</p>
+      <ul class="legal-list">
+        <li><strong>Contact Information:</strong> Name, email address, phone number, and mailing address when you fill out contact forms, appointment requests, or subscribe to communications.</li>
+        <li><strong>Appointment Requests:</strong> Preferred dates, times, and service types when you request an appointment through our online scheduling system.</li>
+        <li><strong>Health Information:</strong> Limited health information you voluntarily provide through our HIPAA-compliant forms (processed by JotForm). This information is handled in accordance with our <a href="/hipaa-privacy-notice/" class="link">HIPAA Notice of Privacy Practices</a>.</li>
+        <li><strong>Feedback and Communications:</strong> Messages, reviews, or feedback you submit through our website or contact forms.</li>
+      </ul>
 
-    <h3>Automatically Collected Information</h3>
-    <p>When you visit our website, we may automatically collect certain information, including:</p>
-    <ul>
-      <li>IP address and browser type</li>
-      <li>Pages visited and time spent on each page</li>
-      <li>Referring website or source</li>
-      <li>Device information</li>
-      <li>Geographic location (general, not precise)</li>
-    </ul>
+      <h3 class="legal-subheading">Information Collected Automatically</h3>
+      <p>When you visit our website, certain information is collected automatically:</p>
+      <ul class="legal-list">
+        <li><strong>Device and Browser Information:</strong> IP address, browser type and version, operating system, device type, and screen resolution.</li>
+        <li><strong>Usage Data:</strong> Pages visited, time spent on pages, links clicked, referring URLs, and navigation patterns through our website.</li>
+        <li><strong>Cookies and Similar Technologies:</strong> Small data files stored on your device that help us analyze web traffic and improve your experience. See our Cookies section below for details.</li>
+      </ul>
 
-    <h2>How We Use Your Information</h2>
-    <p>We use the information we collect to:</p>
-    <ul>
-      <li>Respond to your inquiries and appointment requests</li>
-      <li>Provide and improve our dental services</li>
-      <li>Communicate with you about your care</li>
-      <li>Improve our website and user experience</li>
-      <li>Comply with legal obligations</li>
-    </ul>
+      <h3 class="legal-subheading">Information from Third-Party Services</h3>
+      <p>We may receive information from third-party services that help us operate and improve our website:</p>
+      <ul class="legal-list">
+        <li><strong>Google Analytics:</strong> We use Google Analytics to understand how visitors interact with our website. Google Analytics collects information such as how often users visit, what pages they visit, and what other sites they used prior to visiting. We use this information solely to improve our website. Google may also use this data for its own purposes. For more information, visit <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="link">Google's Privacy Policy</a>.</li>
+        <li><strong>JotForm:</strong> Our HIPAA-compliant forms are powered by JotForm, which processes form submissions in accordance with HIPAA requirements. JotForm's data processing is governed by a Business Associate Agreement (BAA). For more information, visit <a href="https://www.jotform.com/privacy/" target="_blank" rel="noopener noreferrer" class="link">JotForm's Privacy Policy</a>.</li>
+        <li><strong>Cloudflare:</strong> We use Cloudflare for website security, performance optimization, and analytics. Cloudflare may collect IP addresses and other technical data for security and performance purposes. For more information, visit <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" class="link">Cloudflare's Privacy Policy</a>.</li>
+      </ul>
+    </div>
+  </section>
 
-    <h2>Third-Party Services</h2>
+  <!-- How We Use Information -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Our Purpose</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        How We Use Your Information
+      </h2>
 
-    <h3>JotForm</h3>
-    <p>We use JotForm (hipaa.jotform.com) for our patient forms and appointment scheduling. JotForm is a HIPAA-compliant form service that encrypts and protects your health information. Your data submitted through JotForm forms is subject to JotForm's privacy policy and HIPAA compliance standards.</p>
+      <div class="use-grid">
+        <div class="use-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <div>
+            <h4>Dental Care Services</h4>
+            <p>To process appointment requests, communicate about your dental care, and provide services you have requested.</p>
+          </div>
+        </div>
+        <div class="use-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          <div>
+            <h4>Website Improvement</h4>
+            <p>To analyze website usage patterns, improve our website's functionality and content, and enhance your browsing experience.</p>
+          </div>
+        </div>
+        <div class="use-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <div>
+            <h4>Communication</h4>
+            <p>To respond to your inquiries, send appointment reminders, and provide information about our services.</p>
+          </div>
+        </div>
+        <div class="use-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <div>
+            <h4>Security</h4>
+            <p>To protect our website from unauthorized access, ensure the security of our systems, and comply with legal obligations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <h3>Google Analytics</h3>
-    <p>We use Google Analytics to analyze website traffic and usage patterns. Google Analytics collects information such as pages visited, time on site, and general geographic location. This information is aggregated and anonymous. For more information, see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.</p>
+  <!-- Cookies -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Tracking</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5z"></path><path d="M8.5 8.5v.01"></path><path d="M16 15.5v.01"></path><path d="M12 12v.01"></path><path d="M11 17v.01"></path><path d="M7 14v.01"></path></svg>
+        Cookies and Tracking Technologies
+      </h2>
 
-    <h3>Google Maps</h3>
-    <p>We embed Google Maps on our website to help you find our office location. Google may collect information about your use of the map feature.</p>
+      <p>We use cookies and similar tracking technologies to collect information about your browsing activities. You can control cookies through your browser settings. Our use of cookies includes:</p>
 
-    <h2>Cookies</h2>
-    <p>Our website may use cookies and similar tracking technologies to enhance your browsing experience. These technologies help us understand how visitors interact with our site. You can control cookie settings through your browser preferences.</p>
+      <div class="cookies-grid">
+        <div class="cookie-type">
+          <h4>Essential Cookies</h4>
+          <p>Required for the website to function properly. These include session cookies for form submissions and security features. These cannot be disabled.</p>
+        </div>
+        <div class="cookie-type">
+          <h4>Analytics Cookies</h4>
+          <p>Used by Google Analytics to help us understand how visitors interact with our website. We use this data to improve our site. You may opt out of Google Analytics by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" class="link">Google Analytics Opt-Out Browser Add-on</a>.</p>
+        </div>
+        <div class="cookie-type">
+          <h4>Security Cookies</h4>
+          <p>Used by Cloudflare to protect our website from malicious traffic, DDoS attacks, and other security threats. These are essential and cannot be disabled.</p>
+        </div>
+      </div>
 
-    <h2>Data Security</h2>
-    <p>We take reasonable measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+      <p>For more information about how Google uses your data, please visit <a href="https://policies.google.com/technologies/partners" target="_blank" rel="noopener noreferrer" class="link">Google's Partner Privacy page</a>. We do not sell your personal information to third parties.</p>
+    </div>
+  </section>
 
-    <h2>Children's Privacy</h2>
-    <p>Our website is not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us and we will promptly delete it.</p>
+  <!-- Data Security -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Protection</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        Data Security Measures
+      </h2>
 
-    <h2>Your Rights</h2>
-    <p>You have the right to:</p>
-    <ul>
-      <li>Access the personal information we hold about you</li>
-      <li>Request correction of inaccurate information</li>
-      <li>Request deletion of your personal information</li>
-      <li>Opt out of non-essential communications</li>
-    </ul>
+      <div class="security-grid">
+        <div class="security-item">
+          <div class="security-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <h4>SSL/TLS Encryption</h4>
+          <p>All data transmitted between your browser and our website is encrypted using industry-standard TLS (Transport Layer Security) encryption.</p>
+        </div>
+        <div class="security-item">
+          <div class="security-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h4>Cloudflare WAF</h4>
+          <p>Our website is protected by Cloudflare's Web Application Firewall, which blocks malicious traffic and helps prevent data breaches.</p>
+        </div>
+        <div class="security-item">
+          <div class="security-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          </div>
+          <h4>HIPAA-Compliant Forms</h4>
+          <p>All patient forms on our website are processed through JotForm under a Business Associate Agreement (BAA), ensuring HIPAA-compliant data handling.</p>
+        </div>
+        <div class="security-item">
+          <div class="security-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+          </div>
+          <h4>Regular Security Audits</h4>
+          <p>We conduct regular security assessments and maintain current security protocols to protect against emerging threats.</p>
+        </div>
+      </div>
 
-    <h2>Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date.</p>
+      <p>While we implement appropriate security measures, no method of electronic transmission or storage is 100% secure. We cannot guarantee absolute security but are committed to protecting your information to the best of our ability.</p>
+    </div>
+  </section>
 
-    <h2>Contact Us</h2>
-    <p>If you have questions about this Privacy Policy or our data practices, please contact:</p>
-    <p>
-      <strong>Dr. Alan S. Lee, DDS</strong><br />
-      715 N Main St<br />
-      Manteca, CA 95336<br />
-      Phone: <a href="tel:+12092392990">(209) 239-2990</a>
-    </p>
+  <!-- HIPAA Notice -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="hipaa-notice">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        <div>
+          <h3>HIPAA Compliance</h3>
+          <p>Our dental practice is fully HIPAA compliant. Protected health information (PHI) collected through our practice — whether in person, by phone, or through our HIPAA-compliant online forms — is governed by our <a href="/hipaa-privacy-notice/" class="link">HIPAA Notice of Privacy Practices</a>. This Privacy Policy covers only website and online data, which is separate from your dental health records.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <p>For health information privacy practices, please see our <a href="/hipaa-privacy-notice/">HIPAA Privacy Notice</a> and <a href="/patient-privacy/">Patient Privacy</a> pages.</p>
+  <!-- CCPA Rights -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">California Residents</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        Your Rights Under CCPA/CPRA
+      </h2>
+      <p>If you are a California resident, the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) give you additional rights regarding your personal information:</p>
+
+      <div class="ccpa-grid">
+        <div class="ccpa-item">
+          <h4>Right to Know</h4>
+          <p>You have the right to know what personal information we collect, how we use it, and with whom we share it. This Privacy Policy serves as our disclosure of that information.</p>
+        </div>
+        <div class="ccpa-item">
+          <h4>Right to Delete</h4>
+          <p>You have the right to request that we delete any personal information we have collected from you, subject to certain exceptions (such as information needed to complete a transaction or comply with legal obligations).</p>
+        </div>
+        <div class="ccpa-item">
+          <h4>Right to Opt Out of Sale</h4>
+          <p>We <strong>do not sell</strong> your personal information. You have the right to opt out of the sale of your personal information. Since we do not sell personal information, no action is needed on your part.</p>
+        </div>
+        <div class="ccpa-item">
+          <h4>Right to Non-Discrimination</h4>
+          <p>We will not discriminate against you for exercising any of your CCPA/CPRA rights. You will receive the same quality of service regardless of whether you exercise your privacy rights.</p>
+        </div>
+        <div class="ccpa-item">
+          <h4>Right to Limit Use of Sensitive Information</h4>
+          <p>Under CPRA, you have the right to limit our use and disclosure of your sensitive personal information to what is necessary to perform the services we provide.</p>
+        </div>
+        <div class="ccpa-item">
+          <h4>Right to Correct</h4>
+          <p>Under CPRA, you have the right to request correction of inaccurate personal information we maintain about you.</p>
+        </div>
+      </div>
+
+      <div class=" ccpa-request" style="margin-top: 2rem;">
+        <p><strong>To exercise your CCPA/CPRA rights:</strong> Submit a request by emailing <a href="mailto:info@dralanlee.com" class="link">info@dralanlee.com</a> or calling <a href="tel:+12092392990" class="link">(209) 239-2990</a>. We will respond to your request within 45 days, as required by law.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data Retention & Contact -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        Data Retention &amp; Contact
+      </h2>
+      <p>We retain your personal information only for as long as necessary to fulfill the purposes described in this Privacy Policy, unless a longer retention period is required by law (such as HIPAA record retention requirements for health information).</p>
+      <p>For questions about this Privacy Policy or our data practices, please contact:</p>
+      <div class="contact-box">
+        <p><strong>Dr. Alan S. Lee, DDS</strong><br />715 N Main St, Manteca, CA 95336<br />Phone: <a href="tel:+12092392990" class="link">(209) 239-2990</a><br />Email: <a href="mailto:info@dralanlee.com" class="link">info@dralanlee.com</a></p>
+      </div>
+      <p>We may update this Privacy Policy from time to time. We will post any updates on this page with a revised effective date. We encourage you to review this page periodically for the latest information.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad cta-section" data-animate>
+    <div class="container-narrow" style="text-align: center;">
+      <div class="section-label" style="justify-content: center;">Related Policies</div>
+      <h2 class="section-title">More Legal Information</h2>
+      <p class="section-subtitle" style="margin: 0 auto 2rem;">Review our other legal and compliance documents for complete transparency.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/hipaa-privacy-notice/" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          HIPAA Notice
+        </a>
+        <a href="/terms-of-service/" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          Terms of Service
+        </a>
+      </div>
+    </div>
   </section>
 
   <style>
-    .effective-date { background: #fff8e1; padding: 1rem; border-radius: 4px; border-left: 4px solid var(--accent); margin-bottom: 1.5rem; }
+    .legal-hero {
+      background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%);
+      color: white; padding: 5rem 1.5rem 4rem; text-align: center;
+    }
+    .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
+    .legal-hero .section-label::before { background: var(--accent-400); }
+    .legal-hero .section-title { color: white; margin-bottom: 1rem; }
+    .legal-hero-subtitle { color: rgba(255,255,255,0.8); font-size: 1.15rem; max-width: 680px; margin: 0 auto; line-height: 1.7; }
+
+    .effective-banner {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--primary-50); border: 1px solid var(--primary-200);
+      border-radius: var(--radius-md); padding: 1.25rem 1.5rem; margin-top: 2rem;
+    }
+    .effective-banner svg { color: var(--primary-600); flex-shrink: 0; margin-top: 2px; }
+    .effective-banner strong { color: var(--primary-900); }
+    .effective-sub { font-size: 0.88rem; color: var(--neutral-500); }
+
+    .legal-heading {
+      font-family: var(--font-display); font-size: 1.65rem; color: var(--neutral-900);
+      margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; line-height: 1.3;
+    }
+    .legal-heading svg { color: var(--primary-500); flex-shrink: 0; }
+
+    .legal-subheading {
+      font-family: var(--font-body); font-weight: 600; font-size: 1.1rem;
+      color: var(--neutral-800); margin: 2rem 0 0.75rem; padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-100);
+    }
+
+    .legal-list { margin: 0.75rem 0 1.5rem 1.5rem; }
+    .legal-list li { color: var(--neutral-700); line-height: 1.8; margin-bottom: 0.5rem; }
+
+    .alt-bg { background: var(--neutral-50); }
+
+    .use-grid { margin-top: 1.5rem; }
+    .use-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
+    .use-item svg { flex-shrink: 0; margin-top: 2px; }
+    .use-item h4 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin-bottom: 0.35rem; }
+    .use-item p { color: var(--neutral-600); line-height: 1.7; }
+
+    .cookies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 1.5rem 0; }
+    .cookie-type {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+    .cookie-type h4 { font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .cookie-type p { font-size: 0.9rem; color: var(--neutral-600); line-height: 1.7; }
+
+    .security-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0; }
+    .security-item {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+    .security-icon {
+      width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--primary-50);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; color: var(--primary-600);
+    }
+    .security-item h4 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin-bottom: 0.35rem; }
+    .security-item p { font-size: 0.92rem; color: var(--neutral-600); line-height: 1.7; }
+
+    .hipaa-notice {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border: 1px solid #6ee7b7; border-radius: var(--radius-md);
+      padding: 1.75rem; color: #065f46;
+    }
+    .hipaa-notice svg { flex-shrink: 0; }
+    .hipaa-notice h3 { font-family: var(--font-display); font-size: 1.2rem; color: #065f46; margin-bottom: 0.5rem; }
+    .hipaa-notice p { font-size: 0.95rem; line-height: 1.7; color: #047857; }
+
+    .ccpa-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+    .ccpa-item {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+    .ccpa-item h4 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .ccpa-item p { font-size: 0.92rem; color: var(--neutral-600); line-height: 1.7; }
+
+    .contact-box {
+      background: var(--primary-50); border: 1px solid var(--primary-200);
+      border-radius: var(--radius-md); padding: 1.5rem; margin: 1rem 0;
+    }
+
+    .cta-section { background: linear-gradient(135deg, var(--primary-50) 0%, white 100%); border-top: 1px solid var(--primary-100); }
+    .link { color: var(--primary-600); text-decoration: underline; }
+    .link:hover { color: var(--primary-800); }
+
+    @media (max-width: 768px) {
+      .cookies-grid { grid-template-columns: 1fr; }
+      .security-grid { grid-template-columns: 1fr; }
+      .ccpa-grid { grid-template-columns: 1fr; }
+      .hipaa-notice { flex-direction: column; }
+      .legal-hero { padding: 3.5rem 1rem 3rem; }
+    }
   </style>
 </Layout>

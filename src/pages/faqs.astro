@@ -1,104 +1,328 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const title = 'FAQs | Dr. Alan S. Lee, DDS - Manteca Dentist';
-const description = 'Frequently asked questions about dental care, insurance, appointments, and services at Dr. Alan S. Lee, DDS in Manteca, CA.';
+
+const title = 'Frequently Asked Questions | Dr. Alan S. Lee, DDS';
+const description = 'Common questions about dental services, insurance, scheduling, HIPAA privacy, and more at Dr. Alan S. Lee, DDS in Manteca, CA.';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What dental insurance plans do you accept?", "acceptedAnswer": { "@type": "Answer", "text": "We accept most major dental insurance plans including Delta Dental, Cigna, Aetna, MetLife, Guardian, United Healthcare, and many more. Please call our office to verify your specific plan coverage." }},
+    { "@type": "Question", "name": "How do I schedule an appointment?", "acceptedAnswer": { "@type": "Answer", "text": "You can schedule an appointment by calling our office at (209) 239-2990, using our online scheduling form, or visiting us at 715 N Main St, Manteca, CA 95336." }},
+    { "@type": "Question", "name": "What are your office hours?", "acceptedAnswer": { "@type": "Answer", "text": "Our office hours are Monday through Thursday 8am to 5pm, and Friday 8am to 2pm. We are closed on weekends." }},
+    { "@type": "Question", "name": "How is my personal information protected?", "acceptedAnswer": { "@type": "Answer", "text": "We are fully HIPAA compliant and protect your health information in accordance with federal and state law. All online forms are HIPAA-compliant, and we maintain strict administrative, physical, and technical safeguards." }}
+  ]
+};
 ---
 
-<Layout title={title} description={description}>
-  <section class="hero">
-    <h1>Frequently Asked Questions</h1>
-    <p>Answers to common questions about our dental practice</p>
+<Layout title={title} description={description} schema={faqSchema}>
+  <!-- Hero -->
+  <section class="legal-hero" data-animate>
+    <div class="container-wide">
+      <div class="section-label">Get Answers</div>
+      <h1 class="section-title">Frequently Asked Questions</h1>
+      <p class="legal-hero-subtitle">Find answers to common questions about our dental services, insurance, scheduling, privacy, and more.</p>
+    </div>
   </section>
 
-  <section class="content-section">
-    <h2>General Questions</h2>
+  <!-- Dental Services -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+        Dental Services
+      </div>
+      <h2 class="faq-section-title">General Dentistry</h2>
 
-    <div class="faq-item">
-      <h3>What services does Dr. Lee offer?</h3>
-      <p>Dr. Lee offers a full range of dental services including general dentistry (exams, cleanings, fillings), cosmetic dentistry (whitening, veneers, bonding), restorative dentistry (crowns, bridges, dentures, implants), preventive care, pediatric dentistry, and emergency dental care. Visit our <a href="/services/">Services</a> page for more details.</p>
+      <div class="faq-accordion">
+        <details class="faq-item" open>
+          <summary class="faq-question">
+            <span>What dental services do you offer?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>We offer a comprehensive range of dental services including preventive care (cleanings, exams, X-rays), restorative dentistry (fillings, crowns, bridges), cosmetic dentistry (whitening, veneers), root canals, extractions, dentures, and emergency dental care. Visit our <a href="/services/" class="link">Services page</a> for a complete list.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>How often should I visit the dentist?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>The American Dental Association recommends visiting your dentist at least once every six months for a routine checkup and cleaning. However, some patients with certain conditions may need more frequent visits. Dr. Lee will recommend a schedule based on your individual oral health needs.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>What should I do if I have a dental emergency?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>If you experience a dental emergency such as a knocked-out tooth, severe toothache, broken tooth, or lost filling, please call our office immediately at <a href="tel:+12092392990" class="link">(209) 239-2990</a>. We make every effort to see emergency patients the same day. If it is after hours and you cannot reach our office, please go to the nearest emergency room.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Do you treat children?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>Yes! We are a family dentistry practice and welcome patients of all ages, including children. We recommend scheduling a child's first dental visit by age 1 or when the first tooth appears. Our team is experienced in making young patients feel comfortable and at ease.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>What is a Good Faith Estimate?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>Under the No Surprises Act, you have the right to receive a Good Faith Estimate of expected charges before receiving scheduled dental services. This estimate includes the cost of the service and any reasonably expected related costs. If your final bill exceeds the estimate by $400 or more, you have the right to dispute the charges. <a href="/no-surprises-act/" class="link">Learn more about the No Surprises Act</a>.</p>
+          </div>
+        </details>
+      </div>
     </div>
+  </section>
 
-    <div class="faq-item">
-      <h3>Is Dr. Lee accepting new patients?</h3>
-      <p>Yes! We are always happy to welcome new patients to our practice. You can <a href="/schedule-appointment/">schedule an appointment</a> online or call us at <a href="tel:+12092392990">(209) 239-2990</a>.</p>
+  <!-- Insurance & Payment -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        Insurance &amp; Payment
+      </div>
+      <h2 class="faq-section-title">Insurance &amp; Payment</h2>
+
+      <div class="faq-accordion">
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>What dental insurance plans do you accept?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>We accept most major dental insurance plans including Delta Dental, Cigna, Aetna, MetLife, Guardian, United Healthcare, Blue Cross Blue Shield, and many more. We also accept Denti-Cal. Please call our office at <a href="tel:+12092392990" class="link">(209) 239-2990</a> to verify your specific plan coverage, as insurance networks change periodically.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>What if I don't have dental insurance?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>We welcome patients without dental insurance. We offer competitive self-pay rates and accept multiple payment methods including cash, credit cards, and personal checks. We are also happy to provide a <a href="/no-surprises-act/" class="link">Good Faith Estimate</a> before any treatment so you know the expected costs upfront.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>What payment methods do you accept?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>We accept cash, personal checks, Visa, Mastercard, American Express, and Discover. For larger treatment plans, we can discuss payment arrangements. Please speak with our front office team about available options.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Do you offer payment plans?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>Yes, for qualifying patients and larger treatment plans, we can discuss payment arrangement options. Please contact our office for more information about payment plans that may be available for your treatment needs.</p>
+          </div>
+        </details>
+      </div>
     </div>
+  </section>
 
-    <div class="faq-item">
-      <h3>What should I bring to my first appointment?</h3>
-      <p>Please bring a valid photo ID, your insurance card(s), a list of current medications, and any completed patient forms. You can fill out forms online on our <a href="/forms-library/">Patient Forms</a> page or download them as PDFs.</p>
+  <!-- Scheduling -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        Appointments
+      </div>
+      <h2 class="faq-section-title">Scheduling &amp; Appointments</h2>
+
+      <div class="faq-accordion">
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>How do I schedule an appointment?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>You can schedule an appointment in several ways: call us at <a href="tel:+12092392990" class="link">(209) 239-2990</a>, use our <a href="/schedule-appointment/" class="link">online scheduling form</a>, or visit us in person at 715 N Main St, Manteca, CA 95336. Our front office team will confirm your appointment and help you with any questions.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>What are your office hours?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>Our office hours are Monday through Thursday from 8:00 AM to 5:00 PM, and Friday from 8:00 AM to 2:00 PM. We are closed on Saturday and Sunday. For dental emergencies outside of business hours, please call our office for instructions.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>What is your cancellation policy?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>We kindly request at least 24 hours notice for cancellations or rescheduling. This allows us to offer the appointment time to another patient in need. Repeated no-shows or late cancellations may result in scheduling restrictions. To cancel or reschedule, please call <a href="tel:+12092392990" class="link">(209) 239-2990</a>.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>What should I bring to my first appointment?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>Please bring: a valid photo ID, your dental insurance card, a completed new patient registration form (available on our <a href="/forms-library/" class="link">Patient Forms</a> page), a list of current medications, and any relevant dental records or X-rays from your previous dentist. Arriving 15 minutes early will allow time for paperwork.</p>
+          </div>
+        </details>
+      </div>
     </div>
+  </section>
 
-    <h2>Insurance & Payment</h2>
+  <!-- HIPAA & Privacy -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Privacy &amp; Compliance
+      </div>
+      <h2 class="faq-section-title">HIPAA &amp; Privacy</h2>
 
-    <div class="faq-item">
-      <h3>What insurance plans do you accept?</h3>
-      <p>We accept most major dental insurance plans. Please call our office at <a href="tel:+12092392990">(209) 239-2990</a> to verify your specific plan. We will work with you to maximize your insurance benefits.</p>
+      <div class="faq-accordion">
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>How is my personal information protected?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>We are fully HIPAA compliant and protect your health information through comprehensive administrative, physical, and technical safeguards. All online forms are processed through HIPAA-compliant services with Business Associate Agreements in place. Our website uses SSL/TLS encryption and Cloudflare security. For full details, see our <a href="/hipaa-privacy-notice/" class="link">HIPAA Notice of Privacy Practices</a>.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Can I access my dental records?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>Yes, under HIPAA you have the right to inspect and obtain a copy of your dental and billing records. To request access, please submit your request in writing to our Privacy Officer. We must respond within 30 days. A reasonable fee may apply for copies. See our <a href="/patient-privacy/" class="link">Patient Privacy Rights</a> page for more information.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Do you share my information with third parties?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>We do not sell your personal information. We may share your health information as permitted by HIPAA for treatment, payment, and healthcare operations. All third-party vendors who handle your information are bound by Business Associate Agreements requiring them to protect your data. For complete details, see our <a href="/hipaa-privacy-notice/" class="link">HIPAA Notice of Privacy Practices</a>.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>How do I file a privacy complaint?</span>
+            <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <div class="faq-answer">
+            <p>If you believe your privacy rights have been violated, you may file a complaint with our office or with the U.S. Department of Health and Human Services, Office for Civil Rights. <strong>We will not retaliate against you for filing a complaint.</strong> Contact our office at <a href="tel:+12092392990" class="link">(209) 239-2990</a> or email <a href="mailto:info@dralanlee.com" class="link">info@dralanlee.com</a>.</p>
+          </div>
+        </details>
+      </div>
     </div>
+  </section>
 
-    <div class="faq-item">
-      <h3>What payment options are available?</h3>
-      <p>We accept cash, checks, and major credit cards. We also offer payment plans for larger treatment amounts. Please contact our office for more information about financing options.</p>
-    </div>
-
-    <div class="faq-item">
-      <h3>Do you offer payment plans?</h3>
-      <p>Yes, we offer flexible payment plans for qualifying patients. We believe that cost should not be a barrier to receiving quality dental care. Please ask about our payment options when you schedule your appointment.</p>
-    </div>
-
-    <h2>Appointments</h2>
-
-    <div class="faq-item">
-      <h3>How do I schedule an appointment?</h3>
-      <p>You can schedule an appointment by <a href="/schedule-appointment/">filling out our online form</a> or by calling our office at <a href="tel:+12092392990">(209) 239-2990</a>.</p>
-    </div>
-
-    <div class="faq-item">
-      <h3>What are your office hours?</h3>
-      <p>Our office hours are Monday through Thursday, 8:00 AM to 5:00 PM, and Friday, 8:00 AM to 2:00 PM. We are closed on weekends.</p>
-    </div>
-
-    <div class="faq-item">
-      <h3>What is your cancellation policy?</h3>
-      <p>We ask that you provide at least 24 hours' notice if you need to cancel or reschedule your appointment. This allows us to offer the time slot to another patient. Please see our <a href="/pdfs/Appointment-Policy.pdf">Appointment Policy</a> for full details.</p>
-    </div>
-
-    <div class="faq-item">
-      <h3>Do you handle dental emergencies?</h3>
-      <p>Yes, we offer same-day emergency appointments when available. If you have a dental emergency, please call us right away at <a href="tel:+12092392990">(209) 239-2990</a>.</p>
-    </div>
-
-    <h2>Dental Care</h2>
-
-    <div class="faq-item">
-      <h3>How often should I visit the dentist?</h3>
-      <p>We recommend visiting the dentist every six months for a routine exam and cleaning. However, some patients may need more frequent visits depending on their oral health needs.</p>
-    </div>
-
-    <div class="faq-item">
-      <h3>How can I improve my oral hygiene at home?</h3>
-      <p>Brush at least twice daily with fluoride toothpaste, floss daily, limit sugary foods and drinks, and visit us regularly for checkups. We're happy to provide personalized tips during your visit.</p>
-    </div>
-
-    <div class="faq-item">
-      <h3>At what age should children start seeing the dentist?</h3>
-      <p>The American Dental Association recommends children have their first dental visit by age 1, or within 6 months of the first tooth erupting. We provide gentle, kid-friendly dental care for children of all ages.</p>
-    </div>
-
-    <div class="cta-section">
-      <h2>Have More Questions?</h2>
-      <p>Don't hesitate to reach out — we're happy to help!</p>
-      <a href="/contact-the-office/" class="btn-cta-large">Contact Us</a>
-      <a href="/schedule-appointment/" class="btn-cta-large" style="background:var(--primary);">Schedule Appointment</a>
+  <!-- CTA -->
+  <section class="section-pad cta-section" data-animate>
+    <div class="container-narrow" style="text-align: center;">
+      <div class="section-label" style="justify-content: center;">Still Have Questions?</div>
+      <h2 class="section-title">We Are Here to Help</h2>
+      <p class="section-subtitle" style="margin: 0 auto 2rem;">Can't find the answer you're looking for? Our friendly team is happy to assist you.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/contact-the-office/" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Contact Us
+        </a>
+        <a href="/schedule-appointment/" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Schedule Appointment
+        </a>
+      </div>
     </div>
   </section>
 
   <style>
-    .faq-item { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-item h3 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.5rem; font-size: 1.1rem; }
-    .cta-section { text-align: center; margin-top: 2rem; padding: 2rem; background: var(--bg-light); border-radius: 8px; }
-    .cta-section h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 0.75rem; }
-    .btn-cta-large { display: inline-block; background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; margin: 0.5rem; }
-    .btn-cta-large:hover { background: #d4952e; }
+    .legal-hero {
+      background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%);
+      color: white; padding: 5rem 1.5rem 4rem; text-align: center;
+    }
+    .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
+    .legal-hero .section-label::before { background: var(--accent-400); }
+    .legal-hero .section-title { color: white; margin-bottom: 1rem; }
+    .legal-hero-subtitle { color: rgba(255,255,255,0.8); font-size: 1.15rem; max-width: 680px; margin: 0 auto; line-height: 1.7; }
+
+    .faq-section-title {
+      font-family: var(--font-display); font-size: 2rem; color: var(--neutral-900);
+      margin-bottom: 1.5rem;
+    }
+
+    .alt-bg { background: var(--neutral-50); }
+
+    .faq-accordion { margin-top: 1.5rem; }
+    .faq-item {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      margin-bottom: 0.75rem; overflow: hidden; transition: all var(--transition-base);
+    }
+    .faq-item:hover { border-color: var(--primary-200); }
+    .faq-item[open] { border-color: var(--primary-300); box-shadow: var(--shadow-md); }
+
+    .faq-question {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 1.5rem; cursor: pointer; font-family: var(--font-body);
+      font-weight: 600; font-size: 1rem; color: var(--neutral-800);
+      list-style: none; transition: all var(--transition-fast);
+    }
+    .faq-question::-webkit-details-marker { display: none; }
+    .faq-question::marker { display: none; content: ''; }
+    .faq-question span { flex: 1; }
+    .faq-question:hover { color: var(--primary-700); }
+    .faq-item[open] .faq-question { color: var(--primary-700); border-bottom: 1px solid var(--neutral-100); }
+
+    .faq-chevron {
+      flex-shrink: 0; color: var(--neutral-400); transition: transform var(--transition-base);
+      margin-left: 1rem;
+    }
+    .faq-item[open] .faq-chevron { transform: rotate(180deg); color: var(--primary-500); }
+
+    .faq-answer {
+      padding: 1.25rem 1.5rem; color: var(--neutral-600); line-height: 1.8; font-size: 0.95rem;
+    }
+    .faq-answer p { margin: 0; }
+
+    .cta-section { background: linear-gradient(135deg, var(--primary-50) 0%, white 100%); border-top: 1px solid var(--primary-100); }
+    .link { color: var(--primary-600); text-decoration: underline; }
+    .link:hover { color: var(--primary-800); }
+
+    @media (max-width: 768px) {
+      .legal-hero { padding: 3.5rem 1rem 3rem; }
+      .faq-question { padding: 1rem 1.25rem; font-size: 0.92rem; }
+      .faq-answer { padding: 1rem 1.25rem; }
+    }
   </style>
 </Layout>

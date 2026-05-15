@@ -1,95 +1,343 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const lastUpdated = 'May 15, 2026';
+const title = 'Accessibility Statement | Dr. Alan S. Lee, DDS';
+const description = 'Our commitment to web accessibility and WCAG 2.1 Level AA compliance. Dr. Alan S. Lee, DDS strives to make our website accessible to everyone.';
 ---
 
-<Layout title="Accessibility Statement | Dr. Alan S. Lee, DDS" description="Our commitment to accessibility and WCAG 2.1 AA compliance. Dr. Alan S. Lee, DDS ensures all patients can access our dental services.">
-  <div class="content-section">
-    <h1>Accessibility Statement</h1>
-    <p><em>Last updated: {lastUpdated}</em></p>
-    
-    <h2>Our Commitment to Accessibility</h2>
-    <p>Dr. Alan S. Lee, DDS is committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply relevant accessibility standards to ensure our website is accessible to all patients and visitors.</p>
-    
-    <h2>Conformance Status</h2>
-    <p>The <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines (WCAG) 2.1</a> defines requirements for designers and developers to improve accessibility for people with disabilities. It defines three levels of conformance: Level A, Level AA, and Level AAA. Our website aims to conform to <strong>WCAG 2.1 Level AA</strong>.</p>
-    
-    <h2>Measures We Take</h2>
-    <p>We take the following measures to ensure accessibility of our website:</p>
-    <ul>
-      <li>Include accessibility as part of our mission and values</li>
-      <li>Integrate accessibility into our procurement practices</li>
-      <li>Assign clear accessibility targets and responsibilities</li>
-      <li>Employ formal accessibility quality assurance methods</li>
-      <li>Ensure all images have meaningful alt text</li>
-      <li>Provide keyboard navigation throughout the site</li>
-      <li>Maintain proper heading hierarchy for screen readers</li>
-      <li>Ensure sufficient color contrast ratios (minimum 4.5:1 for normal text, 3:1 for large text)</li>
-      <li>Make all interactive elements accessible with assistive technologies</li>
-      <li>Provide skip navigation links</li>
-      <li>Use ARIA landmarks and labels where appropriate</li>
-      <li>Support reduced motion preferences</li>
-      <li>Ensure forms have proper labels and error messages</li>
-    </ul>
-    
-    <h2>Compatibility With Browsers and Assistive Technology</h2>
-    <p>Our website is designed to be compatible with:</p>
-    <ul>
-      <li>Modern browsers (Chrome, Firefox, Safari, Edge — last 2 versions)</li>
-      <li>Screen readers (JAWS, NVDA, VoiceOver, TalkBack)</li>
-      <li>Voice recognition software</li>
-      <li>Keyboard-only navigation</li>
-      <li>Mobile devices with accessibility features enabled</li>
-    </ul>
-    
-    <h2>Technical Specifications</h2>
-    <p>Accessibility of this website relies on the following technologies:</p>
-    <ul>
-      <li>HTML5 semantic markup</li>
-      <li>ARIA (Accessible Rich Internet Applications) attributes</li>
-      <li>CSS for visual presentation and responsive design</li>
-      <li>JavaScript for enhanced interactivity (all core content accessible without JS)</li>
-    </ul>
-    
-    <h2>Known Accessibility Limitations</h2>
-    <p>Despite our best efforts, some limitations may exist:</p>
-    <ul>
-      <li>Third-party embedded forms (JotForm) may have their own accessibility features outside our direct control. We select HIPAA-compliant form providers that prioritize accessibility.</li>
-      <li>Some historical PDF documents in our forms library may not be fully accessible. We are working to provide accessible alternatives upon request.</li>
-    </ul>
-    
-    <h2>Feedback</h2>
-    <p>We welcome your feedback on the accessibility of our website. If you encounter accessibility barriers, please contact us:</p>
-    <ul>
-      <li><strong>Phone:</strong> <a href="tel:+12092392990">(209) 239-2990</a></li>
-      <li><strong>Email:</strong> <a href="mailto:info@dralanlee.com">info@dralanlee.com</a></li>
-      <li><strong>In Person:</strong> 715 N Main St, Manteca, CA 95336</li>
-      <li><strong>Mail:</strong> Dr. Alan S. Lee, DDS, 715 N Main St, Manteca, CA 95336</li>
-    </ul>
-    <p>We try to respond to feedback within <strong>2 business days</strong> and to propose a solution within <strong>10 business days</strong>.</p>
-    
-    <h2>Disability Accommodations in Our Office</h2>
-    <p>In addition to our digital accessibility efforts, our physical office is accessible:</p>
-    <ul>
-      <li>Wheelchair accessible entrance and treatment areas</li>
-      <li>Accessible restroom facilities</li>
-      <li>Assistance available for patients with mobility challenges</li>
-      <li>Large-print and translated materials available upon request</li>
-      <li>Sign language interpreter services can be arranged with advance notice</li>
-    </ul>
-    
-    <h2>Formal Grievances</h2>
-    <p>If you believe that our website does not comply with accessibility standards, you may file a grievance by contacting our office. We will investigate and respond within 15 business days.</p>
-    
-    <h2>Standards Referenced</h2>
-    <ul>
-      <li><a href="https://www.w3.org/TR/WCAG21/" rel="noopener noreferrer">WCAG 2.1 Level AA</a></li>
-      <li><a href="https://www.section508.gov/" rel="noopener noreferrer">Section 508 of the Rehabilitation Act</a></li>
-      <li><a href="https://www.ada.gov/" rel="noopener noreferrer">Americans with Disabilities Act (ADA)</a></li>
-      <li><a href="https://www.hhs.gov/civil-rights/for-individuals/disability/index.html" rel="noopener noreferrer">HHS Office for Civil Rights</a></li>
-    </ul>
-    
-    <p><a href="/" class="btn-primary">Return to Home Page</a></p>
-  </div>
+<Layout title={title} description={description}>
+  <!-- Hero -->
+  <section class="legal-hero" data-animate>
+    <div class="container-wide">
+      <div class="section-label">Our Commitment</div>
+      <h1 class="section-title">Accessibility Statement</h1>
+      <p class="legal-hero-subtitle">We are committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply relevant accessibility standards.</p>
+    </div>
+  </section>
+
+  <!-- Conformance -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="conformance-badge">
+        <div class="badge-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        </div>
+        <div>
+          <h2>WCAG 2.1 Level AA Conformance</h2>
+          <p>The website of <strong>Dr. Alan S. Lee, DDS</strong> is designed to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong>, published by the World Wide Web Consortium (W3C). These guidelines explain how to make web content more accessible for people with disabilities, and conformance with them makes the web more user-friendly for all.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Measures Taken -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">What We Do</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        Accessibility Measures We Take
+      </h2>
+
+      <div class="measures-grid">
+        <div class="measure-card">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          <h3>Perceivable</h3>
+          <ul>
+            <li>Text alternatives for all non-text content (images, icons)</li>
+            <li>Captions and descriptions for multimedia content</li>
+            <li>Content adaptable to different presentation styles</li>
+            <li>Sufficient color contrast ratios (minimum 4.5:1)</li>
+            <li>Text resizable up to 200% without loss of content</li>
+          </ul>
+        </div>
+        <div class="measure-card">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          <h3>Operable</h3>
+          <ul>
+            <li>All functionality available from a keyboard</li>
+            <li>Enough time to read and use content</li>
+            <li>No content that causes seizures or physical reactions</li>
+            <li>Clear navigation mechanisms and skip links</li>
+            <li>Visible focus indicators on all interactive elements</li>
+          </ul>
+        </div>
+        <div class="measure-card">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <h3>Understandable</h3>
+          <ul>
+            <li>Readable content in clear, simple language</li>
+            <li>Predictable navigation and page behavior</li>
+            <li>Clear labels and instructions on forms</li>
+            <li>Error identification and suggestions on form inputs</li>
+            <li>Consistent layout and navigation across all pages</li>
+          </ul>
+        </div>
+        <div class="measure-card">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          <h3>Robust</h3>
+          <ul>
+            <li>Valid, well-formed HTML and semantic markup</li>
+            <li>ARIA labels and roles where needed for assistive technologies</li>
+            <li>Compatible with current and future assistive technologies</li>
+            <li>Progressive enhancement for older browsers</li>
+            <li>Schema.org structured data for better content understanding</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Specifications -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Technical Details</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        Technical Specifications
+      </h2>
+      <p>This website is designed to be compatible with the following assistive technologies and browsers:</p>
+
+      <div class="tech-grid">
+        <div class="tech-item">
+          <h4>Assistive Technology Compatibility</h4>
+          <ul>
+            <li>Screen readers: JAWS, NVDA, VoiceOver (macOS/iOS), TalkBack (Android)</li>
+            <li>Screen magnification software</li>
+            <li>Speech recognition software</li>
+            <li>Alternative input devices</li>
+          </ul>
+        </div>
+        <div class="tech-item">
+          <h4>Browser Compatibility</h4>
+          <ul>
+            <li>Google Chrome (latest two versions)</li>
+            <li>Mozilla Firefox (latest two versions)</li>
+            <li>Apple Safari (latest two versions)</li>
+            <li>Microsoft Edge (latest two versions)</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="legal-subheading">Accessibility Technologies Used</h3>
+      <ul class="legal-list">
+        <li><strong>HTML5 Semantic Markup:</strong> Proper use of headings, landmarks, lists, and structured content</li>
+        <li><strong>ARIA Attributes:</strong> Where HTML alone is insufficient, ARIA roles, labels, and descriptions enhance accessibility</li>
+        <li><strong>CSS Media Queries:</strong> Responsive design ensures content adapts to all screen sizes</li>
+        <li><strong>Keyboard Navigation:</strong> Full keyboard operability with visible focus indicators</li>
+        <li><strong>Skip Navigation Links:</strong> Skip-to-content link at the top of every page</li>
+        <li><strong>Color Contrast:</strong> Minimum 4.5:1 contrast ratio for normal text, 3:1 for large text, per WCAG 2.1 AA</li>
+        <li><strong>Reduced Motion:</strong> Respects <code>prefers-reduced-motion</code> for users sensitive to animations</li>
+        <li><strong>Focus Management:</strong> Proper focus handling for interactive components and modal dialogs</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Known Limitations -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Transparency</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        Known Limitations
+      </h2>
+      <p>Despite our best efforts, some accessibility limitations may exist on our website:</p>
+      <ul class="legal-list">
+        <li><strong>Third-Party Content:</strong> Some third-party content, such as embedded maps or external form providers, may not fully conform to WCAG 2.1 AA. We work with our vendors to encourage accessibility improvements.</li>
+        <li><strong>PDF Documents:</strong> Some older PDF documents may not be fully accessible. If you need an accessible version of any document, please contact us and we will provide one.</li>
+        <li><strong>Legacy Content:</strong> Archived content may not meet current accessibility standards. We are working to remediate such content on an ongoing basis.</li>
+      </ul>
+      <p>If you encounter an accessibility barrier on our website, please <a href="/contact-the-office/" class="link">contact us</a> and we will make every reasonable effort to provide the information in an accessible format.</p>
+    </div>
+  </section>
+
+  <!-- Physical Office -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Physical Accessibility</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        Disability Accommodations in Our Office
+      </h2>
+      <p>Our dental office is committed to providing equal access to all patients, including those with disabilities. Our physical office accommodations include:</p>
+
+      <div class="accommodations-grid">
+        <div class="accom-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Wheelchair accessible entrance and facilities</span>
+        </div>
+        <div class="accom-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Accessible parking spaces near the entrance</span>
+        </div>
+        <div class="accom-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Accessible restrooms</span>
+        </div>
+        <div class="accom-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Assistance available for patients with mobility needs</span>
+        </div>
+        <div class="accom-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Large print materials available upon request</span>
+        </div>
+        <div class="accom-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Language interpretation services available</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grievance -->
+  <section class="section-pad alt-bg">
+    <div class="container-narrow" data-animate>
+      <div class="section-label">Feedback &amp; Grievances</div>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        Feedback &amp; Grievance Procedure
+      </h2>
+      <p>We welcome your feedback on the accessibility of our website. If you encounter accessibility barriers or have suggestions for improvement, please let us know:</p>
+
+      <div class="feedback-grid">
+        <div class="feedback-card">
+          <h4>Contact Our Office</h4>
+          <p><strong>Dr. Alan S. Lee, DDS</strong><br />715 N Main St, Manteca, CA 95336<br />Phone: <a href="tel:+12092392990" class="link">(209) 239-2990</a><br />Email: <a href="mailto:info@dralanlee.com" class="link">info@dralanlee.com</a></p>
+        </div>
+        <div class="feedback-card">
+          <h4>Grievance Process</h4>
+          <p>If you are not satisfied with our response to your accessibility concern, you may file a formal grievance. We will acknowledge your grievance within <strong>5 business days</strong> and provide a written response within <strong>30 calendar days</strong>. Grievances should be submitted in writing to our office.</p>
+        </div>
+      </div>
+
+      <p>For accessibility complaints related to dental care, you may also contact:</p>
+      <div class="feedback-card" style="margin-top: 1rem;">
+        <p><strong>U.S. Department of Health and Human Services</strong><br />Office for Civil Rights<br />200 Independence Avenue, S.W., Washington, D.C. 20201<br />Phone: <a href="tel:+18003681019" class="link">1-800-368-1019</a><br /><a href="https://www.hhs.gov/ocr/complaints/" target="_blank" rel="noopener noreferrer" class="link">hhs.gov/ocr/complaints</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Standards -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <h2 class="legal-heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        Standards Referenced
+      </h2>
+      <ul class="legal-list">
+        <li><strong>WCAG 2.1</strong> — Web Content Accessibility Guidelines, Level AA (W3C Recommendation, September 2023)</li>
+        <li><strong>Section 508</strong> — Rehabilitation Act of 1973, as amended (29 U.S.C. § 794d)</li>
+        <li><strong>Americans with Disabilities Act (ADA)</strong> — Titles II and III</li>
+        <li><strong>California AB 434</strong> — California Government Code Section 7405 and 11135</li>
+        <li><strong>EN 301 549</strong> — European standard for ICT accessibility (for reference)</li>
+        <li><strong>ARIA 1.2</strong> — Accessible Rich Internet Applications specification</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad cta-section" data-animate>
+    <div class="container-narrow" style="text-align: center;">
+      <div class="section-label" style="justify-content: center;">Need Help?</div>
+      <h2 class="section-title">Contact Us About Accessibility</h2>
+      <p class="section-subtitle" style="margin: 0 auto 2rem;">If you need any content on our website in a different format, or if you have questions about accessibility, we are here to help.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/contact-the-office/" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Contact Us
+        </a>
+        <a href="tel:+12092392990" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Call (209) 239-2990
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .legal-hero {
+      background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%);
+      color: white; padding: 5rem 1.5rem 4rem; text-align: center;
+    }
+    .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
+    .legal-hero .section-label::before { background: var(--accent-400); }
+    .legal-hero .section-title { color: white; margin-bottom: 1rem; }
+    .legal-hero-subtitle { color: rgba(255,255,255,0.8); font-size: 1.15rem; max-width: 680px; margin: 0 auto; line-height: 1.7; }
+
+    .conformance-badge {
+      display: flex; gap: 2rem; align-items: flex-start;
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border: 1px solid #6ee7b7; border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+    .badge-icon { color: var(--success); flex-shrink: 0; }
+    .conformance-badge h2 { font-family: var(--font-display); font-size: 1.35rem; color: #065f46; margin-bottom: 0.5rem; }
+    .conformance-badge p { color: #047857; line-height: 1.7; }
+
+    .legal-heading {
+      font-family: var(--font-display); font-size: 1.65rem; color: var(--neutral-900);
+      margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; line-height: 1.3;
+    }
+    .legal-heading svg { color: var(--primary-500); flex-shrink: 0; }
+
+    .alt-bg { background: var(--neutral-50); }
+
+    .measures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    .measure-card {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+    .measure-card svg { color: var(--primary-500); margin-bottom: 0.75rem; }
+    .measure-card h3 { font-family: var(--font-display); font-size: 1.1rem; color: var(--neutral-900); margin-bottom: 0.75rem; }
+    .measure-card ul { list-style: none; padding: 0; }
+    .measure-card li { font-size: 0.9rem; color: var(--neutral-600); line-height: 1.7; padding: 0.3rem 0 0.3rem 1.25rem; position: relative; }
+    .measure-card li::before { content: ''; position: absolute; left: 0; top: 0.7rem; width: 6px; height: 6px; border-radius: 50%; background: var(--primary-300); }
+
+    .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+    .tech-item { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); padding: 1.5rem; }
+    .tech-item h4 { font-family: var(--font-body); font-weight: 600; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .tech-item ul { list-style: none; padding: 0; }
+    .tech-item li { font-size: 0.92rem; color: var(--neutral-600); line-height: 1.7; padding: 0.35rem 0 0.35rem 1.25rem; position: relative; }
+    .tech-item li::before { content: ''; position: absolute; left: 0; top: 0.7rem; width: 6px; height: 6px; border-radius: 50%; background: var(--primary-300); }
+
+    .legal-subheading {
+      font-family: var(--font-body); font-weight: 600; font-size: 1.1rem;
+      color: var(--neutral-800); margin: 2rem 0 0.75rem; padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-100);
+    }
+
+    .legal-list { margin: 0.75rem 0 1.5rem 1.5rem; }
+    .legal-list li { color: var(--neutral-700); line-height: 1.8; margin-bottom: 0.5rem; }
+    .legal-list code { background: var(--neutral-100); padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.88rem; }
+
+    .accommodations-grid { margin-top: 1.5rem; }
+    .accom-item {
+      display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 0.75rem;
+      padding: 0.85rem 1rem; background: white; border: 1px solid var(--neutral-100);
+      border-radius: var(--radius-sm);
+    }
+    .accom-item svg { flex-shrink: 0; margin-top: 3px; }
+    .accom-item span { color: var(--neutral-700); line-height: 1.6; }
+
+    .feedback-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+    .feedback-card {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+    .feedback-card h4 { font-family: var(--font-body); font-weight: 600; color: var(--primary-700); margin-bottom: 0.75rem; }
+    .feedback-card p { font-size: 0.92rem; color: var(--neutral-600); line-height: 1.7; }
+
+    .cta-section { background: linear-gradient(135deg, var(--primary-50) 0%, white 100%); border-top: 1px solid var(--primary-100); }
+    .link { color: var(--primary-600); text-decoration: underline; }
+    .link:hover { color: var(--primary-800); }
+
+    @media (max-width: 768px) {
+      .measures-grid { grid-template-columns: 1fr; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .feedback-grid { grid-template-columns: 1fr; }
+      .conformance-badge { flex-direction: column; gap: 1rem; }
+      .legal-hero { padding: 3.5rem 1rem 3rem; }
+    }
+  </style>
 </Layout>

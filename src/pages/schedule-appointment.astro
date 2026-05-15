@@ -1,63 +1,264 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const title = 'Schedule Appointment | Dr. Alan S. Lee, DDS - Manteca Dentist';
-const description = 'Schedule your dental appointment with Dr. Alan S. Lee, DDS in Manteca, CA. Call (209) 239-2990 or use our online scheduling form.';
+
+const title = 'Schedule an Appointment | Dr. Alan S. Lee, DDS';
+const description = 'Schedule your dental appointment online. HIPAA-compliant form submission. Dr. Alan S. Lee, DDS — Manteca, CA. Call (209) 239-2990 for urgent needs.';
+
+const dentistSchema = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: "Dr. Alan S. Lee, DDS",
+  url: "https://dralanlee.com/schedule-appointment/",
+  telephone: "+1-209-239-2990",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "715 N Main St",
+    addressLocality: "Manteca",
+    addressRegion: "CA",
+    postalCode: "95336"
+  },
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday"], opens: "08:00", closes: "17:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "08:00", closes: "14:00" }
+  ]
+};
 ---
 
-<Layout title={title} description={description}>
-  <section class="hero">
-    <h1>Schedule an Appointment</h1>
-    <p>We look forward to seeing you! Schedule online or call us directly.</p>
+<Layout title={title} description={description} schema={dentistSchema}>
+  <!-- Hero -->
+  <section class="legal-hero" data-animate>
+    <div class="container-wide">
+      <div class="section-label">Book Your Visit</div>
+      <h1 class="section-title">Schedule an Appointment</h1>
+      <p class="legal-hero-subtitle">Ready to take the next step? Schedule your dental appointment online or call us directly. We look forward to seeing you.</p>
+    </div>
   </section>
 
-  <section class="content-section">
+  <!-- Two Column: Form + Info -->
+  <section class="section-pad">
     <div class="schedule-grid">
-      <div class="schedule-info">
-        <h2>How to Schedule</h2>
-        <p>You can schedule your appointment by:</p>
-        <ul>
-          <li><strong>Online:</strong> Fill out the form on this page</li>
-          <li><strong>Phone:</strong> Call us at <a href="tel:+12092392990">(209) 239-2990</a></li>
-          <li><strong>In Person:</strong> Visit us at 715 N Main St, Manteca, CA 95336</li>
-        </ul>
+      <!-- Form Column -->
+      <div class="form-column" data-animate>
+        <div class="form-header">
+          <h2>Request an Appointment</h2>
+          <p>Fill out the form below and our team will contact you to confirm your appointment.</p>
+        </div>
 
-        <h3>Office Hours</h3>
-        <table class="hours-table">
-          <tr><td>Monday</td><td>8:00 AM – 5:00 PM</td></tr>
-          <tr><td>Tuesday</td><td>8:00 AM – 5:00 PM</td></tr>
-          <tr><td>Wednesday</td><td>8:00 AM – 5:00 PM</td></tr>
-          <tr><td>Thursday</td><td>8:00 AM – 5:00 PM</td></tr>
-          <tr><td>Friday</td><td>8:00 AM – 2:00 PM</td></tr>
-          <tr><td>Saturday – Sunday</td><td>Closed</td></tr>
-        </table>
-
-        <h3>New Patients Welcome</h3>
-        <p>We welcome new patients and look forward to providing you with quality dental care. Please arrive 15 minutes early for your first appointment to complete any necessary paperwork.</p>
-
-        <h3>What to Bring</h3>
-        <ul>
-          <li>Photo ID</li>
-          <li>Insurance card(s)</li>
-          <li>List of current medications</li>
-          <li>Completed patient forms (available on our <a href="/forms-library/">Patient Forms</a> page)</li>
-        </ul>
+        <form class="appointment-form" id="appointment-form" action="#" method="POST" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="firstName">First Name <span class="required" aria-label="required">*</span></label>
+              <input type="text" id="firstName" name="firstName" required autocomplete="given-name" placeholder="Your first name" />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name <span class="required" aria-label="required">*</span></label>
+              <input type="text" id="lastName" name="lastName" required autocomplete="family-name" placeholder="Your last name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address <span class="required" aria-label="required">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number <span class="required" aria-label="required">*</span></label>
+              <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(209) 555-0000" />
+            </div>
+            <div class="form-group">
+              <label for="preferredDate">Preferred Date</label>
+              <input type="date" id="preferredDate" name="preferredDate" />
+            </div>
+            <div class="form-group">
+              <label for="preferredTime">Preferred Time</label>
+              <select id="preferredTime" name="preferredTime">
+                <option value="">Select a time</option>
+                <option value="morning">Morning (8am - 12pm)</option>
+                <option value="afternoon">Afternoon (12pm - 3pm)</option>
+                <option value="late-afternoon">Late Afternoon (3pm - 5pm)</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label for="serviceType">Type of Service</label>
+              <select id="serviceType" name="serviceType">
+                <option value="">Select a service</option>
+                <option value="cleaning">Routine Cleaning & Exam</option>
+                <option value="filling">Filling / Restoration</option>
+                <option value="crown">Crown / Bridge</option>
+                <option value="root-canal">Root Canal</option>
+                <option value="extraction">Extraction</option>
+                <option value="whitening">Teeth Whitening</option>
+                <option value="cosmetic">Cosmetic Consultation</option>
+                <option value="emergency">Emergency / Urgent Care</option>
+                <option value="new-patient">New Patient Visit</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label for="message">Additional Notes</label>
+              <textarea id="message" name="message" rows="4" placeholder="Any special needs, concerns, or questions..."></textarea>
+            </div>
+            <div class="form-group full-width">
+              <label class="checkbox-label">
+                <input type="checkbox" id="hipaaConsent" name="hipaaConsent" required />
+                <span>I acknowledge that my information will be handled in accordance with the <a href="/hipaa-privacy-notice/" target="_blank">HIPAA Notice of Privacy Practices</a> and I consent to being contacted regarding my appointment. <span class="required" aria-label="required">*</span></span>
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary btn-submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Request Appointment
+          </button>
+        </form>
       </div>
 
-      <div class="schedule-form">
-        <h2>Request an Appointment</h2>
-        <iframe src="https://hipaa.jotform.com/260202986387060" title="Schedule Appointment Form" style="width:100%; height:650px; border:none;" loading="lazy"></iframe>
+      <!-- Info Column -->
+      <div class="info-column" data-animate>
+        <div class="info-card">
+          <div class="info-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <h3>Office Hours</h3>
+          <div class="hours-list">
+            <div class="hours-row"><span>Monday</span><span>8:00 AM – 5:00 PM</span></div>
+            <div class="hours-row"><span>Tuesday</span><span>8:00 AM – 5:00 PM</span></div>
+            <div class="hours-row"><span>Wednesday</span><span>8:00 AM – 5:00 PM</span></div>
+            <div class="hours-row"><span>Thursday</span><span>8:00 AM – 5:00 PM</span></div>
+            <div class="hours-row"><span>Friday</span><span>8:00 AM – 2:00 PM</span></div>
+            <div class="hours-row closed"><span>Saturday – Sunday</span><span>Closed</span></div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <h3>Contact Us</h3>
+          <div class="contact-list">
+            <a href="tel:+12092392990" class="contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              (209) 239-2990
+            </a>
+            <a href="mailto:info@dralanlee.com" class="contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              info@dralanlee.com
+            </a>
+            <div class="contact-item address">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              715 N Main St, Manteca, CA 95336
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card emergency-card">
+          <div class="info-icon emergency-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <h3>Dental Emergency?</h3>
+          <p>If you are experiencing a dental emergency, please call us immediately at <a href="tel:+12092392990" class="link">(209) 239-2990</a>. We prioritize emergency patients and will do our best to see you the same day.</p>
+        </div>
+
+        <div class="info-card hipaa-card">
+          <div class="hipaa-inline">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            <div>
+              <strong>HIPAA Compliant</strong>
+              <p>Your information is encrypted and protected under HIPAA regulations. <a href="/hipaa-privacy-notice/" class="link">Privacy Notice</a></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <style>
-    .schedule-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; }
-    .schedule-info h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 1rem; }
-    .schedule-info h3 { font-family: var(--font-heading); color: var(--primary); }
-    .hours-table { width: 100%; margin-bottom: 1rem; }
-    .hours-table td { padding: 0.25rem 0.5rem; }
-    .hours-table td:first-child { font-weight: 500; }
-    .schedule-form h2 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 1rem; }
-    @media (max-width: 768px) { .schedule-grid { grid-template-columns: 1fr; } }
+    .legal-hero {
+      background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%);
+      color: white; padding: 5rem 1.5rem 4rem; text-align: center;
+    }
+    .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
+    .legal-hero .section-label::before { background: var(--accent-400); }
+    .legal-hero .section-title { color: white; margin-bottom: 1rem; }
+    .legal-hero-subtitle { color: rgba(255,255,255,0.8); font-size: 1.15rem; max-width: 680px; margin: 0 auto; line-height: 1.7; }
+
+    .schedule-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem;
+      max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
+    }
+
+    .form-header { margin-bottom: 2rem; }
+    .form-header h2 { font-family: var(--font-display); font-size: 1.65rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .form-header p { color: var(--neutral-500); line-height: 1.7; }
+
+    .appointment-form { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-md); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-group { display: flex; flex-direction: column; }
+    .form-group.full-width { grid-column: 1 / -1; }
+    .form-group label { font-family: var(--font-body); font-weight: 600; font-size: 0.88rem; color: var(--neutral-700); margin-bottom: 0.4rem; }
+    .required { color: var(--error); }
+    .form-group input, .form-group select, .form-group textarea {
+      font-family: var(--font-body); font-size: 0.95rem; padding: 0.75rem 1rem;
+      border: 1.5px solid var(--neutral-300); border-radius: var(--radius-sm);
+      background: white; color: var(--neutral-800); transition: border-color var(--transition-fast);
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--primary-500); box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+    .form-group textarea { resize: vertical; }
+
+    .checkbox-label {
+      display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.88rem;
+      color: var(--neutral-600); line-height: 1.6; cursor: pointer;
+    }
+    .checkbox-label input[type="checkbox"] { margin-top: 0.2rem; flex-shrink: 0; }
+
+    .btn-submit {
+      width: 100%; margin-top: 1.5rem; justify-content: center; padding: 1rem 2rem;
+      font-size: 1rem;
+    }
+
+    .info-column { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .info-card {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
+      padding: 1.5rem; box-shadow: var(--shadow-sm);
+    }
+    .info-icon {
+      width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--primary-50);
+      color: var(--primary-600); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;
+    }
+    .info-card h3 { font-family: var(--font-display); font-size: 1.15rem; color: var(--neutral-900); margin-bottom: 1rem; }
+
+    .hours-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .hours-row { display: flex; justify-content: space-between; font-size: 0.92rem; padding: 0.5rem 0; border-bottom: 1px solid var(--neutral-100); }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row span:first-child { color: var(--neutral-700); font-weight: 500; }
+    .hours-row span:last-child { color: var(--neutral-600); }
+    .hours-row.closed { color: var(--neutral-400); }
+    .hours-row.closed span { color: var(--neutral-400); }
+
+    .contact-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem;
+      color: var(--neutral-700); text-decoration: none; transition: color var(--transition-fast);
+    }
+    .contact-item:hover { color: var(--primary-600); }
+    .contact-item.address { color: var(--neutral-600); }
+
+    .emergency-card { border-color: #fca5a5; background: linear-gradient(135deg, #fff5f5 0%, #fef2f2 100%); }
+    .emergency-icon { background: #fef2f2; color: var(--error); }
+    .emergency-card h3 { color: var(--error); }
+    .emergency-card p { color: var(--neutral-700); line-height: 1.7; font-size: 0.92rem; }
+
+    .hipaa-card { background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-color: #6ee7b7; }
+    .hipaa-inline { display: flex; gap: 0.75rem; align-items: flex-start; color: #065f46; }
+    .hipaa-inline svg { flex-shrink: 0; color: #059669; margin-top: 2px; }
+    .hipaa-inline strong { display: block; font-size: 0.9rem; margin-bottom: 0.15rem; }
+    .hipaa-inline p { font-size: 0.82rem; line-height: 1.6; color: #047857; margin: 0; }
+    .link { color: var(--primary-600); text-decoration: underline; }
+    .link:hover { color: var(--primary-800); }
+
+    @media (max-width: 768px) {
+      .schedule-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .legal-hero { padding: 3.5rem 1rem 3rem; }
+    }
   </style>
 </Layout>
