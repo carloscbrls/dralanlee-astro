@@ -76,10 +76,13 @@ const allSchemas = [localBusinessSchema, ...schemas];
   <link rel="icon" type="image/png" href="/images/2022/01/cropped-minimal-logo-generator-for-dental-care-centers-1485f-133-el-1-1-32x32.png" />
   <link rel="apple-touch-icon" href="/images/2022/01/cropped-minimal-logo-generator-for-dental-care-centers-1485f-133-el-1-1-180x180.png" />
 
-  <!-- Security Headers (also set via Cloudflare) -->
+  <!-- Security Headers (also set via Netlify _headers and Cloudflare) -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Plausible Analytics (HIPAA-compliant, no cookies, no personal data) -->
+  <script defer data-domain="dralanlee.com" src="https://plausible.io/js/script.js"></script>
 
   <!-- Fonts: Inter for body, DM Serif Display for headings -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -503,7 +506,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
         <li role="none"><a href="/forms-library/" role="menuitem">Patient Forms</a></li>
         <li role="none"><a href="/faqs/" role="menuitem">FAQs</a></li>
         <li role="none"><a href="/contact-the-office/" role="menuitem">Contact</a></li>
-        <li role="none"><a href="https://www.convergepay.com/hosted-payments/?ssl_txn_auth_token=9p0%2FEFfgQDyes9SQVfA8pgAAAZBvj2Xi#!/payment-method" role="menuitem" target="_blank" rel="noopener noreferrer">Pay Online</a></li>
+        <li role="none"><a href="/pay/" role="menuitem" target="_blank" rel="noopener noreferrer">Pay Online</a></li>
         <li role="none"><a href="/schedule-appointment/" class="nav-cta" role="menuitem">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           Book Now
@@ -544,7 +547,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
           <li><a href="/schedule-appointment/">Schedule Appointment</a></li>
           <li><a href="/forms-library/">Patient Forms</a></li>
           <li><a href="/contact-the-office/">Contact Us</a></li>
-          <li><a href="https://www.convergepay.com/hosted-payments/?ssl_txn_auth_token=9p0%2FEFfgQDyes9SQVfA8pgAAAZBvj2Xi#!/payment-method" target="_blank" rel="noopener noreferrer">Pay Online</a></li>
+          <li><a href="/pay/" target="_blank" rel="noopener noreferrer">Pay Online</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -579,6 +582,38 @@ const allSchemas = [localBusinessSchema, ...schemas];
       </div>
     </div>
   </footer>
+
+  <!-- CCPA/CPRA Cookie Consent Banner -->
+  <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#082f49;color:white;padding:1rem 1.5rem;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,0.15);">
+    <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <div style="flex:1;min-width:280px;">
+        <p style="margin:0;font-size:0.9rem;line-height:1.6;">We use essential cookies for site security and performance, and analytics cookies to improve your experience. We <strong>do not sell</strong> your personal information. <a href="/privacy-policy/" style="color:#38bdf8;text-decoration:underline;">Privacy Policy</a></p>
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-shrink:0;">
+        <button id="cookie-accept" style="background:#059669;color:white;border:none;padding:0.6rem 1.5rem;border-radius:9999px;font-weight:600;font-size:0.88rem;cursor:pointer;font-family:Inter,sans-serif;">Accept All</button>
+        <button id="cookie-reject" style="background:transparent;color:white;border:1.5px solid rgba(255,255,255,0.4);padding:0.6rem 1.5rem;border-radius:9999px;font-weight:600;font-size:0.88rem;cursor:pointer;font-family:Inter,sans-serif;">Essential Only</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      const banner=document.getElementById('cookie-banner');
+      const consent=localStorage.getItem('cookie_consent');
+      if(!consent){banner.style.display='block';}
+      document.getElementById('cookie-accept').addEventListener('click',function(){
+        localStorage.setItem('cookie_consent','all');
+        localStorage.setItem('cookie_consent_date',new Date().toISOString());
+        banner.style.display='none';
+        if(window.plausible){window.plausible('Cookie Consent',{props:{choice:'accept_all'}});}
+      });
+      document.getElementById('cookie-reject').addEventListener('click',function(){
+        localStorage.setItem('cookie_consent','essential');
+        localStorage.setItem('cookie_consent_date',new Date().toISOString());
+        banner.style.display='none';
+        if(window.plausible){window.plausible('Cookie Consent',{props:{choice:'essential_only'}});}
+      });
+    })();
+  </script>
 
   <!-- Scripts -->
   <script>
