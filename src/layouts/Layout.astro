@@ -8,7 +8,7 @@ export interface Props {
   hideHero?: boolean;
 }
 
-const { title, description = 'Dr. Alan S. Lee, DDS — Family & Cosmetic Dentistry in Manteca, CA. Trusted for 30+ years. Call (209) 239-2990.', ogImage = '/images/2022/02/cropped-272532918_1610743785956114_4089058124855931511_n.png', canonicalUrl, schema, hideHero = false } = Astro.props;
+const { title, description = 'Dr. Alan S. Lee, DDS — Family Family & Cosmetic Dentistry Cosmetic Dentistry in Manteca, CA. Trusted for 30+ years. Call (209) 239-2990.', ogImage = '/images/2022/02/cropped-272532918_1610743785956114_4089058124855931511_n.png', canonicalUrl, schema, hideHero = false } = Astro.props;
 
 const currentYear = new Date().getFullYear();
 
@@ -16,7 +16,7 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "Dentist",
   name: "Dr. Alan S. Lee, DDS",
-  description: "Family & Cosmetic Dentistry in Manteca, CA — trusted for over 30 years.",
+  description: "Family Family & Cosmetic Dentistry Cosmetic Dentistry in Manteca, CA — trusted for over 30 years.",
   url: "https://dralanlee.com",
   telephone: "+1-209-239-2990",
   address: {
@@ -28,7 +28,7 @@ const localBusinessSchema = {
     addressCountry: "US"
   },
   openingHoursSpecification: [
-    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday"], opens: "08:00", closes: "17:00" }
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday"], opens: "08:00", closes: "16:30" }
   ],
   image: "https://dralanlee.com/images/2022/02/cropped-272532918_1610743785956114_4089058124855931511_n.png",
   priceRange: "$$",
@@ -315,17 +315,17 @@ const allSchemas = [localBusinessSchema, ...schemas];
     .footer-brand .logo-footer { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
     .footer-brand .logo-footer img { width: 44px; height: 44px; border-radius: var(--radius-sm); }
     .footer-brand .logo-footer-text { font-family: var(--font-display); font-size: 1.1rem; color: white; }
-    .footer-brand p { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.6); }
+    .footer-brand p { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.75); }
     .footer-col h4 {
       font-family: var(--font-body); font-weight: 600; font-size: 0.82rem;
-      color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.1em;
       margin-bottom: 1.25rem;
     }
     .footer-col ul { list-style: none; }
     .footer-col li { margin-bottom: 0.6rem; }
-    .footer-col a { color: rgba(255,255,255,0.65); font-size: 0.9rem; transition: color var(--transition-fast); }
+    .footer-col a { color: rgba(255,255,255,0.8); font-size: 0.9rem; transition: color var(--transition-fast); }
     .footer-col a:hover { color: white; }
-    .footer-hours p { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.8; }
+    .footer-hours p { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.8; }
     .footer-hours .phone-footer {
       display: inline-flex; align-items: center; gap: 0.4rem; font-size: 1.15rem; font-weight: 600;
       color: white; margin-top: 0.75rem;
@@ -334,7 +334,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     .footer-social a {
       display: flex; align-items: center; justify-content: center;
       width: 40px; height: 40px; border-radius: var(--radius-full);
-      background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85);
       transition: all var(--transition-fast);
     }
     .footer-social a:hover { background: var(--primary-700); color: white; transform: translateY(-2px); }
@@ -347,12 +347,12 @@ const allSchemas = [localBusinessSchema, ...schemas];
       max-width: 1280px; margin: 0 auto;
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
     }
-    .footer-bottom p { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
-    .footer-bottom a { color: rgba(255,255,255,0.5); }
-    .footer-bottom a:hover { color: rgba(255,255,255,0.9); }
+    .footer-bottom p { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+    .footer-bottom a { color: rgba(255,255,255,0.65); }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.95); }
     .footer-compliance { display: flex; gap: 1rem; font-size: 0.78rem; }
-    .footer-compliance a { color: rgba(255,255,255,0.35); }
-    .footer-compliance a:hover { color: rgba(255,255,255,0.8); }
+    .footer-compliance a { color: rgba(255,255,255,0.5); }
+    .footer-compliance a:hover { color: rgba(255,255,255,0.9); }
 
     /* ===== ANIMATIONS ===== */
     @keyframes fadeInUp {
@@ -487,7 +487,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
         <img src="/images/2022/02/cropped-272532918_1610743785956114_4089058124855931511_n.png" alt="Dr. Alan S. Lee, DDS logo" class="logo-img" width="52" height="52" loading="eager" />
         <div>
           <span class="logo-name">Dr. Alan S. Lee, DDS</span>
-          <span class="logo-tagline">Family & Cosmetic Dentistry</span>
+          <span class="logo-tagline">Family Family & Cosmetic Dentistry Cosmetic Dentistry</span>
         </div>
       </a>
 
@@ -560,7 +560,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       </div>
       <div class="footer-hours">
         <h4>Office Hours</h4>
-        <p>Monday – Thursday: 8am – 5pm<br />Friday – Sunday: Closed</p>
+        <p>Monday – Thursday: 8:00 AM – 4:30 PM<br />Friday – Sunday: Closed</p>
         <a href="tel:+12092392990" class="phone-footer" aria-label="Call (209) 239-2990">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           (209) 239-2990
