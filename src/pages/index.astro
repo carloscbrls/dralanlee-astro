@@ -67,7 +67,7 @@ const servicesSchema = {
         </div>
       </div>
       <div class="hero-image animate-fade-up delay-3">
-        <img src="/images/dr-lee-portrait-2026.jpg" alt="Dr. Alan S. Lee, DDS — Manteca dentist with 30+ years of experience" width="500" height="600" loading="eager" />
+        <img src="/images/dental-office-hero.jpg" alt="Modern, welcoming dental office in Manteca — comfortable and professional care" width="500" height="600" loading="eager" />
         <div class="hero-image-frame" aria-hidden="true"></div>
       </div>
     </div>
@@ -285,9 +285,9 @@ const servicesSchema = {
 
     .hero-image { position: relative; }
     .hero-image img {
-      width: 100%; max-width: 440px; border-radius: var(--radius-lg);
+      width: 100%; max-width: 480px; border-radius: var(--radius-lg);
       box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1);
-      object-fit: cover; aspect-ratio: 5/6;
+      object-fit: cover; aspect-ratio: 4/5;
     }
     .hero-image-frame {
       position: absolute; inset: -12px; border: 2px solid rgba(14, 165, 233, 0.2);
@@ -329,11 +329,11 @@ const servicesSchema = {
     }
     .about-image-wrap { position: relative; }
     .about-image-wrap img {
-      width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-2xl);
+      width: 100%; max-width: 400px; border-radius: var(--radius-lg); box-shadow: var(--shadow-2xl);
       object-fit: cover; aspect-ratio: 4/5;
     }
     .about-badge {
-      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      position: absolute; bottom: 1rem; right: 1rem;
       background: var(--primary-700); color: white; padding: 1.25rem 1.5rem;
       border-radius: var(--radius-md); box-shadow: var(--shadow-lg); text-align: center;
     }
@@ -408,7 +408,8 @@ const servicesSchema = {
       .hero h1 { font-size: 2.25rem; }
       .hero-actions { justify-content: center; }
       .hero-trust { justify-content: center; }
-      .hero-image { display: none; }
+      .hero-image { max-width: 320px; margin: 0 auto; }
+      .hero-image img { max-width: 320px; }
       .services-grid { grid-template-columns: 1fr; }
       .why-grid { grid-template-columns: 1fr; }
       .about-grid { grid-template-columns: 1fr; }
