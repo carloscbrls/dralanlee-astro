@@ -153,7 +153,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
 
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
       font-family: var(--font-body);
       color: var(--neutral-800);
@@ -161,7 +161,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       background: white;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
     img { max-width: 100%; height: auto; display: block; }
     a { color: var(--primary-700); text-decoration: none; transition: color var(--transition-fast); }
@@ -298,7 +298,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       display: none; background: none; border: 1.5px solid var(--neutral-300);
       cursor: pointer; padding: 0.5rem; border-radius: var(--radius-sm);
       width: 44px; height: 44px; align-items: center; justify-content: center;
-      flex-direction: column; gap: 4px;
+      flex-direction: column; gap: 4px; -webkit-tap-highlight-color: transparent; touch-action: manipulation;
     }
     .mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--neutral-700); border-radius: 2px; transition: var(--transition-fast); }
     .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
@@ -437,19 +437,14 @@ const allSchemas = [localBusinessSchema, ...schemas];
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
     }
     @media (max-width: 768px) {
-      .top-bar, .top-bar-inner { max-width: 100vw; overflow-x: hidden; }
-      .site-header { max-width: 100vw; overflow-x: hidden; }
-      .nav-inner { flex-wrap: nowrap; }
-      .container, .container-wide, .container-narrow { max-width: 100vw; overflow-x: hidden; }
       .top-bar .top-links { display: none; }
       .top-bar-inner { justify-content: center; }
       .mobile-toggle { display: flex; }
       .nav-menu {
-      z-index: 1001;
-        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        display: none; position: fixed; top: auto; left: 0; right: 0;
         background: white; flex-direction: column; padding: 1rem 1.5rem;
         box-shadow: var(--shadow-xl); border-top: 1px solid var(--neutral-100);
-        gap: 0.15rem;
+        gap: 0.15rem; z-index: 9999;
       }
       .nav-menu.active { display: flex; }
       .nav-menu a { padding: 0.75rem 0; width: 100%; }
@@ -462,7 +457,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     @media (max-width: 480px) {
       .section-pad { padding: 3.5rem 1rem; }
       .section-title { font-size: 1.65rem; }
-      .top-bar { overflow-x: hidden; font-size: 0.75rem; }
+      .top-bar { font-size: 0.75rem; }
     }
   </style>
 </head>
@@ -490,7 +485,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
   </div>
 
   <!-- Header / Navigation -->
-  <header class="site-header" style="overflow-x: hidden;" id="site-header">
+  <header class="site-header" id="site-header">
     <nav class="nav-inner" role="navigation" aria-label="Main navigation">
       <a href="/" class="logo-link" aria-label="Dr. Alan S. Lee, DDS - Home">
         <img src="/images/logo.png" alt="Dr. Alan S. Lee, DDS — ASL Dental Logo" class="logo-img" width="52" height="52" loading="eager" />
@@ -628,12 +623,19 @@ const allSchemas = [localBusinessSchema, ...schemas];
     // Mobile menu toggle
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.nav-menu');
+    const header = document.getElementById('site-header');
     if (toggle && menu) {
       toggle.addEventListener('click', () => {
         const expanded = toggle.getAttribute('aria-expanded') === 'true';
         toggle.setAttribute('aria-expanded', String(!expanded));
         menu.classList.toggle('active');
         toggle.classList.toggle('active');
+        // Position mobile menu below header when using fixed positioning
+        if (window.innerWidth <= 768 && menu.classList.contains('active') && header) {
+          menu.style.top = header.offsetHeight + header.getBoundingClientRect().top + 'px';
+        } else {
+          menu.style.top = '';
+        }
       });
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && menu.classList.contains('active')) {
@@ -646,7 +648,6 @@ const allSchemas = [localBusinessSchema, ...schemas];
     }
 
     // Header scroll effect
-    const header = document.getElementById('site-header');
     if (header) {
       window.addEventListener('scroll', () => {
         header.classList.toggle('scrolled', window.scrollY > 10);
