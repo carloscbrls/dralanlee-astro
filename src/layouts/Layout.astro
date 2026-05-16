@@ -267,6 +267,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       font-weight: 400; letter-spacing: 0.02em;
     }
     .nav-menu {
+      z-index: 1001;
       list-style: none; display: flex; align-items: center; gap: 0.25rem;
     }
     .nav-menu li { position: relative; }
@@ -436,11 +437,15 @@ const allSchemas = [localBusinessSchema, ...schemas];
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
     }
     @media (max-width: 768px) {
-      .site-header, .top-bar, .top-bar-inner, .nav-inner, .container, .container-wide, .container-narrow { max-width: 100vw; overflow-x: hidden; }
+      .top-bar, .top-bar-inner { max-width: 100vw; overflow-x: hidden; }
+      .site-header { max-width: 100vw; overflow-x: hidden; }
+      .nav-inner { flex-wrap: nowrap; }
+      .container, .container-wide, .container-narrow { max-width: 100vw; overflow-x: hidden; }
       .top-bar .top-links { display: none; }
       .top-bar-inner { justify-content: center; }
       .mobile-toggle { display: flex; }
       .nav-menu {
+      z-index: 1001;
         display: none; position: absolute; top: 100%; left: 0; right: 0;
         background: white; flex-direction: column; padding: 1rem 1.5rem;
         box-shadow: var(--shadow-xl); border-top: 1px solid var(--neutral-100);
