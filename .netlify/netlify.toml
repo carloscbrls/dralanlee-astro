@@ -49,6 +49,102 @@ Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'
 X-Robots-Tag = "index, follow"
 
 [[redirects]]
+from = "/about-us/"
+to = "/about/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/about-us"
+to = "/about/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/contact-the-office/"
+to = "/contact/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/contact-the-office"
+to = "/contact/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/hipaa-privacy-notice/"
+to = "/hipaa-privacy/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/hipaa-privacy-notice"
+to = "/hipaa-privacy/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/accessibility-statement-2/"
+to = "/accessibility/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/accessibility-statement-2"
+to = "/accessibility/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
 from = "/pay/*"
 to = "https://www.convergepay.com/hosted-payments/?ssl_txn_auth_token=9p0%2FEFfgQDyes9SQVfA8pgAAAZBvj2Xi#!/payment-method"
 status = 302.0
