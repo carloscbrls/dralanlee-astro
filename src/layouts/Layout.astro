@@ -215,7 +215,8 @@ const allSchemas = [localBusinessSchema, ...schemas];
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
     .top-bar a { color: rgba(255,255,255,0.9); font-weight: 500; display: inline-flex; align-items: center; gap: 0.4rem; }
     .top-bar a:hover { color: var(--accent-400); }
@@ -315,6 +316,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     .footer-grid {
       max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
       display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 3rem;
+      align-items: start;
     }
     .footer-brand .logo-footer { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
     .footer-brand .logo-footer img { width: 44px; height: 44px; border-radius: var(--radius-sm); }
@@ -329,6 +331,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     .footer-col li { margin-bottom: 0.6rem; }
     .footer-col a { color: rgba(255,255,255,0.8); font-size: 0.9rem; transition: color var(--transition-fast); }
     .footer-col a:hover { color: white; }
+    .footer-hours { align-self: start; }
     .footer-hours p { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.8; }
     .footer-hours .phone-footer {
       display: inline-flex; align-items: center; gap: 0.4rem; font-size: 1.15rem; font-weight: 600;
