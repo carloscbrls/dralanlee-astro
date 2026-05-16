@@ -46,133 +46,39 @@ const localBusinessSchema = {
     <div class="contact-grid">
       <!-- Contact Form: JotForm Embed -->
       <div class="form-column" data-animate>
-        <div class="form-header">
-          <h2>Send Us a Message</h2>
-          <p>Fill out the form below and we will get back to you within one business day.</p>
+        <!-- Form Tabs -->
+        <div class="form-tabs">
+          <button class="form-tab active" data-tab="appointment" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Request Appointment
+          </button>
+          <button class="form-tab" data-tab="message" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Send a Message
+          </button>
         </div>
 
-        <div class="jotform-embed" id="contact-form-container">
-          <script type="text/javascript" src="https://form.jotform.com/jsform/250783246754060" async></script>
-          <script>
-            // Override JotForm content for Dr. Lee's dental practice
-            function customizeJotForm() {
-              const container = document.getElementById('contact-form-container');
-              if (!container) return;
+        <!-- Appointment Form -->
+        <div class="form-panel active" id="panel-appointment">
+          <div class="form-header">
+            <h2>Request an Appointment</h2>
+            <p>Schedule your visit — we’ll confirm your appointment within one business day.</p>
+          </div>
+          <div class="jotform-embed" id="appointment-form-container">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/260202986387060" async></script>
+          </div>
+        </div>
 
-              // 1. Hide CC3PO header/branding (the form header with "Get in Touch Now", CC3PO logo, "MAY THE CLICKS BE WITH YOU")
-              const headers = container.querySelectorAll('.form-header-group, .form-header');
-              headers.forEach(h => h.remove());
-
-              // 2. Replace Subject dropdown options with dental-appropriate ones
-              const subjectSelects = container.querySelectorAll('select[name*="subject"], select[id*="subject"], select[id*="5"]');
-              subjectSelects.forEach(select => {
-                const options = select.querySelectorAll('option');
-                const dentalOptions = [
-                  { value: '', text: 'Please Select' },
-                  { value: 'General Inquiry', text: 'General Inquiry — Questions & Information' },
-                  { value: 'Schedule Appointment', text: 'Schedule an Appointment' },
-                  { value: 'Dental Emergency', text: 'Dental Emergency — Urgent Care Needed' },
-                  { value: 'Insurance & Billing', text: 'Insurance & Billing Questions' },
-                  { value: 'New Patient', text: 'New Patient — First Visit Inquiry' },
-                  { value: 'Other', text: 'Other — Please Specify Below' }
-                ];
-                select.innerHTML = '';
-                dentalOptions.forEach(opt => {
-                  const option = document.createElement('option');
-                  option.value = opt.value;
-                  option.textContent = opt.text;
-                  select.appendChild(option);
-                });
-              });
-
-              // 3. Replace Urgency Level options with dental-appropriate ones
-              const urgencySelects = container.querySelectorAll('select[name*="urgency"], select[id*="urgency"], select[id*="12"]');
-              urgencySelects.forEach(select => {
-                const options = [
-                  { value: '', text: 'Please Select' },
-                  { value: 'Low — General question, no rush', text: 'Low — General question, no rush' },
-                  { value: 'Normal — Response within 1-2 business days', text: 'Normal — Response within 1-2 business days' },
-                  { value: 'High — Need to be seen soon', text: 'High — Need to be seen soon' },
-                  { value: 'Urgent — Dental emergency', text: 'Urgent — Dental emergency' }
-                ];
-                select.innerHTML = '';
-                options.forEach(opt => {
-                  const option = document.createElement('option');
-                  option.value = opt.value;
-                  option.textContent = opt.text;
-                  select.appendChild(option);
-                });
-              });
-
-              // 4. Hide Invoice Number and Company Website fields
-              container.querySelectorAll('li[data-type="control_textbox"]').forEach(li => {
-                const label = li.querySelector('.form-label, label');
-                if (label && (label.textContent.includes('Invoice') || label.textContent.includes('Company Website'))) {
-                  li.style.display = 'none';
-                }
-              });
-
-              // 5. Change submit button text
-              const submitButtons = container.querySelectorAll('.form-submit-button, button[type="submit"]');
-              submitButtons.forEach(btn => {
-                if (btn.textContent.trim() === 'Send Inquiry') {
-                  btn.textContent = 'Send Message';
-                }
-              });
-
-              // 6. Remove any CC3PO branding text
-              const allText = container.querySelectorAll('*');
-              allText.forEach(el => {
-                if (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3) {
-                  if (el.textContent.includes('CC3PO') || el.textContent.includes('MAY THE CLICKS')) {
-                    el.textContent = el.textContent.replace(/CC3PO/g, 'Dr. Lee\'s Office').replace(/MAY THE CLICKS BE WITH YOU/g, '');
-                  }
-                }
-                // Remove CC3PO logo/droid image
-                if (el.tagName === 'IMG' && el.src && (el.src.includes('cc3po') || el.alt?.includes('CC3PO'))) {
-                  el.remove();
-                }
-              });
-
-              // 7. Restyle the form to match Dr. Lee's branding
-              const formAll = container.querySelector('.form-all');
-              if (formAll) {
-                formAll.style.setProperty('background', '#ffffff', 'important');
-                formAll.style.setProperty('color', '#1f2937', 'important');
-                formAll.style.setProperty('box-shadow', 'none', 'important');
-                formAll.style.setProperty('border-radius', '12px', 'important');
-                formAll.style.setProperty('padding', '0', 'important');
-              }
-
-              // Remove the dark/neon theme CSS overrides
-              const styleEls = container.querySelectorAll('style');
-              styleEls.forEach(s => {
-                if (s.textContent.includes('0A192F') || s.textContent.includes('64FFDA') || s.textContent.includes('00FFAA')) {
-                  s.remove();
-                }
-              });
-            }
-
-            // Run after JotForm loads (it loads async)
-            const observer = new MutationObserver((mutations, obs) => {
-              const form = document.querySelector('#contact-form-container form, #contact-form-container .form-all');
-              if (form) {
-                customizeJotForm();
-                // Keep observing for a bit in case JotForm re-renders
-                setTimeout(() => { customizeJotForm(); obs.disconnect(); }, 2000);
-              }
-            });
-            observer.observe(document.getElementById('contact-form-container'), {
-              childList: true,
-              subtree: true
-            });
-            // Also try after a delay in case the form loaded before the observer
-            setTimeout(() => {
-              if (document.querySelector('#contact-form-container form') || document.querySelector('#contact-form-container .form-all')) {
-                customizeJotForm();
-              }
-            }, 3000);
-          </script>
+        <!-- Message Form -->
+        <div class="form-panel" id="panel-message">
+          <div class="form-header">
+            <h2>Send Us a Message</h2>
+            <p>Fill out the form below and we will get back to you within one business day.</p>
+          </div>
+          <div class="jotform-embed" id="contact-form-container">
+            <script type="text/javascript" src="https://form.jotform.com/jsform/250783246754060" async></script>
+          </div>
+        </div>
           <noscript>
             <p>Your browser does not support JavaScript. Please <a href="https://form.jotform.com/250783246754060" target="_blank" rel="noopener noreferrer">fill out the contact form</a> directly.</p>
           </noscript>
@@ -278,7 +184,18 @@ const localBusinessSchema = {
     .hours-row span:last-child { color: var(--neutral-600); }
     .btn-sm { padding: 0.55rem 1.25rem; font-size: 0.85rem; }
 
-    .form-column { min-width: 0; }
+    .form-tabs { display: flex; gap: 0; margin-bottom: 1.5rem; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--neutral-200); }
+    .form-tab {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.85rem 1rem; font-size: 0.92rem; font-weight: 600;
+      background: var(--neutral-50); color: var(--neutral-500); border: none; cursor: pointer;
+      transition: all var(--transition-fast); font-family: var(--font-body);
+    }
+    .form-tab:hover { background: var(--neutral-100); color: var(--neutral-700); }
+    .form-tab.active { background: var(--primary-700); color: white; }
+    .form-tab svg { flex-shrink: 0; }
+    .form-panel { display: none; }
+    .form-panel.active { display: block; }
     .form-header { margin-bottom: 1.5rem; }
     .form-header h2 { font-family: var(--font-display); font-size: 1.5rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
     .form-header p { color: var(--neutral-500); line-height: 1.6; }
@@ -301,6 +218,22 @@ const localBusinessSchema = {
       .legal-hero { padding: 3.5rem 1rem 3rem; }
       .contact-grid { padding: 0 1rem; }
       .jotform-embed { min-height: 450px; }
+      .form-tab { font-size: 0.82rem; padding: 0.7rem 0.5rem; }
     }
   </style>
+
+  <script>
+    // Tab switching for contact forms
+    document.querySelectorAll('.form-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        // Update tabs
+        document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        // Update panels
+        document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById('panel-' + target).classList.add('active');
+      });
+    });
+  </script>
 </Layout>
