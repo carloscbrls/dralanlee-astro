@@ -53,6 +53,126 @@ const localBusinessSchema = {
 
         <div class="jotform-embed" id="contact-form-container">
           <script type="text/javascript" src="https://form.jotform.com/jsform/250783246754060" async></script>
+          <script>
+            // Override JotForm content for Dr. Lee's dental practice
+            function customizeJotForm() {
+              const container = document.getElementById('contact-form-container');
+              if (!container) return;
+
+              // 1. Hide CC3PO header/branding (the form header with "Get in Touch Now", CC3PO logo, "MAY THE CLICKS BE WITH YOU")
+              const headers = container.querySelectorAll('.form-header-group, .form-header');
+              headers.forEach(h => h.remove());
+
+              // 2. Replace Subject dropdown options with dental-appropriate ones
+              const subjectSelects = container.querySelectorAll('select[name*="subject"], select[id*="subject"], select[id*="5"]');
+              subjectSelects.forEach(select => {
+                const options = select.querySelectorAll('option');
+                const dentalOptions = [
+                  { value: '', text: 'Please Select' },
+                  { value: 'General Inquiry', text: 'General Inquiry — Questions & Information' },
+                  { value: 'Schedule Appointment', text: 'Schedule an Appointment' },
+                  { value: 'Dental Emergency', text: 'Dental Emergency — Urgent Care Needed' },
+                  { value: 'Insurance & Billing', text: 'Insurance & Billing Questions' },
+                  { value: 'New Patient', text: 'New Patient — First Visit Inquiry' },
+                  { value: 'Other', text: 'Other — Please Specify Below' }
+                ];
+                select.innerHTML = '';
+                dentalOptions.forEach(opt => {
+                  const option = document.createElement('option');
+                  option.value = opt.value;
+                  option.textContent = opt.text;
+                  select.appendChild(option);
+                });
+              });
+
+              // 3. Replace Urgency Level options with dental-appropriate ones
+              const urgencySelects = container.querySelectorAll('select[name*="urgency"], select[id*="urgency"], select[id*="12"]');
+              urgencySelects.forEach(select => {
+                const options = [
+                  { value: '', text: 'Please Select' },
+                  { value: 'Low — General question, no rush', text: 'Low — General question, no rush' },
+                  { value: 'Normal — Response within 1-2 business days', text: 'Normal — Response within 1-2 business days' },
+                  { value: 'High — Need to be seen soon', text: 'High — Need to be seen soon' },
+                  { value: 'Urgent — Dental emergency', text: 'Urgent — Dental emergency' }
+                ];
+                select.innerHTML = '';
+                options.forEach(opt => {
+                  const option = document.createElement('option');
+                  option.value = opt.value;
+                  option.textContent = opt.text;
+                  select.appendChild(option);
+                });
+              });
+
+              // 4. Hide Invoice Number and Company Website fields
+              container.querySelectorAll('li[data-type="control_textbox"]').forEach(li => {
+                const label = li.querySelector('.form-label, label');
+                if (label && (label.textContent.includes('Invoice') || label.textContent.includes('Company Website'))) {
+                  li.style.display = 'none';
+                }
+              });
+
+              // 5. Change submit button text
+              const submitButtons = container.querySelectorAll('.form-submit-button, button[type="submit"]');
+              submitButtons.forEach(btn => {
+                if (btn.textContent.trim() === 'Send Inquiry') {
+                  btn.textContent = 'Send Message';
+                }
+              });
+
+              // 6. Remove any CC3PO branding text
+              const allText = container.querySelectorAll('*');
+              allText.forEach(el => {
+                if (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3) {
+                  if (el.textContent.includes('CC3PO') || el.textContent.includes('MAY THE CLICKS')) {
+                    el.textContent = el.textContent.replace(/CC3PO/g, 'Dr. Lee\'s Office').replace(/MAY THE CLICKS BE WITH YOU/g, '');
+                  }
+                }
+                // Remove CC3PO logo/droid image
+                if (el.tagName === 'IMG' && el.src && (el.src.includes('cc3po') || el.alt?.includes('CC3PO'))) {
+                  el.remove();
+                }
+              });
+
+              // 7. Restyle the form to match Dr. Lee's branding
+              const formAll = container.querySelector('.form-all');
+              if (formAll) {
+                formAll.style.setProperty('background', '#ffffff', 'important');
+                formAll.style.setProperty('color', '#1f2937', 'important');
+                formAll.style.setProperty('box-shadow', 'none', 'important');
+                formAll.style.setProperty('border-radius', '12px', 'important');
+                formAll.style.setProperty('padding', '0', 'important');
+              }
+
+              // Remove the dark/neon theme CSS overrides
+              const styleEls = container.querySelectorAll('style');
+              styleEls.forEach(s => {
+                if (s.textContent.includes('0A192F') || s.textContent.includes('64FFDA') || s.textContent.includes('00FFAA')) {
+                  s.remove();
+                }
+              });
+            }
+
+            // Run after JotForm loads (it loads async)
+            const observer = new MutationObserver((mutations, obs) => {
+              const form = document.querySelector('#contact-form-container form, #contact-form-container .form-all');
+              if (form) {
+                customizeJotForm();
+                // Keep observing for a bit in case JotForm re-renders
+                setTimeout(() => { customizeJotForm(); obs.disconnect(); }, 2000);
+              }
+            });
+            observer.observe(document.getElementById('contact-form-container'), {
+              childList: true,
+              subtree: true
+            });
+            // Also try after a delay in case the form loaded before the observer
+            setTimeout(() => {
+              if (document.querySelector('#contact-form-container form') || document.querySelector('#contact-form-container .form-all')) {
+                customizeJotForm();
+              }
+            }, 3000);
+          </script>
           <noscript>
             <p>Your browser does not support JavaScript. Please <a href="https://form.jotform.com/250783246754060" target="_blank" rel="noopener noreferrer">fill out the contact form</a> directly.</p>
           </noscript>
