@@ -395,7 +395,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     /* ===== SHARED COMPONENTS ===== */
     .section-pad { padding: 5rem 1.5rem; }
     :global(.container-wide) { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
-    :global(.container-narrow) { max-width: 800px; margin: 0 auto; }
+    :global(.container-narrow) { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
 
     .section-label {
       font-family: var(--font-body); font-weight: 600; font-size: 0.78rem;
@@ -417,22 +417,41 @@ const allSchemas = [localBusinessSchema, ...schemas];
 
     .btn-primary {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--primary-700); color: white; padding: 0.85rem 2rem;
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
+      color: white; padding: 0.9rem 2.2rem;
       border-radius: var(--radius-full); font-family: var(--font-body);
-      font-weight: 600; font-size: 0.95rem; transition: all var(--transition-fast);
-      box-shadow: var(--shadow-md); text-decoration: none; border: none; cursor: pointer;
+      font-weight: 600; font-size: 0.95rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35), 0 1px 3px rgba(0,0,0,0.1);
+      text-decoration: none; border: none; cursor: pointer;
+      position: relative; overflow: hidden;
     }
-    .btn-primary:hover { background: var(--primary-800); transform: translateY(-2px); box-shadow: var(--shadow-lg); color: white; }
-    .btn-primary svg { width: 16px; height: 16px; }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.15) 100%);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-900) 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(2, 132, 199, 0.4), 0 2px 6px rgba(0,0,0,0.1);
+      color: white;
+    }
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:active { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3); }
+    .btn-primary svg { width: 16px; height: 16px; position: relative; }
 
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: transparent; color: var(--primary-700); padding: 0.85rem 2rem;
+      background: transparent; color: var(--primary-700); padding: 0.9rem 2.2rem;
       border: 2px solid var(--primary-200); border-radius: var(--radius-full);
       font-family: var(--font-body); font-weight: 600; font-size: 0.95rem;
-      transition: all var(--transition-fast); text-decoration: none; cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none; cursor: pointer;
     }
-    .btn-secondary:hover { background: var(--primary-50); border-color: var(--primary-500); color: var(--primary-800); }
+    .btn-secondary:hover {
+      background: var(--primary-50); border-color: var(--primary-500); color: var(--primary-800);
+      transform: translateY(-2px); box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+    }
+    .btn-secondary:active { transform: translateY(0); }
     .btn-secondary svg { width: 16px; height: 16px; }
 
     /* ===== RESPONSIVE ===== */
