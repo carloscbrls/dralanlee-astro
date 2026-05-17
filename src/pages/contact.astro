@@ -161,11 +161,20 @@ const localBusinessSchema = {
       max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
     }
     .info-column { display: flex; flex-direction: column; gap: 1.25rem; }
+    .btn-sm { padding: 0.65rem 1.5rem; font-size: 0.88rem; border-radius: var(--radius-full); font-weight: 600; }
+
     .info-card {
-      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
-      padding: 1.5rem; transition: all var(--transition-base);
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg);
+      padding: 1.75rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative; overflow: hidden;
     }
-    .info-card:hover { box-shadow: var(--shadow-md); border-color: var(--primary-200); }
+    .info-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.02) 0%, rgba(7, 89, 133, 0.04) 100%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .info-card:hover::before { opacity: 1; }
+    .info-card:hover { box-shadow: 0 12px 32px rgba(2, 132, 199, 0.1), 0 4px 8px rgba(0,0,0,0.04); border-color: var(--primary-200); transform: translateY(-3px); }
     .info-icon {
       width: 44px; height: 44px; border-radius: var(--radius-md);
       background: var(--primary-50); color: var(--primary-600);
@@ -187,7 +196,7 @@ const localBusinessSchema = {
     .form-tabs { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
     .form-tab {
       display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-      padding: 0.85rem 1.5rem; font-size: 0.92rem; font-weight: 600;
+      padding: 0.9rem 1.75rem; font-size: 0.92rem; font-weight: 600;
       border-radius: var(--radius-full); font-family: var(--font-body);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;
       text-decoration: none; position: relative; overflow: hidden;
@@ -216,18 +225,18 @@ const localBusinessSchema = {
     }
     .form-tab:active { transform: translateY(-1px); }
     .form-panel { display: none; }
-    .form-panel.active { display: block; }
+    .form-panel.active { display: block; animation: fadeInUp 0.3s ease-out; }
     .form-header { margin-bottom: 1.5rem; }
     .form-header h2 { font-family: var(--font-display); font-size: 1.5rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
     .form-header p { color: var(--neutral-500); line-height: 1.6; }
     .jotform-embed {
-      min-height: 550px; background: var(--neutral-50);
-      border: 1px solid var(--neutral-200); border-radius: var(--radius-md); overflow: hidden;
+      min-height: 750px; background: var(--neutral-50);
+      border: 1px solid var(--neutral-200); border-radius: var(--radius-md); overflow: visible;
     }
     .form-disclaimer { margin-top: 1rem; text-align: center; }
     .form-disclaimer small { color: var(--neutral-400); font-size: 0.82rem; }
     .form-disclaimer a { color: var(--primary-600); }
-    .map-embed { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--neutral-200); }
+    .map-embed { border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 12px 32px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04); border: 1px solid var(--neutral-200); }
     .map-embed iframe { display: block; }
 
     @media (max-width: 1024px) {
@@ -238,7 +247,7 @@ const localBusinessSchema = {
     @media (max-width: 768px) {
       .legal-hero { padding: 3.5rem 1rem 3rem; }
       .contact-grid { padding: 0 1rem; }
-      .jotform-embed { min-height: 450px; }
+      .jotform-embed { min-height: 600px; }
       .form-tab { font-size: 0.82rem; padding: 0.7rem 0.5rem; }
     }
   </style>
