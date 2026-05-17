@@ -193,11 +193,18 @@ const teamSchema = {
       align-items: center;
       gap: 0.4rem;
       padding: 0.5rem 1rem;
-      background: var(--primary-50);
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.08) 0%, rgba(7, 89, 133, 0.12) 100%);
       color: var(--primary-700);
+      border: 1px solid rgba(2, 132, 199, 0.15);
       border-radius: var(--radius-full);
       font-size: 0.82rem;
       font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .highlight-pill:hover {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.14) 0%, rgba(7, 89, 133, 0.2) 100%);
+      border-color: rgba(2, 132, 199, 0.3);
+      transform: translateY(-1px);
     }
     .highlight-pill svg { color: var(--primary-500); }
 
@@ -236,8 +243,8 @@ const teamSchema = {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--primary-50);
-      color: var(--primary-300);
+      background: linear-gradient(135deg, var(--primary-100) 0%, var(--primary-200) 100%);
+      color: var(--primary-600);
     }
     .team-card-body {
       padding: 1.5rem;

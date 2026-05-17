@@ -187,7 +187,7 @@ const serviceSchema = {
       border: 1px solid var(--neutral-200);
       border-radius: var(--radius-lg);
       padding: 2.5rem;
-      transition: all var(--transition-base);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
     }
@@ -199,11 +199,11 @@ const serviceSchema = {
       background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform var(--transition-base);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .service-card:hover {
       border-color: var(--primary-200);
-      box-shadow: var(--shadow-xl);
+      box-shadow: 0 16px 40px rgba(2, 132, 199, 0.1), 0 4px 10px rgba(0,0,0,0.04);
       transform: translateY(-4px);
     }
     .service-card:hover::before { transform: scaleX(1); }
@@ -211,17 +211,22 @@ const serviceSchema = {
     .service-icon {
       width: 56px; height: 56px;
       display: flex; align-items: center; justify-content: center;
-      background: var(--primary-50);
-      color: var(--primary-600);
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
+      color: white;
       border-radius: var(--radius-md);
       margin-bottom: 1.5rem;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    .service-card:hover .service-icon { transform: scale(1.08); box-shadow: 0 8px 24px rgba(2, 132, 199, 0.35); }
     .service-card-title {
       font-family: var(--font-display);
       font-size: 1.5rem;
       color: var(--neutral-900);
       margin-bottom: 0.75rem;
+      transition: color 0.3s;
     }
+    .service-card:hover .service-card-title { color: var(--primary-700); }
     .service-card-desc {
       color: var(--neutral-500);
       font-size: 0.95rem;
@@ -246,7 +251,7 @@ const serviceSchema = {
       left: 0;
       top: 0.75rem;
       width: 6px; height: 6px;
-      background: var(--primary-400);
+      background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
       border-radius: 50%;
     }
     .service-link {
@@ -270,28 +275,40 @@ const serviceSchema = {
     .additional-item {
       background: white;
       padding: 2rem;
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       border: 1px solid var(--neutral-200);
-      transition: all var(--transition-base);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative; overflow: hidden;
     }
+    .additional-item::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.03) 0%, rgba(7, 89, 133, 0.06) 100%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .additional-item:hover::before { opacity: 1; }
     .additional-item:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(2, 132, 199, 0.1), 0 4px 8px rgba(0,0,0,0.04);
+      border-color: var(--primary-200); transform: translateY(-3px);
     }
     .additional-icon {
-      width: 44px; height: 44px;
+      width: 48px; height: 48px;
       display: flex; align-items: center; justify-content: center;
-      background: var(--primary-50);
-      color: var(--primary-600);
-      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
+      color: white;
+      border-radius: var(--radius-md);
       margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    .additional-item:hover .additional-icon { transform: scale(1.08); box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35); }
     .additional-item h3 {
       font-family: var(--font-display);
       font-size: 1.15rem;
       margin-bottom: 0.5rem;
       color: var(--neutral-900);
+      transition: color 0.3s;
     }
+    .additional-item:hover h3 { color: var(--primary-700); }
     .additional-item p {
       color: var(--neutral-500);
       font-size: 0.9rem;
@@ -304,9 +321,6 @@ const serviceSchema = {
       .additional-grid { grid-template-columns: 1fr; }
       .service-card { padding: 2rem; }
     }
-    @media (max-width: 480px) {
-    }
-
     /* Scroll Animation */
     [data-animate] {
       opacity: 0;

@@ -154,11 +154,11 @@ const aboutSchema = {
       position: absolute;
       bottom: -1rem;
       right: -1rem;
-      background: var(--primary-700);
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
       color: white;
       padding: 1.25rem 1.5rem;
       border-radius: var(--radius-md);
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.35);
       text-align: center;
     }
     .badge-number {
@@ -195,11 +195,18 @@ const aboutSchema = {
       align-items: center;
       gap: 0.6rem;
       padding: 0.65rem 1rem;
-      background: var(--primary-50);
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.06) 0%, rgba(7, 89, 133, 0.1) 100%);
+      border: 1px solid rgba(2, 132, 199, 0.12);
       border-radius: var(--radius-sm);
       font-size: 0.88rem;
       font-weight: 500;
       color: var(--primary-800);
+      transition: all 0.3s ease;
+    }
+    .highlight-item:hover {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.1) 0%, rgba(7, 89, 133, 0.16) 100%);
+      border-color: rgba(2, 132, 199, 0.25);
+      transform: translateY(-1px);
     }
     .highlight-item svg { color: var(--primary-500); flex-shrink: 0; }
 
@@ -213,30 +220,43 @@ const aboutSchema = {
     .value-card {
       background: white;
       padding: 2rem;
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       border: 1px solid var(--neutral-200);
       text-align: center;
-      transition: all var(--transition-base);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
     }
+    .value-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.03) 0%, rgba(7, 89, 133, 0.06) 100%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .value-card:hover::before { opacity: 1; }
     .value-card:hover {
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 16px 40px rgba(2, 132, 199, 0.1), 0 4px 10px rgba(0,0,0,0.04);
       transform: translateY(-4px);
       border-color: var(--primary-200);
     }
     .value-icon {
       width: 56px; height: 56px;
       display: flex; align-items: center; justify-content: center;
-      background: var(--primary-50);
-      color: var(--primary-600);
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
+      color: white;
       border-radius: var(--radius-md);
       margin: 0 auto 1.25rem;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    .value-card:hover .value-icon { transform: scale(1.08); box-shadow: 0 8px 24px rgba(2, 132, 199, 0.35); }
     .value-card h3 {
       font-family: var(--font-display);
       font-size: 1.15rem;
       margin-bottom: 0.75rem;
       color: var(--neutral-900);
+      transition: color 0.3s;
     }
+    .value-card:hover h3 { color: var(--primary-700); }
     .value-card p {
       color: var(--neutral-500);
       font-size: 0.9rem;
