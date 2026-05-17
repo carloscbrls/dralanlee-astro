@@ -290,10 +290,10 @@ const servicesSchema = {
     .hero h1 em { font-style: italic; color: var(--primary-300); }
     .hero-desc { color: rgba(255,255,255,0.75); font-size: 1.15rem; line-height: 1.7; margin-bottom: 2rem; font-weight: 300; }
     .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-    .hero-actions .btn-primary { background: var(--primary-500); font-size: 1rem; padding: 0.9rem 2rem; }
-    .hero-actions .btn-primary:hover { background: var(--primary-400); }
+    .hero-actions .btn-primary { font-size: 1rem; padding: 0.95rem 2.2rem; }
+    .hero-actions .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(2, 132, 199, 0.45), 0 2px 6px rgba(0,0,0,0.1); }
     .hero-actions .btn-secondary { border-color: rgba(255,255,255,0.3); color: white; }
-    .hero-actions .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); color: white; }
+    .hero-actions .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); color: white; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,255,255,0.15); }
     .hero-trust { display: flex; gap: 1.5rem; flex-wrap: wrap; }
     .trust-item { display: flex; align-items: center; gap: 0.4rem; color: rgba(255,255,255,0.6); font-size: 0.85rem; }
     .trust-item svg { color: var(--primary-400); }
@@ -337,12 +337,12 @@ const servicesSchema = {
     }
     .btn-light {
       background: white !important; color: var(--primary-800) !important;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.1) !important;
     }
     .btn-light:hover {
       background: var(--primary-50) !important;
       transform: translateY(-3px) !important;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.25) !important;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.1) !important;
     }
 
     /* ===== SERVICES ===== */
@@ -427,10 +427,18 @@ const servicesSchema = {
     .cta-text h2 { font-family: var(--font-display); font-size: 2rem; color: white; margin-bottom: 0.5rem; }
     .cta-text p { color: rgba(255,255,255,0.7); font-size: 1.05rem; }
     .cta-actions { position: relative; z-index: 1; display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-cta-hero.btn-primary { background: var(--accent-500); color: var(--neutral-900); }
-    .btn-cta-hero.btn-primary:hover { background: var(--accent-400); }
+    .btn-cta-hero.btn-primary {
+      background: linear-gradient(135deg, var(--accent-400) 0%, var(--accent-600) 100%) !important;
+      color: var(--neutral-900) !important;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4), 0 1px 3px rgba(0,0,0,0.1) !important;
+    }
+    .btn-cta-hero.btn-primary:hover {
+      background: linear-gradient(135deg, var(--accent-300) 0%, var(--accent-500) 100%) !important;
+      transform: translateY(-3px) !important;
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5), 0 2px 6px rgba(0,0,0,0.1) !important;
+    }
     .btn-cta-hero.btn-secondary { border-color: rgba(255,255,255,0.3); color: white; }
-    .btn-cta-hero.btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); color: white; }
+    .btn-cta-hero.btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); color: white; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,255,255,0.15); }
 
     /* ===== MAP ===== */
     .map-section { background: white; }

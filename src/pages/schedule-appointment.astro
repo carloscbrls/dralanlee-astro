@@ -120,21 +120,33 @@ const dentistSchema = {
     }
     .info-column { display: flex; flex-direction: column; gap: 1.25rem; }
     .info-card {
-      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
-      padding: 1.5rem; transition: all var(--transition-base);
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg);
+      padding: 1.75rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative; overflow: hidden;
     }
-    .info-card:hover { box-shadow: var(--shadow-md); border-color: var(--primary-200); }
+    .info-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.02) 0%, rgba(7, 89, 133, 0.04) 100%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .info-card:hover::before { opacity: 1; }
+    .info-card:hover { box-shadow: 0 12px 32px rgba(2, 132, 199, 0.1), 0 4px 8px rgba(0,0,0,0.04); border-color: var(--primary-200); transform: translateY(-3px); }
     .info-icon {
-      width: 44px; height: 44px; border-radius: var(--radius-md);
-      background: var(--primary-50); color: var(--primary-600);
+      width: 52px; height: 52px; border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%); color: white;
       display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    .info-card:hover .info-icon { transform: scale(1.05); box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35); }
     .info-icon.shield { background: #ecfdf5; color: #059669; }
-    .info-card h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .info-card h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin-bottom: 0.5rem; transition: color 0.3s; }
+    .info-card:hover h3 { color: var(--primary-700); }
     .info-card p { color: var(--neutral-500); font-size: 0.9rem; line-height: 1.6; }
     .phone-large { font-size: 1.5rem; font-weight: 700; color: var(--primary-700); display: block; margin-bottom: 0.5rem; }
     .phone-large:hover { color: var(--primary-500); }
     .hipaa-card { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-color: #6ee7b7; }
+    .hipaa-card .info-icon { background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25); }
+    .hipaa-card:hover .info-icon { box-shadow: 0 6px 18px rgba(5, 150, 105, 0.35); }
 
     .hours-grid { width: 100%; }
     .hours-row { display: flex; justify-content: space-between; padding: 0.35rem 0; font-size: 0.88rem; border-bottom: 1px solid var(--neutral-100); }
@@ -148,16 +160,16 @@ const dentistSchema = {
     .form-header p { color: var(--neutral-500); line-height: 1.6; }
 
     .jotform-embed {
-      min-height: 600px; background: var(--neutral-50);
-      border: 1px solid var(--neutral-200); border-radius: var(--radius-md);
-      overflow: hidden;
+      min-height: 750px; background: var(--neutral-50);
+      border: 1px solid var(--neutral-200); border-radius: var(--radius-lg);
+      overflow: visible;
     }
 
     .form-disclaimer { margin-top: 1rem; text-align: center; }
     .form-disclaimer small { color: var(--neutral-400); font-size: 0.82rem; }
     .form-disclaimer a { color: var(--primary-600); }
 
-    .btn-sm { padding: 0.55rem 1.25rem; font-size: 0.85rem; }
+    .btn-sm { padding: 0.65rem 1.5rem; font-size: 0.88rem; border-radius: var(--radius-full); font-weight: 600; }
 
     @media (max-width: 1024px) {
       .schedule-grid { grid-template-columns: 1fr; }
@@ -167,7 +179,7 @@ const dentistSchema = {
     @media (max-width: 768px) {
       .legal-hero { padding: 3.5rem 1rem 3rem; }
       .schedule-grid { padding: 0 1rem; }
-      .jotform-embed { min-height: 500px; }
+      .jotform-embed { min-height: 600px; }
     }
   </style>
 </Layout>

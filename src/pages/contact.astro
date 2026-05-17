@@ -176,14 +176,18 @@ const localBusinessSchema = {
     .info-card:hover::before { opacity: 1; }
     .info-card:hover { box-shadow: 0 12px 32px rgba(2, 132, 199, 0.1), 0 4px 8px rgba(0,0,0,0.04); border-color: var(--primary-200); transform: translateY(-3px); }
     .info-icon {
-      width: 44px; height: 44px; border-radius: var(--radius-md);
-      background: var(--primary-50); color: var(--primary-600);
+      width: 52px; height: 52px; border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%); color: white;
       display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .info-icon.shield { background: #ecfdf5; color: #059669; }
-    .info-card h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
+    .info-card:hover .info-icon { transform: scale(1.05); box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35); }
+    .info-icon.shield { background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25); }
+    .info-card:hover .info-icon.shield { box-shadow: 0 6px 18px rgba(5, 150, 105, 0.35); }
+    .info-card h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin-bottom: 0.5rem; transition: color 0.3s; }
+    .info-card:hover h3 { color: var(--primary-700); }
     .info-card p { color: var(--neutral-600); font-size: 0.9rem; line-height: 1.6; }
-    .phone-large { font-size: 1.5rem; font-weight: 700; color: var(--primary-700); display: block; margin-bottom: 0.5rem; }
+    .phone-large { font-size: 1.5rem; font-weight: 700; color: var(--primary-700); display: block; margin-bottom: 0.5rem; transition: color 0.3s; }
     .phone-large:hover { color: var(--primary-500); }
     .hipaa-card { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-color: #6ee7b7; }
     .hours-grid { width: 100%; }
@@ -191,8 +195,6 @@ const localBusinessSchema = {
     .hours-row:last-child { border-bottom: none; }
     .hours-row span:first-child { color: var(--neutral-700); font-weight: 500; }
     .hours-row span:last-child { color: var(--neutral-600); }
-    .btn-sm { padding: 0.55rem 1.25rem; font-size: 0.85rem; }
-
     .form-tabs { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
     .form-tab {
       display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
