@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 const title = 'About Dr. Lee | Dr. Alan S. Lee, DDS - Manteca Dentist';
 const description = 'Learn about Dr. Alan S. Lee, DDS - trusted Manteca dentist for over 30 years. Gentle, patient-focused dental care. Call (209) 239-2990.';
+const canonicalUrl = 'https://dralanlee.com/about/';
 
 const aboutSchema = {
   "@context": "https://schema.org",
@@ -19,7 +20,7 @@ const aboutSchema = {
 };
 ---
 
-<Layout title={title} description={description} schema={aboutSchema}>
+<Layout title={title} description={description} canonicalUrl={canonicalUrl} schema={aboutSchema}>
   <!-- Hero -->
   <section class="legal-hero" data-animate>
     <div class="container-wide">

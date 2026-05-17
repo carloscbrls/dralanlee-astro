@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 const title = 'Our Team | Dr. Alan S. Lee, DDS — Manteca Dentist';
 const description = 'Meet the caring dental team at Dr. Alan S. Lee, DDS in Manteca, CA. Experienced, gentle professionals dedicated to your comfort and dental health.';
+const canonicalUrl = 'https://dralanlee.com/staff/';
 
 const teamSchema = {
   "@context": "https://schema.org",
@@ -13,7 +14,7 @@ const teamSchema = {
 };
 ---
 
-<Layout title={title} description={description} schema={teamSchema}>
+<Layout title={title} description={description} canonicalUrl={canonicalUrl} schema={teamSchema}>
   <!-- Hero -->
   <section class="legal-hero" data-animate>
     <div class="container-wide">

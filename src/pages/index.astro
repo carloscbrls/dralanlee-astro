@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 const title = 'Dr. Alan S. Lee, DDS | Manteca Dentist — General & Cosmetic Dentistry';
 const description = 'Trusted Manteca dentist for 30+ years. Dr. Alan S. Lee provides general & cosmetic dentistry, implants, whitening, and more. Call (209) 239-2990.';
+const canonicalUrl = 'https://dralanlee.com/';
 
 const servicesSchema = {
   "@context": "https://schema.org",
@@ -27,7 +28,7 @@ const servicesSchema = {
 };
 ---
 
-<Layout title={title} description={description} schema={servicesSchema}>
+<Layout title={title} description={description} canonicalUrl={canonicalUrl} schema={servicesSchema}>
 
   <!-- ===== HERO SECTION ===== -->
   <section class="hero" aria-label="Welcome to Dr. Alan S. Lee, DDS">

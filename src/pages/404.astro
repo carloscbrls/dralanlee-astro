@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Page Not Found | Dr. Alan S. Lee, DDS';
+const description = 'The page you are looking for does not exist. Return to our homepage or contact our Manteca dental office at (209) 239-2990.';
+const canonicalUrl = 'https://dralanlee.com/404/';
+---
+
+<Layout title={title} description={description} canonicalUrl={canonicalUrl} hideHero={true}>
+  <section class="error-page">
+    <div class="container-narrow">
+      <div class="error-content">
+        <div class="error-code">404</div>
+        <h1 class="error-heading">Page Not Found</h1>
+        <p class="error-message">We're sorry — the page you're looking for doesn't exist or has been moved.</p>
+        <div class="error-actions">
+          <a href="/" class="btn-primary">Return Home</a>
+          <a href="/contact/" class="btn-secondary">Contact Us</a>
+          <a href="/schedule-appointment/" class="btn-secondary">Schedule Appointment</a>
+        </div>
+        <p class="error-phone">Or call us directly: <a href="tel:+12092392990" class="link">(209) 239-2990</a></p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .error-page {
+    padding: 6rem 1rem 4rem;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-950, #082f49) 0%, var(--primary-800, #075985) 100%);
+    color: white;
+  }
+
+  .error-content {
+    text-align: center;
+  }
+
+  .error-code {
+    font-size: 8rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--accent-400, #22d3ee);
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .error-heading {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .error-message {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .error-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .error-actions .btn-primary {
+    background: var(--accent-500, #06b6d4);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .error-actions .btn-primary:hover {
+    background: var(--accent-600, #0891b2);
+  }
+
+  .error-actions .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: background 0.2s;
+  }
+
+  .error-actions .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .error-phone {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+  }
+
+  .error-phone .link {
+    color: var(--accent-300, #67e8f9);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .error-phone .link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .error-code {
+      font-size: 5rem;
+    }
+
+    .error-heading {
+      font-size: 1.5rem;
+    }
+
+    .error-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

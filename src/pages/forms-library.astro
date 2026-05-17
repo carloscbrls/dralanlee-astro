@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 const title = 'Patient Forms | Dr. Alan S. Lee, DDS';
 const description = 'Complete your patient forms online before your visit. HIPAA-compliant, encrypted, and secure. New patient registration, medical history, consent forms, and more.';
+const canonicalUrl = 'https://dralanlee.com/forms-library/';
 
 // Form definitions - JotForm iframe embed IDs
 const newPatientForms = [
@@ -53,7 +54,7 @@ const consentForms = [
 ];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} canonicalUrl={canonicalUrl}>
   <!-- Hero -->
   <section class="legal-hero" data-animate>
     <div class="container-wide">

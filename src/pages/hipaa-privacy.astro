@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 const title = 'HIPAA Privacy Notice | Dr. Alan S. Lee, DDS';
 const description = 'Full HIPAA Notice of Privacy Practices for Dr. Alan S. Lee, DDS. Learn how we protect your health information and your rights under HIPAA.';
+const canonicalUrl = 'https://dralanlee.com/hipaa-privacy/';
 
 const medicalSpecialtySchema = {
   "@context": "https://schema.org",
@@ -20,7 +21,7 @@ const medicalSpecialtySchema = {
 };
 ---
 
-<Layout title={title} description={description} schema={medicalSpecialtySchema}>
+<Layout title={title} description={description} canonicalUrl={canonicalUrl} schema={medicalSpecialtySchema}>
   <!-- Hero -->
   <section class="legal-hero" data-animate>
     <div class="container-wide">

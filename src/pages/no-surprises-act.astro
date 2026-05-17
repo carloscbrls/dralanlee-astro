@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 const title = 'No Surprises Act & Good Faith Estimates | Dr. Alan S. Lee, DDS';
 const description = 'Learn about your rights under the No Surprises Act, including Good Faith Estimates for dental services. Dr. Alan S. Lee, DDS is committed to price transparency.';
+const canonicalUrl = 'https://dralanlee.com/no-surprises-act/';
 
 const noSurprisesSchema = {
   "@context": "https://schema.org",
@@ -15,7 +16,7 @@ const noSurprisesSchema = {
 };
 ---
 
-<Layout title={title} description={description} schema={noSurprisesSchema}>
+<Layout title={title} description={description} canonicalUrl={canonicalUrl} schema={noSurprisesSchema}>
   <!-- Hero -->
   <section class="legal-hero" data-animate>
     <div class="container-wide">

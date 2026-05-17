@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 const title = 'Schedule an Appointment | Dr. Alan S. Lee, DDS';
 const description = 'Schedule your dental appointment online. HIPAA-compliant form submission. Dr. Alan S. Lee, DDS — Manteca, CA. Call (209) 239-2990 for urgent needs.';
+const canonicalUrl = 'https://dralanlee.com/schedule-appointment/';
 
 const dentistSchema = {
   "@context": "https://schema.org",
@@ -23,7 +24,7 @@ const dentistSchema = {
 };
 ---
 
-<Layout title={title} description={description} schema={dentistSchema}>
+<Layout title={title} description={description} canonicalUrl={canonicalUrl} schema={dentistSchema}>
   <!-- Hero -->
   <section class="legal-hero" data-animate>
     <div class="container-wide">

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 const title = 'Frequently Asked Questions | Dr. Alan S. Lee, DDS';
 const description = 'Common questions about dental services, insurance, scheduling, HIPAA privacy, and more at Dr. Alan S. Lee, DDS in Manteca, CA.';
+const canonicalUrl = 'https://dralanlee.com/faqs/';
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -16,7 +17,7 @@ const faqSchema = {
 };
 ---
 
-<Layout title={title} description={description} schema={faqSchema}>
+<Layout title={title} description={description} canonicalUrl={canonicalUrl} schema={faqSchema}>
   <!-- Hero -->
   <section class="legal-hero" data-animate>
     <div class="container-wide">

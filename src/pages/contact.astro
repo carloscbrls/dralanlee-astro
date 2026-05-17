@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 const title = 'Contact Us | Dr. Alan S. Lee, DDS';
 const description = 'Contact Dr. Alan S. Lee, DDS in Manteca, CA. Call (209) 239-2990, visit us at 715 N Main St, or send us a message online. We are here to help.';
+const canonicalUrl = 'https://dralanlee.com/contact/';
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -31,7 +32,7 @@ const localBusinessSchema = {
 };
 ---
 
-<Layout title={title} description={description} schema={localBusinessSchema}>
+<Layout title={title} description={description} canonicalUrl={canonicalUrl} schema={localBusinessSchema}>
   <!-- Hero -->
   <section class="legal-hero" data-animate>
     <div class="container-wide">
@@ -151,7 +152,7 @@ const localBusinessSchema = {
   <section class="section-pad" style="padding-top: 0;">
     <div class="container-narrow" data-animate>
       <div class="map-embed">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3135.5!2d-121.2167!3d37.7975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809046e4e4e4e4e%3A0xe4e4e4e4e4e4e4e!2s715+N+Main+St%2C+Manteca%2C+CA+95336!5e0!3m2!1sen!2sus!4v1234567890" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Dr. Alan S. Lee office location on Google Maps"></iframe>
+        <iframe src="https://maps.google.com/maps?q=715+N+Main+St+Manteca+CA+95336&output=embed" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Dr. Alan S. Lee office location on Google Maps"></iframe>
       </div>
     </div>
   </section>
