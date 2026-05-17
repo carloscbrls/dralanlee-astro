@@ -8,7 +8,7 @@ export interface Props {
   hideHero?: boolean;
 }
 
-const { title, description = 'Dr. Alan S. Lee, DDS — General & Cosmetic Dentistry in Manteca, CA. Trusted for 30+ years. Call (209) 239-2990.', ogImage = '/images/dr-lee-portrait-2026.jpg', canonicalUrl, schema, hideHero = false } = Astro.props;
+const { title, description = 'Dr. Alan S. Lee, DDS — General & Cosmetic Dentistry in Manteca, CA. Trusted for 30+ years. Call (209) 239-2990.', ogImage = '/images/dr-lee-portrait-2026-new.jpg', canonicalUrl, schema, hideHero = false } = Astro.props;
 
 const currentYear = new Date().getFullYear();
 
@@ -30,7 +30,7 @@ const localBusinessSchema = {
   openingHoursSpecification: [
     { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday"], opens: "08:00", closes: "16:30" }
   ],
-  image: "https://dralanlee.com/images/dr-lee-portrait-2026.jpg",
+  image: "https://dralanlee.com/images/dr-lee-portrait-2026-new.jpg",
   priceRange: "$$",
   medicalSpecialty: "Dentistry",
   sameAs: [
@@ -561,7 +561,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo-footer">
-          <img src="/images/dr-lee-portrait-2026.jpg" alt="" width="44" height="44" loading="lazy" />
+          <img src="/images/dr-lee-portrait-2026-new.jpg" alt="" width="44" height="44" loading="lazy" />
           <span class="logo-footer-text">Dr. Alan S. Lee, DDS</span>
         </div>
         <p>Providing exceptional general and cosmetic dentistry in Manteca for over 30 years. Your comfort and health are our top priorities.</p>
