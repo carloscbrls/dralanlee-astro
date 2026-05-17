@@ -414,6 +414,18 @@ const allSchemas = [localBusinessSchema, ...schemas];
       font-size: 1.1rem; color: var(--neutral-500); max-width: 600px;
       line-height: 1.7; font-weight: 300;
     }
+    .section-heading {
+      font-family: var(--font-display); font-size: 1.75rem; color: var(--neutral-900);
+      margin-bottom: 0.5rem;
+    }
+    .section-description {
+      color: var(--neutral-500); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6;
+    }
+    .alt-bg { background: var(--neutral-50); }
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary-50) 0%, white 100%);
+      border-top: 1px solid var(--primary-100);
+    }
 
     .btn-primary {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -479,6 +491,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     @media (max-width: 480px) {
       .section-pad { padding: 3.5rem 1rem; }
       .section-title { font-size: 1.65rem; }
+      .section-heading { font-size: 1.4rem; }
       .top-bar { font-size: 0.75rem; }
     }
   </style>

@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const title = 'About Dr. Lee | Dr. Alan S. Lee, DDS — Manteca Dentist';
-const description = 'Learn about Dr. Alan S. Lee, DDS — trusted Manteca dentist for over 30 years. Gentle, patient-focused dental care. Call (209) 239-2990.';
+const title = 'About Dr. Lee | Dr. Alan S. Lee, DDS - Manteca Dentist';
+const description = 'Learn about Dr. Alan S. Lee, DDS - trusted Manteca dentist for over 30 years. Gentle, patient-focused dental care. Call (209) 239-2990.';
 
 const aboutSchema = {
   "@context": "https://schema.org",
@@ -13,7 +13,7 @@ const aboutSchema = {
   "mainEntity": {
     "@type": "Dentist",
     "name": "Dr. Alan S. Lee, DDS",
-    "description": "General & Cosmetic Dentistry in Manteca, CA — trusted for over 30 years.",
+    "description": "General & Cosmetic Dentistry in Manteca, CA - trusted for over 30 years.",
     "image": "https://dralanlee.com/images/dr-lee-portrait-2026.jpg"
   }
 };
@@ -21,11 +21,11 @@ const aboutSchema = {
 
 <Layout title={title} description={description} schema={aboutSchema}>
   <!-- Hero -->
-  <section class="about-hero section-pad" data-animate>
+  <section class="legal-hero" data-animate>
     <div class="container-wide">
-      <span class="section-label">About Dr. Lee</span>
+      <div class="section-label">About Dr. Lee</div>
       <h1 class="section-title">Serving Manteca Since 1989</h1>
-      <p class="section-subtitle">Over 30 years of gentle, patient-centered dentistry built on trust, compassion, and a genuine love for the community.</p>
+      <p class="legal-hero-subtitle">Over 30 years of gentle, patient-centered dentistry built on trust, compassion, and a genuine love for the community.</p>
     </div>
   </section>
 
@@ -35,7 +35,7 @@ const aboutSchema = {
       <div class="about-photo-wrap" data-animate>
         <img
           src="/images/dr-lee-portrait-2026.jpg"
-          alt="Dr. Alan S. Lee, DDS — providing dental care in Manteca for over 30 years"
+          alt="Dr. Alan S. Lee, DDS - providing dental care in Manteca for over 30 years"
           class="about-photo"
           width="480"
           height="480"
@@ -48,7 +48,7 @@ const aboutSchema = {
       </div>
       <div class="about-text" data-animate>
         <h2 class="section-title" style="font-size: 2rem;">Meet Dr. Alan S. Lee</h2>
-        <p>Dr. Alan S. Lee has been a trusted part of the Manteca community for over three decades. After earning his Doctor of Dental Surgery degree, he chose Manteca as his home — and the community has been his family ever since.</p>
+        <p>Dr. Alan S. Lee has been a trusted part of the Manteca community for over three decades. After earning his Doctor of Dental Surgery degree, he chose Manteca as his home - and the community has been his family ever since.</p>
         <p>Dr. Lee believes that great dentistry starts with trust. His approach combines advanced clinical techniques with a gentle, personalized touch that puts even the most anxious patients at ease. Whether it's a routine checkup or a complex restorative case, Dr. Lee takes the time to listen, explain, and care for every patient like family.</p>
         <p>Throughout his career, Dr. Lee has remained committed to continuing education, staying current with the latest advances in dental science, technology, and patient comfort. His practice is a reflection of his values: honest, thorough, and always focused on what's best for the patient.</p>
 
@@ -77,7 +77,7 @@ const aboutSchema = {
   <!-- Values -->
   <section class="values-section section-pad" data-animate style="background: var(--neutral-50);">
     <div class="container-wide">
-      <span class="section-label">Our Philosophy</span>
+      <div class="section-label">Our Philosophy</div>
       <h2 class="section-title">What We Believe</h2>
       <div class="values-grid">
         <div class="value-card" data-animate>
@@ -85,14 +85,14 @@ const aboutSchema = {
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
           <h3>Compassion First</h3>
-          <p>We treat every patient with kindness and empathy. Your comfort is never an afterthought — it's the foundation of everything we do.</p>
+          <p>We treat every patient with kindness and empathy. Your comfort is never an afterthought - it's the foundation of everything we do.</p>
         </div>
         <div class="value-card" data-animate>
           <div class="value-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3>Trust & Transparency</h3>
-          <p>We explain every treatment option clearly and honestly. No surprises, no unnecessary procedures — just straightforward care you can count on.</p>
+          <p>We explain every treatment option clearly and honestly. No surprises, no unnecessary procedures - just straightforward care you can count on.</p>
         </div>
         <div class="value-card" data-animate>
           <div class="value-icon">
@@ -113,16 +113,17 @@ const aboutSchema = {
   </section>
 
   <!-- CTA -->
-  <section class="about-cta section-pad" data-animate>
-    <div class="container-wide cta-inner">
-      <h2 class="section-title" style="color: white;">Experience the Difference</h2>
-      <p style="color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px;">Join the thousands of Manteca families who trust Dr. Lee with their dental care. We're always accepting new patients.</p>
-      <div class="cta-buttons">
-        <a href="/schedule-appointment/" class="btn-primary" style="background: var(--accent-500); color: var(--neutral-900);">
+  <section class="section-pad cta-section" data-animate>
+    <div class="container-narrow" style="text-align: center;">
+      <div class="section-label" style="justify-content: center;">Experience the Difference</div>
+      <h2 class="section-title">Join the Dr. Lee Family</h2>
+      <p class="section-subtitle" style="margin: 0 auto 2rem;">Join the thousands of Manteca families who trust Dr. Lee with their dental care. We’re always accepting new patients.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/schedule-appointment/" class="btn-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           Schedule Your Visit
         </a>
-        <a href="tel:+12092392990" class="btn-secondary" style="border-color: rgba(255,255,255,0.3); color: white;">
+        <a href="tel:+12092392990" class="btn-secondary">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Call (209) 239-2990
         </a>
@@ -131,11 +132,6 @@ const aboutSchema = {
   </section>
 
   <style>
-    .about-hero {
-      background: linear-gradient(135deg, var(--primary-50) 0%, white 100%);
-      text-align: center;
-    }
-    .about-hero .section-subtitle { margin: 0 auto; }
 
     /* Story Section */
     .about-story-grid {
@@ -248,13 +244,6 @@ const aboutSchema = {
     }
 
     /* CTA */
-    .about-cta {
-      background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-950) 100%);
-      text-align: center;
-    }
-    .cta-inner { display: flex; flex-direction: column; align-items: center; }
-    .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-
     @media (max-width: 768px) {
       .about-story-grid { grid-template-columns: 1fr; gap: 2rem; }
       .about-photo { max-width: 400px; margin: 0 auto; }
@@ -263,8 +252,6 @@ const aboutSchema = {
     }
     @media (max-width: 480px) {
       .values-grid { grid-template-columns: 1fr; }
-      .cta-buttons { flex-direction: column; align-items: center; }
-      .cta-buttons a { width: 100%; justify-content: center; }
     }
 
     [data-animate] {

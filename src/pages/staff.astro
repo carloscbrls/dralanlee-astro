@@ -15,11 +15,11 @@ const teamSchema = {
 
 <Layout title={title} description={description} schema={teamSchema}>
   <!-- Hero -->
-  <section class="team-hero section-pad" data-animate>
+  <section class="legal-hero" data-animate>
     <div class="container-wide">
-      <span class="section-label">Our Team</span>
+      <div class="section-label">Our Team</div>
       <h1 class="section-title">Meet the People<br/>Who Care for Your Smile</h1>
-      <p class="section-subtitle">Our team is dedicated to making every visit comfortable, thorough, and personal. You'll feel the difference from the moment you walk in.</p>
+      <p class="legal-hero-subtitle">Our team is dedicated to making every visit comfortable, thorough, and personal. You'll feel the difference from the moment you walk in.</p>
     </div>
   </section>
 
@@ -35,8 +35,8 @@ const teamSchema = {
         />
       </div>
       <div class="featured-info" data-animate>
-        <span class="section-label">Lead Dentist</span>
-        <h2 class="section-title" style="font-size: 2rem;">Dr. Alan S. Lee, DDS</h2>
+        <div class="section-label">Lead Dentist</div>
+        <h2 class="section-heading">Dr. Alan S. Lee, DDS</h2>
         <p class="featured-role">Owner &amp; Lead Dentist</p>
         <p>Dr. Lee has been serving the Manteca community for over 30 years, providing comprehensive general and cosmetic dental care. After earning his Doctor of Dental Surgery degree, he built his practice on a simple philosophy: treat every patient like family.</p>
         <p>Known for his gentle approach and commitment to continuing education, Dr. Lee stays current with the latest advances in dental science and technology. He takes pride in building lasting relationships with his patients — many of whom have been coming to his office for decades.</p>
@@ -62,8 +62,8 @@ const teamSchema = {
   <!-- Team Grid -->
   <section class="team-grid-section section-pad" data-animate style="background: var(--neutral-50);">
     <div class="container-wide">
-      <span class="section-label">Support Team</span>
-      <h2 class="section-title">Our Dental Professionals</h2>
+      <div class="section-label">Support Team</div>
+      <h2 class="section-heading">Our Dental Professionals</h2>
       <div class="team-grid">
         <div class="team-card" data-animate>
           <div class="team-card-photo">
@@ -116,8 +116,8 @@ const teamSchema = {
     <div class="container-wide">
       <div class="why-grid">
         <div class="why-text">
-          <span class="section-label">Why Choose Us</span>
-          <h2 class="section-title" style="font-size: 2rem;">A Team That<br/>Truly Cares</h2>
+          <div class="section-label">Why Choose Us</div>
+          <h2 class="section-heading">A Team That Truly Cares</h2>
           <p style="color: var(--neutral-500); line-height: 1.8;">Every member of our team was chosen for their skill, compassion, and commitment to patient care. From your first phone call to your follow-up visit, we work together to make sure you feel heard, respected, and well cared for.</p>
           <ul class="why-list" role="list">
             <li>
@@ -155,12 +155,6 @@ const teamSchema = {
   </section>
 
   <style>
-    .team-hero {
-      background: linear-gradient(135deg, var(--primary-50) 0%, white 100%);
-      text-align: center;
-    }
-    .team-hero .section-subtitle { margin: 0 auto; }
-
     /* Featured Doctor */
     .featured-grid {
       display: grid;
