@@ -146,9 +146,15 @@ const dentistSchema = {
     .form-header p { color: var(--neutral-500); line-height: 1.6; }
 
     .jotform-embed {
-      min-height: 850px; background: var(--neutral-50);
+      min-height: 900px; background: var(--neutral-50);
       border: 1px solid var(--neutral-200); border-radius: var(--radius-lg);
       overflow: visible; position: relative;
+      transition: min-height 0.3s ease;
+    }
+    .jotform-embed iframe {
+      width: 100% !important; min-height: 900px !important;
+      border: none !important; border-radius: var(--radius-lg) !important;
+      display: block !important;
     }
 
     .form-disclaimer { margin-top: 1.25rem; padding: 1rem 1.25rem; background: var(--neutral-50); border-radius: var(--radius-md); border: 1px solid var(--neutral-200); }
@@ -225,7 +231,73 @@ const dentistSchema = {
     @media (max-width: 768px) {
       .legal-hero { padding: 3.5rem 1rem 3rem; }
       .schedule-grid { padding: 0 1rem; }
-      .jotform-embed { min-height: 650px; }
+      .jotform-embed { min-height: 750px; }
+      .jotform-embed iframe { min-height: 750px !important; }
     }
   </style>
+
+  <script>
+    // Auto-resize JotForm iframes to prevent cutoff
+    function resizeJotFormIframes() {
+      document.querySelectorAll('.jotform-embed iframe').forEach(iframe => {
+        try {
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
+          const height = Math.max(
+            doc.body.scrollHeight || 0,
+            doc.body.offsetHeight || 0,
+            doc.documentElement.scrollHeight || 0,
+            doc.documentElement.offsetHeight || 0
+          );
+          if (height > 100) {
+            iframe.style.height = (height + 40) + 'px';
+            iframe.closest('.jotform-embed').style.minHeight = (height + 40) + 'px';
+          }
+        } catch (e) {
+          iframe.style.height = '1100px';
+          iframe.closest('.jotform-embed').style.minHeight = '1100px';
+        }
+      });
+    }
+
+    const embedContainers = document.querySelectorAll('.jotform-embed');
+    embedContainers.forEach(container => {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach(mutation => {
+          mutation.addedNodes.forEach(node => {
+            if (node.tagName === 'IFRAME' || (node.querySelector && node.querySelector('iframe'))) {
+              const iframe = node.tagName === 'IFRAME' ? node : node.querySelector('iframe');
+              if (iframe) {
+                iframe.addEventListener('load', () => {
+                  setTimeout(resizeJotFormIframes, 1500);
+                  setTimeout(resizeJotFormIframes, 3000);
+                });
+              }
+            }
+          });
+        });
+      });
+      observer.observe(container, { childList: true, subtree: true });
+    });
+
+    window.addEventListener('message', (event) => {
+      if (event.data && (event.data.type === 'JotFormResize' || event.data.action === 'resize')) {
+        const height = event.data.height || event.data.value;
+        if (height && height > 100) {
+          document.querySelectorAll('.jotform-embed').forEach(el => {
+            el.style.minHeight = (height + 40) + 'px';
+          });
+          document.querySelectorAll('.jotform-embed iframe').forEach(iframe => {
+            iframe.style.height = (height + 40) + 'px';
+          });
+        }
+      }
+    });
+
+    let resizeChecks = 0;
+    const resizeInterval = setInterval(() => {
+      resizeJotFormIframes();
+      resizeChecks++;
+      if (resizeChecks >= 10) clearInterval(resizeInterval);
+    }, 1500);
+  </script>
 </Layout>

@@ -199,9 +199,15 @@ const localBusinessSchema = {
 
     /* ===== JOTFORM EMBED — CRITICAL: height + overflow ===== */
     .jotform-embed {
-      min-height: 850px; background: var(--neutral-50);
+      min-height: 900px; background: var(--neutral-50);
       border: 1px solid var(--neutral-200); border-radius: var(--radius-lg);
       overflow: visible; position: relative;
+      transition: min-height 0.3s ease;
+    }
+    .jotform-embed iframe {
+      width: 100% !important; min-height: 900px !important;
+      border: none !important; border-radius: var(--radius-lg) !important;
+      display: block !important;
     }
 
     /* ===== DISCLAIMER ===== */
@@ -292,7 +298,8 @@ const localBusinessSchema = {
       .contact-grid { padding: 0 1rem; }
       .form-tabs { flex-direction: column; gap: 0.5rem; }
       .form-tab { width: 100%; justify-content: center; padding: 0.85rem 1.5rem; }
-      .jotform-embed { min-height: 650px; }
+      .jotform-embed { min-height: 750px; }
+      .jotform-embed iframe { min-height: 750px !important; }
     }
   </style>
 
@@ -309,5 +316,74 @@ const localBusinessSchema = {
         document.getElementById('panel-' + target).classList.add('active');
       });
     });
+
+    // Auto-resize JotForm iframes to prevent cutoff
+    function resizeJotFormIframes() {
+      document.querySelectorAll('.jotform-embed iframe').forEach(iframe => {
+        try {
+          // Try reading the iframe document height (same-origin only)
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
+          const height = Math.max(
+            doc.body.scrollHeight || 0,
+            doc.body.offsetHeight || 0,
+            doc.documentElement.scrollHeight || 0,
+            doc.documentElement.offsetHeight || 0
+          );
+          if (height > 100) {
+            iframe.style.height = (height + 40) + 'px';
+            iframe.closest('.jotform-embed').style.minHeight = (height + 40) + 'px';
+          }
+        } catch (e) {
+          // Cross-origin: JotForm iframes — use generous fallback
+          iframe.style.height = '1100px';
+          iframe.closest('.jotform-embed').style.minHeight = '1100px';
+        }
+      });
+    }
+
+    // Listen for JotForm iframe load events
+    const embedContainers = document.querySelectorAll('.jotform-embed');
+    embedContainers.forEach(container => {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach(mutation => {
+          mutation.addedNodes.forEach(node => {
+            if (node.tagName === 'IFRAME' || (node.querySelector && node.querySelector('iframe'))) {
+              const iframe = node.tagName === 'IFRAME' ? node : node.querySelector('iframe');
+              if (iframe) {
+                iframe.addEventListener('load', () => {
+                  // Wait for JotForm content to render
+                  setTimeout(resizeJotFormIframes, 1500);
+                  setTimeout(resizeJotFormIframes, 3000);
+                });
+              }
+            }
+          });
+        });
+      });
+      observer.observe(container, { childList: true, subtree: true });
+    });
+
+    // Also listen for messages from JotForm (they post height updates)
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'JotFormResize') {
+        const height = event.data.height || event.data.value;
+        if (height && height > 100) {
+          document.querySelectorAll('.jotform-embed').forEach(el => {
+            el.style.minHeight = (height + 40) + 'px';
+          });
+          document.querySelectorAll('.jotform-embed iframe').forEach(iframe => {
+            iframe.style.height = (height + 40) + 'px';
+          });
+        }
+      }
+    });
+
+    // Fallback: periodic check for 15 seconds after page load
+    let resizeChecks = 0;
+    const resizeInterval = setInterval(() => {
+      resizeJotFormIframes();
+      resizeChecks++;
+      if (resizeChecks >= 10) clearInterval(resizeInterval);
+    }, 1500);
   </script>
 </Layout>
