@@ -22,6 +22,17 @@ const teamSchema = {
       <p class="legal-hero-subtitle">Our team is dedicated to making every visit comfortable, thorough, and personal. You'll feel the difference from the moment you walk in.</p>
     </div>
   </section>
+  <!-- Trust Bar -->
+  <section class="trust-bar" data-animate>
+    <div class="container-narrow">
+      <div class="trust-inner">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        <span>Our team is dedicated to making every visit comfortable, thorough, and personal. You'll feel the difference from the moment you walk in.</span>
+      </div>
+    </div>
+  </section>
+
+
 
   <!-- Dr. Lee Featured -->
   <section class="featured-doctor section-pad" data-animate>
@@ -155,6 +166,16 @@ const teamSchema = {
   </section>
 
   <style>
+
+    .legal-hero { background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%); color: white; padding: 5rem 1.5rem 4rem; text-align: center; }
+    .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
+    .legal-hero .section-label::before { background: var(--accent-400); }
+    .legal-hero .section-title { color: white; margin-bottom: 1rem; }
+    .legal-hero-subtitle { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 680px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
+    .trust-bar { background: linear-gradient(135deg, #059669 0%, #047857 100%); padding: 1rem 1.5rem; position: relative; overflow: hidden; }
+    .trust-bar::before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06)); }
+    .trust-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; color: white; font-size: 0.9rem; font-weight: 500; position: relative; }
+    .trust-inner svg { flex-shrink: 0; }
     /* Featured Doctor */
     .featured-grid {
       display: grid;
@@ -311,6 +332,7 @@ const teamSchema = {
     }
 
     @media (max-width: 768px) {
+      .legal-hero { padding: 3.5rem 1rem 3rem; }
       .featured-grid { grid-template-columns: 1fr; gap: 2rem; }
       .featured-photo { max-width: 400px; margin: 0 auto; }
       .team-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }

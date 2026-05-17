@@ -29,6 +29,17 @@ const medicalSpecialtySchema = {
       <p class="legal-hero-subtitle">This notice describes how medical information about you may be used and disclosed and how you can get access to this information. Please review it carefully.</p>
     </div>
   </section>
+  <!-- Trust Bar -->
+  <section class="trust-bar" data-animate>
+    <div class="container-narrow">
+      <div class="trust-inner">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        <span>Your health information is protected by federal law. We follow strict HIPAA regulations to keep your data safe and private.</span>
+      </div>
+    </div>
+  </section>
+
+
 
   <!-- Effective Date Banner -->
   <section class="section-pad" style="padding-top: 0; padding-bottom: 0;">
@@ -317,6 +328,10 @@ const medicalSpecialtySchema = {
     .legal-hero .section-label::before { background: var(--accent-400); }
     .legal-hero .section-title { color: white; margin-bottom: 1rem; }
     .legal-hero-subtitle { color: rgba(255,255,255,0.8); font-size: 1.15rem; max-width: 680px; margin: 0 auto; line-height: 1.7; }
+    .trust-bar { background: linear-gradient(135deg, #059669 0%, #047857 100%); padding: 1rem 1.5rem; position: relative; overflow: hidden; }
+    .trust-bar::before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06)); }
+    .trust-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; color: white; font-size: 0.9rem; font-weight: 500; position: relative; }
+    .trust-inner svg { flex-shrink: 0; }
 
     .effective-banner {
       display: flex; align-items: flex-start; gap: 1rem;
