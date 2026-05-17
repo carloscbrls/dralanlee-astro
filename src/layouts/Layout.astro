@@ -218,7 +218,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       gap: 2rem;
       flex-wrap: wrap;
     }
-    .top-bar a { color: rgba(255,255,255,0.9); font-weight: 500; display: inline-flex; align-items: center; gap: 0.4rem; }
+    .top-bar a { color: rgba(255,255,255,0.9); font-weight: 500; display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px; }
     .top-bar a:hover { color: var(--accent-400); }
     .top-bar .top-links { display: flex; gap: 1.25rem; align-items: center; font-size: 0.78rem; }
     .top-bar .top-links a { color: rgba(255,255,255,0.7); }
@@ -226,8 +226,8 @@ const allSchemas = [localBusinessSchema, ...schemas];
     .top-bar .hipaa-badge {
       display: inline-flex; align-items: center; gap: 0.35rem;
       background: rgba(5, 150, 105, 0.2); color: #6ee7b7;
-      padding: 0.2rem 0.6rem; border-radius: var(--radius-full);
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
+      padding: 0.25rem 0.65rem; border-radius: var(--radius-full);
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
     }
     .top-bar .hipaa-badge svg { width: 12px; height: 12px; }
 
@@ -329,7 +329,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     }
     .footer-col ul { list-style: none; }
     .footer-col li { margin-bottom: 0.6rem; }
-    .footer-col a { color: rgba(255,255,255,0.8); font-size: 0.9rem; transition: color var(--transition-fast); }
+    .footer-col a { color: rgba(255,255,255,0.8); font-size: 0.9rem; transition: color var(--transition-fast); display: inline-block; padding: 0.15rem 0; min-height: 32px; line-height: 2; }
     .footer-col a:hover { color: white; }
     .footer-hours { align-self: start; }
     .footer-hours p { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.8; }
@@ -358,7 +358,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     .footer-bottom a { color: rgba(255,255,255,0.65); }
     .footer-bottom a:hover { color: rgba(255,255,255,0.95); }
     .footer-compliance { display: flex; gap: 1rem; font-size: 0.78rem; }
-    .footer-compliance a { color: rgba(255,255,255,0.5); }
+    .footer-compliance a { color: rgba(255,255,255,0.5); min-height: 32px; display: inline-flex; align-items: center; }
     .footer-compliance a:hover { color: rgba(255,255,255,0.9); }
 
     /* ===== ANIMATIONS ===== */
@@ -444,7 +444,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
         gap: 0.15rem; z-index: 9999;
       }
       .nav-menu.active { display: flex; }
-      .nav-menu a { padding: 0.75rem 0; width: 100%; }
+      .nav-menu a { padding: 0.75rem 0; width: 100%; min-height: 44px; display: flex; align-items: center; }
       .nav-menu a::after { display: none; }
       .nav-cta { width: 100%; justify-content: center; margin-top: 0.5rem; }
       .section-title { font-size: 2rem; }
@@ -469,7 +469,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       font-weight: 600; font-size: 0.95rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35), 0 1px 3px rgba(0,0,0,0.1);
       text-decoration: none; border: none; cursor: pointer;
-      position: relative; overflow: hidden;
+      position: relative; overflow: hidden; box-sizing: border-box;
     }
     .btn-primary::before {
       content: ''; position: absolute; inset: 0;
@@ -492,6 +492,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       border: 2px solid var(--primary-200); border-radius: var(--radius-full);
       font-family: var(--font-body); font-weight: 600; font-size: 0.95rem;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none; cursor: pointer;
+      box-sizing: border-box;
     }
     .btn-secondary:hover {
       background: var(--primary-50); border-color: var(--primary-500); color: var(--primary-800);
@@ -566,7 +567,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo-footer">
-          <img src="/images/dr-lee-portrait-2026-new.jpg" alt="" width="44" height="44" loading="lazy" />
+          <img src="/images/dr-lee-portrait-2026-new.jpg" alt="Dr. Alan S. Lee, DDS logo" width="44" height="44" loading="lazy" />
           <span class="logo-footer-text">Dr. Alan S. Lee, DDS</span>
         </div>
         <p>Providing exceptional general and cosmetic dentistry in Manteca for over 30 years. Your comfort and health are our top priorities.</p>

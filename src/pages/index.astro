@@ -373,7 +373,7 @@ const servicesSchema = {
     .service-card:hover .service-icon-wrap { transform: scale(1.1); box-shadow: 0 8px 24px rgba(2, 132, 199, 0.35); }
     .service-card h3 { font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.6rem; color: var(--neutral-900); }
     .service-card p { font-size: 0.9rem; color: var(--neutral-500); line-height: 1.6; margin-bottom: 1rem; }
-    .service-link { font-size: 0.85rem; font-weight: 600; color: var(--primary-600); display: inline-flex; align-items: center; gap: 0.25rem; }
+    .service-link { font-size: 0.85rem; font-weight: 600; color: var(--primary-600); display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.5rem 0; min-height: 44px; }
     .service-link:hover { color: var(--primary-800); gap: 0.4rem; }
 
     /* ===== ABOUT ===== */
@@ -491,7 +491,7 @@ const servicesSchema = {
       .hero h1 { font-size: 1.85rem; }
       .section-title { font-size: 1.75rem !important; }
       .hero-actions { flex-direction: column; }
-      .hero-actions .btn-primary, .hero-actions .btn-secondary { width: 100%; justify-content: center; }
+      .hero-actions .btn-primary, .hero-actions .btn-secondary { width: 100%; justify-content: center; box-sizing: border-box; }
     }
   </style>
 </Layout>
