@@ -73,14 +73,31 @@ const localBusinessSchema = {
         <!-- Appointment Form -->
         <div class="form-panel active" id="panel-appointment">
           <div class="jotform-embed" id="appointment-form-container">
-            <script type="text/javascript" src="https://form.jotform.com/jsform/260202986387060" async></script>
+            <iframe
+              id="appointment-iframe"
+              src="https://form.jotform.com/260202986387060?parentURL=https%3A%2F%2Fdralanlee.com%2Fcontact%2F&jsForm=true"
+              title="Request an Appointment Contact Forms"
+              style="width:10px; min-width:100%; max-width:100%; height:1100px; border:none; display:block; overflow:hidden;"
+              allow="camera; microphone; autoplay"
+              loading="eager"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
 
         <!-- Contact Our Office -->
         <div class="form-panel" id="panel-message">
           <div class="jotform-embed" id="contact-form-container">
-            <script type="text/javascript" src="https://form.jotform.com/jsform/261351664337155" async></script>
+            <!-- Lazy-loaded: iframe src is set by JavaScript when tab is clicked -->
+            <iframe
+              id="contact-iframe"
+              data-src="https://form.jotform.com/261351664337155?parentURL=https%3A%2F%2Fdralanlee.com%2Fcontact%2F&jsForm=true"
+              title="Dr Lee Contact Form"
+              style="width:10px; min-width:100%; max-width:100%; height:1100px; border:none; display:block; overflow:hidden;"
+              allow="camera; microphone; autoplay"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
 
@@ -328,7 +345,10 @@ const localBusinessSchema = {
   </style>
 
   <script>
-    // Tab switching for contact forms
+    // Tab switching for contact forms — lazy-loads iframe on first visit
+    const contactIframe = document.getElementById('contact-iframe');
+    let contactIframeLoaded = false;
+
     document.querySelectorAll('.form-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         const target = tab.dataset.tab;
@@ -337,77 +357,39 @@ const localBusinessSchema = {
         tab.classList.add('active');
         // Update panels
         document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
-        document.getElementById('panel-' + target).classList.add('active');
-      });
-    });
+        const panel = document.getElementById('panel-' + target);
+        panel.classList.add('active');
 
-    // Auto-resize JotForm iframes to prevent cutoff
-    function resizeJotFormIframes() {
-      document.querySelectorAll('.jotform-embed iframe').forEach(iframe => {
-        try {
-          // Try reading the iframe document height (same-origin only)
-          const doc = iframe.contentDocument || iframe.contentWindow.document;
-          const height = Math.max(
-            doc.body.scrollHeight || 0,
-            doc.body.offsetHeight || 0,
-            doc.documentElement.scrollHeight || 0,
-            doc.documentElement.offsetHeight || 0
-          );
-          if (height > 100) {
-            iframe.style.height = (height + 40) + 'px';
-            iframe.closest('.jotform-embed').style.minHeight = (height + 40) + 'px';
-          }
-        } catch (e) {
-          // Cross-origin: JotForm iframes — use generous fallback
-          iframe.style.height = '1100px';
-          iframe.closest('.jotform-embed').style.minHeight = '1100px';
+        // Lazy-load the contact iframe on first tab switch
+        if (target === 'message' && !contactIframeLoaded && contactIframe) {
+          contactIframe.src = contactIframe.dataset.src;
+          contactIframeLoaded = true;
         }
       });
-    }
-
-    // Listen for JotForm iframe load events
-    const embedContainers = document.querySelectorAll('.jotform-embed');
-    embedContainers.forEach(container => {
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach(mutation => {
-          mutation.addedNodes.forEach(node => {
-            if (node.tagName === 'IFRAME' || (node.querySelector && node.querySelector('iframe'))) {
-              const iframe = node.tagName === 'IFRAME' ? node : node.querySelector('iframe');
-              if (iframe) {
-                iframe.addEventListener('load', () => {
-                  // Wait for JotForm content to render
-                  setTimeout(resizeJotFormIframes, 1500);
-                  setTimeout(resizeJotFormIframes, 3000);
-                });
-              }
-            }
-          });
-        });
-      });
-      observer.observe(container, { childList: true, subtree: true });
     });
 
-    // Also listen for messages from JotForm (they post height updates)
+    // Listen for JotForm postMessage height updates
     window.addEventListener('message', (event) => {
-      if (event.data && event.data.type === 'JotFormResize') {
-        const height = event.data.height || event.data.value;
-        if (height && height > 100) {
-          document.querySelectorAll('.jotform-embed').forEach(el => {
-            el.style.minHeight = (height + 40) + 'px';
-          });
-          document.querySelectorAll('.jotform-embed iframe').forEach(iframe => {
-            iframe.style.height = (height + 40) + 'px';
-          });
+      if (event.data && typeof event.data === 'string') {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.type === 'JotFormResize' || data.event === 'resize') {
+            const height = data.height || data.value;
+            if (height && height > 100) {
+              document.querySelectorAll('.jotform-embed').forEach(el => {
+                el.style.minHeight = (height + 40) + 'px';
+              });
+              document.querySelectorAll('.jotform-embed iframe').forEach(iframe => {
+                if (iframe.src && iframe.src !== 'about:blank') {
+                  iframe.style.height = (height + 40) + 'px';
+                }
+              });
+            }
+          }
+        } catch (e) {
+          // Not JSON — ignore
         }
       }
     });
-
-    // Fallback: periodic check for 15 seconds after page load
-    let resizeChecks = 0;
-    const resizeInterval = setInterval(() => {
-      resizeJotFormIframes();
-      resizeChecks++;
-      if (resizeChecks >= 10) clearInterval(resizeInterval);
-    }, 1500);
   </script>
 </Layout>
