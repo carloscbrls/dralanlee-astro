@@ -1,12 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-const title = 'CC3PO Support | Dr. Alan S. Lee, DDS';
-const description = 'Submit support requests, request website changes, or get help with your dental practice website. HIPAA-compliant and secure.';
+const title = 'Support Request | Dr. Alan S. Lee, DDS';
+const description = 'Submit a support request for your dental practice website. Get help with updates, security, HIPAA compliance, and more.';
 const canonicalUrl = 'https://dralanlee.com/portal/support/';
 ---
 
 <Layout title={title} description={description} canonicalUrl={canonicalUrl}>
+  <!-- Hero -->
   <section class="legal-hero" data-animate>
     <div class="container-wide">
       <div class="section-label">IT & Compliance Support</div>
@@ -14,19 +15,18 @@ const canonicalUrl = 'https://dralanlee.com/portal/support/';
       <p class="legal-hero-subtitle">Submit a support request and our team will get back to you within 2 business hours. For urgent issues, call (209) 423-6633.</p>
     </div>
   </section>
+
   <!-- Trust Bar -->
   <section class="trust-bar" data-animate>
     <div class="container-narrow">
       <div class="trust-inner">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
-        <span>We respond to support requests within 2 business hours. For urgent issues, call (209) 239-2990.</span>
+        <span>We respond within 2 business hours. For urgent issues, call (209) 423-6633.</span>
       </div>
     </div>
   </section>
 
-
-
-  <!-- Support Options -->
+  <!-- Contact Methods -->
   <section class="section-pad" data-animate>
     <div class="container-narrow">
       <div class="contact-methods">
@@ -47,7 +47,7 @@ const canonicalUrl = 'https://dralanlee.com/portal/support/';
           <div>
             <h3>Text Us — Quick Changes</h3>
             <p class="phone-big">(209) 232-1265</p>
-            <p>Update hours, change a photo, fix a typo. We respond in 2 hours.</p>
+            <p>Update hours, change a photo, fix a typo. 2-hour response.</p>
           </div>
         </a>
         <a href="mailto:legal@cc3po.com" class="contact-card">
@@ -68,14 +68,89 @@ const canonicalUrl = 'https://dralanlee.com/portal/support/';
   <section class="section-pad alt-bg" data-animate>
     <div class="container-narrow">
       <h2 class="section-heading">Submit a Support Request</h2>
-      <p class="section-description">Fill out the form below and our team will handle it. All submissions are tracked and you'll receive a confirmation email.</p>
-      
-      <div class="jotform-embed" id="support-form-container">
-        <div class="form-loading" id="support-loading">
-          <div class="loading-spinner"></div>
-          <p>Loading support form...</p>
+      <p class="section-description">Fill out the form below and our team will handle it. You'll receive a confirmation email with your ticket ID.</p>
+
+      <form class="support-form" action="https://formspree.io/f/mlgazygq" method="POST" id="support-form">
+        <!-- Hidden fields for routing -->
+        <input type="hidden" name="source" value="dralanlee-support" />
+        <input type="hidden" name="_subject" value="New Support Request — Dr. Lee Portal" />
+        <input type="hidden" name="_next" value="https://dralanlee.com/portal/support/?sent=true" />
+        <input type="hidden" name="_captcha" value="true" />
+        <input type="hidden" name="_template" value="box" />
+
+        <!-- Honeypot — bots fill this out, humans don't -->
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
         </div>
-      </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name <span class="required">*</span></label>
+            <input type="text" id="name" name="name" required placeholder="Dr. Alan Lee" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(209) 239-2990" autocomplete="tel" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="alan@dralanlee.com" autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="ticket_type">Request Type <span class="required">*</span></label>
+            <select id="ticket_type" name="ticket_type" required>
+              <option value="" disabled selected>What do you need help with?</option>
+              <option value="hours">Update Office Hours</option>
+              <option value="services">Add or Change Services</option>
+              <option value="security">Security Concern</option>
+              <option value="hipaa">HIPAA Compliance Question</option>
+              <option value="staff">Staff Changes</option>
+              <option value="general">General Question</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="priority">Priority Level</label>
+          <div class="priority-options">
+            <label class="priority-option">
+              <input type="radio" name="priority" value="low" />
+              <span class="priority-label low">🟢 Low</span>
+            </label>
+            <label class="priority-option">
+              <input type="radio" name="priority" value="normal" checked />
+              <span class="priority-label normal">🟡 Normal</span>
+            </label>
+            <label class="priority-option">
+              <input type="radio" name="priority" value="urgent" />
+              <span class="priority-label urgent">🔴 URGENT</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Description <span class="required">*</span></label>
+          <textarea id="message" name="message" required rows="5" placeholder="Describe what you need help with..."></textarea>
+        </div>
+
+        <div class="form-disclaimer">
+          <div class="disclaimer-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            <span>Secure Submission</span>
+          </div>
+          <p>Your request is sent securely to our support team. We typically respond within 2 business hours.</p>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          Submit Support Request
+        </button>
+      </form>
     </div>
   </section>
 
@@ -152,11 +227,11 @@ const canonicalUrl = 'https://dralanlee.com/portal/support/';
     .trust-bar::before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06)); }
     .trust-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; color: white; font-size: 0.9rem; font-weight: 500; position: relative; }
     .trust-inner svg { flex-shrink: 0; }
-    
+
     .section-heading { font-family: var(--font-display); font-size: 1.75rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
     .section-description { color: var(--neutral-500); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6; }
     .alt-bg { background: var(--neutral-50); }
-    
+
     /* Contact Methods */
     .contact-methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
     .contact-card { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); text-decoration: none; color: inherit; transition: all var(--transition-base); }
@@ -170,14 +245,50 @@ const canonicalUrl = 'https://dralanlee.com/portal/support/';
     .contact-card p { font-size: 0.88rem; color: var(--neutral-500); line-height: 1.5; }
     .phone-big { font-size: 1.25rem; font-weight: 700; color: var(--primary-700); margin-bottom: 0.25rem; }
     .contact-card.urgent .phone-big { color: #ef4444; }
-    
-    /* Form Container */
-    .jotform-embed { min-height: 700px; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); overflow: hidden; }
-    .jotform-embed iframe { width: 100%; height: 100%; min-height: 700px; border: none; }
-    .form-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem; color: var(--neutral-500); }
-    .loading-spinner { width: 36px; height: 36px; border: 3px solid var(--neutral-200); border-top-color: var(--primary-600); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 1rem; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    
+
+    /* Support Form */
+    .support-form { max-width: 640px; margin: 0 auto; }
+    .honeypot { position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.88rem; color: var(--neutral-700); margin-bottom: 0.4rem; }
+    .required { color: #ef4444; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--neutral-300); border-radius: var(--radius-md);
+      font-size: 0.95rem; font-family: var(--font-body); color: var(--neutral-900);
+      background: white; transition: all 0.2s ease;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--primary-500); box-shadow: 0 0 0 3px rgba(2,132,199,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1rem; padding-right: 2.5rem; }
+
+    /* Priority radio buttons */
+    .priority-options { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .priority-option { position: relative; }
+    .priority-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    .priority-label { display: inline-block; padding: 0.5rem 1rem; border: 1px solid var(--neutral-300); border-radius: var(--radius-md); cursor: pointer; font-size: 0.88rem; font-weight: 500; transition: all 0.2s ease; }
+    .priority-label:hover { border-color: var(--primary-300); }
+    .priority-option input[type="radio"]:checked + .priority-label { border-color: var(--primary-500); background: var(--primary-50); color: var(--primary-700); }
+
+    /* Disclaimer */
+    .form-disclaimer { margin: 1.5rem 0; padding: 1rem 1.25rem; background: var(--neutral-50); border-radius: var(--radius-md); border: 1px solid var(--neutral-200); }
+    .disclaimer-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; font-size: 0.78rem; font-weight: 600; padding: 0.3rem 0.75rem; border-radius: var(--radius-full); margin-bottom: 0.6rem; letter-spacing: 0.02em; }
+    .form-disclaimer p { color: var(--neutral-500); font-size: 0.85rem; line-height: 1.65; margin-bottom: 0; }
+
+    /* Submit button */
+    .btn-submit {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      width: 100%; padding: 1rem; margin-top: 1.5rem;
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
+      color: white; font-size: 1rem; font-weight: 600; font-family: var(--font-body);
+      border: none; border-radius: var(--radius-md); cursor: pointer;
+      transition: all 0.3s ease; box-shadow: 0 4px 14px rgba(2,132,199,0.25);
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(2,132,199,0.35); }
+    .btn-submit:active { transform: translateY(0); }
+
     /* Common Requests */
     .requests-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
     .request-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); }
@@ -185,30 +296,12 @@ const canonicalUrl = 'https://dralanlee.com/portal/support/';
     .request-icon { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--primary-50); color: var(--primary-700); flex-shrink: 0; }
     .request-item h4 { font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; color: var(--neutral-900); margin-bottom: 0.25rem; }
     .request-item p { font-size: 0.85rem; color: var(--neutral-500); line-height: 1.5; margin: 0; }
-    
+
     @media (max-width: 768px) {
       .contact-methods { grid-template-columns: 1fr; }
       .requests-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
       .legal-hero { padding: 3.5rem 1rem 3rem; }
     }
   </style>
-
-  <script>
-    // Load JotForm support form
-    // Form ID will be created in JotForm dashboard
-    // For now, show the contact methods prominently
-    const container = document.getElementById('support-form-container');
-    const loading = document.getElementById('support-loading');
-
-    // CC3PO Support Form - created in JotForm HIPAA dashboard
-    // Replace this ID with the actual form ID after creating it
-    const formUrl = 'https://hipaa.jotform.com/261367944093061';
-
-    const iframe = document.createElement('iframe');
-    iframe.src = formUrl;
-    iframe.title = 'CC3PO Support Request';
-    iframe.style.cssText = 'width:100%;height:100%;min-height:700px;border:none;';
-    iframe.onload = () => { if (loading) loading.remove(); };
-    container.appendChild(iframe);
-  </script>
 </Layout>
