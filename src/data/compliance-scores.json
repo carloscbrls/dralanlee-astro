@@ -1,0 +1,105 @@
+{
+  "client": "Dr. Alan Lee Dental",
+  "domain": "dralanlee.com",
+  "lastAudited": "2026-05-18",
+  "auditedBy": "CC3PO",
+  "overall": 90,
+  "grade": "A-",
+  "categories": {
+    "accessibility": {
+      "score": 95,
+      "weight": 25,
+      "source": "Google Lighthouse",
+      "sourceUrl": "https://developers.google.com/web/tools/lighthouse",
+      "details": [
+        { "id": "color-contrast", "status": "fail", "weight": 7, "title": "Background and foreground colors do not have a sufficient contrast ratio" },
+        { "id": "heading-order", "status": "fail", "weight": 3, "title": "Heading elements are not in a sequentially-descending order" }
+      ],
+      "note": "2 minor issues found by Lighthouse. Color contrast and heading order need fixing."
+    },
+    "security": {
+      "score": 90,
+      "weight": 25,
+      "source": "CC3PO Security Audit + SecurityHeaders.com",
+      "checks": [
+        { "item": "Content-Security-Policy", "status": "pass" },
+        { "item": "Strict-Transport-Security", "status": "pass" },
+        { "item": "X-Frame-Options", "status": "pass" },
+        { "item": "X-Content-Type-Options", "status": "pass" },
+        { "item": "Referrer-Policy", "status": "pass" },
+        { "item": "Permissions-Policy", "status": "pass" },
+        { "item": "SSL Certificate (Let's Encrypt)", "status": "pass", "expires": "2026-08-13" },
+        { "item": "Cloudflare WAF (Pro)", "status": "pass" },
+        { "item": "Bot Fight Mode", "status": "pass" },
+        { "item": "Rate Limiting", "status": "pass" }
+      ],
+      "note": "All security headers present. SSL valid until Aug 13, 2026. Cloudflare WAF active."
+    },
+    "hipaa": {
+      "score": 95,
+      "weight": 25,
+      "source": "CC3PO HIPAA Compliance Audit",
+      "checks": [
+        { "item": "Privacy Policy", "status": "pass", "url": "/privacy-policy/" },
+        { "item": "HIPAA Notice of Privacy Practices", "status": "pass", "url": "/hipaa-privacy/" },
+        { "item": "Patient Privacy Rights", "status": "pass", "url": "/patient-privacy/" },
+        { "item": "No Surprises Act", "status": "pass", "url": "/no-surprises-act/" },
+        { "item": "Accessibility Statement", "status": "pass", "url": "/accessibility/" },
+        { "item": "Terms of Service", "status": "pass", "url": "/terms-of-service/" },
+        { "item": "Cookie Consent (CCPA/CPRA)", "status": "pass" },
+        { "item": "Do Not Sell My Info", "status": "pass" },
+        { "item": "Google Workspace HIPAA BAA", "status": "pass" },
+        { "item": "JotForm HIPAA Instance", "status": "pass" },
+        { "item": "Plausible Analytics (self-hosted, no cookies)", "status": "pass" },
+        { "item": "Cloudflare DPA", "status": "pass" }
+      ],
+      "note": "All required HIPAA documentation present. BAA signed with Google. JotForm HIPAA tier active."
+    },
+    "privacy": {
+      "score": 97,
+      "weight": 15,
+      "source": "CC3PO Privacy & Legal Audit",
+      "checks": [
+        { "item": "Privacy Policy (CCPA/CPRA compliant)", "status": "pass" },
+        { "item": "Cookie Consent Banner", "status": "pass" },
+        { "item": "Do Not Sell disclosure", "status": "pass" },
+        { "item": "Data minimization (Plausible, no GA)", "status": "pass" },
+        { "item": "No third-party tracking pixels", "status": "pass" },
+        { "item": "ConvergePay token server-side", "status": "pass" },
+        { "item": "Form submissions encrypted (HTTPS)", "status": "pass" }
+      ],
+      "note": "Strong privacy posture. Self-hosted analytics, no Google Analytics, no third-party trackers."
+    },
+    "content": {
+      "score": 88,
+      "weight": 10,
+      "source": "CC3PO Content & UX Audit",
+      "checks": [
+        { "item": "Performance (Lighthouse)", "status": "warning", "score": 75, "detail": "75/100 — needs image optimization" },
+        { "item": "SEO (Lighthouse)", "status": "pass", "score": 100 },
+        { "item": "Best Practices (Lighthouse)", "status": "warning", "score": 88 },
+        { "item": "Mobile responsive", "status": "pass" },
+        { "item": "Schema markup", "status": "pass" },
+        { "item": "Contact info visible", "status": "pass" },
+        { "item": "Staff photos/bios", "status": "pass" },
+        { "item": "Patient forms accessible", "status": "pass" }
+      ],
+      "note": "Performance at 75/100 drags score down. SEO perfect. Images need optimization."
+    }
+  },
+  "history": [
+    { "date": "2026-05-18", "overall": 90, "accessibility": 95, "security": 90, "hipaa": 95, "privacy": 97, "content": 88, "note": "First verified audit using Lighthouse + manual checks" },
+    { "date": "2026-05-15", "overall": 92, "accessibility": 82, "security": 90, "hipaa": 95, "privacy": 97, "content": 88, "note": "Pre-verification estimate (hardcoded)" }
+  ],
+  "schedule": {
+    "quickScan": "weekly",
+    "fullAudit": "monthly",
+    "afterChanges": true
+  },
+  "pricing": {
+    "tier": "Founding Client",
+    "status": "Free — Year 1",
+    "expiresDate": "2027-05-18",
+    "nextTier": "Professional ($299/mo)"
+  }
+}

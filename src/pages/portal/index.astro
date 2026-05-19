@@ -1,9 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import scores from '../../data/compliance-scores.json';
 
 const title = 'Client Portal | Dr. Alan S. Lee, DDS';
 const description = 'Secure client portal for Dr. Alan S. Lee, DDS. View compliance status, submit requests, and access practice resources.';
 const canonicalUrl = 'https://dralanlee.com/portal/';
+
+const { overall, grade, lastAudited, auditedBy, categories } = scores;
+const catEntries = Object.entries(categories);
 ---
 
 <Layout title={title} description={description} canonicalUrl={canonicalUrl}>
@@ -36,42 +40,34 @@ const canonicalUrl = 'https://dralanlee.com/portal/';
           </div>
           <div>
             <h2>HIPAA Compliance Score</h2>
-            <p class="score-subtitle">Last audited: May 15, 2026 by CC3PO</p>
+            <p class="score-subtitle">Last audited: {lastAudited} by {auditedBy}</p>
           </div>
         </div>
         <div class="score-grid">
           <div class="score-item score-main">
-            <div class="score-number">92<span class="score-suffix">/100</span></div>
+            <div class="score-number">{overall}<span class="score-suffix">/100</span></div>
             <div class="score-label">Overall Score</div>
-            <div class="score-grade grade-a">Grade A-</div>
+            <div class={`score-grade ${grade.startsWith('A') ? 'grade-a' : 'grade-b'}`}>Grade {grade}</div>
           </div>
           <div class="score-details">
-            <div class="score-row">
-              <span class="score-cat">HIPAA Compliance</span>
-              <div class="score-bar-wrap"><div class="score-bar" style="width:95%"></div></div>
-              <span class="score-val">95</span>
-            </div>
-            <div class="score-row">
-              <span class="score-cat">Security</span>
-              <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
-              <span class="score-val">90</span>
-            </div>
-            <div class="score-row">
-              <span class="score-cat">Accessibility</span>
-              <div class="score-bar-wrap"><div class="score-bar" style="width:82%"></div></div>
-              <span class="score-val">82</span>
-            </div>
-            <div class="score-row">
-              <span class="score-cat">Privacy & Legal</span>
-              <div class="score-bar-wrap"><div class="score-bar" style="width:97%"></div></div>
-              <span class="score-val">97</span>
-            </div>
-            <div class="score-row">
-              <span class="score-cat">Content & UX</span>
-              <div class="score-bar-wrap"><div class="score-bar" style="width:88%"></div></div>
-              <span class="score-val">88</span>
-            </div>
+            {catEntries.map(([key, cat]) => (
+              <div class="score-row">
+                <span class="score-cat">{key === 'hipaa' ? 'HIPAA Compliance' : key === 'accessibility' ? 'Accessibility' : key === 'security' ? 'Security' : key === 'privacy' ? 'Privacy & Legal' : 'Content & UX'}</span>
+                <div class="score-bar-wrap"><div class="score-bar" style={`width:${cat.score}%`}></div></div>
+                <span class="score-val">{cat.score}</span>
+              </div>
+            ))}
           </div>
+        </div>
+      </div>
+      <!-- Score Sources -->
+      <div class="score-sources">
+        <div class="source-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          <span>Verified by Lighthouse, SecurityHeaders.com, and CC3PO manual audit</span>
+        </div>
+        <div class="founding-badge">
+          ⭐ Founding Client — Free Year 1 (through May 2027)
         </div>
       </div>
     </div>
@@ -245,6 +241,12 @@ const canonicalUrl = 'https://dralanlee.com/portal/';
     .score-bar-wrap { height: 8px; background: var(--neutral-100); border-radius: 4px; overflow: hidden; }
     .score-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--primary-600), var(--success)); transition: width 0.6s ease; }
     .score-val { font-weight: 700; font-size: 0.88rem; color: var(--neutral-900); text-align: right; }
+
+    /* Score Sources */
+    .score-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--neutral-100); }
+    .source-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--neutral-500); margin-bottom: 0.5rem; }
+    .source-badge svg { color: var(--success); flex-shrink: 0; }
+    .founding-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; font-weight: 600; color: #d97706; background: #fffbeb; border: 1px solid #fde68a; padding: 0.4rem 0.75rem; border-radius: var(--radius-md); }
 
     /* Actions */
     .actions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
