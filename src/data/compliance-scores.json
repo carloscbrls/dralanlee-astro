@@ -1,7 +1,7 @@
 {
   "client": "Dr. Alan Lee Dental",
   "domain": "dralanlee.com",
-  "lastAudited": "2026-05-25",
+  "lastAudited": "2026-06-01",
   "auditedBy": "CC3PO",
   "overall": 93,
   "grade": "A",
@@ -34,7 +34,7 @@
         { "item": "Bot Fight Mode", "status": "pass" },
         { "item": "Rate Limiting", "status": "pass" }
       ],
-      "note": "All security headers present. SSL valid until Aug 13, 2026. Cloudflare WAF active."
+      "note": "All security headers present. SSL valid until Aug 13, 2026 (73 days remaining). Cloudflare WAF active."
     },
     "hipaa": {
       "score": 95,
@@ -54,7 +54,7 @@
         { "item": "Plausible Analytics (self-hosted, no cookies)", "status": "pass" },
         { "item": "Cloudflare DPA", "status": "pass" }
       ],
-      "note": "All required HIPAA documentation present. BAA signed with Google. JotForm HIPAA tier active."
+      "note": "All required HIPAA documentation present and returning 200. BAA signed with Google. JotForm HIPAA tier active."
     },
     "privacy": {
       "score": 97,
@@ -72,23 +72,24 @@
       "note": "Strong privacy posture. Self-hosted analytics, no Google Analytics, no third-party trackers."
     },
     "content": {
-      "score": 88,
+      "score": 86,
       "weight": 10,
       "source": "CC3PO Content & UX Audit",
       "checks": [
-        { "item": "Performance (Lighthouse)", "status": "warning", "score": 81, "detail": "81/100 — LCP 4.2s, render-blocking resources, FCP 3.0s" },
+        { "item": "Performance (Lighthouse)", "status": "warning", "score": 76, "detail": "76/100 — dropped 5pts from 81. LCP 4.2s likely impacted by render-blocking resources." },
         { "item": "SEO (Lighthouse)", "status": "pass", "score": 100 },
-        { "item": "Best Practices (Lighthouse)", "status": "warning", "score": 88, "detail": "Console errors logged" },
+        { "item": "Best Practices (Lighthouse)", "status": "warning", "score": 88, "detail": "Console errors logged (unchanged from last audit)" },
         { "item": "Mobile responsive", "status": "pass" },
         { "item": "Schema markup", "status": "pass" },
         { "item": "Contact info visible", "status": "pass" },
         { "item": "Staff photos/bios", "status": "pass" },
         { "item": "Patient forms accessible", "status": "pass" }
       ],
-      "note": "Performance improved from 75→81. LCP 4.2s is main bottleneck (render-blocking resources). SEO perfect at 100. Console errors in Best Practices."
+      "note": "Performance dropped from 81→76 (likely due to render-blocking resources or changes to page content). SEO perfect at 100. Best Practices still showing console errors."
     }
   },
   "history": [
+    { "date": "2026-06-01", "overall": 93, "accessibility": 95, "security": 90, "hipaa": 95, "privacy": 97, "content": 86, "note": "Performance dropped 81→76. All security headers passing. SSL expires Aug 13. All compliance pages 200. Grade stays A." },
     { "date": "2026-05-25", "overall": 93, "accessibility": 95, "security": 90, "hipaa": 95, "privacy": 97, "content": 88, "note": "Performance improved 75→81. All compliance pages 200. Security headers all pass. Grade A-→A." },
     { "date": "2026-05-18", "overall": 90, "accessibility": 95, "security": 90, "hipaa": 95, "privacy": 97, "content": 88, "note": "First verified audit using Lighthouse + manual checks" },
     { "date": "2026-05-15", "overall": 92, "accessibility": 82, "security": 90, "hipaa": 95, "privacy": 97, "content": 88, "note": "Pre-verification estimate (hardcoded)" }
