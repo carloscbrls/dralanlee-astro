@@ -1,7 +1,7 @@
 {
   "client": "Dr. Alan Lee Dental",
   "domain": "dralanlee.com",
-  "lastAudited": "2026-06-01",
+  "lastAudited": "2026-06-08",
   "auditedBy": "CC3PO",
   "overall": 93,
   "grade": "A",
@@ -14,9 +14,9 @@
       "details": [
         { "id": "color-contrast", "status": "fail", "weight": 7, "title": "Background and foreground colors do not have a sufficient contrast ratio" },
         { "id": "heading-order", "status": "fail", "weight": 3, "title": "Heading elements are not in a sequentially-descending order" },
-        { "id": "label-content-name-mismatch", "status": "advisory", "weight": 0, "title": "Elements with visible text labels do not have matching accessible names" }
+        { "id": "label-content-name-mismatch", "status": "fail", "weight": 0, "title": "Elements with visible text labels do not have matching accessible names" }
       ],
-      "note": "2 minor issues found by Lighthouse (color contrast + heading order). 1 advisory (label-content-name-mismatch, weight 0). Score unchanged at 95."
+      "note": "2 minor issues found by Lighthouse (color contrast + heading order). Label-content-name-mismatch escalated from advisory to fail (weight 0, no score impact). Score unchanged at 95."
     },
     "security": {
       "score": 90,
@@ -72,11 +72,11 @@
       "note": "Strong privacy posture. Self-hosted analytics, no Google Analytics, no third-party trackers."
     },
     "content": {
-      "score": 86,
+      "score": 89,
       "weight": 10,
       "source": "CC3PO Content & UX Audit",
       "checks": [
-        { "item": "Performance (Lighthouse)", "status": "warning", "score": 76, "detail": "76/100 — dropped 5pts from 81. LCP 4.2s likely impacted by render-blocking resources." },
+        { "item": "Performance (Lighthouse)", "status": "warning", "score": 79, "detail": "79/100 — improved 3pts from 76. Positive recovery trend." },
         { "item": "SEO (Lighthouse)", "status": "pass", "score": 100 },
         { "item": "Best Practices (Lighthouse)", "status": "warning", "score": 88, "detail": "Console errors logged (unchanged from last audit)" },
         { "item": "Mobile responsive", "status": "pass" },
@@ -85,10 +85,11 @@
         { "item": "Staff photos/bios", "status": "pass" },
         { "item": "Patient forms accessible", "status": "pass" }
       ],
-      "note": "Performance dropped from 81→76 (likely due to render-blocking resources or changes to page content). SEO perfect at 100. Best Practices still showing console errors."
+      "note": "Performance improved 76→79 (+3pts). Positive recovery trend. SEO perfect at 100. Best Practices still showing console errors."
     }
   },
   "history": [
+    { "date": "2026-06-08", "overall": 93, "accessibility": 95, "security": 90, "hipaa": 95, "privacy": 97, "content": 89, "note": "Quick scan: performance 76→79 recovery. Label-content-name escalated from advisory to fail (new). All security/pages passing. SSL through Aug 13. Grade A." },
     { "date": "2026-06-01", "overall": 93, "accessibility": 95, "security": 90, "hipaa": 95, "privacy": 97, "content": 86, "note": "Performance dropped 81→76. All security headers passing. SSL expires Aug 13. All compliance pages 200. Grade stays A." },
     { "date": "2026-05-25", "overall": 93, "accessibility": 95, "security": 90, "hipaa": 95, "privacy": 97, "content": 88, "note": "Performance improved 75→81. All compliance pages 200. Security headers all pass. Grade A-→A." },
     { "date": "2026-05-18", "overall": 90, "accessibility": 95, "security": 90, "hipaa": 95, "privacy": 97, "content": 88, "note": "First verified audit using Lighthouse + manual checks" },
