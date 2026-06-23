@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import IOSFormTester from '../components/IOSFormTester.astro';
 
 const title = 'Patient Forms | Dr. Alan S. Lee, DDS';
 const description = 'Complete your patient forms online before your visit. HIPAA-compliant, encrypted, and secure. New patient registration, medical history, consent forms, and more.';
@@ -421,4 +422,7 @@ const consentForms = [
       }
     });
   </script>
+
+  <!-- iOS Form Tester — add ?test=ios to URL for diagnostics -->
+  <IOSFormTester />
 </Layout>

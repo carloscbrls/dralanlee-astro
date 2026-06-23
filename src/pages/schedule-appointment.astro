@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import IOSFormTester from '../components/IOSFormTester.astro';
 
 const title = 'Schedule an Appointment | Dr. Alan S. Lee, DDS';
 const description = 'Schedule your dental appointment online. HIPAA-compliant form submission. Dr. Alan S. Lee, DDS — Manteca, CA. Call (209) 239-2990 for urgent needs.';
@@ -240,4 +241,7 @@ const dentistSchema = {
       .jotform-embed iframe { min-height: 1000px !important; height: 1000px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; overscroll-behavior: contain !important; }
     }
   </style>
+
+  <!-- iOS Form Tester — add ?test=ios to URL for diagnostics -->
+  <IOSFormTester />
 </Layout>

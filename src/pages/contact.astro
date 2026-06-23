@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import IOSFormTester from '../components/IOSFormTester.astro';
 
 const title = 'Contact Us | Dr. Alan S. Lee, DDS';
 const description = 'Contact Dr. Alan S. Lee, DDS in Manteca, CA. Call (209) 239-2990, visit us at 715 N Main St, or send us a message online. We are here to help.';
@@ -216,8 +217,8 @@ const localBusinessSchema = {
     .form-tab:active { transform: none; }
 
     /* ===== FORM PANELS ===== */
-    .form-panel { display: none; }
-    .form-panel.active { display: block; animation: fadeInUp 0.35s ease-out; }
+    .form-panel { display: none; visibility: hidden; }
+    .form-panel.active { display: block; visibility: visible; animation: fadeInUp 0.35s ease-out; }
     .form-panel.active .jotform-embed { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
 
     /* ===== JOTFORM EMBED — JS embed container styling ===== */
@@ -229,8 +230,15 @@ const localBusinessSchema = {
       transition: min-height 0.3s ease;
     }
     /* JotForm JS embed renders inline — ensure it fills container */
-    .jotform-embed > script + * {
+    .jotform-embed script + * {
       width: 100% !important;
+    }
+    /* Fix for JotForm iframe visibility calculation */
+    .jotform-embed iframe {
+      width: 100% !important;
+      min-height: 500px !important;
+      border: none !important;
+      display: block !important;
     }
 
     /* ===== DISCLAIMER ===== */
@@ -462,9 +470,21 @@ const localBusinessSchema = {
         document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         // Update panels
-        document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.form-panel').forEach(p => {
+          p.classList.remove('active');
+          p.style.visibility = 'hidden';
+        });
         const panel = document.getElementById('panel-' + target);
         panel.classList.add('active');
+        panel.style.visibility = 'visible';
+        
+        // Force JotForm iframe resize after panel becomes visible
+        setTimeout(() => {
+          const iframe = panel.querySelector('iframe');
+          if (iframe) {
+            iframe.style.height = iframe.contentWindow?.document?.body?.scrollHeight + 'px' || '600px';
+          }
+        }, 500);
       });
     });
 
@@ -526,8 +546,11 @@ const localBusinessSchema = {
     // Also run when tab is switched (forms may re-render)
     document.querySelectorAll('.form-tab').forEach(tab => {
       tab.addEventListener('click', () => {
-        injectHIPAACompliance();
+        setTimeout(injectHIPAACompliance, 1000);
       });
     });
   </script>
+
+  <!-- iOS Form Tester — add ?test=ios to URL for diagnostics -->
+  <IOSFormTester />
 </Layout>
