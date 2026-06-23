@@ -1,0 +1,507 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Simple Contact | Dr. Alan S. Lee, DDS';
+const description = 'Call Dr. Alan S. Lee, DDS at (209) 239-2990 or leave your name and number for us to call you back. Senior-friendly, large text, easy to use.';
+const canonicalUrl = 'https://dralanlee.com/simple-contact/';
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: "Dr. Alan S. Lee, DDS",
+  url: "https://dralanlee.com/simple-contact/",
+  telephone: "+1-209-239-2990",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "715 N Main St",
+    addressLocality: "Manteca",
+    addressRegion: "CA",
+    postalCode: "95336",
+    addressCountry: "US"
+  },
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday"], opens: "08:00", closes: "16:30" }
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+1-209-239-2990",
+    contactType: "customer service",
+    availableLanguage: "English"
+  }
+};
+---
+
+<Layout title={title} description={description} canonicalUrl={canonicalUrl} schema={localBusinessSchema}>
+  <div class="simple-contact-page">
+    <!-- Hero / Call Banner -->
+    <section class="call-banner" aria-labelledby="call-heading">
+      <div class="call-banner-inner">
+        <p class="eyebrow" aria-hidden="true">Need to reach us?</p>
+        <h1 id="call-heading" class="page-heading">Call Our Office</h1>
+        <p class="sub-text">
+          Speak with a real person. We are happy to help you schedule, ask questions, or just say hello.
+        </p>
+
+        <!-- Big Call Button -->
+        <a
+          href="tel:+12092392990"
+          class="call-button"
+          role="button"
+          aria-label="Call Dr. Alan Lee at 2 0 9 2 3 9 2 9 9 0"
+        >
+          <span class="call-icon" aria-hidden="true">📞</span>
+          <span class="call-label">Call Me</span>
+          <span class="call-number">(209) 239-2990</span>
+        </a>
+
+        <!-- Small fallback to JotForm -->
+        <p class="fallback-link">
+          Prefer to write it down?
+          <a href="/contact/">Fill out the online form instead</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Simple Form -->
+    <section class="form-section" aria-labelledby="form-heading">
+      <div class="form-card">
+        <h2 id="form-heading" class="form-title">Or We Can Call You</h2>
+        <p class="form-subtitle">Leave your name, phone number, and the best time to reach you.</p>
+
+        <form
+          action="https://formspree.io/f/xldkvlkj"
+          method="POST"
+          class="simple-form"
+          aria-describedby="form-instructions"
+          novalidate
+        >
+          <p id="form-instructions" class="sr-only">
+            All fields are required. We will call you within one business day.
+          </p>
+
+          <!-- Name -->
+          <div class="field-group">
+            <label for="name" class="field-label">Your Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              autocomplete="name"
+              placeholder="Jane Smith"
+              inputmode="text"
+              enterkeyhint="next"
+              aria-required="true"
+            />
+          </div>
+
+          <!-- Phone -->
+          <div class="field-group">
+            <label for="phone" class="field-label">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              autocomplete="tel"
+              placeholder="(209) 555-1234"
+              inputmode="tel"
+              enterkeyhint="next"
+              pattern="[\d\s\-\(\)\+]{10,}"
+              aria-required="true"
+            />
+          </div>
+
+          <!-- Best Time -->
+          <div class="field-group">
+            <label for="best-time" class="field-label">Best Time to Call</label>
+            <select
+              id="best-time"
+              name="best_time"
+              required
+              aria-required="true"
+            >
+              <option value="" disabled selected>Select a time…</option>
+              <option value="morning">Morning (8 AM – 12 PM)</option>
+              <option value="afternoon">Afternoon (12 PM – 4 PM)</option>
+              <option value="anytime">Anytime</option>
+            </select>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="submit-button">
+            Send Request
+          </button>
+
+          <p class="form-note">
+            We usually call back within one business day.
+            <span class="hipaa-note" aria-label="Your information is kept private.">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+              HIPAA-protected
+            </span>
+          </p>
+        </form>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  /* ---------- Page Shell ---------- */
+  .simple-contact-page {
+    --page-bg: #f6fbff;
+    --card-bg: #ffffff;
+    --ink: #0a0a0a;
+    --ink-soft: #333333;
+    --primary: #0c4a6e;
+    --primary-hover: #094766;
+    --accent: #f59e0b;
+    --accent-hover: #d97706;
+    --border: #d4d4d4;
+    --focus: #0ea5e9;
+    --error: #dc2626;
+
+    background: var(--page-bg);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .simple-contact-page {
+      padding: 3rem 1.5rem;
+    }
+  }
+
+  /* ---------- Skip Link ---------- */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 0 12px 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    z-index: 9999;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* ---------- Call Banner ---------- */
+  .call-banner {
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-heading {
+    font-family: var(--font-display, 'DM Serif Display', Georgia, serif);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+
+  .sub-text {
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    max-width: 480px;
+    margin: 0 auto 1.75rem;
+  }
+
+  /* ---------- Big Call Button ---------- */
+  .call-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    min-height: 120px;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: #fff;
+    border-radius: 20px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(217, 119, 6, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .call-button:hover,
+  .call-button:active {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(217, 119, 6, 0.45);
+  }
+
+  .call-button:focus-visible {
+    outline: 4px solid var(--focus);
+    outline-offset: 4px;
+  }
+
+  .call-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+  }
+
+  .call-label {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .call-number {
+    font-size: 1.35rem;
+    font-weight: 600;
+    opacity: 0.95;
+  }
+
+  /* ---------- Fallback Link ---------- */
+  .fallback-link {
+    margin-top: 1.25rem;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+  }
+  .fallback-link a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+  }
+  .fallback-link a:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ---------- Form Section ---------- */
+  .form-section {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .form-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  @media (min-width: 480px) {
+    .form-card {
+      padding: 2.5rem 2rem;
+    }
+  }
+
+  .form-title {
+    font-family: var(--font-display, 'DM Serif Display', Georgia, serif);
+    font-size: clamp(1.6rem, 4vw, 2rem);
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    text-align: center;
+  }
+
+  .form-subtitle {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-bottom: 1.75rem;
+    line-height: 1.5;
+  }
+
+  /* ---------- Fields ---------- */
+  .field-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .field-label {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .field-group input,
+  .field-group select {
+    width: 100%;
+    min-height: 56px;
+    padding: 0.85rem 1rem;
+    font-size: 1.15rem;
+    font-family: inherit;
+    color: var(--ink);
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .field-group input:focus,
+  .field-group select:focus {
+    border-color: var(--focus);
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.18);
+    outline: none;
+  }
+
+  .field-group input::placeholder {
+    color: #a3a3a3;
+  }
+
+  .field-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23525252' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.8rem;
+    cursor: pointer;
+  }
+
+  .field-group select:invalid {
+    color: #a3a3a3;
+  }
+
+  .field-group select option {
+    color: var(--ink);
+    font-size: 1.1rem;
+  }
+
+  .field-group input:invalid:not(:placeholder-shown),
+  .field-group select:invalid:not(:focus) {
+    border-color: var(--error);
+  }
+
+  /* ---------- Submit Button ---------- */
+  .submit-button {
+    display: block;
+    width: 100%;
+    min-height: 56px;
+    margin-top: 0.5rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-family: inherit;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(12, 74, 110, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .submit-button:hover,
+  .submit-button:active {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(12, 74, 110, 0.35);
+  }
+
+  .submit-button:focus-visible {
+    outline: 4px solid var(--focus);
+    outline-offset: 4px;
+  }
+
+  /* ---------- Form Note ---------- */
+  .form-note {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    text-align: center;
+    line-height: 1.55;
+  }
+
+  .hipaa-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: 0.35rem;
+    font-weight: 600;
+    color: var(--primary);
+    white-space: nowrap;
+  }
+
+  .hipaa-note svg {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+  }
+
+  /* ---------- Screen Reader ---------- */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ---------- Reduced Motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    .call-button,
+    .submit-button {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Simple client-side validation enhancement
+  (function () {
+    const form = document.querySelector('.simple-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      const name = form.querySelector('#name');
+      const phone = form.querySelector('#phone');
+      const time = form.querySelector('#best-time');
+      let ok = true;
+
+      [name, phone, time].forEach(function (el) {
+        if (!el.value.trim()) {
+          el.style.borderColor = '#dc2626';
+          ok = false;
+        } else {
+          el.style.borderColor = '';
+        }
+      });
+
+      if (!ok) {
+        e.preventDefault();
+        // Focus first invalid field
+        if (!name.value.trim()) name.focus();
+        else if (!phone.value.trim()) phone.focus();
+        else if (!time.value) time.focus();
+      }
+    });
+
+    // Clear error style on input
+    form.querySelectorAll('input, select').forEach(function (el) {
+      el.addEventListener('input', function () {
+        el.style.borderColor = '';
+      });
+    });
+  })();
+</script>
