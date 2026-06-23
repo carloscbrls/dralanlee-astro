@@ -171,6 +171,7 @@ const dentistSchema = {
       display: block !important;
       overflow: auto !important;
       -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
     }
 
     .form-disclaimer { margin-top: 1.25rem; padding: 1rem 1.25rem; background: var(--neutral-50); border-radius: var(--radius-md); border: 1px solid var(--neutral-200); }
@@ -248,7 +249,7 @@ const dentistSchema = {
       .legal-hero { padding: 3.5rem 1rem 3rem; }
       .schedule-grid { padding: 0 1rem; }
       .jotform-embed { min-height: 1000px; }
-      .jotform-embed iframe { min-height: 1000px !important; height: 1000px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; }
+      .jotform-embed iframe { min-height: 1000px !important; height: 1000px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; overscroll-behavior: contain !important; }
     }
   </style>
 

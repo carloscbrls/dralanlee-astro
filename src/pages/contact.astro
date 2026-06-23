@@ -255,6 +255,7 @@ const localBusinessSchema = {
       display: block !important;
       overflow: auto !important;
       -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
     }
 
     /* ===== DISCLAIMER ===== */
@@ -346,7 +347,7 @@ const localBusinessSchema = {
       .form-tabs { flex-direction: column; gap: 0.5rem; }
       .form-tab { width: 100%; justify-content: center; padding: 0.75rem 1.5rem; font-size: 0.85rem; }
       .jotform-embed { min-height: 1000px; }
-      .jotform-embed iframe { min-height: 1000px !important; height: 1000px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; }
+      .jotform-embed iframe { min-height: 1000px !important; height: 1000px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; overscroll-behavior: contain !important; }
     }
   </style>
 
