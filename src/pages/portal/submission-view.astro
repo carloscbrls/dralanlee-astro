@@ -123,7 +123,7 @@
         }
 
         const isNew = sub.status === 'new';
-        const time = new Date(sub.created_at + 'Z').toLocaleString('en-US', {
+        const time = new Date(sub.created_at).toLocaleString('en-US', {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
           hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
         });

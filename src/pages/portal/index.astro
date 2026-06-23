@@ -1308,10 +1308,17 @@ const forms = [
 
         if (!subsRes) throw new Error('No API available');
 
+        console.log('Submissions API connected, fetching data...');
         const subs = await subsRes.json();
         const stats = statsRes ? await statsRes.json() : {};
 
-        if (!subs.submissions || subs.submissions.length === 0) return;
+        console.log('Submissions count:', subs.submissions?.length);
+        console.log('Stats:', JSON.stringify(stats).substring(0, 100));
+
+        if (!subs.submissions || subs.submissions.length === 0) {
+          console.log('No submissions found in API response');
+          return;
+        }
 
         // Count unique forms from submissions data
         const formCounts = {};
