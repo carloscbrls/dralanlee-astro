@@ -249,6 +249,23 @@ const dentistSchema = {
   </style>
 
   <script>
+    // iOS Safari fix: JotForm HIPAA submission gets stuck in iframe on iPhone
+    // due to Intelligent Tracking Prevention blocking third-party cookies
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+      // Replace iframe with direct link to standalone JotForm
+      document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('appointment-form-container');
+        if (container) {
+          container.innerHTML = '<div style="padding:2rem;text-align:center;background:var(--neutral-50);border-radius:var(--radius-lg);border:1px solid var(--neutral-200);">'
+            + '<p style="margin-bottom:1rem;color:var(--neutral-600);font-size:0.95rem;">For the best experience on iPhone, please open the form in a new window:</p>'
+            + '<a href="https://form.jotform.com/260202986387060" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(135deg,var(--primary-600),var(--primary-800));color:white;font-weight:600;padding:0.85rem 2rem;border-radius:50px;text-decoration:none;font-size:1rem;box-shadow:0 4px 14px rgba(2,132,199,0.3);">'
+            + 'Open Appointment Form</a>'
+            + '<p style="margin-top:1rem;color:var(--neutral-400);font-size:0.8rem;">Your information is encrypted and HIPAA-compliant.</p>'
+            + '</div>';
+        }
+      });
+    }
+
     // Auto-resize JotForm iframes to prevent cutoff
     function resizeJotFormIframes() {
       document.querySelectorAll('.jotform-embed iframe').forEach(iframe => {
