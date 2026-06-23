@@ -55,12 +55,48 @@ const dentistSchema = {
           <p>Fill out the form below and our team will contact you to confirm your appointment.</p>
         </div>
 
+        <!-- HIPAA / PHI Notice Banner — Astro-side, above JotForm iframe -->
+        <aside class="hipaa-notice-banner" role="note" aria-label="HIPAA notice">
+          <div class="hipaa-notice-row hipaa-notice-warning">
+            <span class="hipaa-notice-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            </span>
+            <div>
+              <strong>Do not include protected health information (PHI)</strong> in this form.
+              Please do not share diagnoses, medications, Social Security numbers, or insurance ID numbers here.
+              For anything sensitive, <a href="tel:+120****2990">call us at (209) 239-2990</a>.
+            </div>
+          </div>
+          <div class="hipaa-notice-row hipaa-notice-encryption">
+            <span class="hipaa-notice-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </span>
+            <div>
+              This form is <strong>HIPAA-encrypted end-to-end</strong> and submitted directly to our office.
+              Inquiries are retained for <strong>6 years</strong> per HIPAA record-keeping requirements.
+              See our <a href="/hipaa-privacy/">HIPAA Notice of Privacy Practices</a>.
+            </div>
+          </div>
+        </aside>
+
         <!-- JotForm HIPAA-Compliant Appointment Request Form -->
         <div class="jotform-embed" id="appointment-form-container">
           <script src="https://form.jotform.com/s/umd/latest/embed-form.js" data-form-id="260202986387060" data-domain="form.jotform.com" data-type="standard" data-card="1"></script>
           <noscript>
             <p>Your browser does not support JavaScript. Please <a href="https://form.jotform.com/260202986387060" target="_blank" rel="noopener noreferrer">fill out the appointment request form</a> directly.</p>
           </noscript>
+        </div>
+
+        <!-- Success Message — shown when JotForm redirects back with ?thanks=1 -->
+        <div id="form-success" class="form-success-message" hidden>
+          <div class="form-success-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <h2>Thank you!</h2>
+          <p>Your appointment request has been received. Dr. Lee's office will be in touch within one business day to confirm.</p>
+          <p class="form-success-detail">
+            For urgent dental needs, please <a href="tel:+120****2990">call (209) 239-2990</a>.
+          </p>
         </div>
 
         <div class="form-disclaimer">
@@ -240,7 +276,100 @@ const dentistSchema = {
       .jotform-embed { min-height: 1000px; }
       .jotform-embed iframe { min-height: 1000px !important; height: 1000px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; overscroll-behavior: contain !important; }
     }
+
+    /* ---------- HIPAA / PHI Notice Banner (Astro-side, above JotForm) ---------- */
+    .hipaa-notice-banner {
+      margin: 0 0 1.25rem 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--neutral-200);
+    }
+    .hipaa-notice-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.85rem 1.1rem;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .hipaa-notice-row + .hipaa-notice-row {
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .hipaa-notice-icon {
+      flex-shrink: 0;
+      display: inline-flex;
+      margin-top: 1px;
+    }
+    .hipaa-notice-row strong { font-weight: 700; }
+    .hipaa-notice-row a { color: inherit; text-decoration: underline; font-weight: 600; }
+    .hipaa-notice-row a:hover { text-decoration: none; }
+    .hipaa-notice-warning {
+      background: #FEF3C7;
+      color: #92400E;
+      border-left: 4px solid #F59E0B;
+    }
+    .hipaa-notice-warning .hipaa-notice-icon { color: #B45309; }
+    .hipaa-notice-encryption {
+      background: #ECFDF5;
+      color: #065F46;
+      border-left: 4px solid #059669;
+    }
+    .hipaa-notice-encryption .hipaa-notice-icon { color: #047857; }
+    @media (max-width: 768px) {
+      .hipaa-notice-row { font-size: 0.85rem; padding: 0.75rem 0.9rem; }
+    }
+
+    /* ---------- Success Message (shown after JotForm redirects back) ---------- */
+    .form-success-message {
+      background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
+      border: 2px solid #86EFAC;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      margin: 2rem auto;
+      max-width: 640px;
+      color: #065F46;
+    }
+    .form-success-message[hidden] { display: none; }
+    .form-success-icon { color: #059669; margin-bottom: 0.75rem; display: inline-flex; }
+    .form-success-message h2 { font-family: var(--font-display); font-size: 1.75rem; color: #064E3B; margin-bottom: 0.5rem; }
+    .form-success-message p { font-size: 1rem; color: #065F46; line-height: 1.6; }
+    .form-success-detail { font-size: 0.9rem !important; margin-top: 1rem; }
+    .form-success-detail a { color: #047857; font-weight: 600; text-decoration: underline; }
   </style>
+
+  <script>
+    // Success-message detection — JotForm redirects back with ?thanks=1 or postMessages
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const isSuccess = params.has('thanks') || params.get('submission') === 'success';
+
+      function showSuccess() {
+        const el = document.getElementById('form-success');
+        if (el && el.hidden) {
+          el.hidden = false;
+          el.setAttribute('tabindex', '-1');
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          el.focus({ preventScroll: true });
+          document.querySelectorAll('.jotform-embed').forEach(f => {
+            f.style.display = 'none';
+          });
+        }
+      }
+
+      if (isSuccess) {
+        setTimeout(showSuccess, 300);
+      }
+
+      window.addEventListener('message', (e) => {
+        if (!e.origin || !e.origin.endsWith('jotform.com')) return;
+        const data = (typeof e.data === 'string') ? e.data : JSON.stringify(e.data || {});
+        if (/submission\s*complete|form\s*submitted|thank\s*you/i.test(data)) {
+          showSuccess();
+        }
+      });
+    })();
+  </script>
 
   <!-- iOS Form Tester — add ?test=ios to URL for diagnostics -->
   <IOSFormTester />
