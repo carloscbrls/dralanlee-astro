@@ -79,8 +79,48 @@ const dentistSchema = {
           </div>
         </aside>
 
-        <!-- JotForm HIPAA-Compliant Appointment Request Form -->
-        <div class="jotform-embed" id="appointment-form-container">
+        <!-- HIPAA Consent Gate — Astro-side, blocks JotForm until user consents -->
+        <div id="consent-gate" class="consent-gate" role="region" aria-labelledby="consent-title">
+          <div class="consent-gate-inner">
+            <div class="consent-gate-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            </div>
+            <h2 id="consent-title" class="consent-gate-title">Before You Begin</h2>
+            <p class="consent-gate-text">To protect your privacy, we need your consent before loading the secure form.</p>
+            
+            <label class="consent-gate-label" for="consent-check">
+              <input
+                type="checkbox"
+                id="consent-check"
+                class="consent-gate-checkbox"
+                aria-describedby="consent-desc"
+              />
+              <span id="consent-desc" class="consent-gate-desc">
+                I consent to being contacted by Dr. Lee's office regarding my request.
+                I understand my information will be handled per the
+                <a href="/hipaa-privacy/">HIPAA Notice of Privacy Practices</a>.
+              </span>
+            </label>
+            
+            <button
+              id="consent-btn"
+              class="consent-gate-btn"
+              type="button"
+              disabled
+              aria-disabled="true"
+            >
+              Continue to Form
+            </button>
+            
+            <p class="consent-gate-note">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+              Your information is encrypted and HIPAA-compliant.
+            </p>
+          </div>
+        </div>
+
+        <!-- JotForm HIPAA-Compliant Appointment Request Form (hidden until consent) -->
+        <div class="jotform-embed" id="appointment-form-container" data-requires-consent style="display:none;">
           <script src="https://form.jotform.com/s/umd/latest/embed-form.js" data-form-id="260202986387060" data-domain="form.jotform.com" data-type="standard" data-card="1"></script>
           <noscript>
             <p>Your browser does not support JavaScript. Please <a href="https://form.jotform.com/260202986387060" target="_blank" rel="noopener noreferrer">fill out the appointment request form</a> directly.</p>
@@ -336,6 +376,107 @@ const dentistSchema = {
     .form-success-message p { font-size: 1rem; color: #065F46; line-height: 1.6; }
     .form-success-detail { font-size: 0.9rem !important; margin-top: 1rem; }
     .form-success-detail a { color: #047857; font-weight: 600; text-decoration: underline; }
+
+    /* ---------- Consent Gate ---------- */
+    .consent-gate {
+      background: #ffffff;
+      border: 2px solid #0c4a6e;
+      border-radius: var(--radius-lg, 16px);
+      padding: 2rem;
+      margin: 1rem 0;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(12, 74, 110, 0.08);
+    }
+    .consent-gate-inner {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .consent-gate-icon {
+      color: #0c4a6e;
+      margin-bottom: 1rem;
+    }
+    .consent-gate-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0c4a6e;
+      margin: 0 0 0.75rem;
+    }
+    .consent-gate-text {
+      color: #374151;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      margin: 0 0 1.5rem;
+    }
+    .consent-gate-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      text-align: left;
+      background: #f0f7fb;
+      border: 1px solid #c8dde9;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .consent-gate-label:hover {
+      border-color: #0c4a6e;
+    }
+    .consent-gate-checkbox {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      margin-top: 2px;
+      accent-color: #0c4a6e;
+    }
+    .consent-gate-desc {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #1f2937;
+    }
+    .consent-gate-desc a {
+      color: #0c4a6e;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .consent-gate-btn {
+      background: #0c4a6e;
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+      width: 100%;
+      max-width: 320px;
+    }
+    .consent-gate-btn:hover:not(:disabled) {
+      background: #094766;
+    }
+    .consent-gate-btn:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .consent-gate-btn:focus-visible {
+      outline: 3px solid #0ea5e9;
+      outline-offset: 2px;
+    }
+    .consent-gate-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+    .consent-gate-note svg {
+      color: #059669;
+    }
   </style>
 
   <script>
@@ -368,6 +509,69 @@ const dentistSchema = {
           showSuccess();
         }
       });
+    })();
+
+    // ===== CONSENT GATE LOGIC =====
+    // Shows a consent gate before loading JotForm. Stores consent in sessionStorage.
+    (function() {
+      const CONSENT_KEY = 'drlee_hipaa_consent';
+      const gate = document.getElementById('consent-gate');
+      const check = document.getElementById('consent-check');
+      const btn = document.getElementById('consent-btn');
+      const embed = document.getElementById('appointment-form-container');
+
+      function hasConsent() {
+        try {
+          return sessionStorage.getItem(CONSENT_KEY) === 'true';
+        } catch (e) {
+          return false;
+        }
+      }
+
+      function giveConsent() {
+        try {
+          sessionStorage.setItem(CONSENT_KEY, 'true');
+        } catch (e) {
+          // sessionStorage may be disabled; continue anyway
+        }
+        if (gate) gate.style.display = 'none';
+        if (embed) {
+          embed.style.display = 'block';
+          embed.classList.add('consent-given');
+        }
+        // Focus first form field for accessibility
+        setTimeout(() => {
+          const firstInput = document.querySelector('.jotform-embed input, .jotform-embed select, .jotform-embed textarea');
+          if (firstInput) firstInput.focus();
+        }, 500);
+      }
+
+      if (hasConsent()) {
+        giveConsent();
+        return;
+      }
+
+      if (check && btn) {
+        check.addEventListener('change', () => {
+          btn.disabled = !check.checked;
+          btn.setAttribute('aria-disabled', String(!check.checked));
+        });
+
+        btn.addEventListener('click', () => {
+          if (check.checked) giveConsent();
+        });
+
+        // Allow Enter key to submit when checkbox is focused
+        check.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            check.checked = !check.checked;
+            btn.disabled = !check.checked;
+            btn.setAttribute('aria-disabled', String(!check.checked));
+            if (check.checked) giveConsent();
+          }
+        });
+      }
     })();
   </script>
 
