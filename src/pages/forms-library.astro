@@ -178,12 +178,23 @@ const consentForms = [
         </div>
       </div>
       <div class="form-modal-body">
+        <p class="modal-hipaa-inline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <span>This form is <strong>HIPAA-encrypted</strong> and submitted directly to Dr. Lee's office. Please do not include protected health information (PHI) — for sensitive topics, <a href="tel:+120****2990">call (209) 239-2990</a>. Inquiries retained for 6 years per HIPAA.</span>
+        </p>
         <div class="jotform-embed" id="jotform-container">
           <div class="form-loading" id="form-loading">
             <div class="loading-spinner"></div>
             <p>Loading secure form...</p>
             <p class="loading-sub">Your data is encrypted and HIPAA-compliant</p>
           </div>
+        </div>
+        <div id="form-success" class="form-success-message" hidden style="margin: 1.5rem;">
+          <div class="form-success-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <h2>Thank you!</h2>
+          <p>Your form has been submitted. Dr. Lee's office will be in touch within one business day.</p>
         </div>
       </div>
       <div class="form-modal-footer">
@@ -337,6 +348,31 @@ const consentForms = [
       .legal-hero { padding: 3.5rem 1rem 3rem; }
       .form-modal-content { width: 100vw; max-width: 100vw; max-height: 100vh; border-radius: 0; }
     }
+
+    /* ---------- Modal HIPAA Inline Notice (above JotForm in modal) ---------- */
+    .modal-hipaa-inline {
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      background: #ECFDF5; border: 1px solid #86EFAC; border-radius: var(--radius-md);
+      padding: 0.65rem 0.9rem; margin: 0.75rem 0.75rem 0 0.75rem;
+      font-size: 0.82rem; color: #065F46; line-height: 1.5;
+    }
+    .modal-hipaa-inline svg { flex-shrink: 0; color: #047857; margin-top: 1px; }
+    .modal-hipaa-inline a { color: #047857; font-weight: 600; text-decoration: underline; }
+    .modal-hipaa-inline a:hover { color: #065F46; }
+
+    /* ---------- Success Message (in-modal) ---------- */
+    .form-success-message {
+      background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
+      border: 2px solid #86EFAC;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: #065F46;
+    }
+    .form-success-message[hidden] { display: none; }
+    .form-success-icon { color: #059669; margin-bottom: 0.75rem; display: inline-flex; }
+    .form-success-message h2 { font-family: var(--font-display); font-size: 1.75rem; color: #064E3B; margin-bottom: 0.5rem; }
+    .form-success-message p { font-size: 1rem; color: #065F46; line-height: 1.6; }
   </style>
 
   <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
@@ -421,6 +457,42 @@ const consentForms = [
         closeForm();
       }
     });
+
+    // Success-message detection — JotForm redirects back with ?thanks=1 or postMessages
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const isSuccess = params.has('thanks') || params.get('submission') === 'success';
+
+      function showSuccess() {
+        const el = document.getElementById('form-success');
+        if (el && el.hidden) {
+          el.hidden = false;
+          el.setAttribute('tabindex', '-1');
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          el.focus({ preventScroll: true });
+          document.querySelectorAll('.jotform-embed').forEach(f => {
+            f.style.display = 'none';
+          });
+          // Close the form-loading spinner if it was still showing
+          const loader = document.getElementById('form-loading');
+          if (loader) loader.style.display = 'none';
+        }
+      }
+
+      if (isSuccess) {
+        // Open the modal so the user sees the success message
+        if (modal) modal.classList.add('active');
+        setTimeout(showSuccess, 300);
+      }
+
+      window.addEventListener('message', (e) => {
+        if (!e.origin || !e.origin.endsWith('jotform.com')) return;
+        const data = (typeof e.data === 'string') ? e.data : JSON.stringify(e.data || {});
+        if (/submission\s*complete|form\s*submitted|thank\s*you/i.test(data)) {
+          showSuccess();
+        }
+      });
+    })();
   </script>
 
   <!-- iOS Form Tester — add ?test=ios to URL for diagnostics -->
