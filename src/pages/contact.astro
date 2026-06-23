@@ -81,8 +81,8 @@ const localBusinessSchema = {
               allow="geolocation; microphone; camera; fullscreen; payment"
               src="https://form.jotform.com/260202986387060"
               frameborder="0"
-              style="min-width:100%;max-width:100%;height:539px;border:none;"
-              scrolling="no"
+              style="min-width:100%;max-width:100%;height:1200px;border:none;"
+              scrolling="yes"
             ></iframe>
           </div>
         </div>
@@ -98,8 +98,8 @@ const localBusinessSchema = {
               allow="geolocation; microphone; camera; fullscreen; payment"
               src="https://form.jotform.com/261351664337155"
               frameborder="0"
-              style="min-width:100%;max-width:100%;height:539px;border:none;"
-              scrolling="no"
+              style="min-width:100%;max-width:100%;height:1200px;border:none;"
+              scrolling="yes"
             ></iframe>
           </div>
         </div>
@@ -242,7 +242,7 @@ const localBusinessSchema = {
 
     /* ===== JOTFORM EMBED — CRITICAL: height + overflow ===== */
     .jotform-embed {
-      min-height: 900px; background: var(--neutral-50);
+      min-height: 1200px; background: var(--neutral-50);
       border: 1px solid var(--neutral-200); border-top: 2px solid var(--primary-200);
       border-radius: 0 0 var(--radius-lg) var(--radius-lg);
       overflow: visible; position: relative;
@@ -250,10 +250,11 @@ const localBusinessSchema = {
       -webkit-overflow-scrolling: touch;
     }
     .jotform-embed iframe {
-      width: 100% !important; min-height: 900px !important;
+      width: 100% !important; min-height: 1200px !important;
       border: none !important; border-radius: 0 0 var(--radius-lg) var(--radius-lg) !important;
       display: block !important;
       overflow: auto !important;
+      -webkit-overflow-scrolling: touch !important;
     }
 
     /* ===== DISCLAIMER ===== */
@@ -344,8 +345,8 @@ const localBusinessSchema = {
       .contact-grid { padding: 0 1rem; }
       .form-tabs { flex-direction: column; gap: 0.5rem; }
       .form-tab { width: 100%; justify-content: center; padding: 0.75rem 1.5rem; font-size: 0.85rem; }
-      .jotform-embed { min-height: 750px; }
-      .jotform-embed iframe { min-height: 750px !important; height: 750px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; }
+      .jotform-embed { min-height: 1000px; }
+      .jotform-embed iframe { min-height: 1000px !important; height: 1000px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; }
     }
   </style>
 
@@ -369,26 +370,24 @@ const localBusinessSchema = {
       });
     });
 
-    // Listen for JotForm postMessage height updates
+    // Listen for JotForm postMessage height updates (handles both object and string formats)
     window.addEventListener('message', (event) => {
-      if (event.data && typeof event.data === 'string') {
-        try {
-          const data = JSON.parse(event.data);
-          if (data.type === 'JotFormResize' || data.event === 'resize') {
-            const height = data.height || data.value;
-            if (height && height > 100) {
-              document.querySelectorAll('.jotform-embed').forEach(el => {
-                el.style.minHeight = (height + 40) + 'px';
-              });
-              document.querySelectorAll('.jotform-embed iframe').forEach(iframe => {
-                if (iframe.src && iframe.src !== 'about:blank') {
-                  iframe.style.height = (height + 40) + 'px';
-                }
-              });
+      let data = event.data;
+      // HIPAA forms sometimes send string-encoded JSON
+      if (typeof data === 'string') {
+        try { data = JSON.parse(data); } catch(e) { return; }
+      }
+      if (data && (data.type === 'JotFormResize' || data.event === 'resize' || data.action === 'resize')) {
+        const height = data.height || data.value;
+        if (height && height > 100) {
+          document.querySelectorAll('.jotform-embed').forEach(el => {
+            el.style.minHeight = (height + 40) + 'px';
+          });
+          document.querySelectorAll('.jotform-embed iframe').forEach(iframe => {
+            if (iframe.src && iframe.src !== 'about:blank') {
+              iframe.style.height = (height + 40) + 'px';
             }
-          }
-        } catch (e) {
-          // Not JSON — ignore
+          });
         }
       }
     });
