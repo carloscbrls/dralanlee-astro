@@ -73,14 +73,34 @@ const localBusinessSchema = {
         <!-- Appointment Form -->
         <div class="form-panel active" id="panel-appointment">
           <div class="jotform-embed" id="appointment-form-container">
-            <script src="https://form.jotform.com/jsform/260202986387060" data-iframe-appended></script>
+            <iframe
+              id="JotFormIFrame-260202986387060"
+              title="Request an Appointment"
+              onload="window.parent.scrollTo(0,0)"
+              allowtransparency="true"
+              allow="geolocation; microphone; camera; fullscreen; payment"
+              src="https://form.jotform.com/260202986387060"
+              frameborder="0"
+              style="min-width:100%;max-width:100%;height:539px;border:none;"
+              scrolling="no"
+            ></iframe>
           </div>
         </div>
 
         <!-- Contact Our Office -->
         <div class="form-panel" id="panel-message">
           <div class="jotform-embed" id="contact-form-container">
-            <script src="https://form.jotform.com/jsform/261351664337155" data-iframe-appended></script>
+            <iframe
+              id="JotFormIFrame-261351664337155"
+              title="Contact Our Office"
+              onload="window.parent.scrollTo(0,0)"
+              allowtransparency="true"
+              allow="geolocation; microphone; camera; fullscreen; payment"
+              src="https://form.jotform.com/261351664337155"
+              frameborder="0"
+              style="min-width:100%;max-width:100%;height:539px;border:none;"
+              scrolling="no"
+            ></iframe>
           </div>
         </div>
 
@@ -329,7 +349,12 @@ const localBusinessSchema = {
     }
   </style>
 
+  <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
   <script>
+    // Initialize JotForm embed handler for both forms
+    window.jotformEmbedHandler("iframe[id='JotFormIFrame-260202986387060']", "https://form.jotform.com/");
+    window.jotformEmbedHandler("iframe[id='JotFormIFrame-261351664337155']", "https://form.jotform.com/");
+
     // Tab switching for contact forms
     document.querySelectorAll('.form-tab').forEach(tab => {
       tab.addEventListener('click', () => {

@@ -338,6 +338,7 @@ const consentForms = [
     }
   </style>
 
+  <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
   <script>
     const modal = document.getElementById('form-modal');
     const modalTitle = document.getElementById('modal-title');
@@ -360,19 +361,25 @@ const consentForms = [
       loadingDiv.innerHTML = '<div class="loading-spinner"></div><p>Loading secure form...</p><p class="loading-sub">Your data is encrypted and HIPAA-compliant</p>';
       jotformContainer.appendChild(loadingDiv);
 
-      // Create iframe
+      // Create iframe with JotForm embed handler attributes
       const iframe = document.createElement('iframe');
+      iframe.id = 'JotFormIFrame-' + formId;
       iframe.src = formUrl;
       iframe.title = formTitle;
       iframe.style.width = '100%';
       iframe.style.height = '100%';
       iframe.style.minHeight = '600px';
       iframe.style.border = 'none';
-      iframe.setAttribute('scrolling', 'auto');
-      iframe.setAttribute('sandbox', 'allow-scripts allow-forms allow-same-origin allow-popups');
+      iframe.setAttribute('scrolling', 'no');
+      iframe.setAttribute('allowtransparency', 'true');
+      iframe.setAttribute('allow', 'geolocation; microphone; camera; fullscreen; payment');
       iframe.onload = () => {
         const ld = document.getElementById('form-loading');
         if (ld) ld.remove();
+        // Initialize JotForm embed handler for this iframe
+        if (window.jotformEmbedHandler) {
+          window.jotformEmbedHandler("iframe[id='JotFormIFrame-" + formId + "']", "https://form.jotform.com/");
+        }
       };
       jotformContainer.appendChild(iframe);
 
