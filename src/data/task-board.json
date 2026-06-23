@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    { "id": 1, "title": "Call Mrs. Smith about root canal quote", "assignedTo": "Angelina", "status": "pending", "priority": "high", "dueDate": "2026-06-23", "createdAt": "2026-06-22" },
+    { "id": 2, "title": "Order composite supplies (A2, A3 shades)", "assignedTo": "Dr. Lee", "status": "pending", "priority": "medium", "dueDate": "2026-06-24", "createdAt": "2026-06-22" },
+    { "id": 3, "title": "Update insurance fee schedule for Delta Dental", "assignedTo": "Angelina", "status": "in_progress", "priority": "high", "dueDate": "2026-06-23", "createdAt": "2026-06-21" },
+    { "id": 4, "title": "Confirm lab pickup for David Thompson crown", "assignedTo": "Maria", "status": "pending", "priority": "medium", "dueDate": "2026-06-23", "createdAt": "2026-06-22" },
+    { "id": 5, "title": "Send recall reminders for July hygiene", "assignedTo": "Angelina", "status": "pending", "priority": "low", "dueDate": "2026-06-27", "createdAt": "2026-06-20" },
+    { "id": 6, "title": "Review new patient forms submitted this week", "assignedTo": "Maria", "status": "completed", "priority": "medium", "dueDate": "2026-06-22", "createdAt": "2026-06-19" },
+    { "id": 7, "title": "Verify autoclave spore test results", "assignedTo": "Maria", "status": "completed", "priority": "high", "dueDate": "2026-06-22", "createdAt": "2026-06-18" },
+    { "id": 8, "title": "Order new patient gift bags", "assignedTo": "Dr. Lee", "status": "pending", "priority": "low", "dueDate": "2026-07-01", "createdAt": "2026-06-15" }
+  ]
+}

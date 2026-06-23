@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import IOSFormTester from '../components/IOSFormTester.astro';
 
 const title = 'Contact Us | Dr. Alan S. Lee, DDS';
 const description = 'Contact Dr. Alan S. Lee, DDS in Manteca, CA. Call (209) 239-2990, visit us at 715 N Main St, or send us a message online. We are here to help.';
@@ -138,14 +137,32 @@ const localBusinessSchema = {
         <!-- Appointment Form (hidden until consent) -->
         <div class="form-panel active" id="panel-appointment" data-requires-consent>
           <div class="jotform-embed" id="appointment-form-container" style="display:none;">
-            <script type="text/javascript" src="https://form.jotform.com/jsform/260202986387060"></script>
+            <iframe id="JotFormIFrame-260202986387060"
+              src="https://form.jotform.com/260202986387060?nojump=1"
+              title="Appointment Request Form"
+              width="100%"
+              height="100%"
+              style="min-height: 0; border: none;"
+              scrolling="yes"
+              allowtransparency="true"
+              allow="geolocation; microphone; camera; fullscreen; payment">
+            </iframe>
           </div>
         </div>
 
         <!-- Contact Our Office (hidden until consent) -->
         <div class="form-panel" id="panel-message" data-requires-consent>
           <div class="jotform-embed" id="contact-form-container" style="display:none;">
-            <script type="text/javascript" src="https://form.jotform.com/jsform/261351664337155"></script>
+            <iframe id="JotFormIFrame-261351664337155"
+              src="https://form.jotform.com/261351664337155?nojump=1"
+              title="Contact Form"
+              width="100%"
+              height="100%"
+              style="min-height: 0; border: none;"
+              scrolling="yes"
+              allowtransparency="true"
+              allow="geolocation; microphone; camera; fullscreen; payment">
+            </iframe>
           </div>
         </div>
 
@@ -171,7 +188,7 @@ const localBusinessSchema = {
             <span>HIPAA-Encrypted Submission</span>
           </div>
           <p>By submitting this form, you consent to being contacted regarding your inquiry. Your information is handled in accordance with our <a href="/hipaa-privacy/">HIPAA Notice of Privacy Practices</a>.</p>
-          <p class="ccpa-notice">\u2699\uFE0F <strong>Notice at Collection (CCPA):</strong> We collect your name, email, phone number, and message to respond to your inquiry. We do not sell your personal information. See our <a href="/privacy-policy/">Privacy Policy</a> for your California privacy rights.</p>
+          <p class="ccpa-notice">⚙️ <strong>Notice at Collection (CCPA):</strong> We collect your name, email, phone number, and message to respond to your inquiry. We do not sell your personal information. See our <a href="/privacy-policy/">Privacy Policy</a> for your California privacy rights.</p>
         </div>
       </div>
 
@@ -297,24 +314,20 @@ const localBusinessSchema = {
     .form-panel.active { display: block; visibility: visible; animation: fadeInUp 0.35s ease-out; }
     .form-panel.active .jotform-embed { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
 
-    /* ===== JOTFORM EMBED — JS embed container styling ===== */
+    /* ===== JOTFORM EMBED — iframe container styling ===== */
     .jotform-embed {
-      min-height: 1200px; background: var(--neutral-50);
+      min-height: 0; background: var(--neutral-50);
       border: 1px solid var(--neutral-200); border-top: 2px solid var(--primary-200);
       border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-      overflow: visible; position: relative;
+      overflow: hidden; position: relative;
       transition: min-height 0.3s ease;
-      -webkit-overflow-scrolling: touch;
-    }
-    /* JotForm JS embed renders inline — ensure it fills container */
-    .jotform-embed script + * {
-      width: 100% !important;
+      height: 100%;
     }
     /* Fix for JotForm iframe visibility calculation */
     .jotform-embed iframe {
       width: 100% !important;
-      min-height: 1200px !important;
-      height: 1200px !important;
+      min-height: 0 !important;
+      height: 100% !important;
       border: none !important;
       display: block !important;
       overflow: auto !important;
@@ -410,8 +423,8 @@ const localBusinessSchema = {
       .contact-grid { padding: 0 1rem; }
       .form-tabs { flex-direction: column; gap: 0.5rem; }
       .form-tab { width: 100%; justify-content: center; padding: 0.75rem 1.5rem; font-size: 0.85rem; }
-      .jotform-embed { min-height: 1000px; }
-      .jotform-embed iframe { min-height: 1000px !important; height: 1000px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; overscroll-behavior: contain !important; }
+      .jotform-embed { min-height: 0; height: 1800px; }
+      .jotform-embed iframe { min-height: 0 !important; height: 1800px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; overscroll-behavior: contain !important; }
     }
   </style>
 
@@ -883,7 +896,14 @@ const localBusinessSchema = {
         });
 
         btn.addEventListener('click', () => {
-          if (check.checked) giveConsent();
+          if (check.checked) {
+            // Nuclear option: redirect iPhone users to simple contact
+            if (isIOS()) {
+              window.location.href = '/simple-contact/';
+              return;
+            }
+            giveConsent();
+          }
         });
 
         // Allow Enter key to submit when checkbox is focused
@@ -893,13 +913,22 @@ const localBusinessSchema = {
             check.checked = !check.checked;
             btn.disabled = !check.checked;
             btn.setAttribute('aria-disabled', String(!check.checked));
-            if (check.checked) giveConsent();
+            if (check.checked) {
+              // Nuclear option: redirect iPhone users to simple contact
+              if (isIOS()) {
+                window.location.href = '/simple-contact/';
+                return;
+              }
+              giveConsent();
+            }
           }
         });
       }
+
+      function isIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      }
     })();
   </script>
-
-  <!-- iOS Form Tester — add ?test=ios to URL for diagnostics -->
-  <IOSFormTester />
 </Layout>

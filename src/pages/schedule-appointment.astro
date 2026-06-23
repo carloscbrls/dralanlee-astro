@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import IOSFormTester from '../components/IOSFormTester.astro';
 
 const title = 'Schedule an Appointment | Dr. Alan S. Lee, DDS';
 const description = 'Schedule your dental appointment online. HIPAA-compliant form submission. Dr. Alan S. Lee, DDS — Manteca, CA. Call (209) 239-2990 for urgent needs.';
@@ -121,7 +120,16 @@ const dentistSchema = {
 
         <!-- JotForm HIPAA-Compliant Appointment Request Form (hidden until consent) -->
         <div class="jotform-embed" id="appointment-form-container" data-requires-consent style="display:none;">
-          <script src="https://form.jotform.com/s/umd/latest/embed-form.js" data-form-id="260202986387060" data-domain="form.jotform.com" data-type="standard" data-card="1"></script>
+          <iframe id="JotFormIFrame-260202986387060"
+            src="https://form.jotform.com/260202986387060?nojump=1"
+            title="Appointment Request Form"
+            width="100%"
+            height="100%"
+            style="min-height: 0; border: none;"
+            scrolling="yes"
+            allowtransparency="true"
+            allow="geolocation; microphone; camera; fullscreen; payment">
+          </iframe>
           <noscript>
             <p>Your browser does not support JavaScript. Please <a href="https://form.jotform.com/260202986387060" target="_blank" rel="noopener noreferrer">fill out the appointment request form</a> directly.</p>
           </noscript>
@@ -145,7 +153,7 @@ const dentistSchema = {
             <span>HIPAA-Encrypted Submission</span>
           </div>
           <p>By submitting this form, you consent to being contacted regarding your appointment. Your information is handled in accordance with our <a href="/hipaa-privacy/">HIPAA Notice of Privacy Practices</a>.</p>
-          <p class="ccpa-notice">\u2699\uFE0F <strong>Notice at Collection (CCPA):</strong> We collect your name, email, phone, and appointment preferences to schedule your visit. We do not sell your personal information. See our <a href="/privacy-policy/">Privacy Policy</a> for your California privacy rights.</p>
+          <p class="ccpa-notice">⚙️ <strong>Notice at Collection (CCPA):</strong> We collect your name, email, phone, and appointment preferences to schedule your visit. We do not sell your personal information. See our <a href="/privacy-policy/">Privacy Policy</a> for your California privacy rights.</p>
         </div>
       </div>
 
@@ -218,25 +226,27 @@ const dentistSchema = {
       display: grid; grid-template-columns: 1fr 400px; gap: 3rem;
       max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
     }
-    .form-column { min-width: 0; }
+    .form-column { min-width: 0; overflow-wrap: break-word; word-wrap: break-word; }
     .form-header { margin-bottom: 1.5rem; }
     .form-header h2 { font-family: var(--font-display); font-size: 1.5rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
     .form-header p { color: var(--neutral-500); line-height: 1.6; }
 
     .jotform-embed {
-      min-height: 1200px; background: var(--neutral-50);
+      min-height: 0; background: var(--neutral-50);
       border: 1px solid var(--neutral-200); border-radius: var(--radius-lg);
-      overflow: visible; position: relative;
+      overflow: hidden; position: relative;
       transition: min-height 0.3s ease;
-      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+      height: 100%;
     }
     .jotform-embed iframe {
-      width: 100% !important; min-height: 1200px !important;
+      width: 100% !important; min-height: 0 !important; height: 100% !important;
       border: none !important; border-radius: var(--radius-lg) !important;
       display: block !important;
       overflow: auto !important;
       -webkit-overflow-scrolling: touch !important;
       overscroll-behavior: contain !important;
+      max-width: 100% !important;
     }
 
     .form-disclaimer { margin-top: 1.25rem; padding: 1rem 1.25rem; background: var(--neutral-50); border-radius: var(--radius-md); border: 1px solid var(--neutral-200); }
@@ -313,8 +323,17 @@ const dentistSchema = {
     @media (max-width: 768px) {
       .legal-hero { padding: 3.5rem 1rem 3rem; }
       .schedule-grid { padding: 0 1rem; }
-      .jotform-embed { min-height: 1000px; }
-      .jotform-embed iframe { min-height: 1000px !important; height: 1000px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; overscroll-behavior: contain !important; }
+      .jotform-embed { min-height: 0; height: 1800px; }
+      .jotform-embed iframe { min-height: 0 !important; height: 1800px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; overscroll-behavior: contain !important; }
+      .consent-gate { padding: 1.5rem 1rem; margin: 0.75rem 0; }
+      .consent-gate-inner { max-width: 100%; }
+      .consent-gate-title { font-size: 1.25rem; }
+      .consent-gate-text { font-size: 0.95rem; }
+      .consent-gate-label { padding: 0.85rem 1rem; }
+      .consent-gate-desc { font-size: 0.88rem; }
+      .consent-gate-btn { font-size: 1rem; padding: 0.85rem 1.5rem; }
+      .info-card { padding: 1.25rem; }
+      .phone-large { font-size: 1.3rem; }
     }
 
     /* ---------- HIPAA / PHI Notice Banner (Astro-side, above JotForm) ---------- */
@@ -386,6 +405,8 @@ const dentistSchema = {
       margin: 1rem 0;
       text-align: center;
       box-shadow: 0 4px 24px rgba(12, 74, 110, 0.08);
+      max-width: 100%;
+      overflow-wrap: break-word;
     }
     .consent-gate-inner {
       max-width: 480px;
@@ -429,6 +450,7 @@ const dentistSchema = {
       min-width: 24px;
       margin-top: 2px;
       accent-color: #0c4a6e;
+      flex-shrink: 0;
     }
     .consent-gate-desc {
       font-size: 0.95rem;
@@ -452,6 +474,7 @@ const dentistSchema = {
       transition: background 0.2s, opacity 0.2s;
       width: 100%;
       max-width: 320px;
+      min-height: 56px;
     }
     .consent-gate-btn:hover:not(:disabled) {
       background: #094766;
@@ -575,6 +598,4 @@ const dentistSchema = {
     })();
   </script>
 
-  <!-- iOS Form Tester — add ?test=ios to URL for diagnostics -->
-  <IOSFormTester />
 </Layout>

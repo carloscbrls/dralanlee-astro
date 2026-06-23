@@ -1,0 +1,81 @@
+{
+  "patients": [
+    {
+      "id": 1,
+      "name": "Linda Nguyen",
+      "treatment": "Bridge #29-31",
+      "fee": 4200,
+      "insuranceCoverage": "Delta Dental covers 50%",
+      "presentedDate": "2026-06-10",
+      "status": "pending",
+      "notes": "Waiting on insurance pre-auth",
+      "phone": "(209) 555-0142"
+    },
+    {
+      "id": 2,
+      "name": "Thomas Wright",
+      "treatment": "Implant #14 + crown",
+      "fee": 5800,
+      "insuranceCoverage": "Cigna covers $1,500 implant",
+      "presentedDate": "2026-06-12",
+      "status": "pending",
+      "notes": "Concerned about cost — offer payment plan",
+      "phone": "(209) 555-0187"
+    },
+    {
+      "id": 3,
+      "name": "Karen Miller",
+      "treatment": "Root canal #19 + crown",
+      "fee": 3200,
+      "insuranceCoverage": "MetLife covers 80% after deductible",
+      "presentedDate": "2026-06-15",
+      "status": "pending",
+      "notes": "Wants to think about it — follow up this week",
+      "phone": "(209) 555-0234"
+    },
+    {
+      "id": 4,
+      "name": "Richard Park",
+      "treatment": "Full mouth debridement + SRP quadrants",
+      "fee": 2400,
+      "insuranceCoverage": "Guardian covers perio scaling",
+      "presentedDate": "2026-06-17",
+      "status": "pending",
+      "notes": "Needs perio diagnosis code confirmed",
+      "phone": "(209) 555-0311"
+    },
+    {
+      "id": 5,
+      "name": "Amanda Foster",
+      "treatment": "Composite veneers #8-10",
+      "fee": 3600,
+      "insuranceCoverage": "Cosmetic — not covered",
+      "presentedDate": "2026-06-18",
+      "status": "pending",
+      "notes": "Interested but wants to see photos of similar cases",
+      "phone": "(209) 555-0456"
+    },
+    {
+      "id": 6,
+      "name": "George Hernandez",
+      "treatment": "Extraction #1 + partial denture",
+      "fee": 1800,
+      "insuranceCoverage": "Anthem covers extraction, partial at 50%",
+      "presentedDate": "2026-06-19",
+      "status": "scheduled",
+      "notes": "Scheduled for July 12",
+      "phone": "(209) 555-0523"
+    },
+    {
+      "id": 7,
+      "name": "Susan Baker",
+      "treatment": "Crown #30 (existing root canal)",
+      "fee": 1500,
+      "insuranceCoverage": "Delta Dental covers crown at 50%",
+      "presentedDate": "2026-06-08",
+      "status": "declined",
+      "notes": "Declined — will monitor. Re-evaluate in 6 months.",
+      "phone": "(209) 555-0678"
+    }
+  ]
+}

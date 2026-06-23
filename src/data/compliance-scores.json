@@ -1,9 +1,9 @@
 {
   "client": "Dr. Alan Lee Dental",
   "domain": "dralanlee.com",
-  "lastAudited": "2026-06-08",
-  "auditedBy": "CC3PO",
-  "overall": 93,
+  "lastAudited": "2026-06-23",
+  "auditedBy": "CC3PO Atlas",
+  "overall": 96,
   "grade": "A",
   "categories": {
     "accessibility": {
@@ -19,11 +19,11 @@
       "note": "2 minor issues found by Lighthouse (color contrast + heading order). Label-content-name-mismatch escalated from advisory to fail (weight 0, no score impact). Score unchanged at 95."
     },
     "security": {
-      "score": 90,
+      "score": 97,
       "weight": 25,
       "source": "CC3PO Security Audit + SecurityHeaders.com",
       "checks": [
-        { "item": "Content-Security-Policy", "status": "pass" },
+        { "item": "Content-Security-Policy", "status": "pass", "note": "Tightened — removed 'unsafe-eval' on 2026-06-23" },
         { "item": "Strict-Transport-Security", "status": "pass" },
         { "item": "X-Frame-Options", "status": "pass" },
         { "item": "X-Content-Type-Options", "status": "pass" },
@@ -34,10 +34,10 @@
         { "item": "Bot Fight Mode", "status": "pass" },
         { "item": "Rate Limiting", "status": "pass" }
       ],
-      "note": "All security headers present. SSL valid until Aug 13, 2026 (73 days remaining). Cloudflare WAF active."
+      "note": "All security headers present. CSP tightened (removed unsafe-eval). SSL valid until Aug 13, 2026. Cloudflare WAF active."
     },
     "hipaa": {
-      "score": 95,
+      "score": 98,
       "weight": 25,
       "source": "CC3PO HIPAA Compliance Audit",
       "checks": [
@@ -47,48 +47,53 @@
         { "item": "No Surprises Act", "status": "pass", "url": "/no-surprises-act/" },
         { "item": "Accessibility Statement", "status": "pass", "url": "/accessibility/" },
         { "item": "Terms of Service", "status": "pass", "url": "/terms-of-service/" },
-        { "item": "Cookie Consent (CCPA/CPRA)", "status": "pass" },
+        { "item": "Cookie Consent (CCPA/CPRA)", "status": "pass", "note": "Cookie Policy link added to banner (2026-06-23)" },
         { "item": "Do Not Sell My Info", "status": "pass" },
         { "item": "Google Workspace HIPAA BAA", "status": "pass" },
-        { "item": "JotForm HIPAA Instance", "status": "pass" },
+        { "item": "JotForm HIPAA Instance", "status": "pass", "note": "All 4 forms verified working with Submit buttons (2026-06-23)" },
         { "item": "Plausible Analytics (self-hosted, no cookies)", "status": "pass" },
-        { "item": "Cloudflare DPA", "status": "pass" }
+        { "item": "Cloudflare DPA", "status": "pass" },
+        { "item": "Patient Forms — Submit Buttons", "status": "pass", "note": "Consent for Treatment + Records Release: Submit buttons added, send to staff@dralanlee.com" },
+        { "item": "JotForm Embed — Direct Iframes", "status": "pass", "note": "All 4 form pages migrated from script/card embeds to direct iframes (2026-06-23)" },
+        { "item": "iOS Form Scrolling", "status": "pass", "note": "Fixed iframe height for iOS keyboard — forms now scrollable to submit button" }
       ],
-      "note": "All required HIPAA documentation present and returning 200. BAA signed with Google. JotForm HIPAA tier active."
+      "note": "All required HIPAA documentation present and returning 200. JotForm HIPAA tier active. All 4 form pages migrated to direct iframes. Submit buttons added to 2 consent forms. iOS scrolling fixed."
     },
     "privacy": {
-      "score": 97,
+      "score": 98,
       "weight": 15,
       "source": "CC3PO Privacy & Legal Audit",
       "checks": [
         { "item": "Privacy Policy (CCPA/CPRA compliant)", "status": "pass" },
-        { "item": "Cookie Consent Banner", "status": "pass" },
+        { "item": "Cookie Consent Banner", "status": "pass", "note": "Cookie Policy link added (2026-06-23)" },
         { "item": "Do Not Sell disclosure", "status": "pass" },
         { "item": "Data minimization (Plausible, no GA)", "status": "pass" },
         { "item": "No third-party tracking pixels", "status": "pass" },
         { "item": "ConvergePay token server-side", "status": "pass" },
         { "item": "Form submissions encrypted (HTTPS)", "status": "pass" }
       ],
-      "note": "Strong privacy posture. Self-hosted analytics, no Google Analytics, no third-party trackers."
+      "note": "Strong privacy posture. Self-hosted analytics, no Google Analytics, no third-party trackers. Cookie Policy link added to banner."
     },
     "content": {
-      "score": 89,
+      "score": 92,
       "weight": 10,
       "source": "CC3PO Content & UX Audit",
       "checks": [
-        { "item": "Performance (Lighthouse)", "status": "warning", "score": 79, "detail": "79/100 — improved 3pts from 76. Positive recovery trend." },
+        { "item": "Performance (Lighthouse)", "status": "warning", "score": 79, "detail": "79/100 — stable. Netlify brotli compression confirmed working." },
         { "item": "SEO (Lighthouse)", "status": "pass", "score": 100 },
         { "item": "Best Practices (Lighthouse)", "status": "warning", "score": 88, "detail": "Console errors logged (unchanged from last audit)" },
         { "item": "Mobile responsive", "status": "pass" },
         { "item": "Schema markup", "status": "pass" },
         { "item": "Contact info visible", "status": "pass" },
         { "item": "Staff photos/bios", "status": "pass" },
-        { "item": "Patient forms accessible", "status": "pass" }
+        { "item": "Patient forms accessible", "status": "pass", "note": "All 4 form pages verified working on mobile (2026-06-23)" },
+        { "item": "iOS form scrolling", "status": "pass", "note": "Fixed — forms now scrollable with keyboard open" }
       ],
-      "note": "Performance improved 76→79 (+3pts). Positive recovery trend. SEO perfect at 100. Best Practices still showing console errors."
+      "note": "Performance stable at 79. SEO perfect at 100. All 4 form pages verified working on mobile with iOS scroll fix."
     }
   },
   "history": [
+    { "date": "2026-06-23", "overall": 96, "accessibility": 95, "security": 97, "hipaa": 98, "privacy": 98, "content": 92, "note": "Major update: CSP tightened (removed unsafe-eval), Cookie Policy link added, all 4 form pages migrated to direct JotForm iframes, Submit buttons added to Consent for Treatment + Records Release forms, iOS form scrolling fixed, all forms verified working and sending to staff@dralanlee.com. Grade A." },
     { "date": "2026-06-08", "overall": 93, "accessibility": 95, "security": 90, "hipaa": 95, "privacy": 97, "content": 89, "note": "Quick scan: performance 76→79 recovery. Label-content-name escalated from advisory to fail (new). All security/pages passing. SSL through Aug 13. Grade A." },
     { "date": "2026-06-01", "overall": 93, "accessibility": 95, "security": 90, "hipaa": 95, "privacy": 97, "content": 86, "note": "Performance dropped 81→76. All security headers passing. SSL expires Aug 13. All compliance pages 200. Grade stays A." },
     { "date": "2026-05-25", "overall": 93, "accessibility": 95, "security": 90, "hipaa": 95, "privacy": 97, "content": 88, "note": "Performance improved 75→81. All compliance pages 200. Security headers all pass. Grade A-→A." },

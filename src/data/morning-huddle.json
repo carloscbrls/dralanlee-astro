@@ -1,0 +1,25 @@
+{
+  "date": "2026-06-23",
+  "dayOfWeek": "Tuesday",
+  "patients": [
+    { "time": "8:00 AM", "name": "Maria Garcia", "procedure": "Crown prep #19", "insurance": "Delta Dental PPO", "balance": 0, "medicalAlerts": "Penicillin allergy", "birthday": false },
+    { "time": "9:00 AM", "name": "James Wilson", "procedure": "New patient exam + X-rays", "insurance": "Cigna PPO", "balance": 150, "medicalAlerts": null, "birthday": false },
+    { "time": "10:00 AM", "name": "Sarah Johnson", "procedure": "Composite filling #3 MOD", "insurance": "MetLife PPO", "balance": 0, "medicalAlerts": "Joint replacement (pre-med needed)", "birthday": false },
+    { "time": "11:00 AM", "name": "Robert Chen", "procedure": "Root canal #30", "insurance": "Guardian PPO", "balance": 275, "medicalAlerts": null, "birthday": false },
+    { "time": "12:00 PM", "name": "LUNCH", "procedure": "Staff meeting — lab cases review", "insurance": null, "balance": null, "medicalAlerts": null, "birthday": false },
+    { "time": "1:00 PM", "name": "Patricia Davis", "procedure": "Denture adjustment", "insurance": "Medicare D", "balance": 0, "medicalAlerts": "Diabetes Type 2", "birthday": true },
+    { "time": "2:00 PM", "name": "Michael Brown", "procedure": "Extraction #17", "insurance": "Anthem PPO", "balance": 0, "medicalAlerts": "Blood thinner (Coumadin)", "birthday": false },
+    { "time": "3:00 PM", "name": "Emily Martinez", "procedure": "Hygiene recall — prophy", "insurance": "Delta Dental PPO", "balance": 0, "medicalAlerts": null, "birthday": false },
+    { "time": "4:00 PM", "name": "David Thompson", "procedure": "Crown delivery #19", "insurance": "Cigna PPO", "balance": 500, "medicalAlerts": null, "birthday": false }
+  ],
+  "labCases": [
+    { "patient": "Maria Garcia", "case": "Crown #19", "lab": "Glidewell", "sentDate": "2026-06-16", "expectedReturn": "2026-06-25", "status": "in_progress" },
+    { "patient": "David Thompson", "case": "Crown #19 delivery", "lab": "Glidewell", "sentDate": "2026-06-09", "expectedReturn": "2026-06-23", "status": "returned" },
+    { "patient": "Linda Nguyen", "case": "Bridge #29-31", "lab": "National Dentex", "sentDate": "2026-06-10", "expectedReturn": "2026-06-24", "status": "in_progress" },
+    { "patient": "Thomas Wright", "case": "Denture upper", "lab": "Dentsply Sirona", "sentDate": "2026-06-05", "expectedReturn": "2026-06-19", "status": "overdue" }
+  ],
+  "staffBirthdays": [
+    { "name": "Patricia Davis", "role": "Patient", "date": "June 23" }
+  ],
+  "notes": "Sarah Johnson needs pre-medication (joint replacement). Patricia Davis is a birthday patient — have team sign card. David Thompson has $500 outstanding balance — collect before crown delivery."
+}

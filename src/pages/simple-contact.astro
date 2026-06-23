@@ -68,136 +68,25 @@ const localBusinessSchema = {
         <h2 id="form-heading" class="form-title">Or We Can Call You</h2>
         <p class="form-subtitle">Leave your name, phone number, and the best time to reach you.</p>
 
-        <form
-          action="https://formspree.io/f/xldkvlkj"
-          method="POST"
-          class="simple-form"
-          aria-describedby="form-instructions"
-          novalidate
-        >
-          <p id="form-instructions" class="sr-only">
-            All fields are required. We will call you within one business day.
-          </p>
-
-          <!-- Name -->
-          <div class="field-group">
-            <label for="name" class="field-label">Your Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              autocomplete="name"
-              placeholder="Jane Smith"
-              inputmode="text"
-              enterkeyhint="next"
-              aria-required="true"
-            />
-          </div>
-
-          <!-- Phone -->
-          <div class="field-group">
-            <label for="phone" class="field-label">Phone Number</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              required
-              autocomplete="tel"
-              placeholder="(209) 555-1234"
-              inputmode="tel"
-              enterkeyhint="next"
-              pattern="[\d\s\-\(\)\+]{10,}"
-              aria-required="true"
-            />
-          </div>
-
-          <!-- Best Time -->
-          <div class="field-group">
-            <label for="best-time" class="field-label">Best Time to Call</label>
-            <select
-              id="best-time"
-              name="best_time"
-              required
-              aria-required="true"
-            >
-              <option value="" disabled selected>Select a time…</option>
-              <option value="morning">Morning (8 AM – 12 PM)</option>
-              <option value="afternoon">Afternoon (12 PM – 4 PM)</option>
-              <option value="anytime">Anytime</option>
-            </select>
-          </div>
-
-          <!-- HIPAA Consent (required) — WCAG 3.3.4 + HIPAA active consent -->
-          <div class="consent-group">
-            <label class="consent-label" for="consent">
-              <input
-                type="checkbox"
-                id="consent"
-                name="consent"
-                required
-                aria-required="true"
-                aria-describedby="consent-text"
-                class="consent-checkbox"
-              />
-              <span id="consent-text" class="consent-text">
-                I consent to being contacted by Dr. Lee's office regarding my request.
-                I understand my information will be handled per the
-                <a href="/hipaa-privacy-notice/" class="consent-link">HIPAA Notice of Privacy Practices</a>.
-                This form is encrypted end-to-end. We retain inquiries for 6 years per HIPAA requirements.
-              </span>
-            </label>
-          </div>
-
-          <!-- Submit -->
-          <button type="submit" class="submit-button">
-            Send Request
-          </button>
-
-          <p class="form-note">
-            We usually call back within one business day.
-            <span class="hipaa-note" aria-label="Your information is kept private.">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
-              HIPAA-protected
-            </span>
-          </p>
-        </form>
+        <div class="jotform-embed" id="simple-contact-form">
+          <iframe id="JotFormIFrame-261351664337155"
+            src="https://form.jotform.com/261351664337155?nojump=1"
+            title="Contact Form"
+            width="100%"
+            height="100%"
+            style="min-height: 0; border: none;"
+            scrolling="yes"
+            allowtransparency="true"
+            allow="geolocation; microphone; camera; fullscreen; payment">
+          </iframe>
+          <noscript>
+            <p>Your browser does not support JavaScript. Please <a href="https://form.jotform.com/261351664337155" target="_blank" rel="noopener noreferrer">fill out the contact form</a> directly.</p>
+          </noscript>
+        </div>
       </div>
     </section>
   </div>
 
-  <script>
-    // Form-level validation: enforce HIPAA consent + field validity
-    // (form uses novalidate so the browser doesn't block; we handle it here)
-    const form = document.querySelector('.simple-form');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        const consent = document.getElementById('consent');
-        if (!consent || !consent.checked) {
-          e.preventDefault();
-          consent?.focus();
-          consent?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          // Announce error to screen readers
-          const consentText = document.getElementById('consent-text');
-          if (consentText) {
-            consentText.setAttribute('aria-live', 'polite');
-            const original = consentText.textContent;
-            consentText.textContent = 'Please check this box to confirm consent. ' + original;
-            setTimeout(() => {
-              consentText.textContent = original;
-              consentText.removeAttribute('aria-live');
-            }, 4000);
-          }
-          return false;
-        }
-        if (!form.checkValidity()) {
-          e.preventDefault();
-          form.reportValidity();
-          return false;
-        }
-      });
-    }
-  </script>
 </Layout>
 
 <style>
@@ -218,11 +107,22 @@ const localBusinessSchema = {
     background: var(--page-bg);
     min-height: 100vh;
     padding: 2rem 1rem;
+    /* Ensure full height on mobile */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   @media (min-width: 640px) {
     .simple-contact-page {
       padding: 3rem 1.5rem;
+    }
+  }
+
+  /* Fix for iOS Safari viewport height */
+  @supports (-webkit-touch-callout: none) {
+    .simple-contact-page {
+      min-height: -webkit-fill-available;
     }
   }
 
@@ -568,43 +468,25 @@ const localBusinessSchema = {
       transition: none;
     }
   }
+
+  /* JotForm embed container */
+  .jotform-embed {
+    min-height: 0;
+    background: var(--neutral-50);
+    border: 1px solid var(--neutral-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+  }
+  .jotform-embed iframe {
+    width: 100% !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    border: none !important;
+    display: block !important;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+  }
 </style>
-
-<script>
-  // Simple client-side validation enhancement
-  (function () {
-    const form = document.querySelector('.simple-form');
-    if (!form) return;
-
-    form.addEventListener('submit', function (e) {
-      const name = form.querySelector('#name');
-      const phone = form.querySelector('#phone');
-      const time = form.querySelector('#best-time');
-      let ok = true;
-
-      [name, phone, time].forEach(function (el) {
-        if (!el.value.trim()) {
-          el.style.borderColor = '#dc2626';
-          ok = false;
-        } else {
-          el.style.borderColor = '';
-        }
-      });
-
-      if (!ok) {
-        e.preventDefault();
-        // Focus first invalid field
-        if (!name.value.trim()) name.focus();
-        else if (!phone.value.trim()) phone.focus();
-        else if (!time.value) time.focus();
-      }
-    });
-
-    // Clear error style on input
-    form.querySelectorAll('input, select').forEach(function (el) {
-      el.addEventListener('input', function () {
-        el.style.borderColor = '';
-      });
-    });
-  })();
-</script>

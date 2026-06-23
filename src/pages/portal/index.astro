@@ -1,6 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import scores from '../../data/compliance-scores.json';
+import huddle from '../../data/morning-huddle.json';
+import tasks from '../../data/task-board.json';
+import treatmentPlans from '../../data/treatment-plans.json';
+import patientSources from '../../data/patient-sources.json';
+import reviews from '../../data/reviews.json';
 
 const title = 'Client Portal | Dr. Alan S. Lee, DDS';
 const description = 'Secure client portal for Dr. Alan S. Lee, DDS. View compliance status, submit requests, and access practice resources.';
@@ -8,279 +13,1260 @@ const canonicalUrl = 'https://dralanlee.com/portal/';
 
 const { overall, grade, lastAudited, auditedBy, categories } = scores;
 const catEntries = Object.entries(categories);
+
+const todayPatients = huddle.patients;
+const labCases = huddle.labCases;
+const taskList = tasks.tasks;
+const pendingPlans = treatmentPlans.patients.filter(p => p.status === 'pending');
+const pendingTotal = pendingPlans.reduce((sum, p) => sum + p.fee, 0);
+const sourceTotal = patientSources.sources.reduce((sum, s) => sum + s.count, 0);
+const reviewRating = reviews.averageRating;
+const pendingTasks = taskList.filter(t => t.status !== 'completed');
+const completedTasks = taskList.filter(t => t.status === 'completed');
+const todayDate = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+
+const forms = [
+  { id: '260202986387060', name: 'Schedule Appointment', desc: 'Book your next visit', page: '/schedule-appointment/', status: 'active' },
+  { id: '261347052218149', name: 'Consent for Treatment', desc: 'Patient consent & agreement', page: '/forms-library/', status: 'active' },
+  { id: '261346489311156', name: 'Records Release Authorization', desc: 'Release medical records', page: '/forms-library/', status: 'active' },
+  { id: '261351664337155', name: 'General Contact', desc: 'Send a message to the office', page: '/contact/', status: 'active' },
+];
 ---
 
 <Layout title={title} description={description} canonicalUrl={canonicalUrl}>
   <section class="legal-hero" data-animate>
     <div class="container-wide">
       <div class="section-label">Client Portal</div>
-      <h1 class="section-title">Practice Dashboard</h1>
-      <p class="legal-hero-subtitle">Your centralized hub for compliance, forms, and practice management.</p>
+      <h1 class="section-title">Dr. Alan S. Lee, DDS</h1>
+      <p class="legal-hero-subtitle">Your practice dashboard — compliance, forms, and practice tools in one place.</p>
     </div>
   </section>
-  <!-- Trust Bar -->
-  <section class="trust-bar" data-animate>
+
+  <!-- Dashboard Navigation Tabs -->
+  <nav class="dash-nav" data-animate>
     <div class="container-narrow">
-      <div class="trust-inner">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
-        <span>Your portal is designed for efficiency and security. All features are HIPAA-compliant and built to keep your practice running smoothly.</span>
+      <div class="dash-tabs">
+        <button class="dash-tab active" data-tab="overview">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          Overview
+        </button>
+        <button class="dash-tab" data-tab="patients">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          Patients
+        </button>
+        <button class="dash-tab" data-tab="operations">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          Operations
+        </button>
+        <button class="dash-tab" data-tab="compliance">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Compliance
+        </button>
+        <button class="dash-tab" data-tab="analytics">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          Analytics
+        </button>
+        <button class="dash-tab" data-tab="resources">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          Resources
+        </button>
       </div>
     </div>
-  </section>
+  </nav>
 
+  <!-- ===== TAB: OVERVIEW ===== -->
+  <div class="dash-panel active" id="tab-overview">
 
-
-  <!-- Compliance Score -->
-  <section class="section-pad" data-animate>
-    <div class="container-narrow">
-      <div class="score-card" data-animate>
-        <div class="score-header">
-          <div class="score-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+    <!-- KPI Bar -->
+    <section class="section-pad" data-animate>
+      <div class="container-narrow">
+        <div class="kpi-bar">
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-number">{overall}<span class="kpi-suffix">/100</span></div>
+              <div class="kpi-grade grade-a">A</div>
+            </div>
+            <div class="kpi-label">Compliance Score</div>
+            <div class="kpi-sub">Last audited {lastAudited}</div>
           </div>
-          <div>
-            <h2>HIPAA Compliance Score</h2>
-            <p class="score-subtitle">Last audited: {lastAudited} by {auditedBy}</p>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-number">{todayPatients.filter(p => p.name !== 'LUNCH').length}</div>
+            </div>
+            <div class="kpi-label">Today's Patients</div>
+            <div class="kpi-sub">{todayDate}</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-number">{pendingPlans.length}</div>
+            </div>
+            <div class="kpi-label">Pending Treatment Plans</div>
+            <div class="kpi-sub">${pendingTotal.toLocaleString()} potential</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-number">{labCases.filter(c => c.status === 'overdue').length}</div>
+            </div>
+            <div class="kpi-label">Overdue Lab Cases</div>
+            <div class="kpi-sub">{labCases.filter(c => c.status === 'in_progress').length} in progress</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-number">{reviewRating}</div>
+            </div>
+            <div class="kpi-label">Average Review</div>
+            <div class="kpi-sub">{reviews.totalReviews} reviews</div>
           </div>
         </div>
-        <div class="score-grid">
-          <div class="score-item score-main">
-            <div class="score-number">{overall}<span class="score-suffix">/100</span></div>
-            <div class="score-label">Overall Score</div>
-            <div class={`score-grade ${grade.startsWith('A') ? 'grade-a' : 'grade-b'}`}>Grade {grade}</div>
-          </div>
-          <div class="score-details">
-            {catEntries.map(([key, cat]) => (
-              <div class="score-row">
-                <span class="score-cat">{key === 'hipaa' ? 'HIPAA Compliance' : key === 'accessibility' ? 'Accessibility' : key === 'security' ? 'Security' : key === 'privacy' ? 'Privacy & Legal' : 'Content & UX'}</span>
-                <div class="score-bar-wrap"><div class="score-bar" style={`width:${cat.score}%`}></div></div>
-                <span class="score-val">{cat.score}</span>
+      </div>
+    </section>
+
+    <!-- Recent Activity + Quick Actions -->
+    <section class="section-pad alt-bg" data-animate>
+      <div class="container-narrow">
+        <div class="overview-grid">
+          <div class="overview-main">
+            <h2 class="section-heading">Recent Activity</h2>
+            <div class="activity-timeline">
+              <div class="activity-item highlight">
+                <div class="activity-dot green"></div>
+                <div class="activity-content">
+                  <div class="activity-title">Compliance Score Updated — 96/100 (Grade A)</div>
+                  <div class="activity-desc">CSP tightened, Cookie Policy added, all forms verified working.</div>
+                  <div class="activity-meta">Today at 5:42 AM · CC3PO Atlas</div>
+                </div>
               </div>
-            ))}
+              <div class="activity-item">
+                <div class="activity-dot green"></div>
+                <div class="activity-content">
+                  <div class="activity-title">Submit Buttons Added to 2 Patient Forms</div>
+                  <div class="activity-desc">Consent for Treatment + Records Release Authorization</div>
+                  <div class="activity-meta">Today at 5:30 AM · JotForm Builder</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot green"></div>
+                <div class="activity-content">
+                  <div class="activity-title">All 4 Form Pages Migrated to Direct Iframes</div>
+                  <div class="activity-desc">No more JotForm signup/login overlays</div>
+                  <div class="activity-meta">Today at 5:07 AM · CC3PO Atlas</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot blue"></div>
+                <div class="activity-content">
+                  <div class="activity-title">CSP Security Header Tightened</div>
+                  <div class="activity-desc">Removed 'unsafe-eval' — stronger XSS protection</div>
+                  <div class="activity-meta">Today at 5:39 AM · CC3PO Atlas</div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <!-- Score Sources -->
-      <div class="score-sources">
-        <div class="source-badge">
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
-          <span>Verified by Lighthouse, SecurityHeaders.com, and CC3PO manual audit</span>
-        </div>
-        <div class="founding-badge">
-          ⭐ Founding Client — Free Year 1 (through May 2027)
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="overview-side">
+            <h2 class="section-heading">Quick Actions</h2>
+            <div class="actions-stack">
+              <a href="/portal/support/" class="action-row">
+                <div class="action-icon-sm blue">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                </div>
+                <div class="action-row-text">
+                  <span class="action-row-title">Request Support</span>
+                  <span class="action-row-desc">Website changes, questions, or issues</span>
+                </div>
+                <svg class="action-row-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+              <a href="/schedule-appointment/" class="action-row">
+                <div class="action-icon-sm green">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                </div>
+                <div class="action-row-text">
+                  <span class="action-row-title">Book Appointment</span>
+                  <span class="action-row-desc">Test the patient booking flow</span>
+                </div>
+                <svg class="action-row-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+              <a href="/contact/" class="action-row">
+                <div class="action-icon-sm orange">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <div class="action-row-text">
+                  <span class="action-row-title">Contact Office</span>
+                  <span class="action-row-desc">Call (209) 239-2990 or send a message</span>
+                </div>
+                <svg class="action-row-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+              <a href="/portal/guide/" class="action-row">
+                <div class="action-icon-sm purple">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="action-row-text">
+                  <span class="action-row-title">Google Workspace Guide</span>
+                  <span class="action-row-desc">Email & tools transition guide</span>
+                </div>
+                <svg class="action-row-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
 
-  <!-- Quick Actions -->
-  <section class="section-pad alt-bg" data-animate>
-    <div class="container-narrow">
-      <h2 class="section-heading">Quick Actions</h2>
-      <div class="actions-grid">
-        <a href="/portal/support/" class="action-card">
-          <div class="action-icon blue">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            <div class="overview-reminders">
+              <h3>Upcoming</h3>
+              <div class="reminder-row">
+                <div class="reminder-dot warning"></div>
+                <div class="reminder-row-text">
+                  <span class="reminder-row-title">SSL Certificate Renewal</span>
+                  <span class="reminder-row-date">Aug 13</span>
+                </div>
+              </div>
+              <div class="reminder-row">
+                <div class="reminder-dot info"></div>
+                <div class="reminder-row-text">
+                  <span class="reminder-row-title">Next Full Compliance Audit</span>
+                  <span class="reminder-row-date">Jul 23</span>
+                </div>
+              </div>
+              <div class="reminder-row">
+                <div class="reminder-dot success"></div>
+                <div class="reminder-row-text">
+                  <span class="reminder-row-title">Weekly Compliance Scan</span>
+                  <span class="reminder-row-date">Auto</span>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Patient Forms Hub -->
+    <section class="section-pad" data-animate>
+      <div class="container-narrow">
+        <h2 class="section-heading">Patient Forms</h2>
+        <p class="section-description">All forms are HIPAA-secure. Submissions go to <strong>staff@dralanlee.com</strong>.</p>
+        <div class="forms-hub">
+          {forms.map(f => (
+            <a href={f.page} class="form-card">
+              <div class="form-status-dot active"></div>
+              <div class="form-info">
+                <div class="form-name">{f.name}</div>
+                <div class="form-desc">{f.desc}</div>
+              </div>
+              <div class="form-meta">
+                <span class="form-badge">Active</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="forms-actions">
+          <a href="/forms-library/" class="btn-secondary">View All Forms</a>
+          <a href="https://www.jotform.com/myforms/" target="_blank" rel="noopener noreferrer" class="btn-outline">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            Open JotForm Dashboard
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Submissions -->
+    <section class="section-pad alt-bg" data-animate id="submissions-section" style="margin-bottom: 3rem;">
+      <div class="container-narrow">
+        <h2 class="section-heading">Recent Form Submissions</h2>
+        <p class="section-description">Patient submissions received through your online forms.</p>
+        <div id="submissions-container">
+          <div class="submissions-placeholder">
+            <div class="placeholder-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            </div>
+            <h3>Waiting for submissions</h3>
+            <p>Once patients start filling out forms, submissions will appear here automatically.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== TAB: PATIENTS ===== -->
+  <div class="dash-panel" id="tab-patients">
+
+    <!-- Morning Huddle -->
+    <section class="section-pad" data-animate>
+      <div class="container-narrow">
+        <div class="panel-header">
           <div>
+            <h2 class="section-heading">Morning Huddle</h2>
+            <p class="section-description">{todayDate} · {todayPatients.filter(p => p.name !== 'LUNCH').length} patients today</p>
+          </div>
+          <div class="panel-badges">
+            <span class="panel-badge birthday">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+              {huddle.staffBirthdays.length} Birthday{huddle.staffBirthdays.length !== 1 ? 's' : ''}
+            </span>
+            <span class="panel-badge alert">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              {todayPatients.filter(p => p.medicalAlerts).length} Medical Alerts
+            </span>
+          </div>
+        </div>
+        <div class="demo-banner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Demo data — will connect to Open Dental after cloud migration</span>
+        </div>
+        <div class="huddle-table-wrap">
+          <table class="huddle-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Patient</th>
+                <th>Procedure</th>
+                <th>Insurance</th>
+                <th>Balance</th>
+                <th>Alerts</th>
+              </tr>
+            </thead>
+            <tbody>
+              {todayPatients.map(p => (
+                <tr class={p.name === 'LUNCH' ? 'huddle-lunch' : ''}>
+                  <td class="huddle-time">{p.time}</td>
+                  <td class="huddle-patient">{p.name}{p.birthday && <span class="birthday-badge">🎂</span>}</td>
+                  <td class="huddle-proc">{p.procedure}</td>
+                  <td class="huddle-ins">{p.insurance || '—'}</td>
+                  <td class="huddle-balance">{p.balance !== null ? (p.balance > 0 ? <span class="balance-due">${p.balance}</span> : <span class="balance-paid">$0</span>) : '—'}</td>
+                  <td class="huddle-alerts">{p.medicalAlerts ? <span class="alert-tag">{p.medicalAlerts}</span> : '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {huddle.notes && (
+          <div class="huddle-notes">
+            <div class="huddle-notes-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <p>{huddle.notes}</p>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Treatment Plan Follow-Up -->
+    <section class="section-pad alt-bg" data-animate>
+      <div class="container-narrow">
+        <div class="panel-header">
+          <div>
+            <h2 class="section-heading">Treatment Plan Follow-Up</h2>
+            <p class="section-description">Patients presented treatment who haven't scheduled yet.</p>
+          </div>
+          <div class="panel-stats">
+            <div class="panel-stat">
+              <span class="panel-stat-num">{pendingPlans.length}</span>
+              <span class="panel-stat-label">Pending</span>
+            </div>
+            <div class="panel-stat">
+              <span class="panel-stat-num">${pendingTotal.toLocaleString()}</span>
+              <span class="panel-stat-label">Potential Revenue</span>
+            </div>
+          </div>
+        </div>
+        <div class="demo-banner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Demo data — staff can start tracking real treatment plans here</span>
+        </div>
+        <div class="txplan-list">
+          {treatmentPlans.patients.map(p => {
+            const statusIcon = p.status === 'scheduled' ? '🟢' : p.status === 'declined' ? '⚪' : '🟡';
+            const statusLabel = p.status === 'scheduled' ? 'Scheduled' : p.status === 'declined' ? 'Declined' : 'Pending';
+            return (
+              <div class={`txplan-card ${p.status}`}>
+                <div class="txplan-status">{statusIcon}</div>
+                <div class="txplan-info">
+                  <div class="txplan-name">{p.name}</div>
+                  <div class="txplan-treatment">{p.treatment}</div>
+                  <div class="txplan-meta">
+                    <span class="txplan-fee">${p.fee.toLocaleString()}</span>
+                    <span class="txplan-ins">{p.insuranceCoverage}</span>
+                    <span class="txplan-date">Presented: {p.presentedDate}</span>
+                  </div>
+                  {p.notes && <div class="txplan-notes">{p.notes}</div>}
+                </div>
+                <div class="txplan-actions">
+                  <span class="txplan-badge {p.status}">{statusLabel}</span>
+                  {p.phone && <span class="txplan-phone">{p.phone}</span>}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- New Patient Sources -->
+    <section class="section-pad" data-animate>
+      <div class="container-narrow">
+        <h2 class="section-heading">New Patient Sources</h2>
+        <p class="section-description">{patientSources.totalNewPatients} new patients in {patientSources.month}</p>
+        <div class="demo-banner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Demo data — Angelina can log new patient sources daily</span>
+        </div>
+        <div class="sources-grid">
+          <div class="sources-chart">
+            {patientSources.sources.map(s => {
+              const pct = Math.round(s.count / sourceTotal * 100);
+              return (
+                <div class="source-bar-row">
+                  <span class="source-bar-label">{s.source}</span>
+                  <div class="source-bar-track">
+                    <div class="source-bar-fill" style={`width:${pct}%;background:${s.color}`}></div>
+                  </div>
+                  <span class="source-bar-count">{s.count}</span>
+                  <span class="source-bar-pct">{pct}%</span>
+                </div>
+              );
+            })}
+          </div>
+          <div class="sources-recent">
+            <h3>Recent New Patients</h3>
+            <div class="sources-recent-list">
+              {patientSources.recentPatients.map(p => (
+                <div class="source-patient-row">
+                  <div class="source-patient-name">{p.name}</div>
+                  <div class="source-patient-source">{p.source}</div>
+                  <div class="source-patient-date">{p.date}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== TAB: OPERATIONS ===== -->
+  <div class="dash-panel" id="tab-operations">
+
+    <!-- Lab Case Tracker -->
+    <section class="section-pad" data-animate>
+      <div class="container-narrow">
+        <h2 class="section-heading">Lab Case Tracker</h2>
+        <p class="section-description">Crowns, bridges, dentures sent to the lab.</p>
+        <div class="demo-banner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Demo data — will connect to lab tracking after cloud migration</span>
+        </div>
+        <div class="lab-grid">
+          {labCases.map(c => {
+            const statusClass = c.status === 'returned' ? 'lab-returned' : c.status === 'overdue' ? 'lab-overdue' : 'lab-progress';
+            const statusLabel = c.status === 'returned' ? 'Returned ✓' : c.status === 'overdue' ? 'Overdue ⚠' : 'In Progress';
+            return (
+              <div class={`lab-card ${statusClass}`}>
+                <div class="lab-status-indicator"></div>
+                <div class="lab-info">
+                  <div class="lab-patient">{c.patient}</div>
+                  <div class="lab-case-name">{c.case}</div>
+                  <div class="lab-meta">
+                    <span class="lab-lab">{c.lab}</span>
+                    <span class="lab-date">Sent: {c.sentDate}</span>
+                    <span class="lab-date">Due: {c.expectedReturn}</span>
+                  </div>
+                </div>
+                <div class="lab-status-badge">{statusLabel}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- Task Board -->
+    <section class="section-pad alt-bg" data-animate>
+      <div class="container-narrow">
+        <div class="panel-header">
+          <div>
+            <h2 class="section-heading">Task Board</h2>
+            <p class="section-description">Office to-dos. Assign tasks, track progress.</p>
+          </div>
+          <div class="panel-stats">
+            <div class="panel-stat">
+              <span class="panel-stat-num">{pendingTasks.length}</span>
+              <span class="panel-stat-label">Open</span>
+            </div>
+            <div class="panel-stat">
+              <span class="panel-stat-num">{completedTasks.length}</span>
+              <span class="panel-stat-label">Done</span>
+            </div>
+          </div>
+        </div>
+        <div class="demo-banner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Demo data — start adding your real tasks here</span>
+        </div>
+        <div class="task-columns">
+          <div class="task-column">
+            <div class="task-col-header">
+              <h3>To Do</h3>
+              <span class="task-count">{pendingTasks.filter(t => t.status === 'pending').length}</span>
+            </div>
+            <div class="task-list">
+              {pendingTasks.filter(t => t.status === 'pending').map(t => (
+                <div class={`task-card priority-${t.priority}`}>
+                  <div class="task-checkbox"></div>
+                  <div class="task-body">
+                    <div class="task-title">{t.title}</div>
+                    <div class="task-meta">
+                      <span class="task-assignee">{t.assignedTo}</span>
+                      <span class="task-due">Due {t.dueDate}</span>
+                      <span class={`task-priority ${t.priority}`}>{t.priority}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="task-column">
+            <div class="task-col-header">
+              <h3>In Progress</h3>
+              <span class="task-count">{pendingTasks.filter(t => t.status === 'in_progress').length}</span>
+            </div>
+            <div class="task-list">
+              {pendingTasks.filter(t => t.status === 'in_progress').map(t => (
+                <div class={`task-card priority-${t.priority} in-progress`}>
+                  <div class="task-checkbox active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                  <div class="task-body">
+                    <div class="task-title">{t.title}</div>
+                    <div class="task-meta">
+                      <span class="task-assignee">{t.assignedTo}</span>
+                      <span class="task-due">Due {t.dueDate}</span>
+                      <span class={`task-priority ${t.priority}`}>{t.priority}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="task-column">
+            <div class="task-col-header">
+              <h3>Completed</h3>
+              <span class="task-count">{completedTasks.length}</span>
+            </div>
+            <div class="task-list">
+              {completedTasks.map(t => (
+                <div class="task-card completed">
+                  <div class="task-checkbox done">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                  <div class="task-body">
+                    <div class="task-title strikethrough">{t.title}</div>
+                    <div class="task-meta">
+                      <span class="task-assignee">{t.assignedTo}</span>
+                      <span class="task-done-date">Done</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== TAB: COMPLIANCE ===== -->
+  <div class="dash-panel" id="tab-compliance">
+
+    <section class="section-pad" data-animate>
+      <div class="container-narrow">
+        <div class="score-card">
+          <div class="score-header">
+            <div class="score-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div>
+              <h2>HIPAA Compliance Score</h2>
+              <p class="score-subtitle">Last audited: {lastAudited} by {auditedBy}</p>
+            </div>
+          </div>
+          <div class="score-grid">
+            <div class="score-item score-main">
+              <div class="score-number">{overall}<span class="score-suffix">/100</span></div>
+              <div class="score-label">Overall Score</div>
+              <div class={`score-grade ${grade.startsWith('A') ? 'grade-a' : 'grade-b'}`}>Grade {grade}</div>
+            </div>
+            <div class="score-details">
+              {catEntries.map(([key, cat]) => (
+                <div class="score-row">
+                  <span class="score-cat">{key === 'hipaa' ? 'HIPAA Compliance' : key === 'accessibility' ? 'Accessibility' : key === 'security' ? 'Security' : key === 'privacy' ? 'Privacy & Legal' : 'Content & UX'}</span>
+                  <div class="score-bar-wrap"><div class="score-bar" style={`width:${cat.score}%`}></div></div>
+                  <span class="score-val">{cat.score}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div class="score-sources">
+          <div class="source-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            <span>Verified by Lighthouse, SecurityHeaders.com, and CC3PO manual audit</span>
+          </div>
+          <div class="founding-badge">
+            ⭐ Founding Client — Free Year 1 (through May 2027)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compliance Documents -->
+    <section class="section-pad alt-bg" data-animate>
+      <div class="container-narrow">
+        <h2 class="section-heading">Compliance Documents</h2>
+        <p class="section-description">All legal and compliance documents, always accessible.</p>
+        <div class="docs-grid">
+          <a href="/hipaa-privacy/" class="doc-card">
+            <div class="doc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div>
+              <h4>HIPAA Privacy Notice</h4>
+              <p>Full Notice of Privacy Practices</p>
+            </div>
+          </a>
+          <a href="/patient-privacy/" class="doc-card">
+            <div class="doc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
+            </div>
+            <div>
+              <h4>Accessibility Statement</h4>
+              <p>WCAG 2.1 AA conformance</p>
+            </div>
+          </a>
+          <a href="/no-surprises-act/" class="doc-card">
+            <div class="doc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            </div>
+            <div>
+              <h4>No Surprises Act</h4>
+              <p>Good faith estimate & protections</p>
+            </div>
+          </a>
+          <a href="/privacy-policy/" class="doc-card">
+            <div class="doc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <div>
+              <h4>Privacy Policy</h4>
+              <p>Website data collection & CCPA rights</p>
+            </div>
+          </a>
+          <a href="/terms-of-service/" class="doc-card">
+            <div class="doc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            </div>
+            <div>
+              <h4>Terms of Service</h4>
+              <p>Website terms and conditions</p>
+            </div>
+          </a>
+          <a href="/patient-privacy/" class="doc-card">
+            <div class="doc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+            <div>
+              <h4>Patient Privacy Rights</h4>
+              <p>Your rights under HIPAA</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== TAB: ANALYTICS ===== -->
+  <div class="dash-panel" id="tab-analytics">
+
+    <!-- Website Analytics -->
+    <section class="section-pad" data-animate>
+      <div class="container-narrow">
+        <h2 class="section-heading">Website Analytics</h2>
+        <p class="section-description">See how patients find your practice online. No personal data tracked.</p>
+        <div class="analytics-embed">
+          <iframe
+            plausible-embed
+            src="https://analytics.cc3po.com/share/dralanlee.com?auth=9sF77S…uTKj&embed=true&theme=light&background=transparent"
+            loading="lazy"
+            style="width: 1px; min-width: 100%; height: 1200px; border: none; overflow: hidden;"
+          ></iframe>
+          <script async src="https://analytics.cc3po.com/js/embed.host.js"></script>
+        </div>
+      </div>
+    </section>
+
+    <!-- Review Monitor -->
+    <section class="section-pad alt-bg" data-animate>
+      <div class="container-narrow">
+        <h2 class="section-heading">Review Monitor</h2>
+        <p class="section-description">Average rating: <strong>{reviewRating}/5</strong> across {reviews.totalReviews} reviews.</p>
+        <div class="demo-banner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Demo data — will pull live from Google & Yelp APIs soon</span>
+        </div>
+        <div class="review-platforms">
+          {reviews.platforms.map(p => (
+            <div class="review-platform-card">
+              <div class="review-platform-name">{p.name}</div>
+              <div class="review-platform-rating">
+                <span class="review-stars">{'★'.repeat(Math.floor(p.rating))}{p.rating % 1 >= 0.5 ? '½' : ''}</span>
+                <span class="review-rating-num">{p.rating}</span>
+              </div>
+              <div class="review-platform-count">{p.count} reviews</div>
+            </div>
+          ))}
+        </div>
+        <div class="review-list">
+          {reviews.recentReviews.map(r => (
+            <div class="review-card">
+              <div class="review-header">
+                <div class="review-author">
+                  <span class="review-name">{r.author}</span>
+                  <span class="review-platform-badge {r.platform.toLowerCase()}">{r.platform}</span>
+                </div>
+                <div class="review-stars-row">{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</div>
+              </div>
+              <div class="review-text">"{r.text}"</div>
+              <div class="review-footer">
+                <span class="review-date">{r.date}</span>
+                {!r.responded && <span class="review-needs-response">Needs response</span>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== TAB: RESOURCES ===== -->
+  <div class="dash-panel" id="tab-resources">
+
+    <section class="section-pad" data-animate>
+      <div class="container-narrow">
+        <h2 class="section-heading">Resources & Support</h2>
+        <p class="section-description">Everything you need to manage your practice website and compliance.</p>
+        <div class="resources-grid">
+          <a href="/portal/guide/" class="resource-card">
+            <div class="resource-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <h3>Google Workspace Guide</h3>
+            <p>Email & tools transition guide for your practice</p>
+          </a>
+          <a href="/portal/support/" class="resource-card">
+            <div class="resource-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            </div>
             <h3>Request Support</h3>
-            <p>Submit a request — website changes, questions, issues</p>
-          </div>
-        </a>
-        <a href="/forms-library/" class="action-card">
-          <div class="action-icon green">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-          </div>
-          <div>
-            <h3>Patient Forms</h3>
-            <p>View and submit HIPAA-secure patient forms</p>
-          </div>
-        </a>
-        <a href="/schedule-appointment/" class="action-card">
-          <div class="action-icon green">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-          </div>
-          <div>
-            <h3>Schedule Appointment</h3>
-            <p>Book your next visit online</p>
-          </div>
-        </a>
-        <a href="/contact/" class="action-card">
-          <div class="action-icon orange">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          </div>
-          <div>
+            <p>Website changes, questions, or issues</p>
+          </a>
+          <a href="/forms-library/" class="resource-card">
+            <div class="resource-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            </div>
+            <h3>Patient Forms Library</h3>
+            <p>All patient forms in one place</p>
+          </a>
+          <a href="/contact/" class="resource-card">
+            <div class="resource-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </div>
             <h3>Contact Office</h3>
             <p>Call (209) 239-2990 or send a message</p>
-          </div>
-        </a>
-        <a href="/portal/guide/" class="action-card">
-          <div class="action-icon purple">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          </div>
-          <div>
-            <h3>Google Workspace Guide</h3>
-            <p>Your new email & tools transition guide</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Compliance Documents -->
-  <section class="section-pad" data-animate>
-    <div class="container-narrow">
-      <h2 class="section-heading">Compliance Documents</h2>
-      <p class="section-description">All legal and compliance documents, always accessible.</p>
-      <div class="docs-grid">
-        <a href="/hipaa-privacy/" class="doc-card">
-          <div class="doc-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          </div>
-          <div>
-            <h4>HIPAA Privacy Notice</h4>
-            <p>Full Notice of Privacy Practices</p>
-          </div>
-        </a>
-        <a href="/patient-privacy/" class="doc-card">
-          <div class="doc-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-          </div>
-          <div>
-            <h4>Patient Privacy Rights</h4>
-            <p>Your rights under HIPAA</p>
-          </div>
-        </a>
-        <a href="/accessibility/" class="doc-card">
-          <div class="doc-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
-          </div>
-          <div>
-            <h4>Accessibility Statement</h4>
-            <p>WCAG 2.1 AA conformance</p>
-          </div>
-        </a>
-        <a href="/no-surprises-act/" class="doc-card">
-          <div class="doc-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-          </div>
-          <div>
-            <h4>No Surprises Act</h4>
-            <p>Good faith estimate & protections</p>
-          </div>
-        </a>
-        <a href="/privacy-policy/" class="doc-card">
-          <div class="doc-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          </div>
-          <div>
-            <h4>Privacy Policy</h4>
-            <p>Website data collection & CCPA rights</p>
-          </div>
-        </a>
-        <a href="/terms-of-service/" class="doc-card">
-          <div class="doc-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-          </div>
-          <div>
-            <h4>Terms of Service</h4>
-            <p>Website terms and conditions</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CC3PO Contact -->
-  <section class="section-pad alt-bg" data-animate>
-    <div class="container-narrow" style="text-align: center;">
-      <div class="cc3po-card">
-        <div class="cc3po-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </a>
         </div>
-        <h3>IT & Compliance by CC3PO</h3>
-        <p>Your website, compliance, and IT infrastructure are managed by <a href="https://cc3po.com" target="_blank" rel="noopener noreferrer">CC3PO</a>. Need changes, have questions, or want to discuss your next compliance review?</p>
-        <a href="https://cc3po.com/contact/" class="btn-primary" target="_blank" rel="noopener noreferrer">
-          Contact CC3PO
-        </a>
+
+        <div class="cc3po-card">
+          <div class="cc3po-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h3>IT & Compliance by CC3PO</h3>
+          <p>Your website, compliance, and IT infrastructure are managed by <a href="https://cc3po.com" target="_blank" rel="noopener noreferrer">CC3PO</a>. Need changes, have questions, or want to discuss your next compliance review?</p>
+          <a href="https://cc3po.com/contact/" class="btn-primary" target="_blank" rel="noopener noreferrer">
+            Contact CC3PO
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+  </div>
 
   <style>
-    .legal-hero { background: linear-gradient(135deg, var(--primary-950) 0%, var(--primary-800) 100%); color: white; padding: 5rem 1.5rem 4rem; text-align: center; }
+    .legal-hero { background: linear-gradient(135deg, #082f49 0%, #0c4a6e 40%, #1e40af 100%); color: white; padding: 5rem 1.5rem 4rem; text-align: center; position: relative; overflow: hidden; }
+    .legal-hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: 0.5; }
+    .legal-hero::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 40px; background: linear-gradient(to bottom right, transparent 49%, white 50%); }
     .legal-hero .section-label { color: var(--accent-400); justify-content: center; }
     .legal-hero .section-label::before { background: var(--accent-400); }
     .legal-hero .section-title { color: white; margin-bottom: 1rem; }
     .legal-hero-subtitle { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
-    .trust-bar { background: linear-gradient(135deg, #059669 0%, #047857 100%); padding: 1rem 1.5rem; position: relative; overflow: hidden; }
-    .trust-bar::before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06)); }
-    .trust-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; color: white; font-size: 0.9rem; font-weight: 500; position: relative; }
-    .trust-inner svg { flex-shrink: 0; }
 
-    .section-heading { font-family: var(--font-display); font-size: 1.75rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
-    .section-description { color: var(--neutral-500); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6; }
+    /* Dashboard Nav */
+    .dash-nav { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--neutral-200); position: sticky; top: 0; z-index: 50; }
+    .dash-tabs { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+    .dash-tabs::-webkit-scrollbar { display: none; }
+    .dash-tab { display: flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.25rem; background: none; border: none; border-bottom: 2px solid transparent; font-size: 0.88rem; font-weight: 500; color: var(--neutral-500); cursor: pointer; white-space: nowrap; transition: all 0.2s ease; font-family: inherit; position: relative; }
+    .dash-tab::after { content: ''; position: absolute; bottom: -2px; left: 50%; width: 0; height: 2px; background: var(--primary-700); transition: all 0.2s ease; transform: translateX(-50%); }
+    .dash-tab.active::after { width: 60%; }
+    .dash-tab.active { color: var(--primary-700); font-weight: 600; border-bottom-color: transparent; }
+    .dash-tab:hover { color: var(--neutral-700); background: var(--neutral-50); }
+    .dash-tab.active { color: var(--primary-700); border-bottom-color: var(--primary-700); font-weight: 600; }
+    .dash-tab svg { flex-shrink: 0; }
+
+    /* Tab Panels */
+    .dash-panel { display: none; animation: fadeIn 0.3s ease; }
+    .dash-panel.active { display: block; }
+    .dash-panel:last-child .section-pad:last-child { margin-bottom: 2rem; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Section Headings */
+    .section-heading { font-family: var(--font-display); font-size: 1.5rem; color: var(--neutral-900); margin-bottom: 0.35rem; }
+    .section-description { color: var(--neutral-500); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; }
     .alt-bg { background: var(--neutral-50); }
 
+    /* KPI Bar */
+    .kpi-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem; }
+    .kpi-card { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04); transition: all 0.2s ease; }
+    .kpi-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04); transform: translateY(-2px); border-color: var(--primary-200); }
+    .kpi-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+    .kpi-number { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; color: var(--neutral-900); line-height: 1; }
+    .kpi-suffix { font-size: 0.85rem; color: var(--neutral-400); font-weight: 400; }
+    .kpi-grade { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.85rem; }
+    .kpi-grade.grade-a { background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #059669; }
+    .kpi-label { font-size: 0.82rem; color: var(--neutral-700); font-weight: 500; }
+    .kpi-sub { font-size: 0.72rem; color: var(--neutral-400); margin-top: 0.15rem; }
+
+    /* Overview Grid */
+    .overview-grid { display: grid; grid-template-columns: 1fr 360px; gap: 1.5rem; align-items: start; }
+
+    /* Activity Timeline */
+    .activity-timeline { display: flex; flex-direction: column; gap: 0; }
+    .activity-item { display: flex; gap: 1rem; padding: 1rem 1.25rem; background: white; border: 1px solid var(--neutral-200); border-bottom: none; transition: background 0.15s ease; }
+    .activity-item:hover { background: var(--primary-50); }
+    .activity-item:first-child { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+    .activity-item:last-child { border-radius: 0 0 var(--radius-lg) var(--radius-lg); border-bottom: 1px solid var(--neutral-200); }
+    .activity-item.highlight { background: #f0fdf4; border-color: #bbf7d0; }
+    .activity-item.highlight:hover { background: #e6f9ed; }
+    .activity-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+    .activity-dot.green { background: #059669; }
+    .activity-dot.blue { background: var(--primary-500); }
+    .activity-content { flex: 1; min-width: 0; }
+    .activity-title { font-weight: 600; font-size: 0.9rem; color: var(--neutral-900); }
+    .activity-desc { font-size: 0.82rem; color: var(--neutral-500); margin-top: 0.15rem; line-height: 1.5; }
+    .activity-meta { font-size: 0.75rem; color: var(--neutral-400); margin-top: 0.25rem; }
+
+    /* Action Stack */
+    .actions-stack { display: flex; flex-direction: column; gap: 0.5rem; }
+    .action-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); text-decoration: none; color: inherit; transition: all 0.2s ease; }
+    .action-row:hover { border-color: var(--primary-300); box-shadow: 0 2px 8px rgba(0,0,0,0.06); transform: translateX(4px); }
+    .action-row:hover { border-color: var(--primary-300); box-shadow: var(--shadow-sm); }
+    .action-icon-sm { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: var(--radius-sm); flex-shrink: 0; color: white; }
+    .action-icon-sm.blue { background: linear-gradient(135deg, var(--primary-700), #1e40af); }
+    .action-icon-sm.green { background: linear-gradient(135deg, #059669, #047857); }
+    .action-icon-sm.orange { background: linear-gradient(135deg, #d97706, #b45309); }
+    .action-icon-sm.purple { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+    .action-row-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .action-row-title { font-weight: 600; font-size: 0.88rem; color: var(--neutral-900); }
+    .action-row-desc { font-size: 0.78rem; color: var(--neutral-500); }
+    .action-row-arrow { color: var(--neutral-300); flex-shrink: 0; }
+
+    /* Overview Reminders */
+    .overview-reminders { margin-top: 1rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 1rem 1.25rem; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+    .overview-reminders h3 { font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: var(--neutral-700); margin: 0 0 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .reminder-row { display: flex; align-items: center; gap: 0.65rem; padding: 0.5rem 0; border-bottom: 1px solid var(--neutral-100); }
+    .reminder-row:last-child { border-bottom: none; }
+    .reminder-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .reminder-dot.warning { background: #d97706; }
+    .reminder-dot.info { background: #2563eb; }
+    .reminder-dot.success { background: #059669; }
+    .reminder-row-text { flex: 1; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+    .reminder-row-title { font-size: 0.85rem; color: var(--neutral-800); }
+    .reminder-row-date { font-size: 0.78rem; font-weight: 600; color: var(--neutral-400); flex-shrink: 0; }
+
+    /* Panel Header */
+    .panel-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .panel-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .panel-badge { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.65rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600; }
+    .panel-badge.birthday { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #d97706; }
+    .panel-badge.alert { background: linear-gradient(135deg, #fee2e2, #fecaca); color: #dc2626; }
+    .panel-stats { display: flex; gap: 0.75rem; }
+    .panel-stat { display: flex; flex-direction: column; align-items: center; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); padding: 0.6rem 1rem; min-width: 80px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+    .panel-stat-num { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--neutral-900); line-height: 1; }
+    .panel-stat-label { font-size: 0.7rem; color: var(--neutral-500); margin-top: 0.1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* Demo Banner */
+    .demo-banner { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.65rem; background: linear-gradient(135deg, #fef3c7, #fde68a); border: 1px solid #fde68a; border-radius: var(--radius-full); font-size: 0.72rem; font-weight: 500; color: #92400e; margin-bottom: 1rem; }
+    .demo-banner svg { flex-shrink: 0; color: #d97706; }
+
+    /* Morning Huddle */
+    .huddle-table-wrap { overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid var(--neutral-200); }
+    .huddle-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 700px; }
+    .huddle-table th { background: linear-gradient(135deg, var(--neutral-50), #f5f5f5); padding: 0.65rem 1rem; text-align: left; font-weight: 600; font-size: 0.75rem; color: var(--neutral-500); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--neutral-200); }
+    .huddle-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--neutral-100); vertical-align: middle; }
+    .huddle-table tr:last-child td { border-bottom: none; }
+    .huddle-table tr { transition: background 0.15s ease; }
+    .huddle-table tr:hover td { background: var(--primary-50); }
+    .huddle-lunch td { background: linear-gradient(135deg, var(--neutral-50), #f5f5f5); font-style: italic; color: var(--neutral-500); }
+    .huddle-time { font-weight: 600; color: var(--neutral-700); white-space: nowrap; }
+    .huddle-patient { font-weight: 600; color: var(--neutral-900); }
+    .huddle-proc { color: var(--neutral-700); }
+    .huddle-ins { font-size: 0.8rem; color: var(--neutral-500); }
+    .huddle-balance { font-weight: 600; white-space: nowrap; }
+    .balance-due { color: #dc2626; }
+    .balance-paid { color: #059669; }
+    .huddle-alerts { font-size: 0.8rem; }
+    .alert-tag { display: inline-block; padding: 0.1rem 0.45rem; background: linear-gradient(135deg, #fef2f2, #fee2e2); color: #dc2626; border-radius: var(--radius-sm); font-size: 0.72rem; font-weight: 500; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .birthday-badge { margin-left: 0.2rem; font-size: 0.9rem; }
+    .huddle-notes { display: flex; align-items: flex-start; gap: 0.65rem; margin-top: 0.75rem; padding: 0.85rem 1rem; background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 1px solid #fde68a; border-radius: var(--radius-md); box-shadow: 0 1px 3px rgba(217,119,6,0.08); }
+    .huddle-notes-icon { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: var(--radius-full); background: linear-gradient(135deg, #fef3c7, #fde68a); color: #d97706; flex-shrink: 0; }
+    .huddle-notes p { font-size: 0.85rem; color: #92400e; line-height: 1.5; margin: 0; }
+
+    /* Treatment Plans */
+    .txplan-list { display: flex; flex-direction: column; gap: 0.65rem; }
+    .txplan-card { display: flex; align-items: flex-start; gap: 0.85rem; padding: 1rem 1.25rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); transition: all 0.2s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+    .txplan-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-color: var(--primary-300); transform: translateY(-1px); }
+    .txplan-card.scheduled { border-left: 4px solid #059669; }
+    .txplan-card.declined { border-left: 4px solid var(--neutral-300); opacity: 0.7; }
+    .txplan-card.pending { border-left: 4px solid #d97706; }
+    .txplan-status { font-size: 1.1rem; line-height: 1; margin-top: 2px; }
+    .txplan-info { flex: 1; min-width: 0; }
+    .txplan-name { font-weight: 600; font-size: 0.9rem; color: var(--neutral-900); }
+    .txplan-treatment { font-size: 0.85rem; color: var(--neutral-700); margin-top: 0.1rem; }
+    .txplan-meta { display: flex; gap: 0.65rem; margin-top: 0.3rem; flex-wrap: wrap; }
+    .txplan-fee { font-weight: 700; font-size: 0.85rem; color: var(--primary-700); }
+    .txplan-ins { font-size: 0.75rem; color: var(--neutral-500); }
+    .txplan-date { font-size: 0.75rem; color: var(--neutral-400); }
+    .txplan-notes { font-size: 0.8rem; color: #92400e; background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius-sm); padding: 0.4rem 0.65rem; margin-top: 0.4rem; }
+    .txplan-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; flex-shrink: 0; }
+    .txplan-badge { font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: var(--radius-full); box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+    .txplan-badge.pending { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #d97706; }
+    .txplan-badge.scheduled { background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #059669; }
+    .txplan-badge.declined { background: linear-gradient(135deg, var(--neutral-100), #e5e5e5); color: var(--neutral-500); }
+    .txplan-phone { font-size: 0.75rem; color: var(--primary-600); font-weight: 500; }
+
+    /* Patient Sources */
+    .sources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .sources-chart { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 1.25rem; }
+    .source-bar-row { display: grid; grid-template-columns: 110px 1fr 28px 36px; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem; }
+    .source-bar-label { font-size: 0.8rem; color: var(--neutral-700); font-weight: 500; }
+    .source-bar-track { height: 18px; background: var(--neutral-100); border-radius: 4px; overflow: hidden; box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); }
+    .source-bar-fill { height: 100%; border-radius: 4px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .source-bar-count { font-weight: 600; font-size: 0.82rem; color: var(--neutral-900); text-align: right; }
+    .source-bar-pct { font-size: 0.75rem; color: var(--neutral-400); text-align: right; }
+    .sources-recent { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 1.25rem; }
+    .sources-recent h3 { font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: var(--neutral-700); margin: 0 0 0.65rem; }
+    .sources-recent-list { display: flex; flex-direction: column; gap: 0.4rem; }
+    .source-patient-row { display: grid; grid-template-columns: 1fr auto auto; gap: 0.5rem; padding: 0.4rem 0; border-bottom: 1px solid var(--neutral-100); align-items: center; }
+    .source-patient-row:last-child { border-bottom: none; }
+    .source-patient-name { font-weight: 500; font-size: 0.82rem; color: var(--neutral-900); }
+    .source-patient-source { font-size: 0.72rem; font-weight: 600; color: var(--primary-700); background: linear-gradient(135deg, var(--primary-50), #dbeafe); padding: 0.1rem 0.4rem; border-radius: var(--radius-sm); }
+    .source-patient-date { font-size: 0.72rem; color: var(--neutral-400); }
+
+    /* Lab Cases */
+    .lab-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
+    .lab-card { display: flex; align-items: center; gap: 0.85rem; padding: 1rem 1.25rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); transition: all var(--transition-fast); position: relative; overflow: hidden; }
+    .lab-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+    .lab-status-indicator { width: 4px; height: 100%; position: absolute; left: 0; top: 0; border-radius: 0 2px 2px 0; }
+    .lab-progress .lab-status-indicator { background: var(--primary-500); }
+    .lab-returned .lab-status-indicator { background: #059669; }
+    .lab-overdue .lab-status-indicator { background: #dc2626; }
+    .lab-info { flex: 1; min-width: 0; }
+    .lab-patient { font-weight: 600; font-size: 0.9rem; color: var(--neutral-900); }
+    .lab-case-name { font-size: 0.82rem; color: var(--neutral-500); margin-top: 0.1rem; }
+    .lab-meta { display: flex; gap: 0.65rem; margin-top: 0.3rem; flex-wrap: wrap; }
+    .lab-lab { font-size: 0.72rem; font-weight: 600; color: var(--primary-700); background: var(--primary-50); padding: 0.1rem 0.4rem; border-radius: var(--radius-sm); }
+    .lab-date { font-size: 0.72rem; color: var(--neutral-400); }
+    .lab-status-badge { font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: var(--radius-full); flex-shrink: 0; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+    .lab-progress .lab-status-badge { background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #2563eb; }
+    .lab-returned .lab-status-badge { background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #059669; }
+    .lab-overdue .lab-status-badge { background: linear-gradient(135deg, #fee2e2, #fecaca); color: #dc2626; }
+
+    /* Task Board */
+    .task-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; align-items: start; }
+    .task-column { background: var(--neutral-50); border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 0.85rem; }
+    .task-col-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; padding-bottom: 0.65rem; border-bottom: 1px solid var(--neutral-200); }
+    .task-col-header h3 { font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: var(--neutral-700); text-transform: uppercase; letter-spacing: 0.05em; margin: 0; }
+    .task-count { font-size: 0.75rem; font-weight: 600; color: var(--neutral-400); background: linear-gradient(135deg, var(--neutral-200), #d4d4d4); padding: 0.1rem 0.45rem; border-radius: var(--radius-full); }
+    .task-list { display: flex; flex-direction: column; gap: 0.45rem; }
+    .task-card { display: flex; gap: 0.65rem; padding: 0.75rem 0.85rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); transition: all 0.2s ease; }
+    .task-card:hover { border-color: var(--primary-300); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .task-card.priority-high { border-left: 3px solid #dc2626; background: linear-gradient(135deg, white, #fef2f2); }
+    .task-card.priority-medium { border-left: 3px solid #d97706; background: linear-gradient(135deg, white, #fffbeb); }
+    .task-card.priority-low { border-left: 3px solid var(--primary-400); }
+    .task-card.in-progress { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-color: #bbf7d0; }
+    .task-card.completed { opacity: 0.65; background: linear-gradient(135deg, white, #f9fafb); }
+    .task-card.completed:hover { opacity: 0.8; }
+    .task-checkbox { width: 18px; height: 18px; border: 2px solid var(--neutral-300); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 2px; transition: all 0.2s ease; }
+    .task-checkbox:hover { border-color: var(--primary-500); }
+    .task-checkbox.active { background: linear-gradient(135deg, #2563eb, #1d4ed8); border-color: #2563eb; color: white; }
+    .task-checkbox.done { background: linear-gradient(135deg, #059669, #047857); border-color: #059669; color: white; }
+    .task-body { flex: 1; min-width: 0; }
+    .task-title { font-weight: 600; font-size: 0.85rem; color: var(--neutral-900); line-height: 1.4; }
+    .task-title.strikethrough { text-decoration: line-through; color: var(--neutral-400); }
+    .task-meta { display: flex; gap: 0.45rem; margin-top: 0.3rem; flex-wrap: wrap; align-items: center; }
+    .task-assignee { font-size: 0.72rem; font-weight: 600; color: var(--primary-700); background: var(--primary-50); padding: 0.1rem 0.4rem; border-radius: var(--radius-sm); }
+    .task-due { font-size: 0.72rem; color: var(--neutral-400); }
+    .task-done-date { font-size: 0.72rem; color: #059669; font-weight: 600; }
+    .task-priority { font-size: 0.65rem; font-weight: 600; padding: 0.1rem 0.35rem; border-radius: var(--radius-sm); text-transform: uppercase; }
+    .task-priority.high { background: #fee2e2; color: #dc2626; }
+    .task-priority.medium { background: #fef3c7; color: #d97706; }
+    .task-priority.low { background: #dbeafe; color: #2563eb; }
+
     /* Score Card */
-    .score-card { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-md); }
-    .score-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--neutral-100); }
-    .score-icon { display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: var(--radius-md); background: linear-gradient(135deg, #059669, #047857); color: white; }
-    .score-header h2 { font-family: var(--font-display); font-size: 1.3rem; color: var(--neutral-900); margin: 0; }
-    .score-subtitle { font-size: 0.85rem; color: var(--neutral-500); margin: 0.25rem 0 0; }
-    .score-grid { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: center; }
+    .score-card { background: linear-gradient(135deg, white 0%, #fafafa 100%); border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04); }
+    .score-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.25rem; padding-bottom: 0.85rem; border-bottom: 1px solid var(--neutral-100); }
+    .score-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: linear-gradient(135deg, #059669, #047857); color: white; flex-shrink: 0; }
+    .score-header h2 { font-family: var(--font-display); font-size: 1.2rem; color: var(--neutral-900); margin: 0; }
+    .score-subtitle { font-size: 0.82rem; color: var(--neutral-500); margin: 0.2rem 0 0; }
+    .score-grid { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; align-items: center; }
     .score-main { text-align: center; }
-    .score-number { font-family: var(--font-display); font-size: 4rem; font-weight: 700; color: var(--success); line-height: 1; }
-    .score-suffix { font-size: 1.5rem; color: var(--neutral-400); font-weight: 400; }
-    .score-label { font-size: 0.85rem; color: var(--neutral-500); margin-top: 0.25rem; }
-    .score-grade { display: inline-block; padding: 0.3rem 1rem; border-radius: var(--radius-full); font-weight: 700; font-size: 0.85rem; margin-top: 0.5rem; }
-    .grade-a { background: #dcfce7; color: #059669; }
-    .score-details { display: flex; flex-direction: column; gap: 0.75rem; }
-    .score-row { display: grid; grid-template-columns: 140px 1fr 40px; gap: 0.75rem; align-items: center; }
-    .score-cat { font-size: 0.88rem; color: var(--neutral-700); font-weight: 500; }
-    .score-bar-wrap { height: 8px; background: var(--neutral-100); border-radius: 4px; overflow: hidden; }
-    .score-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--primary-600), var(--success)); transition: width 0.6s ease; }
-    .score-val { font-weight: 700; font-size: 0.88rem; color: var(--neutral-900); text-align: right; }
+    .score-number { font-family: var(--font-display); font-size: 3.5rem; font-weight: 700; color: var(--neutral-900); line-height: 1; background: linear-gradient(135deg, var(--primary-700), #1e40af); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .score-suffix { font-size: 1.25rem; color: var(--neutral-400); font-weight: 400; }
+    .score-label { font-size: 0.82rem; color: var(--neutral-500); margin-top: 0.2rem; }
+    .score-grade { display: inline-block; padding: 0.25rem 0.85rem; border-radius: var(--radius-full); font-weight: 700; font-size: 0.82rem; margin-top: 0.4rem; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .grade-a { background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #059669; }
+    .score-details { display: flex; flex-direction: column; gap: 0.65rem; }
+    .score-row { display: grid; grid-template-columns: 130px 1fr 36px; gap: 0.65rem; align-items: center; }
+    .score-cat { font-size: 0.85rem; color: var(--neutral-700); font-weight: 500; }
+    .score-bar-wrap { height: 7px; background: var(--neutral-100); border-radius: 4px; overflow: hidden; box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); }
+    .score-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--primary-600), #3b82f6); transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .score-val { font-weight: 700; font-size: 0.85rem; color: var(--neutral-900); text-align: right; }
+    .score-sources { margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px solid var(--neutral-100); display: flex; gap: 0.65rem; flex-wrap: wrap; }
+    .source-badge { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.65rem; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius-full); font-size: 0.72rem; font-weight: 500; color: #059669; }
+    .founding-badge { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.65rem; background: #fef3c7; border: 1px solid #fde68a; border-radius: var(--radius-full); font-size: 0.72rem; font-weight: 500; color: #92400e; }
+    .founding-badge { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.8rem; font-weight: 600; color: #d97706; background: #fffbeb; border: 1px solid #fde68a; padding: 0.35rem 0.65rem; border-radius: var(--radius-md); }
 
-    /* Score Sources */
-    .score-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--neutral-100); }
-    .source-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--neutral-500); margin-bottom: 0.5rem; }
-    .source-badge svg { color: var(--success); flex-shrink: 0; }
-    .founding-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; font-weight: 600; color: #d97706; background: #fffbeb; border: 1px solid #fde68a; padding: 0.4rem 0.75rem; border-radius: var(--radius-md); }
+    /* Forms Hub */
+    .forms-hub { display: flex; flex-direction: column; gap: 0.65rem; }
+    .form-card { display: flex; align-items: center; gap: 0.85rem; padding: 1rem 1.25rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); text-decoration: none; color: inherit; transition: all 0.2s ease; }
+    .form-card:hover { border-color: var(--primary-300); box-shadow: 0 2px 8px rgba(0,0,0,0.06); transform: translateX(4px); }
+    .form-status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .form-status-dot.active { background: #059669; box-shadow: 0 0 0 3px rgba(5,150,105,0.15); }
+    .form-info { flex: 1; min-width: 0; }
+    .form-name { font-weight: 600; font-size: 0.9rem; color: var(--neutral-900); }
+    .form-desc { font-size: 0.8rem; color: var(--neutral-500); margin-top: 0.1rem; }
+    .form-meta { display: flex; align-items: center; gap: 0.65rem; flex-shrink: 0; }
+    .form-badge { font-size: 0.7rem; font-weight: 600; color: #059669; background: linear-gradient(135deg, #dcfce7, #bbf7d0); padding: 0.15rem 0.5rem; border-radius: var(--radius-full); }
+    .form-meta svg { color: var(--neutral-400); }
+    .forms-actions { display: flex; gap: 0.65rem; margin-top: 1rem; flex-wrap: wrap; }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.5rem 1.1rem; background: linear-gradient(135deg, var(--primary-700), #1e40af); color: white; border-radius: var(--radius-md); font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(12,74,110,0.15); }
+    .btn-secondary:hover { background: linear-gradient(135deg, #0c4a6e, #1e3a5f); box-shadow: 0 4px 8px rgba(12,74,110,0.2); transform: translateY(-1px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.5rem 1.1rem; background: white; color: var(--primary-700); border: 1px solid var(--primary-300); border-radius: var(--radius-md); font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease; }
+    .btn-outline:hover { background: var(--primary-50); border-color: var(--primary-500); box-shadow: 0 2px 4px rgba(12,74,110,0.1); }
 
-    /* Actions */
-    .actions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .action-card { display: flex; align-items: center; gap: 1rem; padding: 1.25rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); text-decoration: none; color: inherit; transition: all var(--transition-fast); }
-    .action-card:hover { box-shadow: var(--shadow-md); border-color: var(--primary-300); transform: translateY(-2px); }
-    .action-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); flex-shrink: 0; color: white; }
-    .action-icon.blue { background: var(--primary-700); }
-    .action-icon.green { background: var(--success); }
-    .action-icon.purple { background: #7c3aed; }
-    .action-icon.orange { background: var(--accent-500); }
-    .action-card h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin: 0; }
-    .action-card p { font-size: 0.85rem; color: var(--neutral-500); margin: 0.25rem 0 0; }
+    /* Submissions */
+    .submissions-placeholder { text-align: center; padding: 2.5rem 1.5rem; background: white; border: 2px dashed var(--neutral-200); border-radius: var(--radius-lg); }
+    .placeholder-icon { display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: var(--radius-full); background: var(--neutral-100); color: var(--neutral-400); margin: 0 auto 1rem; }
+    .submissions-placeholder h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-700); margin-bottom: 0.5rem; }
+    .submissions-placeholder p { font-size: 0.88rem; color: var(--neutral-500); max-width: 400px; margin: 0 auto; line-height: 1.6; }
 
-    /* Docs */
-    .docs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .doc-card { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); text-decoration: none; color: inherit; transition: all var(--transition-fast); }
+    /* Submissions Stats Bar */
+    .submissions-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.65rem; margin-bottom: 1rem; }
+    .sub-stat { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); padding: 0.85rem 1rem; text-align: center; transition: all 0.2s ease; }
+    .sub-stat:hover { border-color: var(--primary-200); box-shadow: 0 2px 6px rgba(0,0,0,0.06); transform: translateY(-1px); }
+    .sub-stat-number { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--primary-700); line-height: 1; }
+    .sub-stat-label { font-size: 0.72rem; color: var(--neutral-500); margin-top: 0.15rem; text-transform: uppercase; letter-spacing: 0.04em; }
+
+    /* Submissions List */
+    .submissions-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .submission-row { display: grid; grid-template-columns: auto 1fr 1fr 1fr auto auto; gap: 0.75rem; align-items: center; padding: 0.75rem 1rem; background: white; border-bottom: 1px solid var(--neutral-100); transition: all 0.15s ease; }
+    .submission-row:last-child { border-bottom: none; }
+    .submission-row:hover { background: var(--primary-50); }
+    .submission-row.new { background: #fef2f2; border-left: 3px solid #dc2626; }
+    .submission-row.new:hover { background: #fee2e2; }
+    .submission-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .submission-dot.new { background: #dc2626; box-shadow: 0 0 4px rgba(220,38,38,0.3); }
+    .submission-dot.read { background: var(--neutral-300); }
+    .submission-form { font-size: 0.8rem; font-weight: 600; color: var(--primary-700); }
+    .submission-patient { font-weight: 500; font-size: 0.85rem; color: var(--neutral-900); }
+    .submission-email { font-size: 0.78rem; color: var(--neutral-500); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .submission-time { font-size: 0.75rem; color: var(--neutral-400); white-space: nowrap; }
+    .submission-download {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: var(--radius-sm);
+      color: var(--neutral-400); transition: all 0.15s ease; flex-shrink: 0;
+    }
+    .submission-download:hover { background: var(--primary-50); color: var(--primary-700); }
+
+    /* Reviews */
+    .review-platforms { display: flex; gap: 0.85rem; margin-bottom: 1.25rem; }
+    .review-platform-card { flex: 1; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 1.1rem; text-align: center; transition: all 0.2s ease; }
+    .review-platform-card:hover { border-color: var(--primary-200); box-shadow: 0 2px 8px rgba(0,0,0,0.04); transform: translateY(-1px); }
+    .review-platform-name { font-weight: 600; font-size: 0.85rem; color: var(--neutral-700); margin-bottom: 0.4rem; }
+    .review-platform-rating { display: flex; align-items: center; justify-content: center; gap: 0.45rem; }
+    .review-stars { color: #f59e0b; font-size: 1.1rem; letter-spacing: 2px; }
+    .review-rating-num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--neutral-900); }
+    .review-platform-count { font-size: 0.75rem; color: var(--neutral-500); margin-top: 0.2rem; }
+    .review-list { display: flex; flex-direction: column; gap: 0.65rem; }
+    .review-card { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 1.1rem 1.25rem; transition: all 0.2s ease; }
+    .review-card:hover { border-color: var(--primary-200); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
+    .review-author { display: flex; align-items: center; gap: 0.45rem; }
+    .review-name { font-weight: 600; font-size: 0.85rem; color: var(--neutral-900); }
+    .review-platform-badge { font-size: 0.65rem; font-weight: 600; padding: 0.1rem 0.4rem; border-radius: var(--radius-sm); }
+    .review-platform-badge.google { background: linear-gradient(135deg, #e8f0fe, #d2e3fc); color: #1a73e8; }
+    .review-platform-badge.yelp { background: linear-gradient(135deg, #fee2e2, #fecaca); color: #dc2626; }
+    .review-stars-row { color: #f59e0b; font-size: 0.9rem; letter-spacing: 1px; }
+    .review-text { font-size: 0.85rem; color: var(--neutral-600); line-height: 1.6; font-style: italic; }
+    .review-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; padding-top: 0.4rem; border-top: 1px solid var(--neutral-100); }
+    .review-date { font-size: 0.75rem; color: var(--neutral-400); }
+    .review-needs-response { font-size: 0.7rem; font-weight: 600; color: #d97706; background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 0.1rem 0.45rem; border-radius: var(--radius-sm); }
+
+    /* Analytics */
+    .analytics-embed { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 0.85rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .analytics-embed iframe { border-radius: var(--radius-sm); }
+
+    /* Docs Grid */
+    .docs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
+    .doc-card { display: flex; align-items: center; gap: 0.65rem; padding: 0.85rem 1rem; background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); text-decoration: none; color: inherit; transition: all 0.2s ease; }
+    .doc-card:hover { border-color: var(--primary-300); box-shadow: 0 2px 8px rgba(0,0,0,0.06); transform: translateY(-1px); }
     .doc-card:hover { border-color: var(--primary-300); box-shadow: var(--shadow-sm); }
-    .doc-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--primary-50); color: var(--primary-700); flex-shrink: 0; }
-    .doc-card h4 { font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; color: var(--neutral-900); margin: 0; }
-    .doc-card p { font-size: 0.8rem; color: var(--neutral-500); margin: 0.15rem 0 0; }
+    .doc-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: var(--radius-sm); background: linear-gradient(135deg, var(--primary-50), #dbeafe); color: var(--primary-700); flex-shrink: 0; }
+    .doc-card h4 { font-family: var(--font-body); font-weight: 600; font-size: 0.85rem; color: var(--neutral-900); margin: 0; }
+    .doc-card p { font-size: 0.75rem; color: var(--neutral-500); margin: 0.1rem 0 0; }
+
+    /* Resources */
+    .resources-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; margin-bottom: 2rem; }
+    .resource-card { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 1.5rem; text-decoration: none; color: inherit; transition: all 0.2s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+    .resource-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); border-color: var(--primary-300); transform: translateY(-2px); }
+    .resource-icon { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--radius-md); background: linear-gradient(135deg, var(--primary-50), #dbeafe); color: var(--primary-700); margin-bottom: 0.75rem; }
+    .resource-card h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-900); margin-bottom: 0.35rem; }
+    .resource-card p { font-size: 0.85rem; color: var(--neutral-500); line-height: 1.5; margin: 0; }
 
     /* CC3PO Card */
-    .cc3po-card { background: white; border: 2px solid var(--primary-200); border-radius: var(--radius-lg); padding: 2.5rem; max-width: 500px; margin: 0 auto; }
-    .cc3po-icon { display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: var(--radius-full); background: linear-gradient(135deg, var(--primary-700), var(--primary-900)); color: white; margin: 0 auto 1rem; }
-    .cc3po-card h3 { font-family: var(--font-display); font-size: 1.25rem; color: var(--neutral-900); margin-bottom: 0.75rem; }
-    .cc3po-card p { color: var(--neutral-500); line-height: 1.6; margin-bottom: 1.5rem; }
+    .cc3po-card { background: linear-gradient(135deg, white 0%, #f0f7ff 100%); border: 2px solid var(--primary-200); border-radius: var(--radius-lg); padding: 2rem; text-align: center; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 16px rgba(59,130,246,0.08); }
+    .cc3po-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-full); background: linear-gradient(135deg, var(--primary-700), #1e40af); color: white; margin: 0 auto 0.85rem; box-shadow: 0 4px 12px rgba(12,74,110,0.2); }
+    .cc3po-card h3 { font-family: var(--font-display); font-size: 1.15rem; color: var(--neutral-900); margin-bottom: 0.65rem; }
+    .cc3po-card p { color: var(--neutral-500); line-height: 1.6; margin-bottom: 1.25rem; font-size: 0.9rem; }
     .cc3po-card a { color: var(--primary-700); text-decoration: underline; }
-    .cc3po-card .btn-primary { color: white; text-decoration: none; }
+    .cc3po-card .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.5rem; background: linear-gradient(135deg, var(--primary-700), #1e40af); color: white; border-radius: var(--radius-md); font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(12,74,110,0.15); }
+    .cc3po-card .btn-primary:hover { background: linear-gradient(135deg, #0c4a6e, #1e3a5f); box-shadow: 0 4px 8px rgba(12,74,110,0.2); transform: translateY(-1px); }
 
+    @media (max-width: 1024px) {
+      .kpi-bar { grid-template-columns: repeat(3, 1fr); }
+      .overview-grid { grid-template-columns: 1fr; }
+      .lab-grid { grid-template-columns: 1fr; }
+      .task-columns { grid-template-columns: 1fr; }
+      .docs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 768px) {
-      .score-grid { grid-template-columns: 1fr; }
-      .actions-grid { grid-template-columns: 1fr; }
+      .kpi-bar { grid-template-columns: repeat(2, 1fr); }
+      .sources-grid { grid-template-columns: 1fr; }
+      .source-bar-row { grid-template-columns: 80px 1fr 25px 35px; }
+      .review-platforms { flex-direction: column; }
       .docs-grid { grid-template-columns: 1fr; }
-      .legal-hero { padding: 3.5rem 1rem 3rem; }
+      .resources-grid { grid-template-columns: 1fr; }
+      .huddle-table { min-width: 100%; font-size: 0.8rem; }
+      .huddle-table th, .huddle-table td { padding: 0.45rem 0.6rem; }
+      .huddle-ins, .huddle-alerts { display: none; }
+      .score-grid { grid-template-columns: 1fr; }
+      .score-main { text-align: left; display: flex; align-items: center; gap: 1rem; }
     }
   </style>
+
+  <script>
+    // Tab switching
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.dash-tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Deactivate all tabs
+          tabs.forEach(t => t.classList.remove('active'));
+          // Activate clicked tab
+          tab.classList.add('active');
+          // Hide all panels
+          document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
+          // Show target panel
+          const target = document.getElementById('tab-' + tab.dataset.tab);
+          if (target) target.classList.add('active');
+        });
+      });
+    });
+
+    // Fetch submissions from the standalone API server
+    const VM_API = 'https://opendental.drlee.cc3po.com/api';
+    const FALLBACK_API = 'https://cdrcgmdvepxwsbqaifxv.supabase.co/functions/v1/jotform-webhook';
+
+    async function tryFetch(url) {
+      try {
+        const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
+        if (res.ok) return res;
+      } catch {}
+      return null;
+    }
+
+    async function loadSubmissions() {
+      const container = document.getElementById('submissions-container');
+      if (!container) return;
+
+      try {
+        let subsRes = await tryFetch(`${VM_API}/submissions?limit=10`);
+        let statsRes = await tryFetch(`${VM_API}/stats`);
+
+        if (!subsRes) {
+          subsRes = await tryFetch(`${FALLBACK_API}?action=submissions&limit=10`);
+          statsRes = await tryFetch(`${FALLBACK_API}?action=stats`);
+        }
+
+        if (!subsRes) throw new Error('No API available');
+
+        const subs = await subsRes.json();
+        const stats = statsRes ? await statsRes.json() : {};
+
+        if (!subs.submissions || subs.submissions.length === 0) return;
+
+        // Count unique forms from submissions data
+        const formCounts = {};
+        subs.submissions.forEach(s => {
+          const name = s.form_name || 'Form';
+          formCounts[name] = (formCounts[name] || 0) + 1;
+        });
+        const topForms = Object.entries(formCounts).slice(0, 2);
+
+        let html = '<div class="submissions-stats">';
+        html += `<div class="sub-stat"><div class="sub-stat-number">${stats.total_submissions || subs.submissions.length}</div><div class="sub-stat-label">Total Submissions</div></div>`;
+        html += `<div class="sub-stat"><div class="sub-stat-number">${stats.new_submissions || subs.submissions.filter(s => s.status === 'new').length}</div><div class="sub-stat-label">Unread</div></div>`;
+        topForms.forEach(([name, count]) => {
+          html += `<div class="sub-stat"><div class="sub-stat-number">${count}</div><div class="sub-stat-label">${name}</div></div>`;
+        });
+        html += '</div>';
+
+        html += '<div class="submissions-list">';
+        subs.submissions.forEach(s => {
+          const time = new Date((s.created_at || s.submitted_at) + 'Z').toLocaleString('en-US', {
+            month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+          });
+          const isNew = s.status === 'new';
+          html += `
+            <div class="submission-row ${isNew ? 'new' : ''}">
+              <div class="submission-dot ${isNew ? 'new' : 'read'}"></div>
+              <span class="submission-form">${s.form_name || 'Form'}</span>
+              <span class="submission-patient">${s.name || s.patient_name || 'Unknown'}</span>
+              <span class="submission-email">${s.email || ''}</span>
+              <span class="submission-time">${time}</span>
+              <a href="/portal/submission-view/?id=${s.id}" class="submission-download" title="View & Download PDF" target="_blank">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              </a>
+            </div>
+          `;
+        });
+        html += '</div>';
+
+        container.innerHTML = html;
+      } catch (err) {
+        console.log('Forms API not available yet:', err.message);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadSubmissions);
+  </script>
 </Layout>

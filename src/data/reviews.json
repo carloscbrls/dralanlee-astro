@@ -1,0 +1,60 @@
+{
+  "averageRating": 4.8,
+  "totalReviews": 47,
+  "platforms": [
+    {
+      "name": "Google",
+      "rating": 4.9,
+      "count": 32,
+      "icon": "google"
+    },
+    {
+      "name": "Yelp",
+      "rating": 4.5,
+      "count": 15,
+      "icon": "yelp"
+    }
+  ],
+  "recentReviews": [
+    {
+      "platform": "Google",
+      "author": "Maria G.",
+      "rating": 5,
+      "text": "Dr. Lee is amazing! My crown fitting was painless and the staff was so welcoming. Highly recommend!",
+      "date": "2026-06-20",
+      "responded": false
+    },
+    {
+      "platform": "Google",
+      "author": "James W.",
+      "rating": 5,
+      "text": "First visit today as a new patient. Very thorough exam, great communication about my treatment options. Front desk was super helpful with insurance questions.",
+      "date": "2026-06-19",
+      "responded": false
+    },
+    {
+      "platform": "Yelp",
+      "author": "Sarah J.",
+      "rating": 4,
+      "text": "Been coming here for years. Dr. Lee is thorough and gentle. Only reason for 4 stars is sometimes the wait runs a bit long.",
+      "date": "2026-06-15",
+      "responded": false
+    },
+    {
+      "platform": "Google",
+      "author": "Robert C.",
+      "rating": 5,
+      "text": "Had a root canal done and was nervous but Dr. Lee made it comfortable. The office is clean and modern. Great experience overall.",
+      "date": "2026-06-12",
+      "responded": false
+    },
+    {
+      "platform": "Yelp",
+      "author": "Patricia D.",
+      "rating": 5,
+      "text": "Dr. Lee took the time to explain my denture options clearly. The whole team is kind and professional. So glad I found this practice!",
+      "date": "2026-06-10",
+      "responded": false
+    }
+  ]
+}

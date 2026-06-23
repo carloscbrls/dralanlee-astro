@@ -1,0 +1,209 @@
+---
+// Static page — submission ID is loaded client-side via query param ?id=xxx
+// Staff click a download button in the portal, which opens this page with the ID
+// Shows ALL form fields from the JotForm submission metadata
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submission Details — Dr. Alan S. Lee, DDS</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1a1a2e;
+      background: #f8fafc;
+      padding: 2rem;
+    }
+    @media print {
+      body { padding: 0; background: white; }
+      .no-print { display: none !important; }
+      .submission-card { box-shadow: none; border: 1px solid #ddd; }
+    }
+    .header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #0c4a6e;
+    }
+    .header-left h1 { font-size: 1.3rem; color: #0c4a6e; margin-bottom: 0.25rem; }
+    .header-left p { font-size: 0.85rem; color: #64748b; }
+    .header-right { text-align: right; font-size: 0.8rem; color: #64748b; }
+    .header-right strong { color: #1a1a2e; }
+    .btn-print {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.5rem 1rem; background: #0c4a6e; color: white;
+      border: none; border-radius: 6px; font-size: 0.85rem;
+      cursor: pointer; font-weight: 600; margin-bottom: 1rem;
+    }
+    .btn-print:hover { background: #082f49; }
+    .btn-close {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.5rem 1rem; background: #64748b; color: white;
+      border: none; border-radius: 6px; font-size: 0.85rem;
+      cursor: pointer; font-weight: 600; margin-bottom: 1rem; margin-left: 0.5rem;
+    }
+    .btn-close:hover { background: #475569; }
+    .submission-card {
+      background: white; border-radius: 8px; padding: 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 1.5rem;
+    }
+    .field-group { margin-bottom: 1.25rem; }
+    .field-group:last-child { margin-bottom: 0; }
+    .field-label {
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em;
+      color: #64748b; font-weight: 600; margin-bottom: 0.25rem;
+    }
+    .field-value {
+      font-size: 0.95rem; color: #1a1a2e; line-height: 1.5;
+    }
+    .field-value.empty { color: #94a3b8; font-style: italic; }
+    .divider { height: 1px; background: #e2e8f0; margin: 1.25rem 0; }
+    .status-badge {
+      display: inline-block; padding: 0.15rem 0.5rem; border-radius: 9999px;
+      font-size: 0.72rem; font-weight: 600;
+    }
+    .status-badge.new { background: #fee2e2; color: #dc2626; }
+    .status-badge.read { background: #f1f5f9; color: #64748b; }
+    .footer-note {
+      text-align: center; font-size: 0.75rem; color: #94a3b8;
+      margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;
+    }
+    .loading { text-align: center; padding: 3rem; color: #64748b; }
+    .error { text-align: center; padding: 3rem; color: #dc2626; }
+    .section-title {
+      font-size: 0.9rem; font-weight: 700; color: #0c4a6e;
+      margin-bottom: 0.75rem; padding-bottom: 0.25rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="no-print" style="margin-bottom: 1rem;">
+    <button class="btn-print" onclick="window.print()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      Print / Save as PDF
+    </button>
+    <button class="btn-close" onclick="window.close()">
+      Close
+    </button>
+  </div>
+
+  <div id="content">
+    <div class="loading">Loading submission...</div>
+  </div>
+
+  <div class="footer-note">
+    Dr. Alan S. Lee, DDS — 209 E. North St., Manteca, CA 95336 — (209) 239-2990
+  </div>
+
+  <script>
+    (async function() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const container = document.getElementById('content');
+
+      if (!id) {
+        container.innerHTML = '<div class="error">No submission ID provided.</div>';
+        return;
+      }
+
+      try {
+        const res = await fetch(
+          'https://cdrcgmdvepxwsbqaifxv.supabase.co/functions/v1/jotform-webhook?action=submissions&limit=50',
+          { signal: AbortSignal.timeout(8000) }
+        );
+        if (!res.ok) throw new Error('Failed to fetch');
+        const data = await res.json();
+        const sub = data.submissions?.find(s => s.id === id);
+
+        if (!sub) {
+          container.innerHTML = '<div class="error">Submission not found.</div>';
+          return;
+        }
+
+        const isNew = sub.status === 'new';
+        const time = new Date(sub.created_at + 'Z').toLocaleString('en-US', {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+          hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
+        });
+
+        // Build all form fields from metadata
+        let fieldsHtml = '';
+        if (sub.metadata && sub.metadata.formFields) {
+          const formFields = sub.metadata.formFields;
+          const skipFields = ['Name', 'Email', 'Phone', 'Message', 'Full Name', 'Fullname'];
+
+          const orderedFields = Object.entries(formFields)
+            .filter(([key]) => !skipFields.includes(key))
+            .map(([label, value]) => ({ label, value: String(value) }));
+
+          if (orderedFields.length > 0) {
+            fieldsHtml = '<div class="divider"></div><div class="section-title">All Form Fields</div>';
+            for (const field of orderedFields) {
+              fieldsHtml += `
+                <div class="field-group">
+                  <div class="field-label">${field.label}</div>
+                  <div class="field-value">${field.value}</div>
+                </div>
+              `;
+            }
+          }
+        }
+
+        container.innerHTML = `
+          <div class="header">
+            <div class="header-left">
+              <h1>${sub.form_name || 'Form Submission'}</h1>
+              <p>Submitted via dralanlee.com</p>
+            </div>
+            <div class="header-right">
+              <div><strong>Status:</strong> <span class="status-badge ${isNew ? 'new' : 'read'}">${isNew ? 'New' : 'Read'}</span></div>
+              <div style="margin-top:0.25rem;"><strong>ID:</strong> ${sub.id?.substring(0,8) || '—'}</div>
+            </div>
+          </div>
+
+          <div class="submission-card">
+            <div class="field-group">
+              <div class="field-label">Submitted</div>
+              <div class="field-value">${time}</div>
+            </div>
+            <div class="divider"></div>
+            <div class="field-group">
+              <div class="field-label">Full Name</div>
+              <div class="field-value">${sub.patient_name || sub.name || 'Not provided'}</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Email</div>
+              <div class="field-value ${!sub.email ? 'empty' : ''}">${sub.email || 'Not provided'}</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Phone</div>
+              <div class="field-value ${!sub.phone ? 'empty' : ''}">${sub.phone || 'Not provided'}</div>
+            </div>
+            ${sub.message ? `
+            <div class="divider"></div>
+            <div class="field-group">
+              <div class="field-label">Message / Notes</div>
+              <div class="field-value">${sub.message}</div>
+            </div>
+            ` : ''}
+            ${fieldsHtml}
+            <div class="divider"></div>
+            <div class="field-group">
+              <div class="field-label">Form Type</div>
+              <div class="field-value">${sub.form_name || sub.form_id || '—'}</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Submission ID</div>
+              <div class="field-value">${sub.submission_id || sub.id || '—'}</div>
+            </div>
+          </div>
+        `;
+      } catch (err) {
+        container.innerHTML = '<div class="error">Could not load submission. The API may be unavailable.</div>';
+      }
+    })();
+  </script>
+</body>
+</html>

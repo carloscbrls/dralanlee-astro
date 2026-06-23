@@ -81,7 +81,8 @@ const allSchemas = [localBusinessSchema, ...schemas];
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- Plausible Analytics (HIPAA-compliant, self-hosted, no cookies, no personal data) -->
-  <script defer data-domain="dralanlee.com" src="https://analytics.cc3po.com/js/script.js"></script>
+  <script async src="https://analytics.cc3po.com/js/pa-f_oWtdBjLdF09Fzmqpy-M.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
 
   <!-- Fonts: Inter for body, DM Serif Display for headings -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -204,6 +205,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       color: white;
       font-size: 0.82rem;
       padding: 0.45rem 0;
+      padding-top: max(0.45rem, env(safe-area-inset-top, 0px));
       position: relative;
       z-index: 200;
     }
@@ -211,13 +213,15 @@ const allSchemas = [localBusinessSchema, ...schemas];
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 1.5rem;
+      padding-left: calc(1.5rem + env(safe-area-inset-left, 0px));
+      padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 2rem;
       flex-wrap: wrap;
     }
-    .top-bar a { color: rgba(255,255,255,0.9); font-weight: 500; display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px; }
+    .top-bar a { color: rgba(255,255,255,0.9); font-weight: 500; display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px; padding: 0.25rem 0; }
     .top-bar a:hover { color: var(--accent-400); }
     .top-bar .top-links { display: flex; gap: 1.25rem; align-items: center; font-size: 0.78rem; }
     .top-bar .top-links a { color: rgba(255,255,255,0.7); }
@@ -238,12 +242,17 @@ const allSchemas = [localBusinessSchema, ...schemas];
       top: 0;
       z-index: 1000;
       transition: box-shadow var(--transition-base);
+      /* Ensure content doesn't hide behind iOS notch/safe area */
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
     }
     .site-header.scrolled { box-shadow: var(--shadow-lg); }
     .nav-inner {
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 1.5rem;
+      padding-left: calc(1.5rem + env(safe-area-inset-left, 0px));
+      padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -328,18 +337,18 @@ const allSchemas = [localBusinessSchema, ...schemas];
     }
     .footer-col ul { list-style: none; }
     .footer-col li { margin-bottom: 0.6rem; }
-    .footer-col a { color: rgba(255,255,255,0.8); font-size: 0.9rem; transition: color var(--transition-fast); display: inline-block; padding: 0.35rem 0; min-height: 44px; line-height: 1.5; }
+    .footer-col a { color: rgba(255,255,255,0.8); font-size: 0.9rem; transition: color var(--transition-fast); display: inline-block; padding: 0.5rem 0; min-height: 44px; line-height: 1.5; }
     .footer-col a:hover { color: white; }
     .footer-hours { align-self: start; }
     .footer-hours p { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.8; }
     .footer-hours .phone-footer {
       display: inline-flex; align-items: center; gap: 0.4rem; font-size: 1.15rem; font-weight: 600;
-      color: white; margin-top: 0.75rem; min-height: 44px;
+      color: white; margin-top: 0.75rem; min-height: 44px; padding: 0.35rem 0;
     }
     .footer-social { display: flex; gap: 0.75rem; margin-top: 1rem; }
     .footer-social a {
       display: flex; align-items: center; justify-content: center;
-      width: 40px; height: 40px; border-radius: var(--radius-full);
+      width: 44px; height: 44px; border-radius: var(--radius-full);
       background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85);
       transition: all var(--transition-fast);
     }
@@ -354,10 +363,10 @@ const allSchemas = [localBusinessSchema, ...schemas];
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
     }
     .footer-bottom p { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
-    .footer-bottom a { color: rgba(255,255,255,0.65); min-height: 44px; display: inline-flex; align-items: center; }
+    .footer-bottom a { color: rgba(255,255,255,0.65); min-height: 44px; display: inline-flex; align-items: center; padding: 0.25rem 0; }
     .footer-bottom a:hover { color: rgba(255,255,255,0.95); }
     .footer-compliance { display: flex; gap: 1rem; font-size: 0.78rem; }
-    .footer-compliance a { color: rgba(255,255,255,0.5); min-height: 44px; display: inline-flex; align-items: center; }
+    .footer-compliance a { color: rgba(255,255,255,0.5); min-height: 44px; display: inline-flex; align-items: center; padding: 0.25rem 0.35rem; }
     .footer-compliance a:hover { color: rgba(255,255,255,0.9); }
 
     /* ===== ANIMATIONS ===== */
@@ -439,6 +448,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       .nav-menu {
         display: none; position: fixed; top: auto; left: 0; right: 0;
         background: white; flex-direction: column; padding: 1rem 1.5rem;
+        padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
         box-shadow: var(--shadow-xl); border-top: 1px solid var(--neutral-100);
         gap: 0.15rem; z-index: 9999;
       }
@@ -455,6 +465,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       .section-title { font-size: 1.65rem; }
       .section-heading { font-size: 1.4rem; }
       .top-bar { font-size: 0.75rem; }
+      .top-bar a { min-height: 44px; padding: 0.35rem 0; }
     }
   </style>
 
@@ -630,7 +641,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
   <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#082f49;color:white;padding:1rem 1.5rem;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,0.15);">
     <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
       <div style="flex:1;min-width:280px;">
-        <p style="margin:0;font-size:0.9rem;line-height:1.6;">We use essential cookies for site security and performance, and analytics cookies to improve your experience. We <strong>do not sell</strong> your personal information. <a href="/privacy-policy/" style="color:#38bdf8;text-decoration:underline;">Privacy Policy</a></p>
+        <p style="margin:0;font-size:0.9rem;line-height:1.6;">We use essential cookies for site security and performance, and analytics cookies to improve your experience. We <strong>do not sell</strong> your personal information. <a href="/privacy-policy/" style="color:#38bdf8;text-decoration:underline;">Privacy Policy</a> | <a href="/privacy-policy/#cookies" style="color:#38bdf8;text-decoration:underline;">Cookie Policy</a></p>
       </div>
       <div style="display:flex;gap:0.5rem;flex-shrink:0;">
         <button id="cookie-accept" style="background:#059669;color:white;border:none;padding:0.75rem 1.5rem;border-radius:9999px;font-weight:600;font-size:0.88rem;cursor:pointer;font-family:Inter,sans-serif;min-height:44px;">Accept All</button>

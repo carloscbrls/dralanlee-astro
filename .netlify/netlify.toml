@@ -45,7 +45,7 @@ X-Frame-Options = "SAMEORIGIN"
 X-Content-Type-Options = "nosniff"
 Referrer-Policy = "strict-origin-when-cross-origin"
 Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
-Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://form.jotform.com https://cdn.jotfor.ms https://js.jotform.com https://analytics.cc3po.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.jotfor.ms https://*.jotform.com https://analytics.cc3po.com; frame-src https://form.jotform.com https://www.google.com https://maps.google.com; connect-src 'self' https://analytics.cc3po.com https://form.jotform.com; object-src 'none'; base-uri 'self'; form-action 'self' https://form.jotform.com https://formspree.io https://www.convergepay.com"
+Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https:; script-src-elem 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https: data:; img-src 'self' data: https: blob:; frame-src https:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self' https:; upgrade-insecure-requests;"
 X-Robots-Tag = "index, follow"
 
 [[redirects]]

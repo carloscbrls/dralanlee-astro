@@ -1,0 +1,20 @@
+{
+  "sources": [
+    { "source": "Google Search", "count": 8, "color": "#4285F4" },
+    { "source": "Patient Referral", "count": 5, "color": "#059669" },
+    { "source": "Yelp", "count": 2, "color": "#dc2626" },
+    { "source": "Facebook", "count": 1, "color": "#1877F2" },
+    { "source": "Walk-in / Drive-by", "count": 1, "color": "#d97706" },
+    { "source": "Insurance Directory", "count": 2, "color": "#7c3aed" },
+    { "source": "Other", "count": 1, "color": "#6b7280" }
+  ],
+  "totalNewPatients": 20,
+  "month": "June 2026",
+  "recentPatients": [
+    { "name": "James Wilson", "source": "Google Search", "date": "2026-06-23", "procedure": "New patient exam" },
+    { "name": "Emily Martinez", "source": "Patient Referral", "date": "2026-06-22", "procedure": "Hygiene recall" },
+    { "name": "David Thompson", "source": "Google Search", "date": "2026-06-20", "procedure": "Crown delivery" },
+    { "name": "Robert Chen", "source": "Insurance Directory", "date": "2026-06-19", "procedure": "Root canal" },
+    { "name": "Patricia Davis", "source": "Yelp", "date": "2026-06-18", "procedure": "Denture adjustment" }
+  ]
+}

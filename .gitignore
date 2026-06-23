@@ -24,3 +24,6 @@ pnpm-debug.log*
 .idea/
 public/images/*.bak*
 public/images/*.pre-*
+
+# Local Netlify folder
+.netlify
