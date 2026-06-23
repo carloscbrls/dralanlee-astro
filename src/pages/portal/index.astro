@@ -695,9 +695,9 @@ const forms = [
         <div class="analytics-embed">
           <iframe
             plausible-embed
-            src="https://analytics.cc3po.com/share/dralanlee.com?auth=9sF77S…uTKj&embed=true&theme=light&background=transparent"
+            src="https://analytics.cc3po.com/share/dralanlee.com?embed=true&theme=light&background=transparent"
             loading="lazy"
-            style="width: 1px; min-width: 100%; height: 1200px; border: none; overflow: hidden;"
+            style="width: 1px; min-width: 100%; height: 600px; border: none; overflow: hidden;"
           ></iframe>
           <script async src="https://analytics.cc3po.com/js/embed.host.js"></script>
         </div>
@@ -1433,7 +1433,10 @@ const forms = [
 
     /* ---- Analytics ---- */
     .analytics-embed { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 0.75rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-    .analytics-embed iframe { border-radius: var(--radius-sm); }
+    .analytics-embed iframe { border-radius: var(--radius-sm); min-height: 400px; }
+    @media (max-width: 480px) {
+      .analytics-embed iframe { min-height: 350px; }
+    }
 
     /* ---- Docs Grid ---- */
     .docs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
