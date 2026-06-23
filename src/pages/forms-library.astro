@@ -361,27 +361,37 @@ const consentForms = [
       loadingDiv.innerHTML = '<div class="loading-spinner"></div><p>Loading secure form...</p><p class="loading-sub">Your data is encrypted and HIPAA-compliant</p>';
       jotformContainer.appendChild(loadingDiv);
 
-      // Create iframe with JotForm embed handler attributes
-      const iframe = document.createElement('iframe');
-      iframe.id = 'JotFormIFrame-' + formId;
-      iframe.src = formUrl;
-      iframe.title = formTitle;
-      iframe.style.width = '100%';
-      iframe.style.height = '100%';
-      iframe.style.minHeight = '1000px';
-      iframe.style.border = 'none';
-      iframe.setAttribute('scrolling', 'yes');
-      iframe.setAttribute('allowtransparency', 'true');
-      iframe.setAttribute('allow', 'geolocation; microphone; camera; fullscreen; payment');
-      iframe.onload = () => {
+      // Create JotForm JavaScript embed instead of iframe
+      const scriptEmbed = document.createElement('script');
+      scriptEmbed.src = 'https://form.jotform.com/s/umd/latest/embed-form.js';
+      scriptEmbed.setAttribute('data-form-id', formId);
+      scriptEmbed.setAttribute('data-domain', 'form.jotform.com');
+      scriptEmbed.setAttribute('data-type', 'standard');
+      scriptEmbed.setAttribute('data-card', '1');
+      scriptEmbed.onload = () => {
         const ld = document.getElementById('form-loading');
         if (ld) ld.remove();
-        // Initialize JotForm embed handler for this iframe
-        if (window.jotformEmbedHandler) {
-          window.jotformEmbedHandler("iframe[id='JotFormIFrame-" + formId + "']", "https://form.jotform.com/");
-        }
       };
-      jotformContainer.appendChild(iframe);
+      scriptEmbed.onerror = () => {
+        // Fallback to iframe if JS embed fails
+        const iframe = document.createElement('iframe');
+        iframe.id = 'JotFormIFrame-' + formId;
+        iframe.src = formUrl;
+        iframe.title = formTitle;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.minHeight = '1000px';
+        iframe.style.border = 'none';
+        iframe.setAttribute('scrolling', 'yes');
+        iframe.setAttribute('allowtransparency', 'true');
+        iframe.setAttribute('allow', 'geolocation; microphone; camera; fullscreen; payment');
+        iframe.onload = () => {
+          const ld = document.getElementById('form-loading');
+          if (ld) ld.remove();
+        };
+        jotformContainer.appendChild(iframe);
+      };
+      jotformContainer.appendChild(scriptEmbed);
 
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';

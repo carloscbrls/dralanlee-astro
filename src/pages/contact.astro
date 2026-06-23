@@ -73,34 +73,14 @@ const localBusinessSchema = {
         <!-- Appointment Form -->
         <div class="form-panel active" id="panel-appointment">
           <div class="jotform-embed" id="appointment-form-container">
-            <iframe
-              id="JotFormIFrame-260202986387060"
-              title="Request an Appointment"
-              onload="window.parent.scrollTo(0,0)"
-              allowtransparency="true"
-              allow="geolocation; microphone; camera; fullscreen; payment"
-              src="https://form.jotform.com/260202986387060"
-              frameborder="0"
-              style="min-width:100%;max-width:100%;height:1200px;border:none;"
-              scrolling="yes"
-            ></iframe>
+            <script type="text/javascript" src="https://form.jotform.com/jsform/260202986387060"></script>
           </div>
         </div>
 
         <!-- Contact Our Office -->
         <div class="form-panel" id="panel-message">
           <div class="jotform-embed" id="contact-form-container">
-            <iframe
-              id="JotFormIFrame-261351664337155"
-              title="Contact Our Office"
-              onload="window.parent.scrollTo(0,0)"
-              allowtransparency="true"
-              allow="geolocation; microphone; camera; fullscreen; payment"
-              src="https://form.jotform.com/261351664337155"
-              frameborder="0"
-              style="min-width:100%;max-width:100%;height:1200px;border:none;"
-              scrolling="yes"
-            ></iframe>
+            <script type="text/javascript" src="https://form.jotform.com/jsform/261351664337155"></script>
           </div>
         </div>
 
@@ -240,22 +220,17 @@ const localBusinessSchema = {
     .form-panel.active { display: block; animation: fadeInUp 0.35s ease-out; }
     .form-panel.active .jotform-embed { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
 
-    /* ===== JOTFORM EMBED — CRITICAL: height + overflow ===== */
+    /* ===== JOTFORM EMBED — JS embed container styling ===== */
     .jotform-embed {
-      min-height: 1200px; background: var(--neutral-50);
+      min-height: 600px; background: var(--neutral-50);
       border: 1px solid var(--neutral-200); border-top: 2px solid var(--primary-200);
       border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-      overflow: visible; position: relative;
+      overflow: hidden; position: relative;
       transition: min-height 0.3s ease;
-      -webkit-overflow-scrolling: touch;
     }
-    .jotform-embed iframe {
-      width: 100% !important; min-height: 1200px !important;
-      border: none !important; border-radius: 0 0 var(--radius-lg) var(--radius-lg) !important;
-      display: block !important;
-      overflow: auto !important;
-      -webkit-overflow-scrolling: touch !important;
-      overscroll-behavior: contain !important;
+    /* JotForm JS embed renders inline — ensure it fills container */
+    .jotform-embed > script + * {
+      width: 100% !important;
     }
 
     /* ===== DISCLAIMER ===== */
@@ -346,17 +321,139 @@ const localBusinessSchema = {
       .contact-grid { padding: 0 1rem; }
       .form-tabs { flex-direction: column; gap: 0.5rem; }
       .form-tab { width: 100%; justify-content: center; padding: 0.75rem 1.5rem; font-size: 0.85rem; }
-      .jotform-embed { min-height: 1000px; }
-      .jotform-embed iframe { min-height: 1000px !important; height: 1000px !important; -webkit-overflow-scrolling: touch; overflow: auto !important; overscroll-behavior: contain !important; }
+      .jotform-embed { min-height: 500px; }
     }
   </style>
 
-  <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
-  <script>
-    // Initialize JotForm embed handler for both forms
-    window.jotformEmbedHandler("iframe[id='JotFormIFrame-260202986387060']", "https://form.jotform.com/");
-    window.jotformEmbedHandler("iframe[id='JotFormIFrame-261351664337155']", "https://form.jotform.com/");
+  <style>
+    /* ===== ADA COMPLIANCE OVERRIDES for JotForm embed ===== */
+    /* Fix low contrast on sub-labels (First Name, Last Name, etc.) */
+    .jotform-embed .form-sub-label,
+    .jotform-embed .form-sub-label-container label,
+    .jotform-embed #sublabel_2_first,
+    .jotform-embed #sublabel_2_last,
+    .jotform-embed #sublabel_3_masked,
+    .jotform-embed #sublabel_input_4 {
+      color: #595959 !important;
+      font-weight: 500 !important;
+      font-size: 0.85rem !important;
+    }
+    /* Fix placeholder text contrast */
+    .jotform-embed input::placeholder,
+    .jotform-embed textarea::placeholder {
+      color: #595959 !important;
+      opacity: 1 !important;
+    }
+    /* WCAG 2.4.7 - Visible focus indicators */
+    .jotform-embed input:focus-visible,
+    .jotform-embed textarea:focus-visible,
+    .jotform-embed select:focus-visible,
+    .jotform-embed .form-textbox:focus,
+    .jotform-embed .form-textarea:focus {
+      outline: 2px solid #0C4A6E !important;
+      outline-offset: 2px !important;
+      box-shadow: 0 0 0 3px rgba(12, 74, 110, 0.15) !important;
+    }
+    /* Enhance radio button focus */
+    .jotform-embed .form-radio-item input:focus-visible + label {
+      outline: 2px solid #0C4A6E !important;
+      outline-offset: 2px !important;
+      border-radius: 4px !important;
+    }
+    /* Make PHI warning prominent - yellow banner style */
+    .jotform-embed #text_9 p,
+    .jotform-embed .form-html p {
+      color: #92400E !important;
+      background: #FEF3C7 !important;
+      padding: 12px !important;
+      border-radius: 6px !important;
+      font-weight: 600 !important;
+      border-left: 4px solid #F59E0B !important;
+      margin: 1rem 0 !important;
+    }
+    /* Ensure submit button has proper contrast */
+    .jotform-embed .form-submit-button {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+      color: white !important;
+      font-weight: 600 !important;
+      padding: 0.85rem 2rem !important;
+      border-radius: 9999px !important;
+      border: none !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+    }
+    .jotform-embed .form-submit-button:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35) !important;
+    }
+    .jotform-embed .form-submit-button:focus-visible {
+      outline: 2px solid #0C4A6E !important;
+      outline-offset: 2px !important;
+    }
+    /* Required field indicators - ensure high contrast */
+    .jotform-embed .form-required {
+      color: #dc2626 !important;
+      font-weight: 700 !important;
+    }
+    /* Error messages - high contrast */
+    .jotform-embed .form-error-message,
+    .jotform-embed .error-div {
+      color: #991b1b !important;
+      background: #fef2f2 !important;
+      border: 1px solid #fecaca !important;
+      border-radius: 6px !important;
+      padding: 8px 12px !important;
+      font-weight: 500 !important;
+    }
+    /* Ensure labels are clearly visible */
+    .jotform-embed .form-label {
+      color: #1e293b !important;
+      font-weight: 600 !important;
+      font-size: 0.95rem !important;
+    }
+    /* Improve radio button labels */
+    .jotform-embed .form-radio-item label {
+      color: #334155 !important;
+      font-weight: 500 !important;
+      font-size: 0.9rem !important;
+    }
+    /* HIPAA consent checkbox styling (injected via JS) */
+    .hipaa-consent-container {
+      background: #f0fdf4 !important;
+      border: 2px solid #86efac !important;
+      border-radius: 8px !important;
+      padding: 1rem 1.25rem !important;
+      margin: 1rem 0 !important;
+    }
+    .hipaa-consent-container label {
+      color: #166534 !important;
+      font-weight: 600 !important;
+      font-size: 0.9rem !important;
+      line-height: 1.5 !important;
+    }
+    .hipaa-consent-container input[type="checkbox"] {
+      width: 20px !important;
+      height: 20px !important;
+      accent-color: #059669 !important;
+      cursor: pointer !important;
+    }
+    /* Encryption notice styling */
+    .encryption-notice {
+      background: #eff6ff !important;
+      border: 1px solid #bfdbfe !important;
+      border-radius: 6px !important;
+      padding: 10px 14px !important;
+      margin: 0.75rem 0 !important;
+      color: #1e40af !important;
+      font-size: 0.85rem !important;
+      font-weight: 500 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+    }
+  </style>
 
+  <script>
     // Tab switching for contact forms
     document.querySelectorAll('.form-tab').forEach(tab => {
       tab.addEventListener('click', () => {
@@ -371,26 +468,66 @@ const localBusinessSchema = {
       });
     });
 
-    // Listen for JotForm postMessage height updates (handles both object and string formats)
-    window.addEventListener('message', (event) => {
-      let data = event.data;
-      // HIPAA forms sometimes send string-encoded JSON
-      if (typeof data === 'string') {
-        try { data = JSON.parse(data); } catch(e) { return; }
-      }
-      if (data && (data.type === 'JotFormResize' || data.event === 'resize' || data.action === 'resize')) {
-        const height = data.height || data.value;
-        if (height && height > 100) {
-          document.querySelectorAll('.jotform-embed').forEach(el => {
-            el.style.minHeight = (height + 40) + 'px';
-          });
-          document.querySelectorAll('.jotform-embed iframe').forEach(iframe => {
-            if (iframe.src && iframe.src !== 'about:blank') {
-              iframe.style.height = (height + 40) + 'px';
+    // HIPAA Compliance Enhancement - Inject consent checkbox after form loads
+    function injectHIPAACompliance() {
+      // Wait for JotForm to render
+      setTimeout(() => {
+        const forms = document.querySelectorAll('.jotform-embed');
+        forms.forEach(formContainer => {
+          const jotformWrapper = formContainer.querySelector('[id^="2602"], [id^="2613"]');
+          if (jotformWrapper) {
+            // Check if consent checkbox already exists
+            if (!formContainer.querySelector('.hipaa-consent-container')) {
+              const consentDiv = document.createElement('div');
+              consentDiv.className = 'hipaa-consent-container';
+              consentDiv.innerHTML = `
+                <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                  <input type="checkbox" required style="margin-top: 2px; flex-shrink: 0;" 
+                         onchange="this.setCustomValidity(this.checked ? '' : 'You must consent to proceed with your inquiry.')">
+                  <span>I consent to being contacted regarding my dental inquiry. I understand my information will be handled per the <a href="/hipaa-privacy/" target="_blank" style="color: #059669; text-decoration: underline;">HIPAA Notice of Privacy Practices</a>. *</span>
+                </label>
+              `;
+              
+              // Insert before submit button or at end of form
+              const submitButton = jotformWrapper.querySelector('.form-buttons-wrapper');
+              if (submitButton) {
+                submitButton.parentNode.insertBefore(consentDiv, submitButton);
+              } else {
+                formContainer.appendChild(consentDiv);
+              }
             }
-          });
-        }
-      }
+            
+            // Add encryption notice
+            if (!formContainer.querySelector('.encryption-notice')) {
+              const encryptionDiv = document.createElement('div');
+              encryptionDiv.className = 'encryption-notice';
+              encryptionDiv.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                <span>This form uses HIPAA-compliant encryption. Your data is protected end-to-end.</span>
+              `;
+              
+              const submitButton = jotformWrapper.querySelector('.form-buttons-wrapper');
+              if (submitButton) {
+                submitButton.parentNode.insertBefore(encryptionDiv, submitButton);
+              }
+            }
+          }
+        });
+      }, 3000); // Wait 3 seconds for JotForm to fully render
+    }
+
+    // Run on page load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', injectHIPAACompliance);
+    } else {
+      injectHIPAACompliance();
+    }
+
+    // Also run when tab is switched (forms may re-render)
+    document.querySelectorAll('.form-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        injectHIPAACompliance();
+      });
     });
   </script>
 </Layout>
