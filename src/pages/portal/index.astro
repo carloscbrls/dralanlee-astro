@@ -1029,7 +1029,7 @@ const forms = [
     .score-subtitle { font-size: 0.82rem; color: var(--neutral-500); margin: 0.2rem 0 0; }
     .score-grid { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; align-items: center; }
     .score-main { text-align: center; }
-    .score-number { font-family: var(--font-display); font-size: 3.5rem; font-weight: 700; color: var(--neutral-900); line-height: 1; background: linear-gradient(135deg, var(--primary-700), #1e40af); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .score-number { font-family: var(--font-display); font-size: 3.5rem; font-weight: 700; color: var(--primary-700); line-height: 1; }
     .score-suffix { font-size: 1.25rem; color: var(--neutral-400); font-weight: 400; }
     .score-label { font-size: 0.82rem; color: var(--neutral-500); margin-top: 0.2rem; }
     .score-grade { display: inline-block; padding: 0.25rem 0.85rem; border-radius: var(--radius-full); font-weight: 700; font-size: 0.82rem; margin-top: 0.4rem; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
@@ -1170,6 +1170,95 @@ const forms = [
       .huddle-ins, .huddle-alerts { display: none; }
       .score-grid { grid-template-columns: 1fr; }
       .score-main { text-align: left; display: flex; align-items: center; gap: 1rem; }
+      .submissions-stats { grid-template-columns: repeat(2, 1fr); }
+      .submission-row { grid-template-columns: auto 1fr auto; gap: 0.5rem; padding: 0.65rem 0.85rem; }
+      .submission-email { display: none; }
+      .submission-time { font-size: 0.7rem; }
+      .dash-tab { padding: 0.65rem 0.75rem; font-size: 0.8rem; }
+      .dash-tab svg { width: 14px; height: 14px; }
+      .legal-hero { padding: 3rem 1rem 2.5rem; }
+      .legal-hero .section-title { font-size: 1.5rem; }
+      .legal-hero-subtitle { font-size: 0.95rem; }
+      .section-heading { font-size: 1.25rem; }
+      .kpi-card { padding: 0.85rem; }
+      .kpi-number { font-size: 1.35rem; }
+      .activity-item { padding: 0.75rem 0.85rem; }
+      .txplan-card { padding: 0.75rem 0.85rem; }
+      .form-card { padding: 0.75rem 0.85rem; }
+      .score-number { font-size: 2.5rem; }
+      .score-row { grid-template-columns: 100px 1fr 30px; }
+      .lab-card { padding: 0.75rem 0.85rem; }
+      .task-card { padding: 0.6rem 0.75rem; }
+      .panel-stat { min-width: 60px; padding: 0.4rem 0.65rem; }
+      .panel-stat-num { font-size: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .kpi-bar { grid-template-columns: 1fr; gap: 0.5rem; }
+      .dash-tabs { gap: 0; }
+      .dash-tab { padding: 0.5rem 0.5rem; font-size: 0.72rem; gap: 0.3rem; }
+      .dash-tab svg { width: 12px; height: 12px; }
+      .legal-hero { padding: 2rem 0.85rem 1.5rem; }
+      .legal-hero .section-title { font-size: 1.25rem; }
+      .legal-hero-subtitle { font-size: 0.85rem; }
+      .section-heading { font-size: 1.1rem; }
+      .section-description { font-size: 0.85rem; }
+      .submissions-stats { grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+      .sub-stat { padding: 0.6rem 0.65rem; }
+      .sub-stat-number { font-size: 1.1rem; }
+      .submission-row { grid-template-columns: auto 1fr auto; gap: 0.4rem; padding: 0.5rem 0.65rem; font-size: 0.78rem; }
+      .submission-form { font-size: 0.72rem; }
+      .submission-patient { font-size: 0.78rem; }
+      .submission-time { font-size: 0.65rem; }
+      .submission-download { width: 24px; height: 24px; }
+      .submission-download svg { width: 12px; height: 12px; }
+      .overview-reminders { padding: 0.75rem 0.85rem; }
+      .reminder-row-title { font-size: 0.78rem; }
+      .score-number { font-size: 2rem; }
+      .score-card { padding: 1rem; }
+      .score-row { grid-template-columns: 80px 1fr 28px; gap: 0.4rem; }
+      .score-cat { font-size: 0.75rem; }
+      .docs-grid { gap: 0.5rem; }
+      .doc-card { padding: 0.65rem 0.75rem; }
+      .doc-card h4 { font-size: 0.78rem; }
+      .resources-grid { gap: 0.65rem; }
+      .resource-card { padding: 1rem; }
+      .resource-card h3 { font-size: 0.88rem; }
+      .resource-card p { font-size: 0.78rem; }
+      .cc3po-card { padding: 1.25rem; }
+      .forms-actions { flex-direction: column; }
+      .forms-actions a { width: 100%; justify-content: center; }
+      .huddle-table { font-size: 0.72rem; }
+      .huddle-table th, .huddle-table td { padding: 0.35rem 0.4rem; }
+      .huddle-time { font-size: 0.7rem; }
+      .huddle-patient { font-size: 0.75rem; }
+      .huddle-proc { display: none; }
+      .huddle-balance { font-size: 0.75rem; }
+      .txplan-card { padding: 0.65rem 0.75rem; gap: 0.6rem; }
+      .txplan-name { font-size: 0.82rem; }
+      .txplan-treatment { font-size: 0.75rem; }
+      .txplan-meta { gap: 0.4rem; }
+      .txplan-fee { font-size: 0.78rem; }
+      .lab-grid { gap: 0.5rem; }
+      .lab-card { padding: 0.65rem 0.75rem; gap: 0.6rem; }
+      .lab-patient { font-size: 0.82rem; }
+      .lab-case-name { font-size: 0.75rem; }
+      .task-columns { gap: 0.65rem; }
+      .task-column { padding: 0.65rem; }
+      .task-card { padding: 0.5rem 0.65rem; }
+      .task-title { font-size: 0.78rem; }
+      .review-card { padding: 0.85rem 0.85rem; }
+      .review-text { font-size: 0.8rem; }
+      .sources-chart { padding: 0.85rem; }
+      .source-bar-row { grid-template-columns: 70px 1fr 22px 30px; gap: 0.35rem; }
+      .source-bar-label { font-size: 0.72rem; }
+      .source-patient-row { grid-template-columns: 1fr auto; }
+      .source-patient-source { display: none; }
+      .panel-header { flex-direction: column; }
+      .panel-stats { width: 100%; }
+      .panel-stat { flex: 1; min-width: 0; }
+      .demo-banner { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
+      .score-sources { flex-direction: column; }
+      .source-badge, .founding-badge { font-size: 0.65rem; }
     }
   </style>
 
