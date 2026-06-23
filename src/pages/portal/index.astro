@@ -1331,7 +1331,7 @@ const forms = [
 
         html += '<div class="submissions-list">';
         subs.submissions.forEach(s => {
-          const time = new Date((s.created_at || s.submitted_at) + 'Z').toLocaleString('en-US', {
+          const time = new Date(s.created_at || s.submitted_at).toLocaleString('en-US', {
             month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
           });
           const isNew = s.status === 'new';
