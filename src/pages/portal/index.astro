@@ -335,18 +335,18 @@ const forms = [
     <!-- Patient Images Portal Banner -->
     <section class="section-pad" data-animate>
       <div class="container-narrow">
-        <div style="background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%); border-radius: 16px; padding: 2rem; color: white; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
-          <div style="font-size: 3rem; line-height: 1;">🦷</div>
-          <div style="flex: 1; min-width: 250px;">
-            <h2 style="margin: 0 0 0.5rem 0; font-size: 1.3rem; color: white;">Patient Image Portal</h2>
-            <p style="margin: 0 0 1rem 0; font-size: 0.95rem; opacity: 0.9;">Search 4,900+ patients by name. View X-rays, photos, and documents without logging into the server.</p>
-            <a href="https://portal.dralanlee.com" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: #0c4a6e; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 600; text-decoration: none; font-size: 0.95rem;">
+        <div style="background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%); border-radius: 12px; padding: 1rem 1.25rem; color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <div style="font-size: 1.8rem; line-height: 1;">🦷</div>
+          <div style="flex: 1; min-width: 200px;">
+            <h2 style="margin: 0 0 0.2rem 0; font-size: 1rem; color: white;">Patient Image Portal</h2>
+            <p style="margin: 0 0 0.5rem 0; font-size: 0.8rem; opacity: 0.9;">Search 4,900+ patients · View X-rays, photos & documents</p>
+            <a href="https://portal.dralanlee.com" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.35rem; background: white; color: #0c4a6e; padding: 0.4rem 0.85rem; border-radius: 6px; font-weight: 600; text-decoration: none; font-size: 0.8rem;">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
               Open Patient Images
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
             </a>
           </div>
-          <div style="font-size: 0.8rem; opacity: 0.7;">HIPAA-secure · Email login required</div>
+          <div style="font-size: 0.7rem; opacity: 0.7;">HIPAA-secure · Email login required</div>
         </div>
       </div>
     </section>
@@ -370,8 +370,8 @@ const forms = [
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l2 2 4-4"></path></svg>
           <span class="dashboard-source">Loading patient data...</span>
         </div>
-        <div style="margin-bottom: 1rem;">
-          <input type="text" id="patient-search" placeholder="Search by name..." style="width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--neutral-200); border-radius: 10px; font-size: 0.95rem; background: white; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--neutral-200)'" />
+        <div style="margin-bottom: 0.65rem;">
+          <input type="text" id="patient-search" placeholder="Search by name..." style="width: 100%; padding: 0.55rem 0.85rem; border: 2px solid var(--neutral-200); border-radius: 8px; font-size: 0.85rem; background: white; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--neutral-200)'" />
         </div>
         <div id="patients-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
           <div class="schedule-empty">Loading patients...</div>
@@ -749,15 +749,29 @@ const forms = [
       <div class="container-narrow">
         <h2 class="section-heading">Website Analytics</h2>
         <p class="section-description">See how patients find your practice online. No personal data tracked.</p>
-        <div class="analytics-embed">
-          <iframe
-            plausible-embed
-            src="https://analytics.cc3po.com/share/dralanlee.com?embed=true&theme=light&background=transparent"
-            loading="lazy"
-            style="width: 1px; min-width: 100%; height: 600px; border: none; overflow: hidden;"
-          ></iframe>
-          <script async src="https://analytics.cc3po.com/js/embed.host.js"></script>
+        <div class="analytics-stats-grid">
+          <div class="analytics-stat-card">
+            <div class="analytics-stat-icon">📊</div>
+            <div class="analytics-stat-value">—</div>
+            <div class="analytics-stat-label">Monthly Visitors</div>
+          </div>
+          <div class="analytics-stat-card">
+            <div class="analytics-stat-icon">🔍</div>
+            <div class="analytics-stat-value">—</div>
+            <div class="analytics-stat-label">Search Visits</div>
+          </div>
+          <div class="analytics-stat-card">
+            <div class="analytics-stat-icon">📱</div>
+            <div class="analytics-stat-value">—</div>
+            <div class="analytics-stat-label">Mobile %</div>
+          </div>
+          <div class="analytics-stat-card">
+            <div class="analytics-stat-icon">⏱️</div>
+            <div class="analytics-stat-value">—</div>
+            <div class="analytics-stat-label">Avg. Visit Duration</div>
+          </div>
         </div>
+        <p style="text-align: center; font-size: 0.78rem; color: var(--neutral-400); margin-top: 0.75rem;">Analytics dashboard coming soon — contact office for website traffic reports</p>
       </div>
     </section>
 
@@ -991,8 +1005,8 @@ const forms = [
     }
     .section-description {
       color: var(--neutral-500);
-      font-size: 0.85rem;
-      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
       line-height: 1.5;
     }
     .alt-bg { background: var(--neutral-50); }
@@ -1554,10 +1568,13 @@ const forms = [
     .review-needs-response { font-size: 0.7rem; font-weight: 600; color: #d97706; background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 0.1rem 0.4rem; border-radius: var(--radius-sm); }
 
     /* ---- Analytics ---- */
-    .analytics-embed { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 0.75rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-    .analytics-embed iframe { border-radius: var(--radius-sm); min-height: 400px; }
+    .analytics-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+    .analytics-stat-card { background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); padding: 1rem; text-align: center; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+    .analytics-stat-icon { font-size: 1.5rem; margin-bottom: 0.35rem; }
+    .analytics-stat-value { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--primary-700); }
+    .analytics-stat-label { font-size: 0.72rem; color: var(--neutral-500); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 0.15rem; }
     @media (max-width: 480px) {
-      .analytics-embed iframe { min-height: 350px; }
+      .analytics-stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     /* ---- Docs Grid ---- */
@@ -2000,28 +2017,28 @@ const forms = [
           data.patients.forEach(p => {
             const balClass = p.balance > 0 ? 'color: #dc2626; font-weight: 600;' : 'color: var(--neutral-500);';
             const insBadge = p.hasInsurance
-              ? '<span style="display:inline-block;background:#dcfce7;color:#166534;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">Insured</span>'
-              : '<span style="display:inline-block;background:#fef2f2;color:#991b1b;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">No Ins</span>';
+              ? '<span style="display:inline-block;background:#dcfce7;color:#166534;padding:1px 6px;border-radius:3px;font-size:0.65rem;font-weight:600;">Insured</span>'
+              : '<span style="display:inline-block;background:#fef2f2;color:#991b1b;padding:1px 6px;border-radius:3px;font-size:0.65rem;font-weight:600;">No Ins</span>';
             const labBadge = p.overdueLabs > 0
-              ? ` <span style="display:inline-block;background:#fef2f2;color:#991b1b;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">${p.overdueLabs} overdue lab${p.overdueLabs !== 1 ? 's' : ''}</span>`
+              ? ` <span style="display:inline-block;background:#fef2f2;color:#991b1b;padding:1px 6px;border-radius:3px;font-size:0.65rem;font-weight:600;">${p.overdueLabs} overdue lab${p.overdueLabs !== 1 ? 's' : ''}</span>`
               : '';
             const apptBadge = p.upcomingAppointments > 0
-              ? ` <span style="display:inline-block;background:#e0f2fe;color:#075985;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">${p.upcomingAppointments} upcoming</span>`
+              ? ` <span style="display:inline-block;background:#e0f2fe;color:#075985;padding:1px 6px;border-radius:3px;font-size:0.65rem;font-weight:600;">${p.upcomingAppointments} upcoming</span>`
               : '';
             const txBadge = p.pendingProcedures > 0
-              ? ` <span style="display:inline-block;background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">${p.pendingProcedures} proc${p.pendingProcedures !== 1 ? 's' : ''} ($${p.pendingTotal.toLocaleString()})</span>`
+              ? ` <span style="display:inline-block;background:#fef9c3;color:#854d0e;padding:1px 6px;border-radius:3px;font-size:0.65rem;font-weight:600;">${p.pendingProcedures} proc${p.pendingProcedures !== 1 ? 's' : ''} ($${p.pendingTotal.toLocaleString()})</span>`
               : '';
 
-            html += `<div style="background: white; border: 1px solid var(--neutral-200); border-radius: 10px; padding: 0.8rem 1rem; display: flex; align-items: center; gap: 0.75rem; transition: box-shadow 0.2s;">
+            html += `<div style="background: white; border: 1px solid var(--neutral-200); border-radius: 8px; padding: 0.55rem 0.75rem; display: flex; align-items: center; gap: 0.65rem; transition: box-shadow 0.2s;">
               <div style="flex: 1; min-width: 0;">
-                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-                  <span style="font-weight: 600; font-size: 0.9rem; color: var(--neutral-900);">${p.name}</span>
+                <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+                  <span style="font-weight: 600; font-size: 0.82rem; color: var(--neutral-900);">${p.name}</span>
                   ${insBadge}
                   ${labBadge}
                   ${apptBadge}
                   ${txBadge}
                 </div>
-                <div style="display: flex; gap: 1rem; margin-top: 0.3rem; font-size: 0.78rem; color: var(--neutral-500);">
+                <div style="display: flex; gap: 0.75rem; margin-top: 0.15rem; font-size: 0.72rem; color: var(--neutral-500);">
                   <span>DOB: ${p.birthdate || '—'}</span>
                   <span style="${balClass}">Balance: $${p.balance.toLocaleString()}</span>
                 </div>
