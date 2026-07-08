@@ -370,6 +370,8 @@ const forms = [
       </div>
     </section>
 
+    <hr class="section-divider" />
+
     <!-- Morning Huddle -->
     <section class="section-pad" data-animate>
       <div class="container-narrow">
@@ -1310,6 +1312,7 @@ const forms = [
 
     /* Morning Huddle */
     /* ---- Schedule Timeline (Morning Huddle) ---- */
+    .section-divider { border: none; border-top: 2px solid var(--neutral-100); margin: 0.75rem 0; }
     .schedule-legend { display: flex; gap: 0.65rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
     .legend-item { display: flex; align-items: center; gap: 0.25rem; font-size: 0.68rem; color: var(--neutral-500); font-weight: 500; }
     .legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
@@ -2048,10 +2051,27 @@ const forms = [
         const pagEl = document.querySelector('#patients-pagination');
         if (pagEl && data.totalPages > 1) {
           let pagHtml = '';
-          for (let i = 1; i <= data.totalPages; i++) {
-            const active = i === page ? 'background: var(--primary); color: white; border-color: var(--primary);' : 'background: white; color: var(--neutral-700); border-color: var(--neutral-200);';
-            pagHtml += `<button onclick="loadPatients(${i}, document.querySelector('#patient-search').value)" style="${active} padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.85rem; cursor: pointer; border: 1px solid;">${i}</button>`;
+          const maxVisible = 7;
+          let pages = [];
+          if (data.totalPages <= maxVisible) {
+            for (let i = 1; i <= data.totalPages; i++) pages.push(i);
+          } else {
+            pages.push(1);
+            let start = Math.max(2, page - 2);
+            let end = Math.min(data.totalPages - 1, page + 2);
+            if (start > 2) pages.push('...');
+            for (let i = start; i <= end; i++) pages.push(i);
+            if (end < data.totalPages - 1) pages.push('...');
+            pages.push(data.totalPages);
           }
+          pages.forEach(p => {
+            if (p === '...') {
+              pagHtml += '<span style="padding: 0.4rem 0.5rem; color: var(--neutral-400); font-size: 0.85rem;">…</span>';
+            } else {
+              const active = p === page ? 'background: var(--primary); color: white; border-color: var(--primary);' : 'background: white; color: var(--neutral-700); border-color: var(--neutral-200);';
+              pagHtml += `<button onclick="loadPatients(${p}, document.querySelector('#patient-search').value)" style="${active} padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.78rem; cursor: pointer; border: 1px solid; min-width: 2rem;">${p}</button>`;
+            }
+          });
           pagEl.innerHTML = pagHtml;
         } else if (pagEl) {
           pagEl.innerHTML = '';
