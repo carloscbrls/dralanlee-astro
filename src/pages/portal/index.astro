@@ -317,6 +317,35 @@ const forms = [
       </div>
     </section>
 
+    <!-- Patient Lookup (Live from OpenDental) -->
+    <section class="section-pad" data-animate>
+      <div class="container-narrow">
+        <div class="panel-header">
+          <div>
+            <h2 class="section-heading">Patient Lookup</h2>
+            <p class="section-description">Search active patients · View balance, insurance, pending treatment</p>
+          </div>
+          <div class="panel-stats">
+            <div class="panel-stat">
+              <span class="panel-stat-num" id="patients-total-count">—</span>
+              <span class="panel-stat-label">Active Patients</span>
+            </div>
+          </div>
+        </div>
+        <div class="demo-banner live-banner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l2 2 4-4"></path></svg>
+          <span class="dashboard-source">Loading patient data...</span>
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <input type="text" id="patient-search" placeholder="Search by name..." style="width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--neutral-200); border-radius: 10px; font-size: 0.95rem; background: white; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--neutral-200)'" />
+        </div>
+        <div id="patients-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <div class="schedule-empty">Loading patients...</div>
+        </div>
+        <div id="patients-pagination" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem;"></div>
+      </div>
+    </section>
+
     <!-- Morning Huddle -->
     <section class="section-pad" data-animate>
       <div class="container-narrow">
@@ -387,11 +416,11 @@ const forms = [
           </div>
           <div class="panel-stats">
             <div class="panel-stat">
-              <span class="panel-stat-num">{pendingPlans.length}</span>
+              <span class="panel-stat-num" id="txplan-pending-count">{pendingPlans.length}</span>
               <span class="panel-stat-label">Pending</span>
             </div>
             <div class="panel-stat">
-              <span class="panel-stat-num">${pendingTotal.toLocaleString()}</span>
+              <span class="panel-stat-num" id="txplan-potential-total">${pendingTotal.toLocaleString()}</span>
               <span class="panel-stat-label">Potential Revenue</span>
             </div>
           </div>
@@ -1890,6 +1919,11 @@ const forms = [
           if (pendingStat) pendingStat.textContent = data.patientCount;
           const totalStat = document.querySelector('#kpi-treatment-total');
           if (totalStat) totalStat.textContent = '$' + (data.totalPotential || 0).toLocaleString();
+          // Update stats in section header too
+          const pendingCountEl = document.querySelector('#txplan-pending-count');
+          if (pendingCountEl) pendingCountEl.textContent = data.patientCount;
+          const potentialTotalEl = document.querySelector('#txplan-potential-total');
+          if (potentialTotalEl) potentialTotalEl.textContent = '$' + (data.totalPotential || 0).toLocaleString();
         }
 
         // Mark treatment section as live
@@ -1903,5 +1937,93 @@ const forms = [
     }
 
     loadTreatmentPlans();
+
+    // ===== LIVE PATIENTS LOOKUP =====
+    let patientsCurrentPage = 1;
+    async function loadPatients(page = 1, search = '') {
+      try {
+        const params = new URLSearchParams({ page: String(page) });
+        if (search) params.set('search', search);
+        const res = await fetch('https://portal.dralanlee.com/api/dashboard/patients?' + params);
+        if (!res.ok) throw new Error('Patients API unavailable');
+        const data = await res.json();
+
+        // Update total count
+        const totalEl = document.querySelector('#patients-total-count');
+        if (totalEl) totalEl.textContent = data.total.toLocaleString();
+
+        // Render patient rows
+        const listEl = document.querySelector('#patients-list');
+        if (listEl && data.patients) {
+          let html = '';
+          data.patients.forEach(p => {
+            const balClass = p.balance > 0 ? 'color: #dc2626; font-weight: 600;' : 'color: var(--neutral-500);';
+            const insBadge = p.hasInsurance
+              ? '<span style="display:inline-block;background:#dcfce7;color:#166534;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">Insured</span>'
+              : '<span style="display:inline-block;background:#fef2f2;color:#991b1b;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">No Ins</span>';
+            const labBadge = p.overdueLabs > 0
+              ? ` <span style="display:inline-block;background:#fef2f2;color:#991b1b;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">${p.overdueLabs} overdue lab${p.overdueLabs !== 1 ? 's' : ''}</span>`
+              : '';
+            const apptBadge = p.upcomingAppointments > 0
+              ? ` <span style="display:inline-block;background:#e0f2fe;color:#075985;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">${p.upcomingAppointments} upcoming</span>`
+              : '';
+            const txBadge = p.pendingProcedures > 0
+              ? ` <span style="display:inline-block;background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:4px;font-size:0.7rem;font-weight:600;">${p.pendingProcedures} proc${p.pendingProcedures !== 1 ? 's' : ''} ($${p.pendingTotal.toLocaleString()})</span>`
+              : '';
+
+            html += `<div style="background: white; border: 1px solid var(--neutral-200); border-radius: 10px; padding: 0.8rem 1rem; display: flex; align-items: center; gap: 0.75rem; transition: box-shadow 0.2s;">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                  <span style="font-weight: 600; font-size: 0.9rem; color: var(--neutral-900);">${p.name}</span>
+                  ${insBadge}
+                  ${labBadge}
+                  ${apptBadge}
+                  ${txBadge}
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 0.3rem; font-size: 0.78rem; color: var(--neutral-500);">
+                  <span>DOB: ${p.birthdate || '—'}</span>
+                  <span style="${balClass}">Balance: $${p.balance.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>`;
+          });
+          listEl.innerHTML = html || '<div class="schedule-empty">No patients found</div>';
+        }
+
+        // Pagination
+        const pagEl = document.querySelector('#patients-pagination');
+        if (pagEl && data.totalPages > 1) {
+          let pagHtml = '';
+          for (let i = 1; i <= data.totalPages; i++) {
+            const active = i === page ? 'background: var(--primary); color: white; border-color: var(--primary);' : 'background: white; color: var(--neutral-700); border-color: var(--neutral-200);';
+            pagHtml += `<button onclick="loadPatients(${i}, document.querySelector('#patient-search').value)" style="${active} padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.85rem; cursor: pointer; border: 1px solid;">${i}</button>`;
+          }
+          pagEl.innerHTML = pagHtml;
+        } else if (pagEl) {
+          pagEl.innerHTML = '';
+        }
+
+        // Mark as live
+        const banner = document.querySelector('#patients-list').closest('.section-pad').querySelector('.dashboard-source');
+        if (banner) {
+          banner.textContent = `Live from OpenDental · ${data.total.toLocaleString()} active patients`;
+          banner.classList.add('live');
+        }
+      } catch (err) {
+        console.log('Patients API not available:', err.message);
+      }
+    }
+
+    // Load patients on page load
+    loadPatients(1);
+
+    // Patient search with debounce
+    let patientSearchTimeout;
+    document.querySelector('#patient-search')?.addEventListener('input', (e) => {
+      clearTimeout(patientSearchTimeout);
+      patientSearchTimeout = setTimeout(() => {
+        loadPatients(1, e.target.value);
+      }, 300);
+    });
   </script>
 </Layout>
