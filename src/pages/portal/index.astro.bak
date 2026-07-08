@@ -442,6 +442,72 @@ const forms = [
 
     <hr class="section-divider" />
 
+    <!-- Morning Huddle -->
+    <section class="section-pad" data-animate>
+      <div class="container-narrow">
+        <div class="panel-header">
+          <div>
+            <h2 class="section-heading">Morning Huddle</h2>
+            <p class="section-description">{todayDate} · {todayPatients.filter(p => p.name !== 'LUNCH').length} patients today</p>
+          </div>
+          <div class="panel-badges">
+            <span class="panel-badge birthday">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+              {huddle.staffBirthdays.length} Birthday{huddle.staffBirthdays.length !== 1 ? 's' : ''}
+            </span>
+            <span class="panel-badge alert">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              {todayPatients.filter(p => p.medicalAlerts).length} Medical Alerts
+            </span>
+          </div>
+        </div>
+        <div class="demo-banner live-banner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l2 2 4-4"></path></svg>
+          <span class="dashboard-source">Loading live data...</span>
+        </div>
+        <div class="schedule-legend">
+          <span class="legend-item"><span class="legend-dot" style="background:#10b981"></span> Hygiene</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#3b82f6"></span> Exam</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#8b5cf6"></span> Restorative</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span> Major</span>
+        </div>
+        <div class="huddle-table-wrap" id="live-schedule">
+          <div class="schedule-timeline">
+            {todayPatients.filter(p => p.name !== 'LUNCH').map((p, i) => (
+              <div class={`schedule-slot ${p.medicalAlerts ? 'has-alert' : ''} ${p.balance > 0 ? 'has-balance' : ''}`}>
+                <div class="schedule-time-col">
+                  <span class="schedule-time">{p.time}</span>
+                  <span class="schedule-duration">{p.procedure?.includes('Hygiene') || p.procedure?.includes('Prophy') ? '30m' : p.procedure?.includes('Crown') || p.procedure?.includes('Root') ? '90m' : p.procedure?.includes('Ext') ? '60m' : '45m'}</span>
+                </div>
+                <div class={`schedule-card ${p.procedure?.includes('Hygiene') || p.procedure?.includes('Prophy') ? 'card-hygiene' : p.procedure?.includes('Crown') || p.procedure?.includes('Root') ? 'card-major' : p.procedure?.includes('Consult') || p.procedure?.includes('Exam') ? 'card-exam' : 'card-restorative'}`}>
+                  <div class="schedule-card-top">
+                    <span class="schedule-patient">{p.name}{p.birthday && <span class="birthday-badge">🎂</span>}</span>
+                    <div class="schedule-badges">
+                      {p.insurance && <span class="schedule-ins-badge">{p.insurance}</span>}
+                      {p.balance > 0 && <span class="schedule-balance-badge">${p.balance}</span>}
+                      {p.balance === 0 && <span class="schedule-paid-badge">Paid</span>}
+                    </div>
+                  </div>
+                  <div class="schedule-card-bottom">
+                    <span class="schedule-proc">{p.procedure}</span>
+                    {p.medicalAlerts && <span class="schedule-alert">⚠️ {p.medicalAlerts}</span>}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {huddle.notes && (
+          <div class="huddle-notes">
+            <div class="huddle-notes-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <p>{huddle.notes}</p>
+          </div>
+        )}
+      </div>
+    </section>
+
     <!-- Treatment Plan Follow-Up -->
     <section class="section-pad alt-bg" data-animate>
       <div class="container-narrow">
