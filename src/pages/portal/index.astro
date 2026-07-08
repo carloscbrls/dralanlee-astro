@@ -1850,5 +1850,58 @@ const forms = [
     }
 
     loadDashboard();
+
+    // ===== LIVE TREATMENT PLANS =====
+    async function loadTreatmentPlans() {
+      try {
+        const res = await fetch('https://portal.dralanlee.com/api/dashboard/treatment-plans');
+        if (!res.ok) throw new Error('Treatment plans API unavailable');
+        const data = await res.json();
+
+        // Update treatment plan section
+        const txplanList = document.querySelector('.txplan-list');
+        if (txplanList && data.patients) {
+          let html = '';
+          data.patients.slice(0, 15).forEach(p => {
+            const totalFee = p.totalFee.toLocaleString();
+            const procCount = p.procedures.length;
+            const topProcs = p.procedures.slice(0, 3).map(pr =>
+              `<span style="display:inline-block;background:#e0f2fe;color:#075985;padding:2px 8px;border-radius:4px;font-size:0.75rem;margin:2px;">${pr.code} ${pr.description}</span>`
+            ).join('');
+            html += `<div class="txplan-card planned">
+              <div class="txplan-status">🟡</div>
+              <div class="txplan-info">
+                <div class="txplan-name">${p.name}</div>
+                <div class="txplan-treatment">${procCount} procedure${procCount !== 1 ? 's' : ''}: ${topProcs}</div>
+                <div class="txplan-meta">
+                  <span class="txplan-fee">$${totalFee}</span>
+                  <span class="txplan-date">Potential revenue</span>
+                </div>
+              </div>
+              <div class="txplan-actions">
+                <span class="txplan-badge planned">Pending</span>
+              </div>
+            </div>`;
+          });
+          txplanList.innerHTML = html || '<div class="schedule-empty">No pending treatment plans</div>';
+
+          // Update stats
+          const pendingStat = document.querySelector('#kpi-treatment-patients');
+          if (pendingStat) pendingStat.textContent = data.patientCount;
+          const totalStat = document.querySelector('#kpi-treatment-total');
+          if (totalStat) totalStat.textContent = '$' + (data.totalPotential || 0).toLocaleString();
+        }
+
+        // Mark treatment section as live
+        const txBanner = document.querySelector('.alt-bg .demo-banner');
+        if (txBanner) {
+          txBanner.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l2 2 4-4"></path></svg> <span class="dashboard-source live">Live from OpenDental · ${data.patientCount} patients with pending treatment</span>`;
+        }
+      } catch (err) {
+        console.log('Treatment plans API not available:', err.message);
+      }
+    }
+
+    loadTreatmentPlans();
   </script>
 </Layout>
