@@ -1296,17 +1296,7 @@ const forms = [
     .demo-banner.live-banner { background: linear-gradient(135deg, #d1fae5, #a7f3d0); border-color: #6ee7b7; color: #065f46; }
     .demo-banner.live-banner svg { color: #059669; }
     .dashboard-source.live { color: #059669; }
-    .schedule-row { display: flex; align-items: flex-start; padding: 0.6rem 0; border-bottom: 1px solid var(--neutral-100); gap: 0.75rem; }
-    .schedule-row:last-child { border-bottom: none; }
-    .schedule-time { font-weight: 700; color: var(--primary); min-width: 5.5rem; font-size: 0.85rem; padding-top: 0.15rem; }
-    .schedule-info { flex: 1; }
-    .schedule-name { font-weight: 600; color: var(--neutral-900); font-size: 0.88rem; }
-    .schedule-proc { color: var(--neutral-500); font-size: 0.78rem; margin-top: 0.1rem; }
-    .schedule-note { color: var(--neutral-400); font-size: 0.72rem; margin-top: 0.2rem; font-style: italic; }
-    .schedule-op { font-size: 0.72rem; color: var(--neutral-400); min-width: 2.5rem; text-align: center; }
-    .badge { display: inline-block; padding: 0.1rem 0.4rem; border-radius: var(--radius-full); font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.3rem; }
-    .badge-new { background: #dbeafe; color: #1d4ed8; }
-    .badge-hygiene { background: #e0e7ff; color: #4338ca; }
+    .schedule-time { font-family: var(--font-display); font-weight: 700; }
     .schedule-empty { color: var(--neutral-400); font-style: italic; padding: 1rem; }
     .lab-case-row { padding: 0.6rem 0; border-bottom: 1px solid var(--neutral-100); }
     .lab-case-row:last-child { border-bottom: none; }
@@ -1871,18 +1861,28 @@ const forms = [
         if (scheduleEl && data.appointments) {
           let html = '';
           data.appointments.forEach(a => {
-            const statusClass = a.status === 3 ? 'cancelled' : a.isHygiene ? 'hygiene' : a.isNew ? 'new-patient' : '';
-            const badge = a.isNew ? '<span class="badge badge-new">NEW</span>' : a.isHygiene ? '<span class="badge badge-hygiene">HYG</span>' : '';
-            const noteSnippet = a.note ? `<div class="schedule-note">${a.note.substring(0, 80)}${a.note.length > 80 ? '...' : ''}</div>` : '';
-            html += `<div class="schedule-row ${statusClass}">
-              <div class="schedule-time">${a.time}</div>
-              <div class="schedule-info">
-                <div class="schedule-name">${a.name} ${badge}</div>
-                <div class="schedule-proc">${a.procedure || 'Checkup'}</div>
-                ${noteSnippet}
-              </div>
-              <div class="schedule-op">Op ${a.op}</div>
-            </div>`;
+            const cardType = a.isHygiene ? 'card-hygiene' : a.isNew ? 'card-exam' : (a.procedure && (a.procedure.includes('Crown') || a.procedure.includes('Root') || a.procedure.includes('Ext'))) ? 'card-major' : 'card-restorative';
+            const duration = a.isHygiene || (a.procedure && (a.procedure.includes('Prophy') || a.procedure.includes('Hygiene'))) ? '30m' : (a.procedure && (a.procedure.includes('Crown') || a.procedure.includes('Root'))) ? '90m' : (a.procedure && a.procedure.includes('Ext')) ? '60m' : '45m';
+            const badge = a.isNew ? '<span class="schedule-ins-badge" style="background:#dcfce7;color:#166534">NEW</span>' : a.isHygiene ? '<span class="schedule-ins-badge" style="background:#dbeafe;color:#1e40af">HYG</span>' : '';
+            const statusClass = a.status === 3 ? 'cancelled' : '';
+            const balanceBadge = a.balance > 0 ? '<span class="schedule-balance-badge">$' + a.balance.toLocaleString() + '</span>' : (a.balance === 0 ? '<span class="schedule-paid-badge">Paid</span>' : '');
+            const alertBadge = a.medicalAlerts ? '<span class="schedule-alert">⚠️ ' + a.medicalAlerts + '</span>' : '';
+            html += '<div class="schedule-slot ' + statusClass + '">';
+            html += '  <div class="schedule-time-col">';
+            html += '    <span class="schedule-time">' + a.time + '</span>';
+            html += '    <span class="schedule-duration">' + duration + '</span>';
+            html += '  </div>';
+            html += '  <div class="schedule-card ' + cardType + '">';
+            html += '    <div class="schedule-card-top">';
+            html += '      <span class="schedule-patient">' + a.name + '</span>';
+            html += '      <div class="schedule-badges">' + badge + (a.insurance ? '<span class="schedule-ins-badge">' + a.insurance + '</span>' : '') + balanceBadge + '</div>';
+            html += '    </div>';
+            html += '    <div class="schedule-card-bottom">';
+            html += '      <span class="schedule-proc">' + (a.procedure || 'Checkup') + '</span>';
+            html += '      ' + alertBadge;
+            html += '    </div>';
+            html += '  </div>';
+            html += '</div>';
           });
           scheduleEl.innerHTML = html || '<div class="schedule-empty">No appointments today</div>';
         }
