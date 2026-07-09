@@ -8,7 +8,7 @@ export interface Props {
   hideHero?: boolean;
 }
 
-const { title, description = 'Dr. Alan S. Lee, DDS — General & Cosmetic Dentistry in Manteca, CA. Trusted for 30+ years. Call (209) 239-2990.', ogImage = '/images/dr-lee-portrait-2026-new.jpg', canonicalUrl, schema, hideHero = false } = Astro.props;
+const { title, description = 'Dr. Alan S. Lee, DDS — General & Cosmetic Dentistry in Manteca, CA. Serving Manteca since 1998. Call (209) 239-2990.', ogImage = '/images/dr-lee-portrait-2026-new.jpg', canonicalUrl, schema, hideHero = false } = Astro.props;
 
 const currentYear = new Date().getFullYear();
 
@@ -16,7 +16,7 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "Dentist",
   name: "Dr. Alan S. Lee, DDS",
-  description: "General & Cosmetic Dentistry in Manteca, CA — trusted for over 30 years.",
+  description: "General & Cosmetic Dentistry in Manteca, CA — serving the community since 1998.",
   url: "https://dralanlee.com",
   telephone: "+1-209-239-2990",
   address: {
@@ -580,7 +580,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
           <img src="/images/dr-lee-portrait-2026-new.jpg" alt="Dr. Alan S. Lee, DDS logo" width="44" height="44" loading="lazy" />
           <span class="logo-footer-text">Dr. Alan S. Lee, DDS</span>
         </div>
-        <p>Providing exceptional general and cosmetic dentistry in Manteca for over 30 years. Your comfort and health are our top priorities.</p>
+        <p>Providing exceptional general and cosmetic dentistry in Manteca since 1998. Your comfort and health are our top priorities.</p>
         <div class="footer-social">
           <a href="https://www.facebook.com/Alan-S-Lee-DDS-162181860492761" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page (opens in new window)">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
