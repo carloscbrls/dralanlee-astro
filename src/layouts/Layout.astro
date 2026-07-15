@@ -323,16 +323,16 @@ const allSchemas = [localBusinessSchema, ...schemas];
     .nav-cta::after { display: none !important; }
     .nav-cta svg { width: 14px; height: 14px; }
 
-    /* Mobile toggle (Luxury) */
+    /* Mobile toggle (Luxury) — highly visible */
     .mobile-toggle {
       display: none; background: none; border: none;
       cursor: pointer; padding: 0; border-radius: 0;
-      width: 44px; height: 44px; align-items: center; justify-content: center;
-      flex-direction: column; gap: 5px; -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+      width: 48px; height: 48px; align-items: center; justify-content: center;
+      flex-direction: column; gap: 6px; -webkit-tap-highlight-color: transparent; touch-action: manipulation;
       transition: opacity 0.3s ease;
     }
     .mobile-toggle:hover { opacity: 0.7; }
-    .mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--neutral-800); border-radius: 1px; transition: var(--transition-fast); }
+    .mobile-toggle span { display: block; width: 24px; height: 3px; background: #0c1a2e; border-radius: 2px; transition: var(--transition-fast); }
     .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
     .mobile-toggle.active span:nth-child(2) { opacity: 0; }
     .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
@@ -500,7 +500,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     @media (max-width: 768px) {
       .top-bar .top-links { display: none; }
       .top-bar-inner { justify-content: center; font-size: 0.78rem; }
-      .mobile-toggle { display: flex; }
+      .mobile-toggle { display: flex; z-index: 10002; }
       .nav-inner { height: 64px; }
       .logo-img { width: 44px; height: 44px; }
       .nav-menu {
