@@ -73,8 +73,7 @@ const localBusinessSchema = {
             src="https://form.jotform.com/261351664337155?nojump=1"
             title="Contact Form"
             width="100%"
-            height="100%"
-            style="min-height: 0; border: none;"
+            style="min-height: 700px; border: none; overflow: auto;"
             scrolling="yes"
             allowtransparency="true"
             allow="geolocation; microphone; camera; fullscreen; payment">
@@ -469,20 +468,19 @@ const localBusinessSchema = {
     }
   }
 
-  /* JotForm embed container */
+  /* JotForm embed container — min-height ensures form is visible on mobile */
   .jotform-embed {
-    min-height: 0;
+    min-height: 700px;
     background: var(--neutral-50);
     border: 1px solid var(--neutral-200);
     border-radius: var(--radius-lg);
     overflow: hidden;
     position: relative;
-    height: 100%;
   }
   .jotform-embed iframe {
     width: 100% !important;
-    min-height: 0 !important;
-    height: 100% !important;
+    min-height: 700px !important;
+    height: auto !important;
     border: none !important;
     display: block !important;
     overflow: auto !important;
