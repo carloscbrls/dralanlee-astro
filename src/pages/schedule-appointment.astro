@@ -78,7 +78,7 @@ const dentistSchema = {
           </div>
         </aside>
 
-        <!-- HIPAA Consent Gate — Astro-side, blocks JotForm until user consents -->
+        <!-- HIPAA Consent Gate — Opens JotForm in new tab (no iframe — fixes iOS Safari scroll bug) -->
         <div id="consent-gate" class="consent-gate" role="region" aria-labelledby="consent-title">
           <div class="consent-gate-inner">
             <div class="consent-gate-icon" aria-hidden="true">
@@ -101,38 +101,24 @@ const dentistSchema = {
               </span>
             </label>
             
-            <button
+            <a
               id="consent-btn"
               class="consent-gate-btn"
-              type="button"
-              disabled
+              href="https://form.jotform.com/260202986387060"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-disabled="true"
+              style="pointer-events: none; opacity: 0.5;"
             >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
               Continue to Form
-            </button>
+            </a>
             
             <p class="consent-gate-note">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
               Your information is encrypted and HIPAA-compliant.
             </p>
           </div>
-        </div>
-
-        <!-- JotForm HIPAA-Compliant Appointment Request Form (hidden until consent) -->
-        <div class="jotform-embed" id="appointment-form-container" data-requires-consent style="display:none;">
-          <iframe id="JotFormIFrame-260202986387060"
-            src="https://form.jotform.com/260202986387060?nojump=1"
-            title="Appointment Request Form"
-            width="100%"
-            height="100%"
-            style="min-height: 0; border: none;"
-            scrolling="yes"
-            allowtransparency="true"
-            allow="geolocation; microphone; camera; fullscreen; payment">
-          </iframe>
-          <noscript>
-            <p>Your browser does not support JavaScript. Please <a href="https://form.jotform.com/260202986387060" target="_blank" rel="noopener noreferrer">fill out the appointment request form</a> directly.</p>
-          </noscript>
         </div>
 
         <!-- Success Message — shown when JotForm redirects back with ?thanks=1 -->
@@ -231,25 +217,6 @@ const dentistSchema = {
     .form-header h2 { font-family: var(--font-display); font-size: 1.5rem; color: var(--neutral-900); margin-bottom: 0.5rem; }
     .form-header p { color: var(--neutral-500); line-height: 1.6; }
 
-    .jotform-embed {
-      min-height: 0; background: var(--neutral-50);
-      border: 1px solid var(--neutral-200); border-radius: var(--radius-lg);
-      overflow-y: auto; overflow-x: hidden; position: relative;
-      transition: min-height 0.3s ease;
-      max-width: 100%;
-      height: 100%;
-      -webkit-overflow-scrolling: touch;
-    }
-    .jotform-embed iframe {
-      width: 100% !important; min-height: 0 !important; height: 100% !important;
-      border: none !important; border-radius: var(--radius-lg) !important;
-      display: block !important;
-      overflow: auto !important;
-      -webkit-overflow-scrolling: touch !important;
-      overscroll-behavior: contain !important;
-      max-width: 100% !important;
-    }
-
     .form-disclaimer { margin-top: 1.25rem; padding: 1rem 1.25rem; background: var(--neutral-50); border-radius: var(--radius-md); border: 1px solid var(--neutral-200); }
     .disclaimer-badge {
       display: inline-flex; align-items: center; gap: 0.4rem;
@@ -324,8 +291,7 @@ const dentistSchema = {
     @media (max-width: 768px) {
       .legal-hero { padding: 3.5rem 1rem 3rem; }
       .schedule-grid { padding: 0 1rem; }
-      .jotform-embed { min-height: 0; height: auto; overflow-y: auto !important; -webkit-overflow-scrolling: touch !important; }
-      .jotform-embed iframe { min-height: 800px !important; height: 800px !important; -webkit-overflow-scrolling: touch !important; overflow: auto !important; overscroll-behavior: contain !important; }
+
       .consent-gate { padding: 1.5rem 1rem; margin: 0.75rem 0; }
       .consent-gate-inner { max-width: 100%; }
       .consent-gate-title { font-size: 1.25rem; }
@@ -504,7 +470,7 @@ const dentistSchema = {
   </style>
 
   <script>
-    // Success-message detection — JotForm redirects back with ?thanks=1 or postMessages
+    // Success-message detection — JotForm redirects back with ?thanks=1
     (function() {
       const params = new URLSearchParams(window.location.search);
       const isSuccess = params.has('thanks') || params.get('submission') === 'success';
@@ -516,83 +482,43 @@ const dentistSchema = {
           el.setAttribute('tabindex', '-1');
           el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           el.focus({ preventScroll: true });
-          document.querySelectorAll('.jotform-embed').forEach(f => {
-            f.style.display = 'none';
-          });
+          // Hide the consent gate since form was submitted
+          const gate = document.getElementById('consent-gate');
+          if (gate) gate.style.display = 'none';
         }
       }
 
       if (isSuccess) {
         setTimeout(showSuccess, 300);
       }
-
-      window.addEventListener('message', (e) => {
-        if (!e.origin || !e.origin.endsWith('jotform.com')) return;
-        const data = (typeof e.data === 'string') ? e.data : JSON.stringify(e.data || {});
-        if (/submission\s*complete|form\s*submitted|thank\s*you/i.test(data)) {
-          showSuccess();
-        }
-      });
     })();
 
     // ===== CONSENT GATE LOGIC =====
-    // Shows a consent gate before loading JotForm. Stores consent in sessionStorage.
+    // Checkbox enables the "Continue to Form" link (opens JotForm in new tab)
+    // No iframe — fixes iOS Safari scroll bug
     (function() {
-      const CONSENT_KEY = 'drlee_hipaa_consent';
-      const gate = document.getElementById('consent-gate');
       const check = document.getElementById('consent-check');
       const btn = document.getElementById('consent-btn');
-      const embed = document.getElementById('appointment-form-container');
-
-      function hasConsent() {
-        try {
-          return sessionStorage.getItem(CONSENT_KEY) === 'true';
-        } catch (e) {
-          return false;
-        }
-      }
-
-      function giveConsent() {
-        try {
-          sessionStorage.setItem(CONSENT_KEY, 'true');
-        } catch (e) {
-          // sessionStorage may be disabled; continue anyway
-        }
-        if (gate) gate.style.display = 'none';
-        if (embed) {
-          embed.style.display = 'block';
-          embed.classList.add('consent-given');
-        }
-        // Focus first form field for accessibility
-        setTimeout(() => {
-          const firstInput = document.querySelector('.jotform-embed input, .jotform-embed select, .jotform-embed textarea');
-          if (firstInput) firstInput.focus();
-        }, 500);
-      }
-
-      if (hasConsent()) {
-        giveConsent();
-        return;
-      }
 
       if (check && btn) {
         check.addEventListener('change', () => {
-          btn.disabled = !check.checked;
-          btn.setAttribute('aria-disabled', String(!check.checked));
+          if (check.checked) {
+            btn.style.pointerEvents = 'auto';
+            btn.style.opacity = '1';
+            btn.setAttribute('aria-disabled', 'false');
+          } else {
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.5';
+            btn.setAttribute('aria-disabled', 'true');
+          }
         });
 
-        btn.addEventListener('click', () => {
-          if (check.checked) giveConsent();
-        });
-
-        // Allow Enter key to submit when checkbox is focused
+        // Allow Enter key to toggle checkbox
         check.addEventListener('keydown', (e) => {
           if (e.key === 'Enter') {
             e.preventDefault();
             check.checked = !check.checked;
-            btn.disabled = !check.checked;
-            btn.setAttribute('aria-disabled', String(!check.checked));
-            if (check.checked) giveConsent();
+            check.dispatchEvent(new Event('change'));
           }
         });
       }
