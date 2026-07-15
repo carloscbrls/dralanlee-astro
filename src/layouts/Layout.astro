@@ -288,25 +288,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       font-family: var(--font-body); font-size: 0.76rem; color: #c2a46c;
       font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
     }
-    .nav-menu {
-      z-index: 1001;
-      list-style: none; display: flex; align-items: center; gap: 0.15rem;
-    }
-    .nav-menu li { position: relative; }
-    .nav-menu a {
-      font-family: var(--font-body); font-weight: 500; font-size: 0.86rem;
-      color: var(--neutral-600); padding: 0.5rem 0.85rem; border-radius: var(--radius-sm);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative;
-      letter-spacing: 0.02em;
-    }
-    .nav-menu a:hover { color: #0c1a2e; background: rgba(194, 164, 108, 0.06); }
-    .nav-menu a::after {
-      content: ''; position: absolute; bottom: 2px; left: 50%; width: 0; height: 2px;
-      background: linear-gradient(90deg, #c2a46c, #d4b878); border-radius: 1px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: translateX(-50%);
-    }
-    .nav-menu a:hover::after { width: 60%; }
+    /* nav-menu desktop styles moved to global <style is:global> block */
     .nav-cta {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: linear-gradient(135deg, #c2a46c 0%, #a8894e 100%); color: white !important;
@@ -323,7 +305,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     .nav-cta::after { display: none !important; }
     .nav-cta svg { width: 14px; height: 14px; }
 
-    /* Mobile toggle styles moved to global <style is:global> block */
+    /* All mobile-critical styles (toggle, nav-menu, media queries) moved to global <style is:global> block */
 
     /* ===== MAIN CONTENT ===== */
     main { min-height: 60vh; }
@@ -512,7 +494,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
     .mobile-toggle.active .hamburger-icon { display: none; }
     .mobile-toggle.active .close-icon { display: block; }
 
-    /* Mobile nav overlay — must be global to avoid Astro scoping bugs on Safari */
+    /* 768px media query moved to global <style is:global> block — see below */
     @media (max-width: 768px) {
       .top-bar .top-links { display: none; }
       .top-bar-inner { justify-content: center; font-size: 0.78rem; }
