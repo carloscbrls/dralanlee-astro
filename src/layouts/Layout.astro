@@ -244,7 +244,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       border-bottom: 1px solid rgba(194, 164, 108, 0.15);
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 10001;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       padding-left: env(safe-area-inset-left, 0px);
       padding-right: env(safe-area-inset-right, 0px);
@@ -504,22 +504,23 @@ const allSchemas = [localBusinessSchema, ...schemas];
       .nav-inner { height: 64px; }
       .logo-img { width: 44px; height: 44px; }
       .nav-menu {
-        display: none; position: fixed; top: auto; left: 0; right: 0; bottom: 0;
+        display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
         background: white;
-        flex-direction: column; padding: 0.5rem 0 0;
-        padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+        flex-direction: column; padding: 0;
+        padding-top: 0;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
         overflow-y: auto;
-        box-shadow: 0 -4px 30px rgba(0,0,0,0.08);
-        border-top: 1px solid rgba(0,0,0,0.08);
-        gap: 0; z-index: 9999;
+        box-shadow: none;
+        border-top: none;
+        gap: 0; z-index: 10000;
       }
       .nav-menu.active { display: flex; }
       .nav-menu li { width: 100%; }
       .nav-menu a {
-        padding: 0; width: 100%; min-height: 52px; display: flex; align-items: center;
+        width: 100%; min-height: 52px; display: flex; align-items: center;
         font-size: 1rem; font-weight: 500; color: var(--neutral-800);
         border-bottom: 1px solid rgba(0,0,0,0.06);
-        padding-left: 1.5rem; padding-right: 1.5rem;
+        padding: 0 1.5rem;
       }
       .nav-menu a::after { display: none; }
       .nav-cta {
@@ -754,17 +755,20 @@ const allSchemas = [localBusinessSchema, ...schemas];
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.nav-menu');
     const header = document.getElementById('site-header');
-    if (toggle && menu) {
+    if (toggle && menu && header) {
       toggle.addEventListener('click', () => {
         const expanded = toggle.getAttribute('aria-expanded') === 'true';
         toggle.setAttribute('aria-expanded', String(!expanded));
         menu.classList.toggle('active');
         toggle.classList.toggle('active');
-        // Position mobile menu below header when using fixed positioning
-        if (window.innerWidth <= 768 && menu.classList.contains('active') && header) {
-          menu.style.top = header.offsetHeight + header.getBoundingClientRect().top + 'px';
+        if (menu.classList.contains('active')) {
+          // Full-screen overlay: position below the header
+          const headerBottom = header.getBoundingClientRect().bottom;
+          menu.style.top = headerBottom + 'px';
+          document.body.style.overflow = 'hidden';
         } else {
           menu.style.top = '';
+          document.body.style.overflow = '';
         }
       });
       document.addEventListener('keydown', (e) => {
@@ -772,8 +776,21 @@ const allSchemas = [localBusinessSchema, ...schemas];
           menu.classList.remove('active');
           toggle.classList.remove('active');
           toggle.setAttribute('aria-expanded', 'false');
+          menu.style.top = '';
+          document.body.style.overflow = '';
           toggle.focus();
         }
+      });
+
+      // Close menu when a link is tapped (mobile)
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('active');
+          toggle.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+          menu.style.top = '';
+          document.body.style.overflow = '';
+        });
       });
     }
 
