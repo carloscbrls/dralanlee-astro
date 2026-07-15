@@ -94,8 +94,21 @@ const allSchemas = [localBusinessSchema, ...schemas];
   <!-- Structured Data -->
   {allSchemas.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
 
-  <!-- Critical CSS inlined for performance -->
-  <style>
+  <!--
+    ============================================================
+    ALL CSS IS NOW IN <style is:global> BLOCK
+    ============================================================
+    WHY: Astro's scoped CSS adds data-astro-cid-* attributes to
+    selectors, giving them higher specificity than unscoped rules.
+    This was breaking the mobile nav — scoped .nav-menu { display: flex }
+    was overriding global @media { .nav-menu { display: none } }.
+    
+    FIX: ALL nav/menu/button/mobile styles are now in ONE unscoped
+    <style is:global> block with !important on mobile rules to
+    guarantee they win the specificity war.
+    ============================================================
+  -->
+  <style is:global>
     /* ===== DESIGN SYSTEM ===== */
     :root {
       --primary-50: #f0f9ff;
@@ -288,7 +301,30 @@ const allSchemas = [localBusinessSchema, ...schemas];
       font-family: var(--font-body); font-size: 0.76rem; color: #c2a46c;
       font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
     }
-    /* nav-menu desktop styles moved to global <style is:global> block */
+
+    /* ===== DESKTOP NAV MENU ===== */
+    .nav-menu {
+      z-index: 1001;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+    }
+    .nav-menu li { position: relative; }
+    .nav-menu a {
+      font-family: var(--font-body); font-weight: 500; font-size: 0.86rem;
+      color: var(--neutral-600); padding: 0.5rem 0.85rem; border-radius: var(--radius-sm);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative;
+      letter-spacing: 0.02em;
+    }
+    .nav-menu a:hover { color: #0c1a2e; background: rgba(194, 164, 108, 0.06); }
+    .nav-menu a::after {
+      content: ''; position: absolute; bottom: 2px; left: 50%; width: 0; height: 2px;
+      background: linear-gradient(90deg, #c2a46c, #d4b878); border-radius: 1px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(-50%);
+    }
+    .nav-menu a:hover::after { width: 60%; }
     .nav-cta {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: linear-gradient(135deg, #c2a46c 0%, #a8894e 100%); color: white !important;
@@ -305,7 +341,86 @@ const allSchemas = [localBusinessSchema, ...schemas];
     .nav-cta::after { display: none !important; }
     .nav-cta svg { width: 14px; height: 14px; }
 
-    /* All mobile-critical styles (toggle, nav-menu, media queries) moved to global <style is:global> block */
+    /* ===== MOBILE TOGGLE ===== */
+    .mobile-toggle {
+      display: none; background: none; border: none;
+      cursor: pointer; padding: 0; border-radius: 0;
+      width: 48px; height: 48px; align-items: center; justify-content: center;
+      -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+      transition: opacity 0.3s ease; position: relative;
+    }
+    .mobile-toggle:hover { opacity: 0.7; }
+    .mobile-toggle .hamburger-icon,
+    .mobile-toggle .close-icon { width: 24px; height: 24px; }
+    .mobile-toggle .close-icon { display: none; }
+    .mobile-toggle.active .hamburger-icon { display: none; }
+    .mobile-toggle.active .close-icon { display: block; }
+
+    /* ===== MOBILE NAV — ALL !important TO DEFEAT ASTRO SCOPING ===== */
+    @media (max-width: 768px) {
+      .top-bar .top-links { display: none !important; }
+      .top-bar-inner { justify-content: center !important; font-size: 0.78rem !important; }
+      .mobile-toggle { display: flex !important; z-index: 10002 !important; }
+      .nav-inner { height: 64px !important; }
+      .logo-img { width: 44px !important; height: 44px !important; }
+      /* CRITICAL: nav-menu MUST be hidden by default on mobile, then shown when .active */
+      .nav-menu {
+        display: none !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: white !important;
+        flex-direction: column !important;
+        padding: 80px 0 0 0 !important;
+        padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+        overflow-y: auto !important;
+        box-shadow: none !important;
+        border-top: none !important;
+        gap: 0 !important;
+        z-index: 10000 !important;
+      }
+      /* When toggled active, show the menu */
+      .nav-menu.active {
+        display: flex !important;
+      }
+      .nav-menu li { width: 100% !important; }
+      .nav-menu a {
+        width: 100% !important;
+        min-height: 52px !important;
+        display: flex !important;
+        align-items: center !important;
+        font-size: 1rem !important;
+        font-weight: 500 !important;
+        color: #262626 !important;
+        border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+        padding: 0 1.5rem !important;
+      }
+      .nav-menu a::after { display: none !important; }
+      .nav-cta {
+        width: calc(100% - 3rem) !important;
+        justify-content: center !important;
+        margin: 1rem 1.5rem 0 !important;
+        text-align: center !important;
+        padding: 1rem !important;
+        font-size: 1rem !important;
+        border-bottom: none !important;
+      }
+      .logo-name { font-size: 1.05rem !important; }
+      .logo-tagline { font-size: 0.65rem !important; }
+      .section-title { font-size: 2rem !important; }
+      .footer-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+      .footer-brand { text-align: center !important; }
+      .footer-brand .logo-footer { justify-content: center !important; }
+      .footer-social { justify-content: center !important; }
+      .footer-col { text-align: center !important; }
+      .footer-col ul { display: flex !important; flex-wrap: wrap !important; gap: 0.25rem 1rem !important; justify-content: center !important; }
+      .footer-hours { text-align: center !important; }
+      .footer-bottom-inner { flex-direction: column !important; text-align: center !important; }
+    }
 
     /* ===== MAIN CONTENT ===== */
     main { min-height: 60vh; }
@@ -428,8 +543,8 @@ const allSchemas = [localBusinessSchema, ...schemas];
 
     /* ===== SHARED COMPONENTS ===== */
     .section-pad { padding: 5rem 1.5rem; }
-    :global(.container-wide) { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
-    :global(.container-narrow) { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+    .container-wide { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+    .container-narrow { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
 
     .section-label {
       font-family: var(--font-body); font-weight: 600; font-size: 0.78rem;
@@ -461,83 +576,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       border-top: 1px solid var(--primary-100);
     }
 
-    /* btn-primary and btn-secondary base styles moved to global <style is:global> block */
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1024px) {
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-    }
-    /* Mobile responsive styles moved to global <style is:global> block */
-    @media (max-width: 480px) {
-      .section-pad { padding: 3.5rem 1rem; }
-      .section-title { font-size: 1.65rem; }
-      .section-heading { font-size: 1.4rem; }
-      .top-bar { font-size: 0.75rem; }
-      .top-bar a { min-height: 44px; padding: 0.35rem 0; }
-    }
-  </style>
-
-  <!-- Global button + mobile nav styles (unscoped so they apply correctly on all browsers including Safari) -->
-  <style is:global>
-    /* Mobile toggle — must be global to avoid Astro scoping bugs on Safari */
-    .mobile-toggle {
-      display: none; background: none; border: none;
-      cursor: pointer; padding: 0; border-radius: 0;
-      width: 48px; height: 48px; align-items: center; justify-content: center;
-      -webkit-tap-highlight-color: transparent; touch-action: manipulation;
-      transition: opacity 0.3s ease; position: relative;
-    }
-    .mobile-toggle:hover { opacity: 0.7; }
-    .mobile-toggle .hamburger-icon,
-    .mobile-toggle .close-icon { width: 24px; height: 24px; }
-    .mobile-toggle .close-icon { display: none; }
-    .mobile-toggle.active .hamburger-icon { display: none; }
-    .mobile-toggle.active .close-icon { display: block; }
-
-    /* 768px media query moved to global <style is:global> block — see below */
-    @media (max-width: 768px) {
-      .top-bar .top-links { display: none; }
-      .top-bar-inner { justify-content: center; font-size: 0.78rem; }
-      .mobile-toggle { display: flex; z-index: 10002; }
-      .nav-inner { height: 64px; }
-      .logo-img { width: 44px; height: 44px; }
-      .nav-menu {
-        display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        background: white;
-        flex-direction: column; padding: 0;
-        padding-top: 0;
-        padding-bottom: env(safe-area-inset-bottom, 0px);
-        overflow-y: auto;
-        box-shadow: none;
-        border-top: none;
-        gap: 0; z-index: 10000;
-      }
-      .nav-menu.active { display: flex; }
-      .nav-menu li { width: 100%; }
-      .nav-menu a {
-        width: 100%; min-height: 52px; display: flex; align-items: center;
-        font-size: 1rem; font-weight: 500; color: #262626;
-        border-bottom: 1px solid rgba(0,0,0,0.06);
-        padding: 0 1.5rem;
-      }
-      .nav-menu a::after { display: none; }
-      .nav-cta {
-        width: calc(100% - 3rem); justify-content: center; margin: 1rem 1.5rem 0; text-align: center;
-        padding: 1rem; font-size: 1rem !important; border-bottom: none !important;
-      }
-      .logo-name { font-size: 1.05rem; }
-      .logo-tagline { font-size: 0.65rem; }
-      .section-title { font-size: 2rem; }
-      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .footer-brand { text-align: center; }
-      .footer-brand .logo-footer { justify-content: center; }
-      .footer-social { justify-content: center; }
-      .footer-col { text-align: center; }
-      .footer-col ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; justify-content: center; }
-      .footer-hours { text-align: center; }
-      .footer-bottom-inner { flex-direction: column; text-align: center; }
-    }
-
+    /* ===== BUTTONS ===== */
     .btn-primary {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: linear-gradient(135deg, #c2a46c 0%, #a8894e 100%);
@@ -578,6 +617,18 @@ const allSchemas = [localBusinessSchema, ...schemas];
     }
     .btn-secondary:active { transform: translateY(0); }
     .btn-secondary svg { width: 16px; height: 16px; }
+
+    /* ===== RESPONSIVE (non-nav) ===== */
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 480px) {
+      .section-pad { padding: 3.5rem 1rem; }
+      .section-title { font-size: 1.65rem; }
+      .section-heading { font-size: 1.4rem; }
+      .top-bar { font-size: 0.75rem; }
+      .top-bar a { min-height: 44px; padding: 0.35rem 0; }
+    }
   </style>
 </head>
 <body>
@@ -713,34 +764,15 @@ const allSchemas = [localBusinessSchema, ...schemas];
         <p style="margin:0;font-size:0.9rem;line-height:1.6;">We use essential cookies for site security and performance, and analytics cookies to improve your experience. We <strong>do not sell</strong> your personal information. <a href="/privacy-policy/" style="color:#38bdf8;text-decoration:underline;">Privacy Policy</a> | <a href="/privacy-policy/#cookies" style="color:#38bdf8;text-decoration:underline;">Cookie Policy</a></p>
       </div>
       <div style="display:flex;gap:0.5rem;flex-shrink:0;">
-        <button id="cookie-accept" style="background:#047857;color:white;border:none;padding:0.75rem 1.5rem;border-radius:9999px;font-weight:700;font-size:0.88rem;cursor:pointer;font-family:Inter,sans-serif;min-height:44px;">Accept All</button>
-        <button id="cookie-reject" style="background:transparent;color:white;border:1.5px solid rgba(255,255,255,0.4);padding:0.75rem 1.5rem;border-radius:9999px;font-weight:600;font-size:0.88rem;cursor:pointer;font-family:Inter,sans-serif;min-height:44px;">Essential Only</button>
+        <button onclick="document.getElementById('cookie-banner').style.display='none'" style="background:#c2a46c;color:white;border:none;padding:0.7rem 1.5rem;border-radius:9999px;font-weight:600;font-size:0.9rem;cursor:pointer;">Accept All</button>
+        <button onclick="document.getElementById('cookie-banner').style.display='none'" style="background:transparent;color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.3);padding:0.7rem 1.5rem;border-radius:9999px;font-weight:500;font-size:0.9rem;cursor:pointer;">Essential Only</button>
       </div>
     </div>
   </div>
-  <script>
-    (function(){
-      const banner=document.getElementById('cookie-banner');
-      const consent=localStorage.getItem('cookie_consent');
-      if(!consent){banner.style.display='block';}
-      document.getElementById('cookie-accept').addEventListener('click',function(){
-        localStorage.setItem('cookie_consent','all');
-        localStorage.setItem('cookie_consent_date',new Date().toISOString());
-        banner.style.display='none';
-        if(window.plausible){window.plausible('Cookie Consent',{props:{choice:'accept_all'}});}
-      });
-      document.getElementById('cookie-reject').addEventListener('click',function(){
-        localStorage.setItem('cookie_consent','essential');
-        localStorage.setItem('cookie_consent_date',new Date().toISOString());
-        banner.style.display='none';
-        if(window.plausible){window.plausible('Cookie Consent',{props:{choice:'essential_only'}});}
-      });
-    })();
-  </script>
 
   <!-- Scripts -->
   <script>
-    // Mobile menu toggle
+    // Mobile menu toggle — uses inline styles for guaranteed override
     const toggle = document.querySelector('.mobile-toggle');
     const menu = document.querySelector('.nav-menu');
     const header = document.getElementById('site-header');
@@ -751,15 +783,15 @@ const allSchemas = [localBusinessSchema, ...schemas];
         menu.classList.toggle('active');
         toggle.classList.toggle('active');
         if (menu.classList.contains('active')) {
-          // Full-screen overlay: position below the header
-          const headerBottom = header.getBoundingClientRect().bottom;
-          menu.style.top = headerBottom + 'px';
+          // Full-screen overlay below header
+          menu.style.top = header.getBoundingClientRect().bottom + 'px';
           document.body.style.overflow = 'hidden';
         } else {
           menu.style.top = '';
           document.body.style.overflow = '';
         }
       });
+      // Close on Escape
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && menu.classList.contains('active')) {
           menu.classList.remove('active');
@@ -770,8 +802,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
           toggle.focus();
         }
       });
-
-      // Close menu when a link is tapped (mobile)
+      // Close menu when a link is tapped
       menu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           menu.classList.remove('active');
@@ -800,8 +831,14 @@ const allSchemas = [localBusinessSchema, ...schemas];
         }
       });
     }, observerOptions);
+    document.querySelectorAll('.animate-fade-up, .animate-fade-in, .animate-slide-left, .animate-scale-in').forEach(el => {
+      observer.observe(el);
+    });
 
-    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+    // Cookie banner
+    if (!localStorage.getItem('cookie-consent')) {
+      document.getElementById('cookie-banner').style.display = 'block';
+    }
   </script>
 </body>
 </html>
