@@ -323,19 +323,20 @@ const allSchemas = [localBusinessSchema, ...schemas];
     .nav-cta::after { display: none !important; }
     .nav-cta svg { width: 14px; height: 14px; }
 
-    /* Mobile toggle (Luxury) — highly visible */
+    /* Mobile toggle (Luxury) — SVG-based, guaranteed visible */
     .mobile-toggle {
       display: none; background: none; border: none;
       cursor: pointer; padding: 0; border-radius: 0;
       width: 48px; height: 48px; align-items: center; justify-content: center;
-      flex-direction: column; gap: 6px; -webkit-tap-highlight-color: transparent; touch-action: manipulation;
-      transition: opacity 0.3s ease;
+      -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+      transition: opacity 0.3s ease; position: relative;
     }
     .mobile-toggle:hover { opacity: 0.7; }
-    .mobile-toggle span { display: block; width: 24px; height: 3px; background: #0c1a2e; border-radius: 2px; transition: var(--transition-fast); }
-    .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
-    .mobile-toggle.active span:nth-child(2) { opacity: 0; }
-    .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+    .mobile-toggle .hamburger-icon,
+    .mobile-toggle .close-icon { width: 24px; height: 24px; }
+    .mobile-toggle .close-icon { display: none; }
+    .mobile-toggle.active .hamburger-icon { display: none; }
+    .mobile-toggle.active .close-icon { display: block; }
 
     /* ===== MAIN CONTENT ===== */
     main { min-height: 60vh; }
@@ -627,7 +628,8 @@ const allSchemas = [localBusinessSchema, ...schemas];
       </a>
 
       <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
-        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0c1a2e" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0c1a2e" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" style="display:none"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
       </button>
 
       <ul class="nav-menu" id="nav-menu" role="menubar">
