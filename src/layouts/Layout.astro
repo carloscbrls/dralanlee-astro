@@ -44,7 +44,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
 ---
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -822,7 +822,11 @@ const allSchemas = [localBusinessSchema, ...schemas];
       }, { passive: true });
     }
 
-    // Intersection Observer for scroll animations
+    // Progressive enhancement: enable animations only after JS confirms readiness
+    // This prevents content from being invisible if JS fails to fire
+    document.documentElement.classList.add('js-animations');
+
+    // Also observe data-animate elements
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -832,6 +836,9 @@ const allSchemas = [localBusinessSchema, ...schemas];
         }
       });
     }, observerOptions);
+    document.querySelectorAll('[data-animate]').forEach(el => {
+      observer.observe(el);
+    });
     document.querySelectorAll('.animate-fade-up, .animate-fade-in, .animate-slide-left, .animate-scale-in').forEach(el => {
       observer.observe(el);
     });
