@@ -785,10 +785,11 @@ const allSchemas = [localBusinessSchema, ...schemas];
         if (menu.classList.contains('active')) {
           // Full-screen overlay below header
           menu.style.top = header.getBoundingClientRect().bottom + 'px';
-          document.body.style.overflow = 'hidden';
+          // Scroll-lock the menu overlay only, never clip body vertical scroll
+          document.body.style.overflowX = 'hidden';
         } else {
           menu.style.top = '';
-          document.body.style.overflow = '';
+          document.body.style.overflowX = '';
         }
       });
       // Close on Escape
@@ -798,7 +799,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
           toggle.classList.remove('active');
           toggle.setAttribute('aria-expanded', 'false');
           menu.style.top = '';
-          document.body.style.overflow = '';
+          document.body.style.overflowX = '';
           toggle.focus();
         }
       });
@@ -809,7 +810,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
           toggle.classList.remove('active');
           toggle.setAttribute('aria-expanded', 'false');
           menu.style.top = '';
-          document.body.style.overflow = '';
+          document.body.style.overflowX = '';
         });
       });
     }
