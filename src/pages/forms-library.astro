@@ -60,6 +60,9 @@ const consentForms = [
 ];
 
 const allForms = [...newPatientForms, ...consentForms, ...policyForms];
+
+// Forms every patient should complete before their visit
+const requiredForms = [...newPatientForms, ...policyForms];
 ---
 
 <Layout title={title} description={description} canonicalUrl={canonicalUrl}>
@@ -79,6 +82,46 @@ const allForms = [...newPatientForms, ...consentForms, ...policyForms];
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
         <span>Your information is protected by HIPAA-compliant encryption. Forms are submitted directly to our office — no third-party sites. <a href="/hipaa-privacy/">Learn more about your privacy rights →</a></span>
         <span style="display: block; margin-top: 0.5rem; font-size: 0.85rem; color: #d1fae5;">⚙️ <strong>Notice at Collection (CCPA):</strong> We collect personal and health information through these forms to provide dental care. We do not sell your information. <a href="/privacy-policy/" style="color: #a7f3d0; font-weight: 600;">Privacy Policy</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before Your Visit -->
+  <section class="section-pad">
+    <div class="container-narrow" data-animate>
+      <h2 class="section-heading">Before Your Visit</h2>
+
+      <div class="tips-grid">
+        <div class="tip-item">
+          <div class="tip-number">1</div>
+          <div>
+            <h3>Complete Online for Fastest Processing</h3>
+            <p>Online forms are HIPAA-compliant and submitted directly to our office, saving you time during your visit. Please complete these forms before your appointment:</p>
+            <ol class="required-forms">
+              {requiredForms.map((form) => (
+                <li>
+                  <a href={form.url} target="_blank" rel="noopener noreferrer">
+                    {form.title}<span class="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-number">2</div>
+          <div>
+            <h3>Bring Required Documentation</h3>
+            <p>Please bring a valid photo ID, dental insurance card, list of current medications, and any relevant dental records.</p>
+          </div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-number">3</div>
+          <div>
+            <h3>Arrive 15 Minutes Early</h3>
+            <p>This allows time to verify your paperwork. If you completed forms online, we'll confirm the information at check-in.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -170,37 +213,6 @@ const allForms = [...newPatientForms, ...consentForms, ...policyForms];
     </div>
   </section>
 
-  <!-- Tips -->
-  <section class="section-pad">
-    <div class="container-narrow" data-animate>
-      <h2 class="section-heading">Before Your Visit</h2>
-
-      <div class="tips-grid">
-        <div class="tip-item">
-          <div class="tip-number">1</div>
-          <div>
-            <h4>Complete Online for Fastest Processing</h4>
-            <p>Online forms are HIPAA-compliant and submitted directly to our office, saving you time during your visit.</p>
-          </div>
-        </div>
-        <div class="tip-item">
-          <div class="tip-number">2</div>
-          <div>
-            <h4>Bring Required Documentation</h4>
-            <p>Please bring a valid photo ID, dental insurance card, list of current medications, and any relevant dental records.</p>
-          </div>
-        </div>
-        <div class="tip-item">
-          <div class="tip-number">3</div>
-          <div>
-            <h4>Arrive 15 Minutes Early</h4>
-            <p>This allows time to verify your paperwork. If you completed forms online, we'll confirm the information at check-in.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CTA -->
   <section class="section-pad cta-section" data-animate>
     <div class="container-narrow" style="text-align: center;">
@@ -279,8 +291,12 @@ const allForms = [...newPatientForms, ...consentForms, ...policyForms];
     .tips-grid { margin-top: 1.5rem; }
     .tip-item { display: flex; gap: 1.25rem; align-items: flex-start; margin-bottom: 1.5rem; }
     .tip-number { font-family: var(--font-display); font-size: 1.3rem; color: white; flex-shrink: 0; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%); border-radius: var(--radius-full); box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25); }
-    .tip-item h4 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-800); margin-bottom: 0.25rem; }
+    .tip-item h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--neutral-800); margin-bottom: 0.25rem; }
     .tip-item p { color: var(--neutral-500); line-height: 1.6; font-size: 0.92rem; }
+    .required-forms { margin: 0.75rem 0 0; padding-left: 1.25rem; list-style: decimal; color: var(--neutral-700); font-size: 0.92rem; line-height: 1.8; }
+    .required-forms a { color: var(--primary-700); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .required-forms a:hover, .required-forms a:focus-visible { color: var(--primary-900); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
     @media (max-width: 1024px) { .forms-grid.three-col { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 768px) {
