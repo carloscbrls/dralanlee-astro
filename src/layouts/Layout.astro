@@ -117,7 +117,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       --primary-300: #7dd3fc;
       --primary-400: #38bdf8;
       --primary-500: #0ea5e9;
-      --primary-600: #0284c7;
+      --primary-600: #0369a1; /* AA-tuned 2026-11-24: was #0284c7 (3.9:1 on #fafafa) */
       --primary-700: #0369a1;
       --primary-800: #075985;
       --primary-900: #0c4a6e;
@@ -298,7 +298,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
       background-clip: text;
     }
     .logo-tagline {
-      font-family: var(--font-body); font-size: 0.76rem; color: #c2a46c;
+      font-family: var(--font-body); font-size: 0.76rem; color: #8a6d3b; /* AA-tuned: was #c2a46c (2.38:1) */
       font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
     }
 
@@ -662,7 +662,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
   <!-- Header / Navigation -->
   <header class="site-header" id="site-header">
     <nav class="nav-inner" role="navigation" aria-label="Main navigation">
-      <a href="/" class="logo-link" aria-label="Dr. Alan S. Lee, DDS - Home">
+      <a href="/" class="logo-link">
         <img src="/images/logo.png" alt="Dr. Alan S. Lee, DDS — ASL Dental Logo" class="logo-img" width="52" height="52" loading="eager" />
         <div>
           <span class="logo-name">Dr. Alan S. Lee, DDS</span>
@@ -769,7 +769,7 @@ const allSchemas = [localBusinessSchema, ...schemas];
         <p style="margin:0;font-size:0.9rem;line-height:1.6;">We use essential cookies for site security and performance, and analytics cookies to improve your experience. We <strong>do not sell</strong> your personal information. <a href="/privacy-policy/" style="color:#38bdf8;text-decoration:underline;">Privacy Policy</a> | <a href="/privacy-policy/#cookies" style="color:#38bdf8;text-decoration:underline;">Cookie Policy</a></p>
       </div>
       <div style="display:flex;gap:0.5rem;flex-shrink:0;">
-        <button onclick="document.getElementById('cookie-banner').style.display='none'" style="background:#c2a46c;color:white;border:none;padding:0.7rem 1.5rem;border-radius:9999px;font-weight:600;font-size:0.9rem;cursor:pointer;">Accept All</button>
+        <button onclick="document.getElementById('cookie-banner').style.display='none'" style="background:#8a6d3b;color:white;border:none;padding:0.7rem 1.5rem;border-radius:9999px;font-weight:600;font-size:0.9rem;cursor:pointer;">Accept All</button>
         <button onclick="document.getElementById('cookie-banner').style.display='none'" style="background:transparent;color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.3);padding:0.7rem 1.5rem;border-radius:9999px;font-weight:500;font-size:0.9rem;cursor:pointer;">Essential Only</button>
       </div>
     </div>
